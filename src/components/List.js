@@ -15,7 +15,7 @@ const todos = [
 
 export default function List() {
   return (
-    <ListStyle>
+    <ListStyle role="list">
       {todos.map((todo, index) => (
         <li key={index}>{todo.text}</li>
       ))}
