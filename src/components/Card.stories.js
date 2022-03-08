@@ -9,15 +9,11 @@ const Template = args => <Card {...args} />;
 
 export const FullCard = Template.bind({});
 FullCard.args = {
-  activity: {
-    activity: 'Frau Möller',
-    friend: 'Clara',
-  },
+  activity: 'Frau Möller',
+  friend: 'Clara',
 };
 
 export const OnlyActivityCard = Template.bind({});
 OnlyActivityCard.args = {
-  activity: {
-    activity: 'Frau Möller',
-  },
+  activity: 'Frau Möller',
 };

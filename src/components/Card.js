@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export default function Card({ activity }) {
+export default function Card({ activity, friend }) {
   return (
     <Wrapper>
-      <strong>{activity.activity}</strong>
-      {activity.friend}
+      <strong>{activity}</strong>
+      {friend}
     </Wrapper>
   );
 }

@@ -7,7 +7,7 @@ export default function List({ activities }) {
     <ListStyle role="list">
       {activities.map(activity => (
         <li key={nanoid()}>
-          <Card activity={activity} />
+          <Card activity={activity.activity} friend={activity.friend} />
         </li>
       ))}
     </ListStyle>
