@@ -11,6 +11,6 @@ export const Default = Template.bind({});
 Default.args = {
   activities: [
     { id: '1', activity: 'Frau Möller', friend: 'Clara' },
-    { id: '2', activity: 'Frau Möller', friend: 'Clara' },
+    { id: '2', activity: 'Stadtpark', friend: 'Jana' },
   ],
 };
