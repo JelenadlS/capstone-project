@@ -10,5 +10,6 @@ export default createGlobalStyle`
 body {
   font-family:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background: rgba(235, 240, 242, 0.2);
+  font-size: 18px;
 }
 `;

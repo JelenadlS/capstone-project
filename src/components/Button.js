@@ -7,6 +7,7 @@ export default function Button() {
 const FormButton = styled.button`
   background: #92dec5;
   color: rgba(71, 39, 35, 0.72);
+  font-size: 18px;
   border: none;
   border-radius: 15px;
   padding: 10px;
