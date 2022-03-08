@@ -3,14 +3,24 @@ import styled from 'styled-components';
 export default function Card({ activity, friend }) {
   return (
     <Wrapper>
-      <strong>{activity}</strong>
-      {friend}
+      <p>
+        <strong>{activity}</strong>
+      </p>
+      <p>{friend}</p>
     </Wrapper>
   );
 }
 
-const Wrapper = styled.p`
+const Wrapper = styled.section`
   display: flex;
   flex-flow: column;
+  flex: 1;
   color: rgba(71, 39, 35, 0.72);
+  overflow: hidden;
+
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 `;
