@@ -12,18 +12,48 @@ export default function App() {
 
   return (
     <>
-      <Title>Top 10 to do in Hamburg</Title>
-      <List activities={activities} />
-      <Form onAddActivity={onAddActivity} />
+      <Wrapper>
+        <Title>
+          <h1>my activities</h1>
+        </Title>
+        <Main>
+          <List activities={activities} />
+        </Main>
+        <Bottom>
+          <Form onAddActivity={onAddActivity} />
+        </Bottom>
+      </Wrapper>
     </>
   );
 }
 
-const Title = styled.h1`
+const Wrapper = styled.div`
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 60px 1fr auto;
+`;
+
+const Title = styled.header`
   background: #f0e7da;
   padding: 10px;
-  font-size: 30px;
   text-align: center;
   text-transform: uppercase;
   color: rgba(71, 39, 35, 0.72);
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+  height: 60px;
+`;
+
+const Main = styled.main`
+  align-self: start;
+  overflow-y: auto;
+  padding-bottom: 180px;
+`;
+
+const Bottom = styled.div`
+  align-self: end;
+  position: fixed;
+  background: white;
+  width: 100%;
 `;

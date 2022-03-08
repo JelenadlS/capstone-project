@@ -30,6 +30,7 @@ const Wrapper = styled.form`
   display: grid;
   gap: 10px;
   color: rgba(71, 39, 35, 0.72);
+  align-self: flex-end;
 
   label {
     margin-left: 10px;
