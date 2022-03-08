@@ -1,20 +1,28 @@
+//import { useState } from 'react';
+
 import styled from 'styled-components';
 import Button from './Button';
 
-export default function Form({ addTodo }) {
-  // Click event auf button, dass Inhalt an List gesendet wird
+export default function Form({ onAddActivity }) {
+  function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const { activity, friend } = form.elements;
+    onAddActivity({ activity: activity.value, friend: friend.value });
+    activity.value = '';
+    friend.value = '';
+  }
 
   return (
-    <Wrapper aria-labelledby="formWrapper" autoComplete="off">
-      <label htmlFor="name of activity">name of activity:</label>
-      <input
-        id="name of activity"
-        required
-        type="text"
-        name="name of activity"
-      />
-      <label htmlFor="name of friend">who should join you?</label>
-      <input id="name of friend" type="text" name="name of friend" />
+    <Wrapper
+      aria-labelledby="formWrapper"
+      autoComplete="off"
+      onSubmit={handleSubmit}
+    >
+      <label htmlFor="activity">name of activity:</label>
+      <input id="activity" required type="text" name="activity" />
+      <label htmlFor="friend">who should join you?</label>
+      <input id="friend" type="text" name="friend" />
       <Button />
     </Wrapper>
   );

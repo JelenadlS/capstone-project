@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default function Button() {
-  return <FormButton>Add</FormButton>;
+  return <FormButton type="submit">Add</FormButton>;
 }
 
 const FormButton = styled.button`

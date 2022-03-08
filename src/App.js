@@ -1,11 +1,25 @@
 import styled from 'styled-components';
 import List from './components/List';
+import Form from './components/Form';
+import { useState } from 'react';
+
+// let activityItems = [
+//   { id: nanoid(), activity: 'Frau Möller', friend: 'Clara' },
+//   { id: nanoid(), activity: 'Frau Möller', friend: 'Clara' },
+// ];
 
 export default function App() {
+  const [activities, setActivities] = useState([]);
+
+  function onAddActivity({ activity, friend }) {
+    setActivities([...activities, { activity, friend }]);
+  }
+
   return (
     <>
       <Title>Top 10 to do in Hamburg</Title>
-      <List />
+      <List activities={activities} />
+      <Form onAddActivity={onAddActivity} />
     </>
   );
 }
