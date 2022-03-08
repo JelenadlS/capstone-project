@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import Button from './Button';
 
-export default function Form() {
+export default function Form({ addTodo }) {
+  // Click event auf button, dass Inhalt an List gesendet wird
+
   return (
     <Wrapper aria-labelledby="formWrapper" autoComplete="off">
       <label htmlFor="name of activity">name of activity:</label>

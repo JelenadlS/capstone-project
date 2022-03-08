@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Card from './Card';
 
 const todos = [
   { text: '1. Speicherstadt' },
@@ -13,11 +14,16 @@ const todos = [
   { text: '10. Jungfernstieg' },
 ];
 
+// bekommt den Inhalt des Formulars und setzt es ein (Card)
+// export Card als Componente
+
 export default function List() {
   return (
     <ListStyle role="list">
       {todos.map((todo, index) => (
-        <li key={index}>{todo.text}</li>
+        <li key={index}>
+          <Card activity={todo.text} />
+        </li>
       ))}
     </ListStyle>
   );
