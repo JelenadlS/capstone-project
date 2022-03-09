@@ -44,5 +44,6 @@ const Wrapper = styled.form`
     margin-top: -10px;
     height: 30px;
     color: rgba(71, 39, 35, 0.72);
+    font-size: 20px;
   }
 `;

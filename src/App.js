@@ -46,14 +46,10 @@ const Title = styled.header`
 `;
 
 const Main = styled.main`
-  align-self: start;
   overflow-y: auto;
-  padding-bottom: 180px;
 `;
 
 const Bottom = styled.div`
-  align-self: end;
-  position: fixed;
   background: white;
   width: 100%;
 `;
