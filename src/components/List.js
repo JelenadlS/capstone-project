@@ -1,24 +1,36 @@
 import styled from 'styled-components';
+import Card from './Card';
+import { nanoid } from 'nanoid';
+import { useEffect, useRef } from 'react';
 
-const todos = [
-  { text: '1. Speicherstadt' },
-  { text: '2. Hafen City' },
-  { text: '3. Elbphilharmonie' },
-  { text: '4. Planten un Blomen' },
-  { text: '5. International Maritime Museum' },
-  { text: '6. Kunsthalle Hamburg' },
-  { text: '7. St Pauli' },
-  { text: '8. Altonabalkon' },
-  { text: '9. Harbour Boat Tour' },
-  { text: '10. Jungfernstieg' },
-];
+export default function List({ activities }) {
+  const activitiesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    activitiesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
 
-export default function List() {
+  useEffect(scrollToBottom, [activities]);
+
+  if (!activities || activities.length === 0) {
+    return (
+      <ListStyle role="list">
+        <li>
+          <Card
+            emptytext={`unfortunately you did not enter any activity yet. Start now and fill your list with amazing activities!`}
+          />
+        </li>
+        <div ref={activitiesEndRef} />
+      </ListStyle>
+    );
+  }
   return (
     <ListStyle role="list">
-      {todos.map((todo, index) => (
-        <li key={index}>{todo.text}</li>
+      {activities.map(activity => (
+        <li key={nanoid()}>
+          <Card activity={activity.activity} friend={activity.friend} />
+        </li>
       ))}
+      <div ref={activitiesEndRef} />
     </ListStyle>
   );
 }
