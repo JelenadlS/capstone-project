@@ -7,11 +7,11 @@ describe('List', () => {
       { id: '1', activity: 'Frau Möller', friend: 'Clara' },
       { id: '2', activity: 'Stadtpark', friend: 'Jana' },
     ];
-
     render(<List activities={activities} />);
-
     const list = screen.getByRole('list');
-
     expect(list).toBeInTheDocument();
   });
+  // it('shows empty message when no list item is there', () => {
+  //   render(<List />)
+  // })
 });

@@ -8,7 +8,14 @@ export default function List({ activities }) {
   const scrollToBottom = () => {
     activitiesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   };
-  useEffect(scrollToBottom, [activities]);
+  // useEffect(scrollToBottom, [activities]);
+
+  console.log(activitiesEndRef.current);
+
+  useEffect(() => {
+    console.log(activitiesEndRef.current);
+    scrollToBottom();
+  }, [activities]);
 
   if (!activities || activities.length === 0) {
     return (
@@ -27,9 +34,9 @@ export default function List({ activities }) {
       {activities.map(activity => (
         <li key={nanoid()}>
           <Card activity={activity.activity} friend={activity.friend} />
-          <div ref={activitiesEndRef} />
         </li>
       ))}
+      <div ref={activitiesEndRef} />
     </ListStyle>
   );
 }
