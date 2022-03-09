@@ -8,14 +8,8 @@ export default function List({ activities }) {
   const scrollToBottom = () => {
     activitiesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   };
-  // useEffect(scrollToBottom, [activities]);
 
-  console.log(activitiesEndRef.current);
-
-  useEffect(() => {
-    console.log(activitiesEndRef.current);
-    scrollToBottom();
-  }, [activities]);
+  useEffect(scrollToBottom, [activities]);
 
   if (!activities || activities.length === 0) {
     return (
