@@ -15,7 +15,7 @@ export default function List({ activities }) {
       <ListStyle role="list">
         <li>
           <Card
-            emtytext={`unfortunately you did not enter any activity yet. Start now and fill your list with amazing activities!`}
+            emptytext={`unfortunately you did not enter any activity yet. Start now and fill your list with amazing activities!`}
           />
         </li>
         <div ref={activitiesEndRef} />

@@ -14,3 +14,8 @@ Default.args = {
     { id: '2', activity: 'Stadtpark', friend: 'Jana' },
   ],
 };
+
+export const Empty = Template.bind({});
+Empty.args = {
+  activities: [],
+};
