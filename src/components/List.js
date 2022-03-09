@@ -13,7 +13,11 @@ export default function List({ activities }) {
   if (!activities || activities.length === 0) {
     return (
       <ListStyle role="list">
-        <li> nothing yet</li>
+        <li>
+          <Card
+            emtytext={`unfortunately you did not enter any activity yet. Start now and fill your list with amazing activities!`}
+          />
+        </li>
         <div ref={activitiesEndRef} />
       </ListStyle>
     );

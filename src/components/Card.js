@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
-export default function Card({ activity, friend }) {
+export default function Card({ activity, friend, emtytext }) {
   return (
     <Wrapper>
       <p>
         <strong>{activity}</strong>
       </p>
       <p>{friend}</p>
+      {emtytext}
     </Wrapper>
   );
 }
