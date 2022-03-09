@@ -2,17 +2,17 @@ import styled from 'styled-components';
 
 export default function Card({ activity, friend, emptytext }) {
   return (
-    <Wrapper>
+    <WrapperCard>
       <p>
         <strong>{activity}</strong>
       </p>
       <p>{friend}</p>
       {emptytext}
-    </Wrapper>
+    </WrapperCard>
   );
 }
 
-const Wrapper = styled.section`
+const WrapperCard = styled.section`
   display: flex;
   flex-flow: column;
   flex: 1;

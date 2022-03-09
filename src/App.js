@@ -12,7 +12,7 @@ export default function App() {
 
   return (
     <>
-      <Wrapper>
+      <WrapperApp>
         <Title>
           <h1>my activities</h1>
         </Title>
@@ -22,12 +22,12 @@ export default function App() {
         <Bottom>
           <Form onAddActivity={onAddActivity} />
         </Bottom>
-      </Wrapper>
+      </WrapperApp>
     </>
   );
 }
 
-const Wrapper = styled.div`
+const WrapperApp = styled.div`
   height: 100vh;
   display: grid;
   grid-template-rows: 60px 1fr auto;

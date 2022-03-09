@@ -12,7 +12,7 @@ export default function Form({ onAddActivity }) {
   }
 
   return (
-    <Wrapper
+    <WrapperForm
       aria-labelledby="formWrapper"
       autoComplete="off"
       onSubmit={handleSubmit}
@@ -22,11 +22,11 @@ export default function Form({ onAddActivity }) {
       <label htmlFor="friend">who should join you?</label>
       <input id="friend" type="text" name="friend" />
       <Button />
-    </Wrapper>
+    </WrapperForm>
   );
 }
 
-const Wrapper = styled.form`
+const WrapperForm = styled.form`
   display: grid;
   gap: 10px;
   color: rgba(71, 39, 35, 0.72);
