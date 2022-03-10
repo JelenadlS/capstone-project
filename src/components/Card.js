@@ -5,22 +5,26 @@ export default function Card({ activity, friend, emptytext, errorMessage }) {
   return (
     <WrapperCard>
       <p>
-        <strong>{activity}</strong>
+        <strong>
+          {activity}
+          {errorMessage}
+        </strong>
       </p>
-      <p>{friend}</p>
-      {emptytext}
-      <strong>{errorMessage}</strong>
-      <button>
+      <DeleteButton>
         <img src={deleteicon} alt="delete" />
-      </button>
+      </DeleteButton>
+      <p>
+        {friend}
+        {emptytext}
+      </p>
     </WrapperCard>
   );
 }
 
 const WrapperCard = styled.section`
-  display: flex;
-  flex-flow: column;
-  flex: 1;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
   color: rgba(71, 39, 35, 0.72);
   overflow: hidden;
 
@@ -29,4 +33,10 @@ const WrapperCard = styled.section`
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+`;
+
+const DeleteButton = styled.button`
+  justify-self: end;
+  border: none;
+  background: transparent;
 `;
