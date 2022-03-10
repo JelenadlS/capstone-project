@@ -18,9 +18,15 @@ export default function Form({ onAddActivity }) {
       onSubmit={handleSubmit}
     >
       <label htmlFor="activity">name of activity:</label>
-      <input id="activity" required type="text" name="activity" />
+      <input
+        id="activity"
+        required
+        type="text"
+        name="activity"
+        maxLength={50}
+      />
       <label htmlFor="friend">who should join you?</label>
-      <input id="friend" type="text" name="friend" />
+      <input id="friend" type="text" name="friend" maxLength={30} />
       <Button />
     </WrapperForm>
   );
