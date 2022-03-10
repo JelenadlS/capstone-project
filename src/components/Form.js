@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import Button from './Button';
 
-export default function Form({ onAddActivity }) {
+export default function Form({ addActivity }) {
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
     const { activity, friend } = form.elements;
-    onAddActivity({ activity: activity.value, friend: friend.value });
+    addActivity({ activity: activity.value, friend: friend.value });
     activity.value = '';
     friend.value = '';
   }

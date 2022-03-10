@@ -17,6 +17,15 @@ export default function App() {
     setActivities([...activities, { activity, friend }]);
   }
 
+  function onDeleteActivity({ activityId }) {
+    const index = activities.findIndex(t => t.id === activityId);
+    setActivities([
+      ...activities.slice(0, index),
+      ...activities.slice(index + 1),
+    ]);
+    setActivities(activities.filter(activity => activity.id !== activityId));
+  }
+
   useEffect(() => {
     saveToLocal('activities', activities);
   }, [activities]);
@@ -28,10 +37,14 @@ export default function App() {
           <h1>my activities</h1>
         </Title>
         <Main>
-          <List activities={activities} errorMessage={hasError} />
+          <List
+            activities={activities}
+            errorMessage={hasError}
+            DeleteActivity={onDeleteActivity}
+          />
         </Main>
         <Bottom>
-          <Form onAddActivity={onAddActivity} />
+          <Form AddActivity={onAddActivity} />
         </Bottom>
       </WrapperApp>
     </ErrorBoundary>
