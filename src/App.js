@@ -1,14 +1,21 @@
 import styled from 'styled-components';
 import List from './components/List';
 import Form from './components/Form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function App() {
-  const [activities, setActivities] = useState([]);
+  const [activities, setActivities] = useState(
+    loadFromLocal('activities') ?? []
+  );
 
   function onAddActivity({ activity, friend }) {
     setActivities([...activities, { activity, friend }]);
+    localStorage.setItem(activities, JSON.stringify(activities));
   }
+
+  useEffect(() => {
+    saveToLocal('activities', activities);
+  }, [activities]);
 
   return (
     <>
@@ -25,6 +32,18 @@ export default function App() {
       </WrapperApp>
     </>
   );
+
+  function loadFromLocal(key) {
+    try {
+      return JSON.parse(localStorage.getItem(key));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function saveToLocal(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+  }
 }
 
 const WrapperApp = styled.div`
