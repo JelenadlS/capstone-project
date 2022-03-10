@@ -22,17 +22,19 @@ export default function App() {
   }, [activities]);
 
   return (
-    <WrapperApp>
-      <Title>
-        <h1>my activities</h1>
-      </Title>
-      <Main>
-        <List activities={activities} errorMessage={hasError} />
-      </Main>
-      <Bottom>
-        <Form onAddActivity={onAddActivity} />
-      </Bottom>
-    </WrapperApp>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <WrapperApp>
+        <Title>
+          <h1>my activities</h1>
+        </Title>
+        <Main>
+          <List activities={activities} errorMessage={hasError} />
+        </Main>
+        <Bottom>
+          <Form onAddActivity={onAddActivity} />
+        </Bottom>
+      </WrapperApp>
+    </ErrorBoundary>
   );
 
   function loadFromLocal(key) {
