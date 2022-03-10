@@ -7,6 +7,10 @@ export default function App() {
   const [activities, setActivities] = useState(
     loadFromLocal('activities') ?? []
   );
+  const [hasError, setHasError] = useState(
+    // loadFromLocal('activities') === true ? true : false
+    false
+  );
 
   function onAddActivity({ activity, friend }) {
     setActivities([...activities, { activity, friend }]);
@@ -24,7 +28,7 @@ export default function App() {
           <h1>my activities</h1>
         </Title>
         <Main>
-          <List activities={activities} />
+          <List activities={activities} hasError={hasError} />
         </Main>
         <Bottom>
           <Form onAddActivity={onAddActivity} />
@@ -37,7 +41,7 @@ export default function App() {
     try {
       return JSON.parse(localStorage.getItem(key));
     } catch (error) {
-      console.log(error);
+      setHasError(true);
     }
   }
 

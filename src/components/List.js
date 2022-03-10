@@ -3,7 +3,7 @@ import Card from './Card';
 import { nanoid } from 'nanoid';
 import { useEffect, useRef } from 'react';
 
-export default function List({ activities }) {
+export default function List({ activities, hasError }) {
   const activitiesEndRef = useRef(null);
   const scrollToBottom = () => {
     activitiesEndRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -27,7 +27,13 @@ export default function List({ activities }) {
     <ListStyle role="list">
       {activities.map(activity => (
         <li key={nanoid()}>
-          <Card activity={activity.activity} friend={activity.friend} />
+          <Card
+            activity={activity.activity}
+            friend={activity.friend}
+            hasError={
+              hasError && `unfortunately something went wrong with your data.`
+            }
+          />
         </li>
       ))}
       <div ref={activitiesEndRef} />

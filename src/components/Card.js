@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function Card({ activity, friend, emptytext }) {
+export default function Card({ activity, friend, emptytext, hasError }) {
   return (
     <WrapperCard>
       <p>
@@ -8,6 +8,7 @@ export default function Card({ activity, friend, emptytext }) {
       </p>
       <p>{friend}</p>
       {emptytext}
+      <strong>{hasError}</strong>
     </WrapperCard>
   );
 }
