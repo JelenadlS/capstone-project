@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export default function Button() {
-  return <FormButton type="submit">Add</FormButton>;
+export default function Button({ children }) {
+  return <WrapperButton>{children}</WrapperButton>;
 }
 
-const FormButton = styled.button`
+const WrapperButton = styled.button`
   background: #92dec5;
   color: rgba(71, 39, 35, 0.72);
   font-size: 18px;

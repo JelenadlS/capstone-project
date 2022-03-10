@@ -21,7 +21,7 @@ export default function Form({ onAddActivity }) {
       <input id="activity" required type="text" name="activity" />
       <label htmlFor="friend">who should join you?</label>
       <input id="friend" type="text" name="friend" />
-      <Button />
+      <Button type="submit">Add</Button>
     </WrapperForm>
   );
 }

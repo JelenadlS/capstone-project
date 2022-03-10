@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import deleteicon from '../images/binicon.svg';
 
 export default function Card({ activity, friend, emptytext, errorMessage }) {
   return (
@@ -9,6 +10,9 @@ export default function Card({ activity, friend, emptytext, errorMessage }) {
       <p>{friend}</p>
       {emptytext}
       <strong>{errorMessage}</strong>
+      <button>
+        <img src={deleteicon} alt="delete" />
+      </button>
     </WrapperCard>
   );
 }
