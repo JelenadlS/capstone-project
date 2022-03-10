@@ -2,19 +2,19 @@ import styled from 'styled-components';
 import List from './components/List';
 import Form from './components/Form';
 import { useEffect, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorFallback from './components/ErrorFallBack';
 
 export default function App() {
+  const [hasError, setHasError] = useState(false);
+
   const [activities, setActivities] = useState(
-    loadFromLocal('activities') ?? []
-  );
-  const [hasError, setHasError] = useState(
-    // loadFromLocal('activities') === true ? true : false
-    false
+    (!hasError && loadFromLocal('activities')) || []
   );
 
   function onAddActivity({ activity, friend }) {
+    setHasError(false);
     setActivities([...activities, { activity, friend }]);
-    localStorage.setItem(activities, JSON.stringify(activities));
   }
 
   useEffect(() => {
@@ -22,19 +22,17 @@ export default function App() {
   }, [activities]);
 
   return (
-    <>
-      <WrapperApp>
-        <Title>
-          <h1>my activities</h1>
-        </Title>
-        <Main>
-          <List activities={activities} hasError={hasError} />
-        </Main>
-        <Bottom>
-          <Form onAddActivity={onAddActivity} />
-        </Bottom>
-      </WrapperApp>
-    </>
+    <WrapperApp>
+      <Title>
+        <h1>my activities</h1>
+      </Title>
+      <Main>
+        <List activities={activities} errorMessage={hasError} />
+      </Main>
+      <Bottom>
+        <Form onAddActivity={onAddActivity} />
+      </Bottom>
+    </WrapperApp>
   );
 
   function loadFromLocal(key) {
