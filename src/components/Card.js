@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import deleteicon from '../images/binicon.svg';
+import Button from './Button.js';
 
 export default function Card({
   activity,
@@ -16,9 +17,13 @@ export default function Card({
             {errorMessage}
           </strong>
         </p>
-        <DeleteButton onClick={onDeleteActivity}>
+        <Button
+          background="transparent"
+          justify_self="end"
+          onClick={onDeleteActivity}
+        >
           <img src={deleteicon} alt="delete" />
-        </DeleteButton>
+        </Button>
         <p>{friend}</p>
       </WrapperCard>
       <p>
@@ -42,8 +47,7 @@ const WrapperCard = styled.section`
   }
 `;
 
-const DeleteButton = styled.button`
-  justify-self: end;
-  border: none;
-  background: transparent;
-`;
+// const DeleteButton = styled.button`
+//   justify-self: end;
+//   background: transparent;
+// `;
