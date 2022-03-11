@@ -1,5 +1,5 @@
 import Button from './Button.js';
-//import deleteicon from '../images/binicon.svg';
+import deleteicon from '../images/binicon.svg';
 
 export default {
   title: 'Component/Button',
@@ -15,8 +15,7 @@ Default.args = {
 
 export const Delete = Template.bind();
 Delete.args = {
-  children: 'delete',
-  // children: `${(<img src={deleteicon} alt="delete" />)}`,
+  children: <img src={deleteicon} alt="delete" />,
   background: 'transparent',
   justifySelf: 'end',
 };
@@ -25,7 +24,6 @@ export const Yes = Template.bind();
 Yes.args = {
   children: 'please delete',
   fontSize: '10px',
-  //padding: '13px',
   width: 'fit-content',
 };
 

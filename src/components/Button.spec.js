@@ -11,9 +11,10 @@ describe('Button', () => {
   });
 
   it('renders the button with props', () => {
-    const property = 'font-size';
-    render(<Button fontSize={property} />);
+    render(<Button fontSize="14px" justifySelf="end" />);
 
-    expect(property).toBe('font-size', '14px');
+    const button = screen.getByRole('button');
+
+    expect(button).toHaveStyle('font-size: 14px', 'justify-self: end');
   });
 });

@@ -39,7 +39,7 @@ const WrapperModal = styled.section`
   width: 400px;
   display: grid;
   gap: 10px;
-  grid-template-rows: 2 (auto);
+  grid-template-rows: auto auto;
   position: fixed;
 
   p {
