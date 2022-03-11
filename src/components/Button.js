@@ -6,6 +6,7 @@ export default function Button({
   padding,
   background,
   justifySelf,
+  onClick,
 }) {
   return (
     <WrapperButton
@@ -13,6 +14,7 @@ export default function Button({
       padding={padding}
       background={background}
       justifySelf={justifySelf}
+      onClick={onClick}
     >
       {children}
     </WrapperButton>
@@ -26,5 +28,5 @@ const WrapperButton = styled.button`
   border: none;
   border-radius: 15px;
   padding: ${props => props.padding || '10px'};
-  justify-self: ${props => props.justifySelf || 'none'};
+  justify-self: ${props => props.justifySelf || 'stretch'};
 `;

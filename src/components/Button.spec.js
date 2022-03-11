@@ -15,10 +15,5 @@ describe('Button', () => {
     render(<Button fontSize={property} />);
 
     expect(property).toBe('font-size', '14px');
-
-    // const property = { fontSize: '14px' };
-    // render(<Button />);
-
-    // expect(property).toHaveProperty(fontSize, '14px');
   });
 });
