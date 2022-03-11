@@ -16,4 +16,6 @@ describe('DeleteModal', () => {
     expect(keepButton).toBeInTheDocument();
     expect(deleteButton).toBeInTheDocument();
   });
+
+  // test both bottom clicks are called
 });

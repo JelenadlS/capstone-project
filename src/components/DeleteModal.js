@@ -1,7 +1,7 @@
 import Button from './Button.js';
 import styled from 'styled-components';
 
-export default function DeleteModal(props, onDeleteActivity) {
+export default function DeleteModal(props) {
   if (!props.show) {
     return null;
   }
@@ -19,9 +19,9 @@ export default function DeleteModal(props, onDeleteActivity) {
         </Button>
         <Button
           width="fit-content"
-          fontSize="10px"
-          padding="13px"
+          fontSize="14px"
           type="submit"
+          margin="15px"
           onClick={props.onDelete}
         >
           please delete
@@ -33,22 +33,26 @@ export default function DeleteModal(props, onDeleteActivity) {
 
 const WrapperModal = styled.section`
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   background: #f0e7da;
-  padding: 10px;
-  width: 400px;
   display: grid;
-  gap: 10px;
   grid-template-rows: auto auto;
   position: fixed;
+  width: 350px;
+  height: 130px;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -210px;
 
   p {
     color: rgba(71, 39, 35, 0.72);
     text-align: center;
+    align-self: center;
   }
 
   div {
     text-align: center;
-    align-self: center;
+    align-self: start;
   }
 `;

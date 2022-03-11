@@ -15,6 +15,7 @@ describe('Card', () => {
     expect(button).toBeInTheDocument();
   });
 
+  //copy this one into deletemodal
   it('with a click on the bin, the delete function will be called', () => {
     const deleteCallback = jest.fn();
     render(<Card onDeleteActivity={deleteCallback} />);
@@ -24,4 +25,6 @@ describe('Card', () => {
     userEvent.click(deleteButton);
     expect(deleteCallback).toHaveBeenCalled();
   });
+
+  //check DeleteModal click
 });

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default function Button({
   children,
   fontSize,
-  padding,
+  margin,
   background,
   justifySelf,
   onClick,
@@ -12,8 +12,8 @@ export default function Button({
   return (
     <WrapperButton
       fontSize={fontSize}
-      padding={padding}
       background={background}
+      margin={margin}
       justifySelf={justifySelf}
       onClick={onClick}
       width={width}
@@ -29,7 +29,8 @@ const WrapperButton = styled.button`
   font-size: ${props => props.fontSize || '18px'};
   border: none;
   border-radius: 15px;
-  padding: ${props => props.padding || '10px'};
+  padding: 10px;
   justify-self: ${props => props.justifySelf || 'stretch'};
   width: ${props => props.width || ''};
+  margin: ${props => props.margin || '0px'};
 `;
