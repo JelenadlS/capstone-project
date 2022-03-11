@@ -5,10 +5,10 @@ export default function DeleteModal() {
   return (
     <WrapperModal>
       <p>Are you sure you want to delete?</p>
-      <Button fontSize="14px" type="submit">
+      <Button role="keepButton" fontSize="14px" type="submit">
         NO, I wanna keep it
       </Button>
-      <Button fontSize="10px" padding="13px" type="submit">
+      <Button role="deleteButton" fontSize="10px" padding="13px" type="submit">
         please delete
       </Button>
     </WrapperModal>

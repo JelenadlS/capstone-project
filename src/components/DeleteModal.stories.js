@@ -1,29 +1,11 @@
+import DeleteModal from './DeleteModal.js';
 
-    import DeleteModal from './DeleteModal.js';
-    import GlobalStyles from '../GlobalStyles.js';
-    
-    export default {
-      title: 'Component/DeleteModal',
-      component: DeleteModal,
-      decorators: [
-        Story => (
-          <>
-            <GlobalStyles />
-            <Story />
-          </>
-        ),
-      ],
-    };
+export default {
+  title: 'Component/DeleteModal',
+  component: DeleteModal,
+};
 
-    const Template = args => <DeleteModal {...args} />;
-    
-    export const DeleteModalAB = Template.bind({});
-    DeleteModalAB.args = {
-      
-    };
+const Template = args => <DeleteModal {...args} />;
 
-    export const DeleteModalXY = Template.bind({});
-    DeleteModalXY.args = {
-      
-    };
-  
+export const Default = Template.bind({});
+Default.args = {};
