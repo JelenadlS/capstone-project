@@ -1,12 +1,20 @@
 import Button from './Button.js';
 import styled from 'styled-components';
 
-export default function DeleteModal() {
+export default function DeleteModal(props, onDeleteActivity) {
+  if (!props.show) {
+    return null;
+  }
   return (
     <WrapperModal>
       <p>Are you sure you want to delete?</p>
       <div>
-        <Button width="fit-content" fontSize="14px" type="submit">
+        <Button
+          width="fit-content"
+          fontSize="14px"
+          type="submit"
+          onClick={props.onClose}
+        >
           NO, I wanna keep it
         </Button>
         <Button
@@ -14,6 +22,7 @@ export default function DeleteModal() {
           fontSize="10px"
           padding="13px"
           type="submit"
+          onClick={props.onDelete}
         >
           please delete
         </Button>
@@ -31,6 +40,7 @@ const WrapperModal = styled.section`
   display: grid;
   gap: 10px;
   grid-template-rows: 2 (auto);
+  position: fixed;
 
   p {
     color: rgba(71, 39, 35, 0.72);
