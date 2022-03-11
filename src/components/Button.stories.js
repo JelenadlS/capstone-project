@@ -25,11 +25,13 @@ export const Yes = Template.bind();
 Yes.args = {
   children: 'please delete',
   fontSize: '10px',
-  padding: '13px',
+  //padding: '13px',
+  width: 'fit-content',
 };
 
 export const No = Template.bind();
 No.args = {
   children: 'no, I want to keep it',
   fontSize: '14px',
+  width: 'fit-content',
 };
