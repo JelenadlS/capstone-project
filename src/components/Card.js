@@ -1,23 +1,30 @@
 import styled from 'styled-components';
 import deleteicon from '../images/binicon.svg';
 
-export default function Card({ activity, friend, emptytext, errorMessage }) {
+export default function Card({
+  activity,
+  friend,
+  errorMessage,
+  onDeleteActivity,
+}) {
   return (
-    <WrapperCard>
+    <>
+      <WrapperCard>
+        <p>
+          <strong>
+            {activity}
+            {errorMessage}
+          </strong>
+        </p>
+        <DeleteButton onClick={onDeleteActivity}>
+          <img src={deleteicon} alt="delete" />
+        </DeleteButton>
+        <p>{friend}</p>
+      </WrapperCard>
       <p>
-        <strong>
-          {activity}
-          {errorMessage}
-        </strong>
+        <strong>{errorMessage}</strong>
       </p>
-      <DeleteButton>
-        <img src={deleteicon} alt="delete" />
-      </DeleteButton>
-      <p>
-        {friend}
-        {emptytext}
-      </p>
-    </WrapperCard>
+    </>
   );
 }
 

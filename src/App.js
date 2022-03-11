@@ -4,27 +4,13 @@ import Form from './components/Form';
 import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrorFallback from './components/ErrorFallBack';
+import { nanoid } from 'nanoid';
 
 export default function App() {
   const [hasError, setHasError] = useState(false);
-
   const [activities, setActivities] = useState(
     (!hasError && loadFromLocal('activities')) || []
   );
-
-  function onAddActivity({ activity, friend }) {
-    setHasError(false);
-    setActivities([...activities, { activity, friend }]);
-  }
-
-  function onDeleteActivity({ activityId }) {
-    const index = activities.findIndex(t => t.id === activityId);
-    setActivities([
-      ...activities.slice(0, index),
-      ...activities.slice(index + 1),
-    ]);
-    setActivities(activities.filter(activity => activity.id !== activityId));
-  }
 
   useEffect(() => {
     saveToLocal('activities', activities);
@@ -40,15 +26,27 @@ export default function App() {
           <List
             activities={activities}
             errorMessage={hasError}
-            DeleteActivity={onDeleteActivity}
+            onDeleteActivity={onDeleteActivity}
           />
         </Main>
         <Bottom>
-          <Form AddActivity={onAddActivity} />
+          <Form onAddActivity={onAddActivity} />
         </Bottom>
       </WrapperApp>
     </ErrorBoundary>
   );
+
+  function onAddActivity({ activity, friend }) {
+    setHasError(false);
+    const id = nanoid();
+    setActivities([...activities, { activity, friend, id }]);
+  }
+
+  function onDeleteActivity(thisActivityId) {
+    setActivities(
+      activities.filter(activity => activity.id !== thisActivityId)
+    );
+  }
 
   function loadFromLocal(key) {
     try {
