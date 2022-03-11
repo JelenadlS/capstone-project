@@ -2,17 +2,17 @@ import styled from 'styled-components';
 
 export default function Button({
   children,
-  font_size,
+  fontSize,
   padding,
   background,
-  justify_self,
+  justifySelf,
 }) {
   return (
     <WrapperButton
-      font_size={font_size}
+      fontSize={fontSize}
       padding={padding}
       background={background}
-      justify_self={justify_self}
+      justifySelf={justifySelf}
     >
       {children}
     </WrapperButton>
@@ -22,9 +22,9 @@ export default function Button({
 const WrapperButton = styled.button`
   background: ${props => props.background || '#92dec5'};
   color: rgba(71, 39, 35, 0.72);
-  font-size: ${props => props.font_size || '18px'};
+  font-size: ${props => props.fontSize || '18px'};
   border: none;
   border-radius: 15px;
   padding: ${props => props.padding || '10px'};
-  justify-self: ${props => props.justify_self || 'none'};
+  justify-self: ${props => props.justifySelf || 'none'};
 `;

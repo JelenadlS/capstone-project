@@ -19,7 +19,7 @@ export default function Card({
         </p>
         <Button
           background="transparent"
-          justify_self="end"
+          justifySelf="end"
           onClick={onDeleteActivity}
         >
           <img src={deleteicon} alt="delete" />
