@@ -6,6 +6,12 @@ Or just imagine, you see a poster of an upcoming amazing event somewhere and you
 
 You can add an activity to your list either together with a friends name or not. Later on, when beeing home and you have time to share it or someone asks you what to do, you can check the app and it tells you what you safed for your future activities.
 
+## Functionality
+
+- Add items to a list
+- Delete items from the list
+- Storage: localStorage
+
 ## How to use it?
 
 - Clone the project
