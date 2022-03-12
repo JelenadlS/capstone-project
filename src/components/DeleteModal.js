@@ -43,7 +43,7 @@ const WrapperModal = styled.section`
   top: 50%;
   left: 50%;
   margin-top: -100px;
-  margin-left: -210px;
+  margin-left: -175px;
 
   p {
     color: rgba(71, 39, 35, 0.72);
