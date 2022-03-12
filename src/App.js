@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { nanoid } from 'nanoid';
 import { Routes, Route } from 'react-router-dom';
-import Form from './components/Form';
 import ErrorFallback from './components/ErrorFallBack';
 import MyActivitiesPage from './pages/MyActivitiesPage.js';
+import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
 import styled from 'styled-components';
 
 export default function App() {
@@ -28,13 +28,17 @@ export default function App() {
                 activities={activities}
                 hasError={hasError}
                 setActivities={setActivities}
+                onAddActivity={onAddActivity}
               />
             }
           />
+          <Route
+            path="/about/:activityId"
+            component={props => {
+              <ActivityOverviewPage {...props} />;
+            }}
+          />
         </Routes>
-        <Bottom>
-          <Form onAddActivity={onAddActivity} />
-        </Bottom>
       </WrapperApp>
     </ErrorBoundary>
   );
@@ -61,10 +65,4 @@ export default function App() {
 const WrapperApp = styled.div`
   height: 100vh;
   display: grid;
-  grid-template-rows: 60px 1fr auto;
-`;
-
-const Bottom = styled.div`
-  background: white;
-  width: 100%;
 `;

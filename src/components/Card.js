@@ -4,13 +4,9 @@ import Button from './Button.js';
 import DeleteModal from './DeleteModal.js';
 import { useState } from 'react';
 
-export default function Card({
-  activity,
-  friend,
-  errorMessage,
-  onDeleteActivity,
-}) {
+export default function Card({ activity, errorMessage, onDeleteActivity }) {
   const [show, setShow] = useState(false);
+
   return (
     <>
       <WrapperCard>
@@ -32,7 +28,6 @@ export default function Card({
           onClose={() => setShow(false)}
           show={show}
         />
-        <p>{friend}</p>
       </WrapperCard>
       <p>
         <strong>{errorMessage}</strong>
