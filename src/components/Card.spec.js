@@ -35,6 +35,7 @@ describe('Card', () => {
       name: 'please delete',
     });
     userEvent.click(deleteButton);
+
     expect(deleteCallback).toBeCalled();
   });
 

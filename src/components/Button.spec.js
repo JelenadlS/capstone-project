@@ -10,12 +10,25 @@ describe('Button', () => {
     expect(button).toBeInTheDocument();
   });
 
-  // Add all props
-  it('renders the button with props', () => {
-    render(<Button fontSize="14px" justifySelf="end" />);
+  it('renders the button with its props', () => {
+    render(
+      <Button
+        fontSize="14px"
+        background="transparent"
+        margin="15px"
+        justifySelf="end"
+        width="fit-content"
+      />
+    );
 
     const button = screen.getByRole('button');
 
-    expect(button).toHaveStyle('font-size: 14px', 'justify-self: end');
+    expect(button).toHaveStyle(
+      'font-size: 14px',
+      'background: transparent',
+      'margin: 15px',
+      'justify-self: end',
+      'width: fit-content'
+    );
   });
 });
