@@ -1,10 +1,11 @@
-import styled from 'styled-components';
-import List from './components/List';
-import Form from './components/Form';
 import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import ErrorFallback from './components/ErrorFallBack';
 import { nanoid } from 'nanoid';
+import { Routes, Route } from 'react-router-dom';
+import Form from './components/Form';
+import ErrorFallback from './components/ErrorFallBack';
+import MyActivitiesPage from './pages/MyActivitiesPage.js';
+import styled from 'styled-components';
 
 export default function App() {
   const [hasError, setHasError] = useState(false);
@@ -19,16 +20,18 @@ export default function App() {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>
-        <Title>
-          <h1>my activities</h1>
-        </Title>
-        <Main>
-          <List
-            activities={activities}
-            errorMessage={hasError}
-            onDeleteActivity={onDeleteActivity}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MyActivitiesPage
+                activities={activities}
+                hasError={hasError}
+                setActivities={setActivities}
+              />
+            }
           />
-        </Main>
+        </Routes>
         <Bottom>
           <Form onAddActivity={onAddActivity} />
         </Bottom>
@@ -40,12 +43,6 @@ export default function App() {
     setHasError(false);
     const id = nanoid();
     setActivities([...activities, { activity, friend, id }]);
-  }
-
-  function onDeleteActivity(thisActivityId) {
-    setActivities(
-      activities.filter(activity => activity.id !== thisActivityId)
-    );
   }
 
   function loadFromLocal(key) {
@@ -65,22 +62,6 @@ const WrapperApp = styled.div`
   height: 100vh;
   display: grid;
   grid-template-rows: 60px 1fr auto;
-`;
-
-const Title = styled.header`
-  background: #f0e7da;
-  padding: 10px;
-  text-align: center;
-  text-transform: uppercase;
-  color: rgba(71, 39, 35, 0.72);
-  position: sticky;
-  top: 0px;
-  z-index: 2;
-  height: 60px;
-`;
-
-const Main = styled.main`
-  overflow-y: auto;
 `;
 
 const Bottom = styled.div`
