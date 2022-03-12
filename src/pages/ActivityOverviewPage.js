@@ -1,17 +1,29 @@
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 
 export default function ActivityOverviewPage({ activities }) {
+  const { id } = useParams();
+  const activity = find(parseInt(id));
+
+  function find(id) {
+    return activities.find(p => p.id === id);
+  }
+
   return (
     <>
-      <Title>
-        <h1>{activities.activity}Header</h1>
-      </Title>
-      <WrapperCard>
-        <p>
-          <strong>{activities.activity}</strong>
-        </p>
-        <p>{activities.friend}</p>
-      </WrapperCard>
+      {activity.avtivity.map(id => (
+        <>
+          <Title>
+            <h1>{find(id).activity}Header</h1>
+          </Title>
+          <WrapperCard>
+            <p>
+              <strong>{find(id).activity}</strong>
+            </p>
+            <p>{find(id).friend}</p>
+          </WrapperCard>
+        </>
+      ))}
     </>
   );
 }

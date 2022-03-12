@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { nanoid } from 'nanoid';
 import { Routes, Route } from 'react-router-dom';
-import Form from './components/Form';
 import ErrorFallback from './components/ErrorFallBack';
 import MyActivitiesPage from './pages/MyActivitiesPage.js';
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
@@ -17,6 +16,10 @@ export default function App() {
   useEffect(() => {
     saveToLocal('activities', activities);
   }, [activities]);
+
+  // function find(id) {
+  //   return activities.find(p => p.id === id);
+  // }
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
