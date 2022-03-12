@@ -34,13 +34,9 @@ export default function App() {
             }
           />
           <Route
-            //path="/about/:activity"
             path="/about"
-            // render={props => <ActivityOverviewPage {...props} />}
             element={<ActivityOverviewPage activities={activities} />}
-          >
-            <Route path=":activityid" element={<ActivityOverviewPage />} />
-          </Route>
+          />
         </Routes>
       </WrapperApp>
     </ErrorBoundary>

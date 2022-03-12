@@ -45,7 +45,7 @@ export default function List({
         <ListStyle role="list">
           {activities.map(activity => (
             <li key={activity.id}>
-              <NavLink to={`/about/${activity}`}>
+              <NavLink to="/about">
                 <Card
                   onDeleteActivity={() => onDeleteActivity(activity.id)}
                   activity={activity.activity}

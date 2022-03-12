@@ -1,22 +1,16 @@
 import styled from 'styled-components';
 
-//import { useParams } from 'react-router-dom';
-
 export default function ActivityOverviewPage({ activities }) {
-  // const { activity } = useParams();
-  // const profile = activities.filter(profile => profile.activity === activity);
-  console.log(activities);
-  const activity = activities.filter(p => p.activity === activity);
   return (
     <>
       <Title>
-        <h1>{activity.activity}</h1>
+        <h1>{activities.activity}Header</h1>
       </Title>
       <WrapperCard>
         <p>
-          <strong>{activity.activity}</strong>
+          <strong>{activities.activity}</strong>
         </p>
-        <p>{activity.friend}</p>
+        <p>{activities.friend}</p>
       </WrapperCard>
     </>
   );
