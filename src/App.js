@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { nanoid } from 'nanoid';
 import { Routes, Route } from 'react-router-dom';
+import Form from './components/Form';
 import ErrorFallback from './components/ErrorFallBack';
 import MyActivitiesPage from './pages/MyActivitiesPage.js';
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
@@ -12,9 +13,6 @@ export default function App() {
   const [activities, setActivities] = useState(
     (!hasError && loadFromLocal('activities')) || []
   );
-  function getData(id) {
-    return activities.find(activity => activity.id === id);
-  }
 
   useEffect(() => {
     saveToLocal('activities', activities);
@@ -36,13 +34,12 @@ export default function App() {
             }
           />
           <Route
+            //path="/about/:activity"
             path="/about"
-            element={<ActivityOverviewPage getData={getData} />}
+            // render={props => <ActivityOverviewPage {...props} />}
+            element={<ActivityOverviewPage activities={activities} />}
           >
-            <Route
-              path=":activityId"
-              element={<ActivityOverviewPage getData={getData} />}
-            />
+            <Route path=":activityid" element={<ActivityOverviewPage />} />
           </Route>
         </Routes>
       </WrapperApp>
