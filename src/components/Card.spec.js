@@ -15,16 +15,40 @@ describe('Card', () => {
     expect(button).toBeInTheDocument();
   });
 
-  //copy this one into deletemodal
-  it('with a click on the bin, the delete function will be called', () => {
+  it('when clicking the bin, the DeleteModal is renderd with the delete button', () => {
+    render(<Card />);
+
+    const binButton = screen.getByRole('button', { name: /delete/i });
+
+    userEvent.click(binButton);
+    expect(binButton).toBeInTheDocument();
+  });
+
+  it('when clicking delete within the DeleteModal, the delete function will be called', () => {
     const deleteCallback = jest.fn();
     render(<Card onDeleteActivity={deleteCallback} />);
 
-    const deleteButton = screen.getByRole('button');
+    const binButton = screen.getByRole('button', { name: /delete/i });
+    userEvent.click(binButton);
 
+    const deleteButton = screen.getByRole('button', {
+      name: 'please delete',
+    });
     userEvent.click(deleteButton);
-    expect(deleteCallback).toHaveBeenCalled();
+    expect(deleteCallback).toBeCalled();
   });
 
-  //check DeleteModal click
+  it('when clicking the keep activity button, the delete button cannot be found as DeleteModal is closing', () => {
+    render(<Card />);
+
+    const binButton = screen.getByRole('button', { name: /delete/i });
+    userEvent.click(binButton);
+
+    const keepButton = screen.getByRole('button', {
+      name: 'NO, I wanna keep it',
+    });
+    userEvent.click(keepButton);
+
+    expect(keepButton).not.toBeInTheDocument();
+  });
 });

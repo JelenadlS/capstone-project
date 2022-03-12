@@ -10,6 +10,7 @@ describe('Button', () => {
     expect(button).toBeInTheDocument();
   });
 
+  // Add all props
   it('renders the button with props', () => {
     render(<Button fontSize="14px" justifySelf="end" />);
 

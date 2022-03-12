@@ -54,8 +54,3 @@ const WrapperCard = styled.section`
     white-space: nowrap;
   }
 `;
-
-// const DeleteButton = styled.button`
-//   justify-self: end;
-//   background: transparent;
-// `;
