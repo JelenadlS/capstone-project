@@ -12,6 +12,9 @@ export default function App() {
   const [activities, setActivities] = useState(
     (!hasError && loadFromLocal('activities')) || []
   );
+  function getData(id) {
+    return activities.find(activity => activity.id === id);
+  }
 
   useEffect(() => {
     saveToLocal('activities', activities);
@@ -33,11 +36,14 @@ export default function App() {
             }
           />
           <Route
-            path="/about/:activityId"
-            component={props => {
-              <ActivityOverviewPage {...props} />;
-            }}
-          />
+            path="/about"
+            element={<ActivityOverviewPage getData={getData} />}
+          >
+            <Route
+              path=":activityId"
+              element={<ActivityOverviewPage getData={getData} />}
+            />
+          </Route>
         </Routes>
       </WrapperApp>
     </ErrorBoundary>

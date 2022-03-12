@@ -1,27 +1,24 @@
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 
-const ActivityOverviewPage = ({ match }) => {
-  const match = {
-    params: { activityId },
-  };
-
+export default function ActivityOverviewPage({ getData }) {
+  let params = useParams();
+  let activity = getData(params.activityId);
+  console.log(params.activityId);
   return (
     <>
       <Title>
-        <h1>{activity}</h1>
+        <h1>{params.activityId}</h1>
       </Title>
       <WrapperCard>
         <p>
-          <strong>{activity}</strong>
+          <strong>{activity.activity}</strong>
         </p>
-        <p>{friend}</p>
+        <p>friend</p>
       </WrapperCard>
     </>
   );
-};
-
-export default ActivityOverviewPage;
+}
 
 const Title = styled.header`
   background: #f0e7da;
