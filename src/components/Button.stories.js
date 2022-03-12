@@ -1,4 +1,5 @@
 import Button from './Button.js';
+import deleteicon from '../images/binicon.svg';
 
 export default {
   title: 'Component/Button',
@@ -8,4 +9,27 @@ export default {
 const Template = args => <Button {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  children: 'Add',
+};
+
+export const Delete = Template.bind();
+Delete.args = {
+  children: <img src={deleteicon} alt="delete" />,
+  background: 'transparent',
+  justifySelf: 'end',
+};
+
+export const Yes = Template.bind();
+Yes.args = {
+  children: 'please delete',
+  fontSize: '10px',
+  width: 'fit-content',
+};
+
+export const No = Template.bind();
+No.args = {
+  children: 'no, I want to keep it',
+  fontSize: '14px',
+  width: 'fit-content',
+};

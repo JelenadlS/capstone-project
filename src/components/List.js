@@ -1,13 +1,24 @@
 import styled from 'styled-components';
 import Card from './Card';
-import { nanoid } from 'nanoid';
-import { useEffect, useRef } from 'react';
+//import { useEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
-export default function List({ activities, errorMessage }) {
+export default function List({ activities, errorMessage, onDeleteActivity }) {
+  const [scrollValue, setScrollValue] = useState(0);
   const activitiesEndRef = useRef(null);
   const scrollToBottom = () => {
     activitiesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    const onScroll = e => {
+      setScrollValue(e.target.documentElement.scrollTop);
+    };
+
+    window.addEventListener('scroll', onScroll);
+
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [scrollValue]);
 
   useEffect(scrollToBottom, [activities]);
 
@@ -15,9 +26,8 @@ export default function List({ activities, errorMessage }) {
     return (
       <ListStyle role="list">
         <li>
-          <Card
-            emptytext={`unfortunately you did not enter any activity yet. Start now and fill your list with amazing activities!`}
-          />
+          unfortunately you did not enter any activity yet. Start now and fill
+          your list with amazing activities!
         </li>
         <div ref={activitiesEndRef} />
       </ListStyle>
@@ -26,10 +36,12 @@ export default function List({ activities, errorMessage }) {
   return (
     <ListStyle role="list">
       {activities.map(activity => (
-        <li key={nanoid()}>
+        <li key={activity.id}>
           <Card
+            onDeleteActivity={() => onDeleteActivity(activity.id)}
             activity={activity.activity}
             friend={activity.friend}
+            id={activity.id}
             errorMessage={
               errorMessage &&
               `unfortunately something went wrong with your data.`
