@@ -4,7 +4,7 @@ import Card from './Card.js';
 import userEvent from '@testing-library/user-event';
 
 describe('Card', () => {
-  it('renders card with activity and delete button', () => {
+  it('renders card with activity including link and delete button', () => {
     render(
       <MemoryRouter>
         <Card activity="Frau Möller" />
@@ -12,10 +12,11 @@ describe('Card', () => {
     );
 
     const activity = screen.getByText('Frau Möller');
-
+    const link = screen.getByRole('link');
     const button = screen.getByRole('button');
 
     expect(activity).toBeInTheDocument();
+    expect(link).toBeInTheDocument();
     expect(button).toBeInTheDocument();
   });
 
