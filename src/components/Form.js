@@ -13,7 +13,7 @@ export default function Form({ onAddActivity }) {
 
   return (
     <WrapperForm
-      aria-labelledby="formWrapper"
+      title="add activities"
       autoComplete="off"
       onSubmit={handleSubmit}
     >

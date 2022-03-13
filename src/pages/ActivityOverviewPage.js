@@ -9,7 +9,7 @@ export default function ActivityOverviewPage({ activity, friend }) {
       <Title>
         <Arrowback to="/">
           <Button background="transparent" justifySelf="start">
-            <img src={gobackicon} alt="delete" />
+            <img src={gobackicon} alt="go back" />
           </Button>
         </Arrowback>
         <HeaderText>{activity}</HeaderText>

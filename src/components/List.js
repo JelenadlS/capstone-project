@@ -34,7 +34,7 @@ export default function List({ activities, errorMessage, onDeleteActivity }) {
   }
   return (
     <>
-      <ListStyle role="list">
+      <ListStyle role="list" title="list of activities">
         {activities.map(activity => (
           <li key={activity.id}>
             <Card
