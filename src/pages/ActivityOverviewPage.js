@@ -3,7 +3,7 @@ import Button from '../components/Button';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export default function ActivityOverviewPage({ activity, friend, id }) {
+export default function ActivityOverviewPage({ activity, friend }) {
   return (
     <>
       <Title>
