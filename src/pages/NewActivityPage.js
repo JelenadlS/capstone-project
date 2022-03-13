@@ -8,9 +8,9 @@ export default function NewActivityPage({ onAddActivity }) {
       <WrapperApp>
         <Header title="new activity" link="y" />
 
-        <Bottom>
+        <Main>
           <Form onAddActivity={onAddActivity} />
-        </Bottom>
+        </Main>
       </WrapperApp>
     </>
   );
@@ -22,7 +22,7 @@ const WrapperApp = styled.div`
   grid-template-rows: 60px 1fr auto;
 `;
 
-const Bottom = styled.div`
+const Main = styled.div`
   background: white;
   width: 100%;
 `;
