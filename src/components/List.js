@@ -1,23 +1,12 @@
 import styled from 'styled-components';
 import Card from './Card';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function List({ activities, errorMessage, onDeleteActivity }) {
-  const [scrollValue, setScrollValue] = useState(0);
   const activitiesEndRef = useRef(null);
   const scrollToBottom = () => {
     activitiesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   };
-
-  useEffect(() => {
-    const onScroll = e => {
-      setScrollValue(e.target.documentElement.scrollTop);
-    };
-
-    window.addEventListener('scroll', onScroll);
-
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [scrollValue]);
 
   useEffect(scrollToBottom, [activities]);
 
