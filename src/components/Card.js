@@ -3,23 +3,17 @@ import deleteicon from '../images/binicon.svg';
 import Button from './Button.js';
 import DeleteModal from './DeleteModal.js';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
-export default function Card({
-  activity,
-  friend,
-  errorMessage,
-  onDeleteActivity,
-}) {
+export default function Card({ activity, id, errorMessage, onDeleteActivity }) {
   const [show, setShow] = useState(false);
+
   return (
     <>
       <WrapperCard>
-        <p>
-          <strong>
-            {activity}
-            {errorMessage}
-          </strong>
-        </p>
+        <LinkStyling to={`/${id}`}>
+          <strong>{activity}</strong>
+        </LinkStyling>
         <Button
           background="transparent"
           justifySelf="end"
@@ -32,7 +26,6 @@ export default function Card({
           onClose={() => setShow(false)}
           show={show}
         />
-        <p>{friend}</p>
       </WrapperCard>
       <p>
         <strong>{errorMessage}</strong>
@@ -42,15 +35,18 @@ export default function Card({
 }
 
 const WrapperCard = styled.section`
+  color: rgba(71, 39, 35, 0.72);
+  border-bottom: 0.5px solid rgba(71, 39, 35, 0.72);
   display: grid;
   grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-  color: rgba(71, 39, 35, 0.72);
+  align-items: center;
   overflow: hidden;
+`;
 
-  p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+const LinkStyling = styled(NavLink)`
+  color: rgba(71, 39, 35, 0.72);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;

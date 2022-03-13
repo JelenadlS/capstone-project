@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Card from './Card';
-//import { useEffect, useRef } from 'react';
 import { useEffect, useState, useRef } from 'react';
 
 export default function List({ activities, errorMessage, onDeleteActivity }) {
@@ -34,23 +33,24 @@ export default function List({ activities, errorMessage, onDeleteActivity }) {
     );
   }
   return (
-    <ListStyle role="list">
-      {activities.map(activity => (
-        <li key={activity.id}>
-          <Card
-            onDeleteActivity={() => onDeleteActivity(activity.id)}
-            activity={activity.activity}
-            friend={activity.friend}
-            id={activity.id}
-            errorMessage={
-              errorMessage &&
-              `unfortunately something went wrong with your data.`
-            }
-          />
-        </li>
-      ))}
-      <div ref={activitiesEndRef} />
-    </ListStyle>
+    <>
+      <ListStyle role="list" title="list of activities">
+        {activities.map(activity => (
+          <li key={activity.id}>
+            <Card
+              onDeleteActivity={() => onDeleteActivity(activity.id)}
+              activity={activity.activity}
+              id={activity.id}
+              errorMessage={
+                errorMessage &&
+                `unfortunately something went wrong with your data.`
+              }
+            />
+          </li>
+        ))}
+        <div ref={activitiesEndRef} />
+      </ListStyle>
+    </>
   );
 }
 

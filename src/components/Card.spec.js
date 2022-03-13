@@ -1,22 +1,31 @@
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import Card from './Card.js';
 import userEvent from '@testing-library/user-event';
 
 describe('Card', () => {
-  it('renders card with activity and friend as well as button', () => {
-    render(<Card activity="Frau Möller" friend="Clara" />);
+  it('renders card with activity including link and delete button', () => {
+    render(
+      <MemoryRouter>
+        <Card activity="Frau Möller" />
+      </MemoryRouter>
+    );
 
     const activity = screen.getByText('Frau Möller');
-    const friend = screen.getByText('Clara');
+    const link = screen.getByRole('link');
     const button = screen.getByRole('button');
 
     expect(activity).toBeInTheDocument();
-    expect(friend).toBeInTheDocument();
+    expect(link).toBeInTheDocument();
     expect(button).toBeInTheDocument();
   });
 
   it('when clicking the bin, the DeleteModal is renderd with the delete button', () => {
-    render(<Card />);
+    render(
+      <MemoryRouter>
+        <Card />
+      </MemoryRouter>
+    );
 
     const binButton = screen.getByRole('button', { name: /delete/i });
 
@@ -26,7 +35,11 @@ describe('Card', () => {
 
   it('when clicking delete within the DeleteModal, the delete function will be called', () => {
     const deleteCallback = jest.fn();
-    render(<Card onDeleteActivity={deleteCallback} />);
+    render(
+      <MemoryRouter>
+        <Card onDeleteActivity={deleteCallback} />
+      </MemoryRouter>
+    );
 
     const binButton = screen.getByRole('button', { name: /delete/i });
     userEvent.click(binButton);
@@ -40,7 +53,11 @@ describe('Card', () => {
   });
 
   it('when clicking the keep activity button, the delete button cannot be found as DeleteModal is closing', () => {
-    render(<Card />);
+    render(
+      <MemoryRouter>
+        <Card />
+      </MemoryRouter>
+    );
 
     const binButton = screen.getByRole('button', { name: /delete/i });
     userEvent.click(binButton);

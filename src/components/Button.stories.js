@@ -1,5 +1,6 @@
 import Button from './Button.js';
 import deleteicon from '../images/binicon.svg';
+import gobackicon from '../images/goback.svg';
 
 export default {
   title: 'Component/Button',
@@ -23,7 +24,7 @@ Delete.args = {
 export const Yes = Template.bind();
 Yes.args = {
   children: 'please delete',
-  fontSize: '10px',
+  fontSize: '14px',
   width: 'fit-content',
 };
 
@@ -32,4 +33,11 @@ No.args = {
   children: 'no, I want to keep it',
   fontSize: '14px',
   width: 'fit-content',
+};
+
+export const Arrow = Template.bind();
+Arrow.args = {
+  children: <img src={gobackicon} alt="delete" />,
+  background: 'transparent',
+  justifySelf: 'start',
 };

@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import List from './List.js';
 
 describe('List', () => {
@@ -9,13 +10,21 @@ describe('List', () => {
       { id: '2', activity: 'Stadtpark', friend: 'Jana' },
     ];
 
-    render(<List activities={activities} />);
+    render(
+      <MemoryRouter>
+        <List activities={activities} />
+      </MemoryRouter>
+    );
     const list = screen.getByRole('list');
     expect(list).toBeInTheDocument();
   });
 
   it('shows empty message when no list item is there', () => {
-    render(<List />);
+    render(
+      <MemoryRouter>
+        <List />
+      </MemoryRouter>
+    );
 
     const emptymessage = screen.queryByText(
       'unfortunately you did not enter any activity yet. Start now and fill your list with amazing activities!'
