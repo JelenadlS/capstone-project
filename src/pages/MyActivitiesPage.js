@@ -40,18 +40,6 @@ const WrapperApp = styled.div`
   grid-template-rows: 60px 1fr auto;
 `;
 
-const Title = styled.header`
-  background: #f0e7da;
-  padding: 10px;
-  text-align: center;
-  text-transform: uppercase;
-  color: rgba(71, 39, 35, 0.72);
-  position: sticky;
-  top: 0px;
-  z-index: 2;
-  height: 60px;
-`;
-
 const Main = styled.main`
   overflow-y: auto;
 `;
