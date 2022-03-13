@@ -1,6 +1,7 @@
 import Button from './Button.js';
 import deleteicon from '../images/binicon.svg';
 import gobackicon from '../images/goback.svg';
+import newicon from '../images/new.svg';
 
 export default {
   title: 'Component/Button',
@@ -40,4 +41,9 @@ Arrow.args = {
   children: <img src={gobackicon} alt="delete" />,
   background: 'transparent',
   justifySelf: 'start',
+};
+
+export const New = Template.bind();
+New.args = {
+  children: <img src={newicon} alt="delete" />,
 };
