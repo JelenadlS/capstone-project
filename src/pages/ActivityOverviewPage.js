@@ -55,4 +55,5 @@ const WrapperCard = styled.section`
   display: grid;
   grid-template-rows: repeat(2, auto);
   gap: 15px;
+  word-break: break-word;
 `;
