@@ -6,7 +6,7 @@ export default function NewActivityPage({ onAddActivity }) {
   return (
     <>
       <WrapperApp>
-        <Header title="new activity" />
+        <Header title="new activity" link="y" />
 
         <Bottom>
           <Form onAddActivity={onAddActivity} />
