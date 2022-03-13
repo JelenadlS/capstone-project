@@ -21,16 +21,19 @@ export default function Form({ onAddActivity }) {
       <input id="activity" required type="text" name="activity" />
       <label htmlFor="friend">who should join you?</label>
       <input id="friend" type="text" name="friend" />
-      <Button type="submit">Add</Button>
+      <PositionButton type="submit">Add</PositionButton>
     </WrapperForm>
   );
 }
 
 const WrapperForm = styled.form`
+  height: 85vh;
   display: grid;
+  grid-template-rows: repeat(4, 25px) auto;
+  align-items: end;
   gap: 10px;
   color: rgba(71, 39, 35, 0.72);
-  align-self: flex-end;
+  margin: 20px;
 
   label {
     margin-left: 10px;
@@ -46,4 +49,7 @@ const WrapperForm = styled.form`
     color: rgba(71, 39, 35, 0.72);
     font-size: 20px;
   }
+`;
+const PositionButton = styled(Button)`
+  align-self: end;
 `;
