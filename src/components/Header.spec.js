@@ -1,12 +1,34 @@
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import Header from './Header.js';
 
-    import { render, screen } from '@testing-library/react';
-    import Header from './Header.js';
+describe('Header', () => {
+  // const cases = { linky: 'link === "y"', linkn: 'link !== "y"' };
+  it('renders header with title and arrowbutton when link===y', () => {
+    render(
+      <MemoryRouter>
+        <Header title="my activities" link={true} />
+      </MemoryRouter>
+    );
 
-    describe('Header', () => {
-      it('renders..', () => {
-        render(<Header />);
-    
-        expect(screen.getByText('Header')).toBeInTheSocument()
-      });
-    });
-  
+    const title = screen.getByText('my activities');
+    const button = screen.getByRole('button');
+
+    expect(title).toBeInTheDocument();
+    expect(button).toBeInTheDocument();
+  });
+
+  it('renders header only with title when link!==y', () => {
+    render(
+      <MemoryRouter>
+        <Header title="my activities" link={false} />
+      </MemoryRouter>
+    );
+
+    const title = screen.getByText('my activities');
+    const button = screen.queryByRole('button');
+
+    expect(title).toBeInTheDocument();
+    expect(button).not.toBeInTheDocument();
+  });
+});
