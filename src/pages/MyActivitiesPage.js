@@ -1,5 +1,6 @@
 import List from '../components/List';
 import Form from '../components/Form';
+import Header from '../components/Header';
 import styled from 'styled-components';
 
 export default function MyActivitiesPage({
@@ -11,9 +12,7 @@ export default function MyActivitiesPage({
   return (
     <>
       <WrapperApp>
-        <Title>
-          <h1>my activities</h1>
-        </Title>
+        <Header title="my activities" />
         <Main>
           <List
             activities={activities}
