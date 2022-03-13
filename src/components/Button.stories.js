@@ -45,5 +45,7 @@ Arrow.args = {
 
 export const New = Template.bind();
 New.args = {
-  children: <img src={newicon} alt="delete" />,
+  children: <img src={newicon} alt="new" />,
+  borderRadius: '40%',
+  boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.15)',
 };

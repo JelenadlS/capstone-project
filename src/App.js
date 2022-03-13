@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import ErrorFallback from './components/ErrorFallBack';
 import MyActivitiesPage from './pages/MyActivitiesPage.js';
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
+import NewActivityPage from './pages/NewActivityPage.js';
 import styled from 'styled-components';
 
 export default function App() {
@@ -45,6 +46,7 @@ export default function App() {
               }
             />
           ))}
+          <Route path="newactivity" element={<NewActivityPage />} />
         </Routes>
       </WrapperApp>
     </ErrorBoundary>
