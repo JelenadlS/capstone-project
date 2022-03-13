@@ -8,4 +8,6 @@ export default {
 const Template = args => <DeleteModal {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  show: 'true',
+};
