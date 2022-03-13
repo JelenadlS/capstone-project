@@ -17,10 +17,6 @@ export default function App() {
     saveToLocal('activities', activities);
   }, [activities]);
 
-  // function find(id) {
-  //   return activities.find(p => p.id === id);
-  // }
-
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>
@@ -36,10 +32,19 @@ export default function App() {
               />
             }
           />
-          <Route
-            path="/about"
-            element={<ActivityOverviewPage activities={activities} />}
-          />
+          {activities.map(activity => (
+            <Route
+              key={activity.id}
+              path={`${activity.id}`}
+              element={
+                <ActivityOverviewPage
+                  key={activity.id}
+                  activity={activity.activity}
+                  friend={activity.friend}
+                />
+              }
+            />
+          ))}
         </Routes>
       </WrapperApp>
     </ErrorBoundary>
@@ -66,5 +71,4 @@ export default function App() {
 
 const WrapperApp = styled.div`
   height: 100vh;
-  display: grid;
 `;

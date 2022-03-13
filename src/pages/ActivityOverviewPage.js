@@ -1,29 +1,23 @@
+import gobackicon from '../images/goback.svg';
+import Button from '../components/Button';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-export default function ActivityOverviewPage({ activities }) {
-  const { id } = useParams();
-  const activity = find(parseInt(id));
-
-  function find(id) {
-    return activities.find(p => p.id === id);
-  }
-
+export default function ActivityOverviewPage({ activity, friend, id }) {
   return (
     <>
-      {activity.avtivity.map(id => (
-        <>
-          <Title>
-            <h1>{find(id).activity}Header</h1>
-          </Title>
-          <WrapperCard>
-            <p>
-              <strong>{find(id).activity}</strong>
-            </p>
-            <p>{find(id).friend}</p>
-          </WrapperCard>
-        </>
-      ))}
+      <Title>
+        <Arrowback to="/">
+          <Button background="transparent" justifySelf="start">
+            <img src={gobackicon} alt="delete" />
+          </Button>
+        </Arrowback>
+        <HeaderText>{activity}</HeaderText>
+      </Title>
+      <WrapperCard>
+        <p>{activity}</p>
+        <p>mit: {friend}</p>
+      </WrapperCard>
     </>
   );
 }
@@ -38,18 +32,27 @@ const Title = styled.header`
   top: 0px;
   z-index: 2;
   height: 60px;
+  overflow: hidden;
+`;
+
+const Arrowback = styled(NavLink)`
+  position: fixed;
+  top: -5px;
+  left: -2px;
+`;
+
+const HeaderText = styled.h1`
+  margin-left: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const WrapperCard = styled.section`
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
   color: rgba(71, 39, 35, 0.72);
-  overflow: hidden;
-
-  p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+  margin: 20px;
+  font-size: 25px;
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  gap: 15px;
 `;
