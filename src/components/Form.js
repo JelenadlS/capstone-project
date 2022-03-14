@@ -11,15 +11,8 @@ export default function Form({ onAddActivity }) {
     handleSubmit,
     setFocus,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      activity: '',
-      friend: '',
-      notes: '',
-      date: '',
-      location: '',
-    },
-  });
+  } = useForm();
+
   const onSubmit = data => {
     onAddActivity(data);
     navigate('/');
@@ -101,7 +94,13 @@ export default function Form({ onAddActivity }) {
 
       <label htmlFor="date">
         do you already have a date in mind?
-        <input id="date" type="date" name="date" {...register('date')} />
+        <input
+          data-testid="date"
+          id="date"
+          type="date"
+          name="date"
+          {...register('date')}
+        />
       </label>
 
       <label htmlFor="location">
