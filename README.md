@@ -9,6 +9,11 @@ You can add an activity to your list either together with a friends name or not.
 ## Functionality
 
 - Add items to a list
+  - Activity (required)
+  - Friends (optional)
+  - Notes (optional)
+  - Date (optional)
+  - Location (optional)
 - Delete items from the list
 - Have a closer look to an activity with a details page
 - Storage: localStorage
