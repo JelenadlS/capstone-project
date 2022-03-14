@@ -5,13 +5,16 @@ import { Routes, Route } from 'react-router-dom';
 import ErrorFallback from './components/ErrorFallBack';
 import MyActivitiesPage from './pages/MyActivitiesPage.js';
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
+import NewActivityPage from './pages/NewActivityPage.js';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 export default function App() {
   const [hasError, setHasError] = useState(false);
   const [activities, setActivities] = useState(
     (!hasError && loadFromLocal('activities')) || []
   );
+  const navigate = useNavigate();
 
   useEffect(() => {
     saveToLocal('activities', activities);
@@ -45,6 +48,15 @@ export default function App() {
               }
             />
           ))}
+          <Route
+            path="newactivity"
+            element={
+              <NewActivityPage
+                setActivities={setActivities}
+                onAddActivity={onAddActivity}
+              />
+            }
+          />
         </Routes>
       </WrapperApp>
     </ErrorBoundary>
@@ -54,6 +66,7 @@ export default function App() {
     setHasError(false);
     const id = nanoid();
     setActivities([...activities, { activity, friend, id }]);
+    navigate('/');
   }
 
   function loadFromLocal(key) {

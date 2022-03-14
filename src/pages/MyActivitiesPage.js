@@ -1,19 +1,19 @@
 import List from '../components/List';
-import Form from '../components/Form';
+import Button from '../components/Button';
+import Header from '../components/Header';
 import styled from 'styled-components';
+import newicon from '../images/new.svg';
+import { NavLink } from 'react-router-dom';
 
 export default function MyActivitiesPage({
   activities,
   hasError,
   setActivities,
-  onAddActivity,
 }) {
   return (
     <>
       <WrapperApp>
-        <Title>
-          <h1>my activities</h1>
-        </Title>
+        <Header title="my activities" />
         <Main>
           <List
             activities={activities}
@@ -22,7 +22,14 @@ export default function MyActivitiesPage({
           />
         </Main>
         <Bottom>
-          <Form onAddActivity={onAddActivity} />
+          <NavLink to="newactivity">
+            <Button
+              borderRadius="40%"
+              boxShadow="0px 0px 20px rgba(0, 0, 0, 0.30)"
+            >
+              <img src={newicon} alt="new" />
+            </Button>
+          </NavLink>
         </Bottom>
       </WrapperApp>
     </>
@@ -41,22 +48,11 @@ const WrapperApp = styled.div`
   grid-template-rows: 60px 1fr auto;
 `;
 
-const Title = styled.header`
-  background: #f0e7da;
-  padding: 10px;
-  text-align: center;
-  text-transform: uppercase;
-  color: rgba(71, 39, 35, 0.72);
-  position: sticky;
-  top: 0px;
-  z-index: 2;
-  height: 60px;
-`;
-
 const Main = styled.main`
   overflow-y: auto;
 `;
 const Bottom = styled.div`
-  background: white;
+  background: #f0e7da;
+  text-align: center;
   width: 100%;
 `;

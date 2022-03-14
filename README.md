@@ -10,6 +10,7 @@ You can add an activity to your list either together with a friends name or not.
 
 - Add items to a list
 - Delete items from the list
+- Have a closer look to an activity with a details page
 - Storage: localStorage
 
 ## How to use it?

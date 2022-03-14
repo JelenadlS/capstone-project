@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import ActivityOverviewPage from './ActivityOverviewPage';
 
-describe('Card', () => {
+describe('ActivityOverviewPage', () => {
   it('renders ActivityOverviewPage with the backButton with the link, activity twice (header and text), the friend', () => {
     render(
       <MemoryRouter>
