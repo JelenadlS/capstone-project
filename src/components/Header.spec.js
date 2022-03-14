@@ -3,7 +3,6 @@ import { MemoryRouter } from 'react-router-dom';
 import Header from './Header.js';
 
 describe('Header', () => {
-  // const cases = { linky: 'link === "y"', linkn: 'link !== "y"' };
   it('renders header with title and arrowbutton when link===y', () => {
     render(
       <MemoryRouter>
