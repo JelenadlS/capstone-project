@@ -15,21 +15,48 @@ export default function ActivityOverviewPage({
         <p>
           <strong>{activity}</strong>
         </p>
-        <p>
-          <strong>with:</strong> {friend}
-        </p>
-        <div>
+        {friend.length === 0 ? (
+          <EmptyMessage>
+            <strong>with: </strong>
+            plan who will join you!
+          </EmptyMessage>
+        ) : (
           <p>
-            <strong>additional notes:</strong>
+            <strong>with: </strong>
+            {friend}
           </p>
-          <p>{notes}</p>
-        </div>
-        <p>
-          <strong>on the:</strong> {date}
-        </p>
-        <p>
-          <strong>at:</strong> {location}
-        </p>
+        )}
+        {notes.length === 0 ? (
+          <div />
+        ) : (
+          <div>
+            <p>
+              <strong>additional notes:</strong>
+            </p>
+            <p>{notes}</p>
+          </div>
+        )}
+        {date.length === 0 ? (
+          <EmptyMessage>
+            <strong>on the: </strong>
+            plan your activity soon!
+          </EmptyMessage>
+        ) : (
+          <p>
+            <strong>on the: </strong>
+            {date}
+          </p>
+        )}
+        {date.length === 0 ? (
+          <EmptyMessage>
+            <strong>at: </strong>where do you have to go?
+          </EmptyMessage>
+        ) : (
+          <p>
+            <strong>at: </strong>
+            {location}
+          </p>
+        )}
       </WrapperCard>
     </>
   );
@@ -43,4 +70,8 @@ const WrapperCard = styled.section`
   grid-template-rows: repeat(2, auto);
   gap: 15px;
   word-break: break-word;
+`;
+
+const EmptyMessage = styled.div`
+  font-size: 16px;
 `;
