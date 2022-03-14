@@ -38,7 +38,7 @@ export default function ActivityOverviewPage({
         )}
         {date.length === 0 ? (
           <EmptyMessage>
-            <strong>on the: </strong>
+            <strong>date: </strong>
             plan your activity soon!
           </EmptyMessage>
         ) : (
@@ -47,9 +47,9 @@ export default function ActivityOverviewPage({
             {date}
           </p>
         )}
-        {date.length === 0 ? (
+        {location.length === 0 ? (
           <EmptyMessage>
-            <strong>at: </strong>where do you have to go?
+            <strong>location: </strong>where do you have to go?
           </EmptyMessage>
         ) : (
           <p>
