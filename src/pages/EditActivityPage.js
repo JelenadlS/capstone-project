@@ -37,7 +37,7 @@ const WrapperApp = styled.div`
 const Title = styled.header`
   background: #f0e7da;
   padding: 10px;
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
   color: rgba(71, 39, 35, 0.72);
   position: sticky;
@@ -47,11 +47,10 @@ const Title = styled.header`
   overflow: hidden;
 `;
 
-const Arrowback = styled.div`
-  justify-self: start;
+const Arrowback = styled.span`
   position: fixed;
-  top: -5px;
-  left: -2px;
+  top: 5px;
+  left: 2px;
 `;
 
 const HeaderText = styled.h1`
