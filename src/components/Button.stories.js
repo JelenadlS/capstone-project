@@ -3,6 +3,7 @@ import deleteicon from '../images/binicon.svg';
 import gobackicon from '../images/goback.svg';
 import newicon from '../images/new.svg';
 import editicon from '../images/edit.svg';
+import saveicon from '../images/save.svg';
 
 export default {
   title: 'Component/Button',
@@ -55,4 +56,9 @@ export const Edit = Template.bind();
 Edit.args = {
   children: <img src={editicon} alt="edit" />,
   background: 'transparent',
+};
+
+export const Save = Template.bind({});
+Save.args = {
+  children: <img src={saveicon} alt="save" />,
 };

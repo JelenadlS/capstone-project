@@ -33,9 +33,10 @@ const WrapperButton = styled.button`
   font-size: ${props => props.fontSize || '18px'};
   border: none;
   box-shadow: ${props => props.boxShadow || 'none'};
-  border-radius: ${props => props.borderRadius || '15px'};
+  border-radius: ${props => props.borderRadius || '60px'};
   padding: 10px;
   justify-self: ${props => props.justifySelf || 'stretch'};
-  width: ${props => props.width || ''};
+  width: ${props => props.width || '75px'};
   margin: ${props => props.margin || '0px'};
+  height: 60px;
 `;
