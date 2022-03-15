@@ -5,7 +5,12 @@ import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { nanoid } from 'nanoid';
 
-export default function Form({ handleActivity, preloadedValues, buttonName }) {
+export default function Form({
+  handleActivity,
+  preloadedValues,
+  buttonName,
+  title,
+}) {
   const navigate = useNavigate();
   const {
     register,
@@ -49,7 +54,7 @@ export default function Form({ handleActivity, preloadedValues, buttonName }) {
 
   return (
     <WrapperForm
-      title="add activities"
+      title={title}
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
     >

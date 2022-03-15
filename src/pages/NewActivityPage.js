@@ -9,6 +9,7 @@ export default function NewActivityPage({ onAddActivity }) {
         <Header textAlign="left" title="new activity" link="y" />
         <Main>
           <Form
+            title="add activities"
             buttonName={'Add'}
             preloadedValues={null}
             handleActivity={onAddActivity}

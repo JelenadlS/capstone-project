@@ -19,6 +19,7 @@ export default function EditActivityPage({ activities, onEditActivity }) {
         </Title>
         <Main>
           <Form
+            title="edit activity"
             preloadedValues={activityToEdit}
             handleActivity={onEditActivity}
             buttonName="save"
