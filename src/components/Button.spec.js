@@ -18,6 +18,7 @@ describe('Button', () => {
         margin="15px"
         justifySelf="end"
         width="fit-content"
+        height="fit-content"
         borderRadius="40%"
         boxShadow="0px 0px 20px rgba(0, 0, 0, 0.30)"
       />
@@ -31,6 +32,7 @@ describe('Button', () => {
       'margin: 15px',
       'justify-self: end',
       'width: fit-content',
+      'height: fit-content',
       'borderRadius: 40%',
       'boxShadow: 0px 0px 20px rgba(0, 0, 0, 0.30)'
     );
