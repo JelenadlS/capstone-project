@@ -10,6 +10,7 @@ export default function ActivityOverviewPage({
   notes,
   date,
   location,
+  onEditSave,
 }) {
   return (
     <>
@@ -60,8 +61,11 @@ export default function ActivityOverviewPage({
             {location}
           </p>
         )}
-        <EditPositioning to="/">
-          <Button background="transparent">
+        <EditPositioning to={`${activity.id}/editactivity`}>
+          <Button
+            // onEditSave={() => onEditSave(activity)}
+            background="transparent"
+          >
             <img src={editicon} alt="edit" />
           </Button>
         </EditPositioning>

@@ -6,6 +6,7 @@ import ErrorFallback from './components/ErrorFallBack';
 import MyActivitiesPage from './pages/MyActivitiesPage.js';
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
 import NewActivityPage from './pages/NewActivityPage.js';
+import EditActivityPage from './pages/EditActivityPage.js';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,6 +15,7 @@ export default function App() {
   const [activities, setActivities] = useState(
     (!hasError && loadFromLocal('activities')) || []
   );
+  const [toEditActivity, setToEditActivity] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +33,6 @@ export default function App() {
                 activities={activities}
                 hasError={hasError}
                 setActivities={setActivities}
-                onAddActivity={onAddActivity}
               />
             }
           />
@@ -41,12 +42,13 @@ export default function App() {
               path={`${activity.id}`}
               element={
                 <ActivityOverviewPage
-                  key={activity.id}
+                  // key={activity.id} kann rausgenommen werden
                   activity={activity.activity}
                   friend={activity.friend}
                   notes={activity.notes}
                   date={activity.date}
                   location={activity.location}
+                  // onEditSave={onEditSave}
                 />
               }
             />
@@ -60,6 +62,20 @@ export default function App() {
               />
             }
           />
+          {activities.map(activity => (
+            <Route
+              key={activity.id}
+              path="editactivity"
+              // path={`${activity.id}/${activity.id}/editactivity`}
+              element={
+                <EditActivityPage
+                  id={activity.id}
+                  // onEditActivity={onEditActivity}
+                  // toEditActivity={toEditActivity}
+                />
+              }
+            />
+          ))}
         </Routes>
       </WrapperApp>
     </ErrorBoundary>
@@ -74,6 +90,29 @@ export default function App() {
     ]);
     navigate('/');
   }
+
+  // function onEditActivity(friend, notes, date, location) {
+  //   setActivities(
+  //     activities.map(activity =>
+  //       activity.id === toEditActivity.id
+  //         ? {
+  //             ...activity,
+  //             id: toEditActivity.id,
+  //             activity,
+  //             friend,
+  //             notes,
+  //             date,
+  //             location,
+  //           }
+  //         : activity
+  //     )
+  //   );
+  //   setToEditActivity(null);
+  // }
+
+  // function onEditSave(activity) {
+  //   setToEditActivity({ activity });
+  // }
 
   function loadFromLocal(key) {
     try {
