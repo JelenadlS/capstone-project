@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ErrorFallback from './components/ErrorFallBack';
 import MyActivitiesPage from './pages/MyActivitiesPage.js';
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
 import NewActivityPage from './pages/NewActivityPage.js';
 import EditActivityPage from './pages/EditActivityPage.js';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 
 export default function App() {
   const [hasError, setHasError] = useState(false);
@@ -40,12 +40,7 @@ export default function App() {
           />
           <Route
             path="/newactivity"
-            element={
-              <NewActivityPage
-                setActivities={setActivities}
-                onAddActivity={onAddActivity}
-              />
-            }
+            element={<NewActivityPage onAddActivity={onAddActivity} />}
           />
           <Route
             path="/editactivity/:id"

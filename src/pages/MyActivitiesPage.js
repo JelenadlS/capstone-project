@@ -1,15 +1,14 @@
+import { NavLink } from 'react-router-dom';
+import Header from '../components/Header';
 import List from '../components/List';
 import Button from '../components/Button';
-import Header from '../components/Header';
-import styled from 'styled-components';
 import newicon from '../images/new.svg';
-import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 export default function MyActivitiesPage({
   activities,
   hasError,
   setActivities,
-  handleShowDetails,
 }) {
   return (
     <>
@@ -20,7 +19,6 @@ export default function MyActivitiesPage({
             activities={activities}
             errorMessage={hasError}
             onDeleteActivity={onDeleteActivity}
-            handleShowDetails={handleShowDetails}
           />
         </Main>
         <Bottom>

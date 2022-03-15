@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import NewActivityPage from './NewActivityPage.js';
 import { MemoryRouter } from 'react-router-dom';
+import NewActivityPage from './NewActivityPage.js';
 
 describe('NewActivityPage', () => {
   it('renders NewActivityPage with the backLink and the form elements (4 textboxes and button)', () => {

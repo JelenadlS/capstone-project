@@ -1,6 +1,6 @@
+import { useNavigate, useParams } from 'react-router-dom';
 import Form from '../components/Form';
 import gobackicon from '../images/goback.svg';
-import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function EditActivityPage({ activities, onEditActivity }) {

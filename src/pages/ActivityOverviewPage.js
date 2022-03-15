@@ -1,6 +1,6 @@
+import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import editicon from '../images/edit.svg';
-import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function ActivityOverviewPage({ activities }) {
@@ -9,7 +9,11 @@ export default function ActivityOverviewPage({ activities }) {
 
   return (
     <>
-      <Header textAlign="left" title={selectedActivity.activity} link="y"></Header>
+      <Header
+        textAlign="left"
+        title={selectedActivity.activity}
+        link="y"
+      ></Header>
       <WrapperCard>
         <p>
           <strong>{selectedActivity.activity}</strong>

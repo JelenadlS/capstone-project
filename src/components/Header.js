@@ -1,6 +1,6 @@
+import { Link } from 'react-router-dom';
 import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export default function Header({ title, link, textAlign }) {
   if (link || link === 'y') {

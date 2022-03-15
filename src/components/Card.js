@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import deleteicon from '../images/binicon.svg';
-import Button from './Button.js';
-import DeleteModal from './DeleteModal.js';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Button from './Button.js';
+import deleteicon from '../images/binicon.svg';
+import DeleteModal from './DeleteModal.js';
+import styled from 'styled-components';
 
 export default function Card({ activity, errorMessage, onDeleteActivity, id }) {
   const [show, setShow] = useState(false);
