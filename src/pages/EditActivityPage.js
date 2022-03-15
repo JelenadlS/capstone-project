@@ -1,5 +1,4 @@
 import Form from '../components/Form';
-import Button from '../components/Button';
 import gobackicon from '../images/goback.svg';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';

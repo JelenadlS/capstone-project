@@ -27,7 +27,7 @@ export default function MyActivitiesPage({
           <NavLink to="newactivity">
             <Button
               borderRadius="40%"
-              boxShadow="0px 0px 20px rgba(0, 0, 0, 0.30)"
+              boxShadow="0px 0px 20px rgba(0, 0, 0, 0.15)"
             >
               <img src={newicon} alt="new" />
             </Button>

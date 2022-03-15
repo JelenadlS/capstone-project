@@ -34,12 +34,10 @@ export default function App() {
               />
             }
           />
-
           <Route
             path="/details/:id"
             element={<ActivityOverviewPage activities={activities} />}
           />
-
           <Route
             path="/newactivity"
             element={
@@ -49,7 +47,6 @@ export default function App() {
               />
             }
           />
-
           <Route
             path="/editactivity/:id"
             element={
@@ -74,12 +71,6 @@ export default function App() {
   }
 
   function onEditActivity({ id, activity, friend, notes, date, location }) {
-    const edit = activities.map(act =>
-      act.id === id
-        ? { ...act, id, activity, friend, notes, date, location }
-        : act
-    );
-    console.log(edit);
     setActivities(
       activities.map(act =>
         act.id === id

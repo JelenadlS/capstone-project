@@ -51,7 +51,7 @@ export default function Form({ handleActivity, preloadedValues }) {
     <WrapperForm
       title="add activities"
       autoComplete="off"
-      onSubmit={handleSubmit(data => onSubmit(data))}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <label htmlFor="activity">
         name of activity:{' '}
