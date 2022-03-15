@@ -47,7 +47,9 @@ const Title = styled.header`
   overflow: hidden;
 `;
 
-const Arrowback = styled.span`
+const Arrowback = styled.button`
+  border: none;
+  background: transparent;
   position: fixed;
   top: 5px;
   left: 2px;
