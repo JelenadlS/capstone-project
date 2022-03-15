@@ -2,6 +2,7 @@ import Button from './Button.js';
 import deleteicon from '../images/binicon.svg';
 import gobackicon from '../images/goback.svg';
 import newicon from '../images/new.svg';
+import editicon from '../images/edit.svg';
 
 export default {
   title: 'Component/Button',
@@ -48,4 +49,10 @@ New.args = {
   children: <img src={newicon} alt="new" />,
   borderRadius: '40%',
   boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.15)',
+};
+
+export const Edit = Template.bind();
+Edit.args = {
+  children: <img src={editicon} alt="edit" />,
+  background: 'transparent',
 };
