@@ -1,73 +1,64 @@
 import Header from '../components/Header';
-import Button from '../components/Button';
 import editicon from '../images/edit.svg';
-import { useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function ActivityOverviewPage({
-  // activity,
-  // friend,
-  // notes,
-  // date,
-  // location,
-  // id,
-  selectedActivity,
-}) {
-  const navigate = useNavigate();
+export default function ActivityOverviewPage({ activities }) {
+  const { id } = useParams();
+  const selectedActivity = activities.find(activity => activity.id === id);
 
   return (
     <>
-      <Header title={selectedActivity.actitvity} link="y"></Header>
-      {selectedActivity && console.log(selectedActivity.activity)}
+      <Header textAlign="left" title={selectedActivity.activity} link="y"></Header>
       <WrapperCard>
         <p>
           <strong>{selectedActivity.activity}</strong>
         </p>
         {selectedActivity.friend ? (
-          <EmptyMessage>
-            <strong>with: </strong>
-            plan who will join you!
-          </EmptyMessage>
-        ) : (
           <p>
             <strong>with: </strong>
             {selectedActivity.friend}
           </p>
+        ) : (
+          <EmptyMessage>
+            <strong>with: </strong>
+            plan who will join you!
+          </EmptyMessage>
         )}
         {selectedActivity.notes ? (
-          <div />
-        ) : (
           <div>
             <p>
               <strong>additional notes:</strong>
             </p>
             <p>{selectedActivity.notes}</p>
           </div>
+        ) : (
+          <div />
         )}
         {selectedActivity.date ? (
-          <EmptyMessage>
-            <strong>date: </strong>
-            plan your activity soon!
-          </EmptyMessage>
-        ) : (
           <p>
             <strong>on the: </strong>
             {selectedActivity.date}
           </p>
+        ) : (
+          <EmptyMessage>
+            <strong>date: </strong>
+            plan your activity soon!
+          </EmptyMessage>
         )}
         {selectedActivity.location ? (
-          <EmptyMessage>
-            <strong>location: </strong>where do you have to go?
-          </EmptyMessage>
-        ) : (
           <p>
             <strong>at: </strong>
             {selectedActivity.location}
           </p>
+        ) : (
+          <EmptyMessage>
+            <strong>location: </strong>where do you have to go?
+          </EmptyMessage>
         )}
         <EditPositioning
           background="transparent"
-          onClick={() => navigate(`/editactivity/${selectedActivity.id}}`)}
+          to={`/editactivity/${selectedActivity.id}`}
         >
           <img src={editicon} alt="edit" />
         </EditPositioning>
@@ -90,7 +81,7 @@ const EmptyMessage = styled.div`
   font-size: 16px;
 `;
 
-const EditPositioning = styled(Button)`
+const EditPositioning = styled(Link)`
   position: fixed;
   right: -2px;
   top: 60px;

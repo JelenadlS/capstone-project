@@ -1,31 +1,28 @@
 import Form from '../components/Form';
 import Button from '../components/Button';
 import gobackicon from '../images/goback.svg';
-import { useNavigate } from 'react-router-dom';
-// import { BrowserHistory } from 'react-router/lib/BrowserHistory'; Error: Module not found: Error: Can't resolve 'react-
-// import { useHistory } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function EditActivityPage({ id, url }) {
-  // const history = useHistory();
-  console.log(id);
+export default function EditActivityPage({ activities, onEditActivity }) {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const activityToEdit = activities.find(activity => activity.id === id);
+
   return (
     <>
       <WrapperApp>
         <Title>
-          <Button
-            onClick={() => navigate(`/details/${id}`)}
-            background="transparent"
-            justifySelf="start"
-          >
+          <Arrowback onClick={() => navigate(`/details/${id}`)}>
             <img src={gobackicon} alt="go back" />
-          </Button>
-
+          </Arrowback>
           <HeaderText>Edit activity</HeaderText>
         </Title>
         <Main>
-          <Form />
+          <Form
+            preloadedValues={activityToEdit}
+            handleActivity={onEditActivity}
+          />
         </Main>
       </WrapperApp>
     </>
@@ -50,17 +47,12 @@ const Title = styled.header`
   overflow: hidden;
 `;
 
-// const Arrowback = styled.div`
-//   position: fixed;
-//   top: -5px;
-//   left: -2px;
-// `;
-
-// const ArrowbackNav = styled(NavLink)`
-//   position: fixed;
-//   top: -5px;
-//   left: -2px;
-// `;
+const Arrowback = styled.div`
+  justify-self: start;
+  position: fixed;
+  top: -5px;
+  left: -2px;
+`;
 
 const HeaderText = styled.h1`
   margin-left: 70px;

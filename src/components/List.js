@@ -33,7 +33,7 @@ export default function List({
           <li key={activity.id}>
             <Card
               onDeleteActivity={() => onDeleteActivity(activity.id)}
-              handleShowDetails={handleShowDetails}
+              handleShowDetails={() => handleShowDetails(activity)}
               activity={activity.activity}
               id={activity.id}
               errorMessage={

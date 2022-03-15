@@ -6,10 +6,9 @@ export default function NewActivityPage({ onAddActivity }) {
   return (
     <>
       <WrapperApp>
-        <Header title="new activity" link="y" />
-
+        <Header textAlign="left" title="new activity" link="y" />
         <Main>
-          <Form onAddActivity={onAddActivity} />
+          <Form preloadedValues={null} handleActivity={onAddActivity} />
         </Main>
       </WrapperApp>
     </>

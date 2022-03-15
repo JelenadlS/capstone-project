@@ -1,16 +1,13 @@
-import Button from './Button';
 import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export default function Header({ title, link }) {
+export default function Header({ title, link, textAlign }) {
   if (link || link === 'y') {
     return (
-      <Title>
+      <Title textAlign={textAlign}>
         <Arrowback to="/">
-          <Button background="transparent" justifySelf="start">
-            <img src={gobackicon} alt="go back" />
-          </Button>
+          <img src={gobackicon} alt="go back" />
         </Arrowback>
         <HeaderText>{title}</HeaderText>
       </Title>
@@ -26,8 +23,8 @@ export default function Header({ title, link }) {
 const Title = styled.header`
   background: #f0e7da;
   padding: 10px;
-  text-align: center;
   text-transform: uppercase;
+  text-align: ${props => props.textAlign || 'center'};
   color: rgba(71, 39, 35, 0.72);
   position: sticky;
   top: 0px;
@@ -36,10 +33,10 @@ const Title = styled.header`
   overflow: hidden;
 `;
 
-const Arrowback = styled(NavLink)`
+const Arrowback = styled(Link)`
   position: fixed;
-  top: -5px;
-  left: -2px;
+  top: 5px;
+  left: 2px;
 `;
 
 const HeaderText = styled.h1`

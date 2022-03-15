@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { nanoid } from 'nanoid';
-//import { Routes, Route, useRouteMatch, useParams } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import ErrorFallback from './components/ErrorFallBack';
 import MyActivitiesPage from './pages/MyActivitiesPage.js';
@@ -17,7 +15,6 @@ export default function App() {
     (!hasError && loadFromLocal('activities')) || []
   );
   const navigate = useNavigate();
-  const [selectedActivity, setSelectedActivity] = useState(null);
 
   useEffect(() => {
     saveToLocal('activities', activities);
@@ -34,24 +31,13 @@ export default function App() {
                 activities={activities}
                 hasError={hasError}
                 setActivities={setActivities}
-                handleShowDetails={handleShowDetails}
               />
             }
           />
 
           <Route
             path="/details/:id"
-            element={
-              <ActivityOverviewPage
-                selectedActivity={selectedActivity}
-                // activity={selectedActivity?.activity}
-                // friend={selectedActivity?.friend}
-                // notes={selectedActivity?.notes}
-                // date={selectedActivity?.date}
-                // location={selectedActivity?.location}
-                // id={selectedActivity?.id}
-              />
-            }
+            element={<ActivityOverviewPage activities={activities} />}
           />
 
           <Route
@@ -64,15 +50,22 @@ export default function App() {
             }
           />
 
-          <Route path="/editactivity/:id" element={<EditActivityPage />} />
+          <Route
+            path="/editactivity/:id"
+            element={
+              <EditActivityPage
+                activities={activities}
+                onEditActivity={onEditActivity}
+              />
+            }
+          />
         </Routes>
       </WrapperApp>
     </ErrorBoundary>
   );
 
-  function onAddActivity({ activity, friend, notes, date, location }) {
+  function onAddActivity({ id, activity, friend, notes, date, location }) {
     setHasError(false);
-    const id = nanoid();
     setActivities([
       ...activities,
       { activity, friend, id, notes, date, location },
@@ -80,12 +73,20 @@ export default function App() {
     navigate('/');
   }
 
-  function handleShowDetails(id) {
-    console.log(id);
-    console.log(activities.filter(activity => id === activity.id));
-    setSelectedActivity(activities.filter(activity => id === activity.id));
-    console.log(selectedActivity);
-    navigate(`/details/${id}`);
+  function onEditActivity({ id, activity, friend, notes, date, location }) {
+    const edit = activities.map(act =>
+      act.id === id
+        ? { ...act, id, activity, friend, notes, date, location }
+        : act
+    );
+    console.log(edit);
+    setActivities(
+      activities.map(act =>
+        act.id === id
+          ? { ...act, id, activity, friend, notes, date, location }
+          : act
+      )
+    );
   }
 
   function loadFromLocal(key) {

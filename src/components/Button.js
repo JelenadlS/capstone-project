@@ -11,6 +11,7 @@ export default function Button({
   height,
   borderRadius,
   boxShadow,
+  padding,
 }) {
   return (
     <WrapperButton
@@ -23,6 +24,7 @@ export default function Button({
       height={height}
       borderRadius={borderRadius}
       boxShadow={boxShadow}
+      padding={padding}
     >
       {children}
     </WrapperButton>
@@ -36,7 +38,7 @@ const WrapperButton = styled.button`
   border: none;
   box-shadow: ${props => props.boxShadow || 'none'};
   border-radius: ${props => props.borderRadius || '60px'};
-  padding: 10px;
+  padding: ${props => props.padding || '10px'};
   justify-self: ${props => props.justifySelf || 'stretch'};
   width: ${props => props.width || '75px'};
   margin: ${props => props.margin || '0px'};
