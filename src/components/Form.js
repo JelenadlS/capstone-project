@@ -4,22 +4,14 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 
-export default function Form({
-  onAddActivity,
-  toEditActivity,
-  onEditActivity,
-}) {
+export default function Form({ onAddActivity }) {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     setFocus,
     formState: { errors },
-  } = useForm({
-    // defaultValues: toEditActivity
-    //   ? toEditActivity
-    //   : { activities: '', friend: '', notes: '', date: '', location: '' },
-  });
+  } = useForm({});
 
   const onSubmit = data => {
     onAddActivity(data);

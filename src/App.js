@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { nanoid } from 'nanoid';
+//import { Routes, Route, useRouteMatch, useParams } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import ErrorFallback from './components/ErrorFallBack';
 import MyActivitiesPage from './pages/MyActivitiesPage.js';
@@ -15,8 +16,8 @@ export default function App() {
   const [activities, setActivities] = useState(
     (!hasError && loadFromLocal('activities')) || []
   );
-  const [toEditActivity, setToEditActivity] = useState(null);
   const navigate = useNavigate();
+  const [selectedActivity, setSelectedActivity] = useState(null);
 
   useEffect(() => {
     saveToLocal('activities', activities);
@@ -33,28 +34,28 @@ export default function App() {
                 activities={activities}
                 hasError={hasError}
                 setActivities={setActivities}
+                handleShowDetails={handleShowDetails}
               />
             }
           />
-          {activities.map(activity => (
-            <Route
-              key={activity.id}
-              path={`${activity.id}`}
-              element={
-                <ActivityOverviewPage
-                  // key={activity.id} kann rausgenommen werden
-                  activity={activity.activity}
-                  friend={activity.friend}
-                  notes={activity.notes}
-                  date={activity.date}
-                  location={activity.location}
-                  // onEditSave={onEditSave}
-                />
-              }
-            />
-          ))}
+
           <Route
-            path="newactivity"
+            path="/details/:id"
+            element={
+              <ActivityOverviewPage
+                selectedActivity={selectedActivity}
+                // activity={selectedActivity?.activity}
+                // friend={selectedActivity?.friend}
+                // notes={selectedActivity?.notes}
+                // date={selectedActivity?.date}
+                // location={selectedActivity?.location}
+                // id={selectedActivity?.id}
+              />
+            }
+          />
+
+          <Route
+            path="/newactivity"
             element={
               <NewActivityPage
                 setActivities={setActivities}
@@ -62,20 +63,8 @@ export default function App() {
               />
             }
           />
-          {activities.map(activity => (
-            <Route
-              key={activity.id}
-              path="editactivity"
-              // path={`${activity.id}/${activity.id}/editactivity`}
-              element={
-                <EditActivityPage
-                  id={activity.id}
-                  // onEditActivity={onEditActivity}
-                  // toEditActivity={toEditActivity}
-                />
-              }
-            />
-          ))}
+
+          <Route path="/editactivity/:id" element={<EditActivityPage />} />
         </Routes>
       </WrapperApp>
     </ErrorBoundary>
@@ -91,28 +80,13 @@ export default function App() {
     navigate('/');
   }
 
-  // function onEditActivity(friend, notes, date, location) {
-  //   setActivities(
-  //     activities.map(activity =>
-  //       activity.id === toEditActivity.id
-  //         ? {
-  //             ...activity,
-  //             id: toEditActivity.id,
-  //             activity,
-  //             friend,
-  //             notes,
-  //             date,
-  //             location,
-  //           }
-  //         : activity
-  //     )
-  //   );
-  //   setToEditActivity(null);
-  // }
-
-  // function onEditSave(activity) {
-  //   setToEditActivity({ activity });
-  // }
+  function handleShowDetails(id) {
+    console.log(id);
+    console.log(activities.filter(activity => id === activity.id));
+    setSelectedActivity(activities.filter(activity => id === activity.id));
+    console.log(selectedActivity);
+    navigate(`/details/${id}`);
+  }
 
   function loadFromLocal(key) {
     try {

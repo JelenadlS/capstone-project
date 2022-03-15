@@ -3,15 +3,20 @@ import deleteicon from '../images/binicon.svg';
 import Button from './Button.js';
 import DeleteModal from './DeleteModal.js';
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 
-export default function Card({ activity, id, errorMessage, onDeleteActivity }) {
+export default function Card({
+  activity,
+  id,
+  errorMessage,
+  onDeleteActivity,
+  handleShowDetails,
+}) {
   const [show, setShow] = useState(false);
 
   return (
     <>
       <WrapperCard>
-        <LinkStyling to={`/${id}`}>
+        <LinkStyling onClick={() => handleShowDetails(id)}>
           <strong>{activity}</strong>
         </LinkStyling>
         <Button
@@ -43,7 +48,7 @@ const WrapperCard = styled.section`
   overflow: hidden;
 `;
 
-const LinkStyling = styled(NavLink)`
+const LinkStyling = styled(Button)`
   color: rgba(71, 39, 35, 0.72);
   text-decoration: none;
   overflow: hidden;

@@ -9,6 +9,7 @@ export default function MyActivitiesPage({
   activities,
   hasError,
   setActivities,
+  handleShowDetails,
 }) {
   return (
     <>
@@ -19,6 +20,7 @@ export default function MyActivitiesPage({
             activities={activities}
             errorMessage={hasError}
             onDeleteActivity={onDeleteActivity}
+            handleShowDetails={handleShowDetails}
           />
         </Main>
         <Bottom>

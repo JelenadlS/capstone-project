@@ -1,33 +1,31 @@
-import Header from '../components/Header';
 import Form from '../components/Form';
 import Button from '../components/Button';
 import gobackicon from '../images/goback.svg';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+// import { BrowserHistory } from 'react-router/lib/BrowserHistory'; Error: Module not found: Error: Can't resolve 'react-
+// import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function EditActivityPage(
-  id,
-  activity,
-  onEditActivity,
-  toEditActivity
-) {
+export default function EditActivityPage({ id, url }) {
+  // const history = useHistory();
   console.log(id);
+  const navigate = useNavigate();
   return (
     <>
       <WrapperApp>
         <Title>
-          <Arrowback to={`/${id}`}>
-            <Button background="transparent" justifySelf="start">
-              <img src={gobackicon} alt="go back" />
-            </Button>
-          </Arrowback>
+          <Button
+            onClick={() => navigate(`/details/${id}`)}
+            background="transparent"
+            justifySelf="start"
+          >
+            <img src={gobackicon} alt="go back" />
+          </Button>
+
           <HeaderText>Edit activity</HeaderText>
         </Title>
         <Main>
-          <Form
-          // onEditActivity={onEditActivity}
-          // toeditActivity={toEditActivity}
-          />
+          <Form />
         </Main>
       </WrapperApp>
     </>
@@ -52,11 +50,17 @@ const Title = styled.header`
   overflow: hidden;
 `;
 
-const Arrowback = styled(NavLink)`
-  position: fixed;
-  top: -5px;
-  left: -2px;
-`;
+// const Arrowback = styled.div`
+//   position: fixed;
+//   top: -5px;
+//   left: -2px;
+// `;
+
+// const ArrowbackNav = styled(NavLink)`
+//   position: fixed;
+//   top: -5px;
+//   left: -2px;
+// `;
 
 const HeaderText = styled.h1`
   margin-left: 70px;

@@ -2,7 +2,12 @@ import styled from 'styled-components';
 import Card from './Card';
 import { useEffect, useRef } from 'react';
 
-export default function List({ activities, errorMessage, onDeleteActivity }) {
+export default function List({
+  activities,
+  errorMessage,
+  onDeleteActivity,
+  handleShowDetails,
+}) {
   const activitiesEndRef = useRef(null);
   const scrollToBottom = () => {
     activitiesEndRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -28,6 +33,7 @@ export default function List({ activities, errorMessage, onDeleteActivity }) {
           <li key={activity.id}>
             <Card
               onDeleteActivity={() => onDeleteActivity(activity.id)}
+              handleShowDetails={handleShowDetails}
               activity={activity.activity}
               id={activity.id}
               errorMessage={

@@ -1,25 +1,29 @@
 import Header from '../components/Header';
 import Button from '../components/Button';
 import editicon from '../images/edit.svg';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function ActivityOverviewPage({
-  activity,
-  friend,
-  notes,
-  date,
-  location,
-  onEditSave,
+  // activity,
+  // friend,
+  // notes,
+  // date,
+  // location,
+  // id,
+  selectedActivity,
 }) {
+  const navigate = useNavigate();
+
   return (
     <>
-      <Header title={activity} link="y"></Header>
+      <Header title={selectedActivity.actitvity} link="y"></Header>
+      {selectedActivity && console.log(selectedActivity.activity)}
       <WrapperCard>
         <p>
-          <strong>{activity}</strong>
+          <strong>{selectedActivity.activity}</strong>
         </p>
-        {friend.length === 0 ? (
+        {selectedActivity.friend ? (
           <EmptyMessage>
             <strong>with: </strong>
             plan who will join you!
@@ -27,20 +31,20 @@ export default function ActivityOverviewPage({
         ) : (
           <p>
             <strong>with: </strong>
-            {friend}
+            {selectedActivity.friend}
           </p>
         )}
-        {notes.length === 0 ? (
+        {selectedActivity.notes ? (
           <div />
         ) : (
           <div>
             <p>
               <strong>additional notes:</strong>
             </p>
-            <p>{notes}</p>
+            <p>{selectedActivity.notes}</p>
           </div>
         )}
-        {date.length === 0 ? (
+        {selectedActivity.date ? (
           <EmptyMessage>
             <strong>date: </strong>
             plan your activity soon!
@@ -48,26 +52,24 @@ export default function ActivityOverviewPage({
         ) : (
           <p>
             <strong>on the: </strong>
-            {date}
+            {selectedActivity.date}
           </p>
         )}
-        {location.length === 0 ? (
+        {selectedActivity.location ? (
           <EmptyMessage>
             <strong>location: </strong>where do you have to go?
           </EmptyMessage>
         ) : (
           <p>
             <strong>at: </strong>
-            {location}
+            {selectedActivity.location}
           </p>
         )}
-        <EditPositioning to={`${activity.id}/editactivity`}>
-          <Button
-            // onEditSave={() => onEditSave(activity)}
-            background="transparent"
-          >
-            <img src={editicon} alt="edit" />
-          </Button>
+        <EditPositioning
+          background="transparent"
+          onClick={() => navigate(`/editactivity/${selectedActivity.id}}`)}
+        >
+          <img src={editicon} alt="edit" />
         </EditPositioning>
       </WrapperCard>
     </>
@@ -88,7 +90,7 @@ const EmptyMessage = styled.div`
   font-size: 16px;
 `;
 
-const EditPositioning = styled(NavLink)`
+const EditPositioning = styled(Button)`
   position: fixed;
   right: -2px;
   top: 60px;
