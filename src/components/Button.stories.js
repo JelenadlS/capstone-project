@@ -15,6 +15,8 @@ const Template = args => <Button {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   children: 'Add',
+  width: '100%',
+  height: 'fit-content',
 };
 
 export const Delete = Template.bind();
@@ -29,6 +31,7 @@ Yes.args = {
   children: 'please delete',
   fontSize: '14px',
   width: 'fit-content',
+  height: 'fit-content',
 };
 
 export const No = Template.bind();
@@ -36,6 +39,7 @@ No.args = {
   children: 'no, I want to keep it',
   fontSize: '14px',
   width: 'fit-content',
+  height: 'fit-content',
 };
 
 export const Arrow = Template.bind();
@@ -61,4 +65,6 @@ Edit.args = {
 export const Save = Template.bind({});
 Save.args = {
   children: <img src={saveicon} alt="save" />,
+  boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.15)',
+  borderRadius: '40%',
 };
