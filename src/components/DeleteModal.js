@@ -11,6 +11,7 @@ export default function DeleteModal(props) {
       <div>
         <Button
           width="fit-content"
+          height="fit-content"
           fontSize="14px"
           type="submit"
           onClick={props.onClose}
@@ -19,6 +20,7 @@ export default function DeleteModal(props) {
         </Button>
         <Button
           width="fit-content"
+          height="fit-content"
           fontSize="14px"
           type="submit"
           margin="15px"

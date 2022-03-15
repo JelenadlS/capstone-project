@@ -123,7 +123,9 @@ export default function Form({ onAddActivity }) {
         )}
       </label>
 
-      <Button type="submit">Add</Button>
+      <Button width="100%" height="fit-content" type="submit">
+        Add
+      </Button>
     </WrapperForm>
   );
 }

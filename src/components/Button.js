@@ -8,6 +8,7 @@ export default function Button({
   justifySelf,
   onClick,
   width,
+  height,
   borderRadius,
   boxShadow,
 }) {
@@ -19,6 +20,7 @@ export default function Button({
       justifySelf={justifySelf}
       onClick={onClick}
       width={width}
+      height={height}
       borderRadius={borderRadius}
       boxShadow={boxShadow}
     >
@@ -38,5 +40,5 @@ const WrapperButton = styled.button`
   justify-self: ${props => props.justifySelf || 'stretch'};
   width: ${props => props.width || '75px'};
   margin: ${props => props.margin || '0px'};
-  height: 60px;
+  height: ${props => props.height || '60px'};
 `;
