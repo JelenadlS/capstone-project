@@ -1,4 +1,7 @@
 import Header from '../components/Header';
+import Button from '../components/Button';
+import editicon from '../images/edit.svg';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function ActivityOverviewPage({
@@ -57,6 +60,11 @@ export default function ActivityOverviewPage({
             {location}
           </p>
         )}
+        <EditPositioning to="/">
+          <Button background="transparent">
+            <img src={editicon} alt="edit" />
+          </Button>
+        </EditPositioning>
       </WrapperCard>
     </>
   );
@@ -74,4 +82,10 @@ const WrapperCard = styled.section`
 
 const EmptyMessage = styled.div`
   font-size: 16px;
+`;
+
+const EditPositioning = styled(NavLink)`
+  position: fixed;
+  right: -2px;
+  top: 60px;
 `;
