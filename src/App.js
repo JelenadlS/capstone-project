@@ -44,6 +44,9 @@ export default function App() {
                   key={activity.id}
                   activity={activity.activity}
                   friend={activity.friend}
+                  notes={activity.notes}
+                  date={activity.date}
+                  location={activity.location}
                 />
               }
             />
@@ -62,10 +65,13 @@ export default function App() {
     </ErrorBoundary>
   );
 
-  function onAddActivity({ activity, friend }) {
+  function onAddActivity({ activity, friend, notes, date, location }) {
     setHasError(false);
     const id = nanoid();
-    setActivities([...activities, { activity, friend, id }]);
+    setActivities([
+      ...activities,
+      { activity, friend, id, notes, date, location },
+    ]);
     navigate('/');
   }
 

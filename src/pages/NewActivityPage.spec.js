@@ -3,7 +3,7 @@ import NewActivityPage from './NewActivityPage.js';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('NewActivityPage', () => {
-  it('renders NewActivityPage with the backButton with the link and the form elements (textboxes and button)', () => {
+  it('renders NewActivityPage with the backButton with the link and the form elements (4 textboxes and button)', () => {
     render(
       <MemoryRouter>
         <NewActivityPage />
@@ -17,7 +17,7 @@ describe('NewActivityPage', () => {
 
     expect(arrowButton).toBeInTheDocument();
     expect(link).toBeInTheDocument();
-    expect(textboxes).toHaveLength(2);
+    expect(textboxes).toHaveLength(4);
     expect(addButton).toBeInTheDocument();
   });
 });
