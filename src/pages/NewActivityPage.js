@@ -8,7 +8,11 @@ export default function NewActivityPage({ onAddActivity }) {
       <WrapperApp>
         <Header textAlign="left" title="new activity" link="y" />
         <Main>
-          <Form preloadedValues={null} handleActivity={onAddActivity} />
+          <Form
+            buttonName={'Add'}
+            preloadedValues={null}
+            handleActivity={onAddActivity}
+          />
         </Main>
       </WrapperApp>
     </>

@@ -21,6 +21,7 @@ export default function EditActivityPage({ activities, onEditActivity }) {
           <Form
             preloadedValues={activityToEdit}
             handleActivity={onEditActivity}
+            buttonName="save"
           />
         </Main>
       </WrapperApp>

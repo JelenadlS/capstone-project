@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { nanoid } from 'nanoid';
 
-export default function Form({ handleActivity, preloadedValues }) {
+export default function Form({ handleActivity, preloadedValues, buttonName }) {
   const navigate = useNavigate();
   const {
     register,
@@ -149,7 +149,7 @@ export default function Form({ handleActivity, preloadedValues }) {
       </label>
 
       <Button width="100%" height="fit-content" type="submit">
-        Add
+        {buttonName}
       </Button>
     </WrapperForm>
   );

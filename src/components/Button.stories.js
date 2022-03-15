@@ -3,7 +3,6 @@ import deleteicon from '../images/binicon.svg';
 import gobackicon from '../images/goback.svg';
 import newicon from '../images/new.svg';
 import editicon from '../images/edit.svg';
-import saveicon from '../images/save.svg';
 
 export default {
   title: 'Component/Button',
@@ -64,7 +63,5 @@ Edit.args = {
 
 export const Save = Template.bind({});
 Save.args = {
-  children: <img src={saveicon} alt="save" />,
-  boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.15)',
-  borderRadius: '40%',
+  children: 'save',
 };
