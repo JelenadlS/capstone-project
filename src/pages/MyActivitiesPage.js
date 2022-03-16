@@ -22,7 +22,7 @@ export default function MyActivitiesPage({
           />
         </Main>
         <Bottom>
-          <NavLink to="newactivity">
+          <NavLink to="/newactivity">
             <Button
               borderRadius="40%"
               boxShadow="0px 0px 20px rgba(0, 0, 0, 0.15)"
