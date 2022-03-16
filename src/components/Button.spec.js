@@ -21,6 +21,7 @@ describe('Button', () => {
         height="fit-content"
         borderRadius="40%"
         boxShadow="0px 0px 20px rgba(0, 0, 0, 0.30)"
+        padding="10px"
       />
     );
 
@@ -34,7 +35,8 @@ describe('Button', () => {
       'width: fit-content',
       'height: fit-content',
       'borderRadius: 40%',
-      'boxShadow: 0px 0px 20px rgba(0, 0, 0, 0.30)'
+      'boxShadow: 0px 0px 20px rgba(0, 0, 0, 0.30)',
+      'padding: 10px'
     );
   });
 });
