@@ -1,8 +1,9 @@
-import { NavLink, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import List from '../components/List';
 import Button from '../components/Button';
 import newicon from '../images/new.svg';
+import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
 
 export default function MyActivitiesPage({
@@ -14,20 +15,19 @@ export default function MyActivitiesPage({
   const selectedFriendsActivity = activities.filter(
     activity => activity.friend === name
   );
-
-  //needed?---------------------------------------------------------------------------------------
-  const noFriendsActivity = activities.filter(
-    activity => activity.friend === ''
-  );
-
+  console.log(selectedFriendsActivity[0].friend);
   return (
     <>
       <WrapperApp>
-        <Header title="my activities" link="y" />
+        <Title>
+          <Arrowback to="/">
+            <img src={gobackicon} alt="go back" />
+          </Arrowback>
+          <HeaderText>{selectedFriendsActivity[0].friend}</HeaderText>
+        </Title>
         <Main>
           <List
             activitiesOfSelectedFriend={selectedFriendsActivity}
-            noFriendsActivity={noFriendsActivity}
             errorMessage={hasError}
             onDeleteActivity={onDeleteActivity}
           />
@@ -59,6 +59,33 @@ const WrapperApp = styled.div`
   grid-template-rows: 60px 1fr auto;
 `;
 
+const Title = styled.header`
+  background: #f0e7da;
+  padding: 10px;
+  text-align: left;
+  text-transform: uppercase;
+  color: rgba(71, 39, 35, 0.72);
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+  height: 60px;
+  overflow: hidden;
+`;
+
+const Arrowback = styled(Link)`
+  border: none;
+  background: transparent;
+  position: fixed;
+  top: 5px;
+  left: 2px;
+`;
+
+const HeaderText = styled.h1`
+  margin-left: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
 const Main = styled.main`
   overflow-y: auto;
 `;

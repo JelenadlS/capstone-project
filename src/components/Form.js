@@ -34,7 +34,7 @@ export default function Form({
       handleActivity({
         id: preloadedValues.id,
         activity: data.activity,
-        friend: data.friend === '' ? 'activities I want to do' : data.friend,
+        friend: data.friend === '' ? 'my personal bucket list' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -45,7 +45,7 @@ export default function Form({
       handleActivity({
         id: id,
         activity: data.activity,
-        friend: data.friend === '' ? 'activities I want to do' : data.friend,
+        friend: data.friend === '' ? 'my personal bucket list' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,

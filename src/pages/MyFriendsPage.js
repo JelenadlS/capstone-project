@@ -15,8 +15,8 @@ export default function MyFriendsPage({ activities }) {
 
   const sortedFriends = friendOnlyOnce.sort(function (a, b) {
     if (a.key === b.key) return 0;
-    if (a.key === 'activities I want to do') return -1;
-    if (b.key === 'activities I want to do') return 1;
+    if (a.key === 'my personal bucket list') return -1;
+    if (b.key === 'my personal bucket list') return 1;
 
     if (a.key < b.key) return -1;
     if (a.key > b.key) return 1;
