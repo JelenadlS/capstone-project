@@ -14,6 +14,9 @@ export default function MyActivitiesPage({
   const selectedFriendsActivity = activities.filter(
     activity => activity.friend === name
   );
+  const noFriendsActivity = activities.filter(
+    activity => activity.friend === ''
+  );
 
   return (
     <>
@@ -22,6 +25,7 @@ export default function MyActivitiesPage({
         <Main>
           <List
             activitiesOfSelectedFriend={selectedFriendsActivity}
+            noFriendsActivity={noFriendsActivity}
             errorMessage={hasError}
             onDeleteActivity={onDeleteActivity}
           />

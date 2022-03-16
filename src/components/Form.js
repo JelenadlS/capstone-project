@@ -20,7 +20,13 @@ export default function Form({
   } = useForm({
     defaultValues: preloadedValues
       ? preloadedValues
-      : { activities: '', friend: '', notes: '', date: '', location: '' },
+      : {
+          activities: '',
+          friend: '',
+          notes: '',
+          date: '',
+          location: '',
+        },
   });
 
   const onSubmit = data => {
@@ -28,7 +34,7 @@ export default function Form({
       handleActivity({
         id: preloadedValues.id,
         activity: data.activity,
-        friend: data.friend,
+        friend: data.friend === '' ? 'activities I want to do' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -39,7 +45,7 @@ export default function Form({
       handleActivity({
         id: id,
         activity: data.activity,
-        friend: data.friend,
+        friend: data.friend === '' ? 'activities I want to do' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,

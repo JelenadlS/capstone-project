@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function FriendCard({ activity }) {
-  console.log(activity);
-  const size = Object(activity);
+export default function FriendCard({ friend }, noFriends) {
+  console.log(friend);
+  console.log(noFriends);
+
   return (
     <>
       <WrapperCard>
-        <LinkStyling to={`/friend/${activity.friend}`}>
-          <strong>{activity.friend}</strong>
-          <strong>{`#${size.length()}`}</strong>
+        <LinkStyling to={`/friend/${friend}`}>
+          <strong>{friend}</strong>
         </LinkStyling>
       </WrapperCard>
     </>
