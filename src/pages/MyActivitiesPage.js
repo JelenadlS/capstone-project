@@ -13,7 +13,7 @@ export default function MyActivitiesPage({
   return (
     <>
       <WrapperApp>
-        <Header title="my activities" />
+        <Header title="my activities" link="y" />
         <Main>
           <List
             activities={activities}
