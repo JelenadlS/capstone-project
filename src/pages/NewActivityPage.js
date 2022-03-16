@@ -1,15 +1,19 @@
-import Form from '../components/Form';
 import Header from '../components/Header';
+import Form from '../components/Form';
 import styled from 'styled-components';
 
 export default function NewActivityPage({ onAddActivity }) {
   return (
     <>
       <WrapperApp>
-        <Header title="new activity" link="y" />
-
+        <Header textAlign="left" title="new activity" link="y" />
         <Main>
-          <Form onAddActivity={onAddActivity} />
+          <Form
+            title="add activities"
+            buttonName={'Add'}
+            preloadedValues={null}
+            handleActivity={onAddActivity}
+          />
         </Main>
       </WrapperApp>
     </>

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { nanoid } from 'nanoid';
 import { Routes, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ErrorFallback from './components/ErrorFallBack';
 import MyActivitiesPage from './pages/MyActivitiesPage.js';
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
 import NewActivityPage from './pages/NewActivityPage.js';
+import EditActivityPage from './pages/EditActivityPage.js';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 
 export default function App() {
   const [hasError, setHasError] = useState(false);
@@ -31,32 +31,23 @@ export default function App() {
                 activities={activities}
                 hasError={hasError}
                 setActivities={setActivities}
-                onAddActivity={onAddActivity}
               />
             }
           />
-          {activities.map(activity => (
-            <Route
-              key={activity.id}
-              path={`${activity.id}`}
-              element={
-                <ActivityOverviewPage
-                  key={activity.id}
-                  activity={activity.activity}
-                  friend={activity.friend}
-                  notes={activity.notes}
-                  date={activity.date}
-                  location={activity.location}
-                />
-              }
-            />
-          ))}
           <Route
-            path="newactivity"
+            path="/details/:id"
+            element={<ActivityOverviewPage activities={activities} />}
+          />
+          <Route
+            path="/newactivity"
+            element={<NewActivityPage onAddActivity={onAddActivity} />}
+          />
+          <Route
+            path="/editactivity/:id"
             element={
-              <NewActivityPage
-                setActivities={setActivities}
-                onAddActivity={onAddActivity}
+              <EditActivityPage
+                activities={activities}
+                onEditActivity={onEditActivity}
               />
             }
           />
@@ -65,14 +56,23 @@ export default function App() {
     </ErrorBoundary>
   );
 
-  function onAddActivity({ activity, friend, notes, date, location }) {
+  function onAddActivity({ id, activity, friend, notes, date, location }) {
     setHasError(false);
-    const id = nanoid();
     setActivities([
       ...activities,
       { activity, friend, id, notes, date, location },
     ]);
     navigate('/');
+  }
+
+  function onEditActivity({ id, activity, friend, notes, date, location }) {
+    setActivities(
+      activities.map(act =>
+        act.id === id
+          ? { ...act, id, activity, friend, notes, date, location }
+          : act
+      )
+    );
   }
 
   function loadFromLocal(key) {

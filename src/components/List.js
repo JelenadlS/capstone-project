@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import Card from './Card';
 import { useEffect, useRef } from 'react';
+import Card from './Card';
+import styled from 'styled-components';
 
 export default function List({ activities, errorMessage, onDeleteActivity }) {
   const activitiesEndRef = useRef(null);

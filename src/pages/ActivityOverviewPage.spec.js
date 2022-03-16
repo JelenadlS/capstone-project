@@ -3,33 +3,45 @@ import { MemoryRouter } from 'react-router-dom';
 import ActivityOverviewPage from './ActivityOverviewPage';
 
 describe('ActivityOverviewPage', () => {
-  it('renders ActivityOverviewPage with the backButton with the link, activity twice (header and text), the friend, notes, date and location', () => {
+  it('renders ActivityOverviewPage with the back and edit link, as well empty messages of the three inputs', () => {
+    const selectedActivity = [
+      {
+        activities: {
+          id: '1',
+          path: '/project/:id',
+          friend: 'Clara',
+          activity: 'Frau Möller',
+          notes: 'notes',
+          date: '13/02/21',
+          location: 'HH',
+        },
+      },
+      {
+        id: '2',
+        path: '/project/:id',
+        friend: 'Clara',
+        activity: 'Frau Möller',
+        notes: 'notes',
+        date: '13/02/21',
+        location: 'HH',
+      },
+    ];
     render(
       <MemoryRouter>
-        <ActivityOverviewPage
-          friend="Clara"
-          activity="Frau Möller"
-          notes="notes"
-          date="13/02/21"
-          location="HH"
-        />
+        <ActivityOverviewPage activities={selectedActivity} />
       </MemoryRouter>
     );
 
-    const arrowButton = screen.getByRole('button');
-    const link = screen.getByRole('link');
-    const headerTextAndActivity = screen.getAllByText('Frau Möller');
-    const friend = screen.getByText('Clara');
-    const notes = screen.getByText('notes');
-    const date = screen.getByText('13/02/21');
-    const location = screen.getByText('HH');
+    const links = screen.getAllByRole('link');
+    const header = screen.getByRole('heading');
+    const friendEmpty = screen.getByText('plan who will join you!');
+    const dateEmpty = screen.getByText('plan your activity soon!');
+    const locationEmpty = screen.getByText('where do you have to go?');
 
-    expect(arrowButton).toBeInTheDocument();
-    expect(link).toBeInTheDocument();
-    expect(headerTextAndActivity).toHaveLength(2);
-    expect(friend).toBeInTheDocument();
-    expect(notes).toBeInTheDocument();
-    expect(date).toBeInTheDocument();
-    expect(location).toBeInTheDocument();
+    expect(links).toHaveLength(2);
+    expect(header).toBeInTheDocument();
+    expect(friendEmpty).toBeInTheDocument();
+    expect(dateEmpty).toBeInTheDocument();
+    expect(locationEmpty).toBeInTheDocument();
   });
 });

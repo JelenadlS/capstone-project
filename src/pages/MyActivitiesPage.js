@@ -1,9 +1,9 @@
+import { NavLink } from 'react-router-dom';
+import Header from '../components/Header';
 import List from '../components/List';
 import Button from '../components/Button';
-import Header from '../components/Header';
-import styled from 'styled-components';
 import newicon from '../images/new.svg';
-import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 export default function MyActivitiesPage({
   activities,
@@ -25,7 +25,7 @@ export default function MyActivitiesPage({
           <NavLink to="newactivity">
             <Button
               borderRadius="40%"
-              boxShadow="0px 0px 20px rgba(0, 0, 0, 0.30)"
+              boxShadow="0px 0px 20px rgba(0, 0, 0, 0.15)"
             >
               <img src={newicon} alt="new" />
             </Button>

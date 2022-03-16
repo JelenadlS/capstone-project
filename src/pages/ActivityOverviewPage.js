@@ -1,62 +1,71 @@
+import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
+import editicon from '../images/edit.svg';
 import styled from 'styled-components';
 
-export default function ActivityOverviewPage({
-  activity,
-  friend,
-  notes,
-  date,
-  location,
-}) {
+export default function ActivityOverviewPage({ activities }) {
+  const { id } = useParams();
+  const selectedActivity = activities.find(activity => activity.id === id);
+
   return (
     <>
-      <Header title={activity} link="y"></Header>
+      <Header
+        textAlign="left"
+        title={selectedActivity.activity}
+        link="y"
+      ></Header>
       <WrapperCard>
         <p>
-          <strong>{activity}</strong>
+          <strong>{selectedActivity.activity}</strong>
         </p>
-        {friend.length === 0 ? (
+        {selectedActivity.friend ? (
+          <p>
+            <strong>with: </strong>
+            {selectedActivity.friend}
+          </p>
+        ) : (
           <EmptyMessage>
             <strong>with: </strong>
             plan who will join you!
           </EmptyMessage>
-        ) : (
-          <p>
-            <strong>with: </strong>
-            {friend}
-          </p>
         )}
-        {notes.length === 0 ? (
-          <div />
-        ) : (
+        {selectedActivity.notes ? (
           <div>
             <p>
               <strong>additional notes:</strong>
             </p>
-            <p>{notes}</p>
+            <p>{selectedActivity.notes}</p>
           </div>
+        ) : (
+          <div />
         )}
-        {date.length === 0 ? (
+        {selectedActivity.date ? (
+          <p>
+            <strong>on the: </strong>
+            {selectedActivity.date}
+          </p>
+        ) : (
           <EmptyMessage>
             <strong>date: </strong>
             plan your activity soon!
           </EmptyMessage>
-        ) : (
-          <p>
-            <strong>on the: </strong>
-            {date}
-          </p>
         )}
-        {location.length === 0 ? (
+        {selectedActivity.location ? (
+          <p>
+            <strong>at: </strong>
+            {selectedActivity.location}
+          </p>
+        ) : (
           <EmptyMessage>
             <strong>location: </strong>where do you have to go?
           </EmptyMessage>
-        ) : (
-          <p>
-            <strong>at: </strong>
-            {location}
-          </p>
         )}
+        <EditPositioning
+          background="transparent"
+          to={`/editactivity/${selectedActivity.id}`}
+        >
+          <img src={editicon} alt="edit" />
+        </EditPositioning>
       </WrapperCard>
     </>
   );
@@ -74,4 +83,10 @@ const WrapperCard = styled.section`
 
 const EmptyMessage = styled.div`
   font-size: 16px;
+`;
+
+const EditPositioning = styled(Link)`
+  position: fixed;
+  right: -2px;
+  top: 60px;
 `;

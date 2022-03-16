@@ -1,21 +1,51 @@
-import styled from 'styled-components';
-import Button from './Button';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
+import Button from './Button';
+import { nanoid } from 'nanoid';
+import styled from 'styled-components';
 
-export default function Form({ onAddActivity }) {
+export default function Form({
+  handleActivity,
+  preloadedValues,
+  buttonName,
+  title,
+}) {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     setFocus,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: preloadedValues
+      ? preloadedValues
+      : { activities: '', friend: '', notes: '', date: '', location: '' },
+  });
 
   const onSubmit = data => {
-    onAddActivity(data);
-    navigate('/');
+    if (preloadedValues) {
+      handleActivity({
+        id: preloadedValues.id,
+        activity: data.activity,
+        friend: data.friend,
+        notes: data.notes,
+        date: data.date,
+        location: data.location,
+      });
+      navigate(`/details/${preloadedValues.id}`);
+    } else {
+      const id = nanoid();
+      handleActivity({
+        id: id,
+        activity: data.activity,
+        friend: data.friend,
+        notes: data.notes,
+        date: data.date,
+        location: data.location,
+      });
+      navigate('/');
+    }
   };
 
   useEffect(() => {
@@ -24,7 +54,7 @@ export default function Form({ onAddActivity }) {
 
   return (
     <WrapperForm
-      title="add activities"
+      title={title}
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -123,7 +153,9 @@ export default function Form({ onAddActivity }) {
         )}
       </label>
 
-      <Button type="submit">Add</Button>
+      <Button width="100%" height="fit-content" type="submit">
+        {buttonName}
+      </Button>
     </WrapperForm>
   );
 }

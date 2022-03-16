@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Card from './Card.js';
 import userEvent from '@testing-library/user-event';
+import Card from './Card.js';
 
 describe('Card', () => {
   it('renders card with activity including link and delete button', () => {
