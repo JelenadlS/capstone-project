@@ -5,6 +5,13 @@ import newicon from '../images/new.svg';
 import styled from 'styled-components';
 
 export default function MyFriendsPage({ activities }) {
+  const friends = activities.map(function (item) {
+    return item.friend;
+  });
+  const friendOnlyOnce = friends.filter((friend, index) => {
+    return friends.indexOf(friend) === index && friend !== '';
+  });
+
   return (
     <>
       <WrapperApp>
@@ -15,10 +22,11 @@ export default function MyFriendsPage({ activities }) {
               <strong>activities I want to do</strong>
             </ItemStyle>
             <li>those with my friends:</li>
-            {activities.map(activity => (
-              <li key={activity.id}>
-                <LinkStyling to={`/friend/${activity.friend}`}>
-                  <strong>{activity.friend}</strong>
+            {friendOnlyOnce.map((friend, index) => (
+              <li key={index}>
+                <LinkStyling to={`/friend/${friend}`}>
+                  <strong>{friend}</strong>
+                  {/* <strong>{`#${activity.friend.length}`}</strong> */}
                 </LinkStyling>
               </li>
             ))}
