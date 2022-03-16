@@ -13,23 +13,16 @@ export default function MyFriendsPage({ activities }) {
     return friends.indexOf(friend) === index && friend !== '';
   });
 
-  const count = {};
+  const sortedFriends = friendOnlyOnce.sort(function (a, b) {
+    if (a.key === b.key) return 0;
+    if (a.key === 'activities I want to do') return -1;
+    if (b.key === 'activities I want to do') return 1;
 
-  for (const element of friends) {
-    if (count[element]) {
-      count[element] += 1;
-    } else {
-      count[element] = 1;
-    }
-  }
-  const test = 'Andrea';
-  const keys = Object.keys(count);
-  console.log(keys);
-  keys.forEach(function (key) {
-    console.log(key, key === test);
+    if (a.key < b.key) return -1;
+    if (a.key > b.key) return 1;
+    return 0;
   });
-  console.log(count);
-  console.log(friendOnlyOnce.friend);
+
   return (
     <>
       <WrapperApp>
@@ -44,12 +37,10 @@ export default function MyFriendsPage({ activities }) {
             </ListStyle>
           ) : (
             <ListStyle role="list" title="list of friends">
-              <li>those with my friends:</li>
-              {friendOnlyOnce.map(friend => (
+              {sortedFriends.map(friend => (
                 <li key={friend}>
                   <LinkStyling to={`/friend/${friend}`}>
                     <strong>{friend}</strong>
-                    <strong>{friend ? 'yes' : 'no'}</strong>
                   </LinkStyling>
                   <div></div>
                 </li>
