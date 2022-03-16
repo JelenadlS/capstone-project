@@ -14,17 +14,6 @@ export default function List({
 
   useEffect(scrollToBottom, [activitiesOfSelectedFriend]);
 
-  if (!activitiesOfSelectedFriend || activitiesOfSelectedFriend.length === 0) {
-    return (
-      <ListStyle role="list">
-        <li>
-          unfortunately you did not enter any activity yet. Start now and fill
-          your list with amazing activities!
-        </li>
-        <div ref={activitiesEndRef} />
-      </ListStyle>
-    );
-  }
   return (
     <>
       <ListStyle role="list" title="list of activities">
