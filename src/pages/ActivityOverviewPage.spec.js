@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import ActivityOverviewPage from './ActivityOverviewPage';
 
 describe('ActivityOverviewPage', () => {
-  it('renders ActivityOverviewPage with the back and edit link, activity twice (header and text), the friend, notes, date and location', () => {
+  it('renders ActivityOverviewPage with the back and edit link, as well empty messages of the three inputs', () => {
     const selectedActivity = [
       {
         activities: {
