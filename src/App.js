@@ -27,8 +27,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<MyFriendsPage activities={activities} />} />
           <Route
-            path="/friend"
-            // path="/:name" dort will ich hin
+            path="/friend/:name"
             element={
               <MyActivitiesPage
                 activities={activities}

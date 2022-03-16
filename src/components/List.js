@@ -2,15 +2,19 @@ import { useEffect, useRef } from 'react';
 import Card from './Card';
 import styled from 'styled-components';
 
-export default function List({ activities, errorMessage, onDeleteActivity }) {
+export default function List({
+  activitiesOfSelectedFriend,
+  errorMessage,
+  onDeleteActivity,
+}) {
   const activitiesEndRef = useRef(null);
   const scrollToBottom = () => {
     activitiesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
-  useEffect(scrollToBottom, [activities]);
+  useEffect(scrollToBottom, [activitiesOfSelectedFriend]);
 
-  if (!activities || activities.length === 0) {
+  if (!activitiesOfSelectedFriend || activitiesOfSelectedFriend.length === 0) {
     return (
       <ListStyle role="list">
         <li>
@@ -24,7 +28,7 @@ export default function List({ activities, errorMessage, onDeleteActivity }) {
   return (
     <>
       <ListStyle role="list" title="list of activities">
-        {activities.map(activity => (
+        {activitiesOfSelectedFriend.map(activity => (
           <li key={activity.id}>
             <Card
               onDeleteActivity={() => onDeleteActivity(activity.id)}

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import List from '../components/List';
 import Button from '../components/Button';
@@ -6,17 +6,22 @@ import newicon from '../images/new.svg';
 import styled from 'styled-components';
 
 export default function MyActivitiesPage({
-  activities,
   hasError,
   setActivities,
+  activities,
 }) {
+  const { name } = useParams();
+  const selectedFriendsActivity = activities.filter(
+    activity => activity.friend === name
+  );
+
   return (
     <>
       <WrapperApp>
         <Header title="my activities" link="y" />
         <Main>
           <List
-            activities={activities}
+            activitiesOfSelectedFriend={selectedFriendsActivity}
             errorMessage={hasError}
             onDeleteActivity={onDeleteActivity}
           />

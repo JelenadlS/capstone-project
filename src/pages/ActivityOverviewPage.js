@@ -12,7 +12,7 @@ export default function ActivityOverviewPage({ activities }) {
   return (
     <>
       <Title>
-        <Arrowback onClick={() => navigate(`/friend`)}>
+        <Arrowback onClick={() => navigate(-1)}>
           <img src={gobackicon} alt="go back" />
         </Arrowback>
         <HeaderText>{selectedActivity.activity}</HeaderText>

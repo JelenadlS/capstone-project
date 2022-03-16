@@ -11,10 +11,15 @@ export default function MyFriendsPage({ activities }) {
         <Header title="my friends" />
         <Main>
           <ListStyle role="list" title="list of friends">
-            <li>To do</li>
+            <ItemStyle>
+              <strong>activities I want to do</strong>
+            </ItemStyle>
+            <li>those with my friends:</li>
             {activities.map(activity => (
               <li key={activity.id}>
-                <strong>{activity.friend}</strong>
+                <LinkStyling to={`/friend/${activity.friend}`}>
+                  <strong>{activity.friend}</strong>
+                </LinkStyling>
               </li>
             ))}
           </ListStyle>
@@ -53,13 +58,8 @@ const ListStyle = styled.ul`
   }
 `;
 
-const WrapperCard = styled.section`
-  color: rgba(71, 39, 35, 0.72);
-  border-bottom: 0.5px solid rgba(71, 39, 35, 0.72);
-  display: grid;
-  grid-template-columns: auto auto;
-  align-items: center;
-  overflow: hidden;
+const ItemStyle = styled.li`
+  margin-left: 8px;
 `;
 
 const LinkStyling = styled(Link)`
