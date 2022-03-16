@@ -13,6 +13,23 @@ export default function MyFriendsPage({ activities }) {
     return friends.indexOf(friend) === index && friend !== '';
   });
 
+  const count = {};
+
+  for (const element of friends) {
+    if (count[element]) {
+      count[element] += 1;
+    } else {
+      count[element] = 1;
+    }
+  }
+  const test = 'Andrea';
+  const keys = Object.keys(count);
+  console.log(keys);
+  keys.forEach(function (key) {
+    console.log(key, key === test);
+  });
+  console.log(count);
+  console.log(friendOnlyOnce.friend);
   return (
     <>
       <WrapperApp>
@@ -32,8 +49,9 @@ export default function MyFriendsPage({ activities }) {
                 <li key={friend}>
                   <LinkStyling to={`/friend/${friend}`}>
                     <strong>{friend}</strong>
-                    <strong>{friend.length}</strong>
+                    <strong>{friend ? 'yes' : 'no'}</strong>
                   </LinkStyling>
+                  <div></div>
                 </li>
               ))}
             </ListStyle>
@@ -71,10 +89,6 @@ const ListStyle = styled.ul`
   li {
     padding: 5px;
   }
-`;
-
-const ItemStyle = styled.li`
-  margin-left: 8px;
 `;
 
 const LinkStyling = styled(Link)`
