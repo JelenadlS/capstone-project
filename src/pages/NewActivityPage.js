@@ -3,6 +3,8 @@ import Form from '../components/Form';
 import styled from 'styled-components';
 
 export default function NewActivityPage({ onAddActivity }) {
+  // Wenn ich von Friendspage komme möchte ich dahin zurück, wenn ich von activities page komme möchte ich zu activities
+
   return (
     <>
       <WrapperApp>
