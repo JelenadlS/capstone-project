@@ -1,27 +1,22 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import EditActivityPage from './EditActivityPage.js';
-import { renderWithRouterMatch } from '@testing-library/jest-dom/extend-expect';
 
 describe('EditActivityPage', () => {
-  it('renders EditActivityPage with the back button and edit link and the form', () => {
-    renderWithRouterMatch(
+  it('renders EditActivityPage with the back and save button and the four textboxes of the form', () => {
+    const activities = [{ id: '1' }, { id: '2' }];
+    render(
       <MemoryRouter>
-        <EditActivityPage />
+        <EditActivityPage activities={activities} />
       </MemoryRouter>
     );
 
-    const button = screen.getByRole('button');
-    const link = screen.getAllByRole('link');
-    const form = screen.getAllByRole('from');
-    const param = screen.getByText({
-      route: '/project/ABC123',
-      path: '/project/:id',
-    });
+    const buttons = screen.getAllByRole('button');
+    const title = screen.getByText('Edit activity');
+    const textboxes = screen.getAllByRole('textbox');
 
-    expect(button).toBeInTheDocument();
-    expect(link).toHaveLength(1);
-    expect(form).toBeInTheDocument();
-    expect(param).toBeInTheDocument('Match id: ABC123');
+    expect(buttons).toHaveLength(2);
+    expect(title).toBeInTheDocument();
+    expect(textboxes).toHaveLength(4);
   });
 });
