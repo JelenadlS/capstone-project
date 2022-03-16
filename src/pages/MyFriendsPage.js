@@ -13,9 +13,9 @@ export default function MyFriendsPage({ activities }) {
     return friends.indexOf(friend) === index && friend !== '';
   });
 
-  const activitiesWithoutFriend = activities.filter(
-    activity => activity.friend === ''
-  );
+  // const activitiesWithoutFriend = activities.filter(
+  //   activity => activity.friend === ''
+  // );
 
   // console.log(friends);
   // console.log(friendOnlyOnce);
@@ -36,31 +36,41 @@ export default function MyFriendsPage({ activities }) {
   //   return <div>{subarray}</div>;
   // });
   // console.log(names);
-  console.log(activitiesWithoutFriend);
-  console.log(friendOnlyOnce);
+  // console.log(activitiesWithoutFriend);
+  // console.log(friendOnlyOnce);
+
   return (
     <>
       <WrapperApp>
         <Header title="my friends" />
         <Main>
-          <ListStyle role="list" title="list of friends">
-            {/* <ItemStyle>
+          {!activities || activities.length === 0 ? (
+            <ListStyle role="list">
+              <li>
+                unfortunately you did not enter any activity yet. Start now and
+                fill your list with amazing activities!
+              </li>
+            </ListStyle>
+          ) : (
+            <ListStyle role="list" title="list of friends">
+              {/* <ItemStyle>
               <LinkStyling to={`/friend/`}>
                 <strong>
                   activities I want to do #{activitiesWithoutFriend.length}
                 </strong>
               </LinkStyling>
             </ItemStyle> */}
-            <li>those with my friends:</li>
-            {friendOnlyOnce.map(friend => (
-              <li key={friend}>
-                <LinkStyling to={`/friend/${friend}`}>
-                  <strong>{friend}</strong>
-                  <strong>{friend.length}</strong>
-                </LinkStyling>
-              </li>
-            ))}
-          </ListStyle>
+              <li>those with my friends:</li>
+              {friendOnlyOnce.map(friend => (
+                <li key={friend}>
+                  <LinkStyling to={`/friend/${friend}`}>
+                    <strong>{friend}</strong>
+                    <strong>{friend.length}</strong>
+                  </LinkStyling>
+                </li>
+              ))}
+            </ListStyle>
+          )}
         </Main>
         <Bottom>
           <NavLink to="newactivity">
