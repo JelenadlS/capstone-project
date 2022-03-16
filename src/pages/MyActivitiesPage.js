@@ -14,6 +14,8 @@ export default function MyActivitiesPage({
   const selectedFriendsActivity = activities.filter(
     activity => activity.friend === name
   );
+
+  //needed?---------------------------------------------------------------------------------------
   const noFriendsActivity = activities.filter(
     activity => activity.friend === ''
   );

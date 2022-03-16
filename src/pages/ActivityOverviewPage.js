@@ -8,13 +8,15 @@ export default function ActivityOverviewPage({ activities }) {
   const { id } = useParams();
   const selectedActivity = activities.find(activity => activity.id === id);
 
-  // <Arrowback onClick={() => navigate(`/friend/${name}`)}> da will ich hin
   return (
     <>
       <Title>
-        <Arrowback onClick={() => navigate(-1)}>
+        <Arrowback
+          onClick={() => navigate(`/friend/${selectedActivity.friend}`)}
+        >
           <img src={gobackicon} alt="go back" />
         </Arrowback>
+
         <HeaderText>{selectedActivity.activity}</HeaderText>
       </Title>
       <WrapperCard>
