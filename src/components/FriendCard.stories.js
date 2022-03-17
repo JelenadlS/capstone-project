@@ -1,29 +1,25 @@
+import FriendCard from './FriendCard.js';
 
-    import FriendCard from './FriendCard.js';
-    import GlobalStyles from '../GlobalStyles.js';
-    
-    export default {
-      title: 'Component/FriendCard',
-      component: FriendCard,
-      decorators: [
-        Story => (
-          <>
-            <GlobalStyles />
-            <Story />
-          </>
-        ),
-      ],
-    };
+export default {
+  title: 'Component/FriendCard',
+  component: FriendCard,
+};
 
-    const Template = args => <FriendCard {...args} />;
-    
-    export const FriendCardAB = Template.bind({});
-    FriendCardAB.args = {
-      
-    };
+const Template = args => <FriendCard {...args} />;
 
-    export const FriendCardXY = Template.bind({});
-    FriendCardXY.args = {
-      
-    };
-  
+export const Default = Template.bind({});
+Default.args = {
+  friend: 'Andrea',
+  activities: ['Andrea', 'Michi', 'Andrea'],
+};
+
+export const GroupOfPersons = Template.bind({});
+GroupOfPersons.args = {
+  friend:
+    'Andrea, Michi, Lasse, Henning, Sven, Tanja, Tim, Mareike, Paul, Jerry',
+  activities: [
+    'Andrea, Michi, Lasse, Henning, Sven, Tanja, Tim, Mareike, Paul, Jerry',
+    'Michi',
+    'Andrea',
+  ],
+};

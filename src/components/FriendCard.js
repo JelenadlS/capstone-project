@@ -2,24 +2,29 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function FriendCard({ friend, activities }) {
-  // console.log(activities);
-
-  // const count = [];
-
-  // for (const element of activities) {
-  //   if (count[element]) {
-  //     count[element] += 1;
-  //   } else {
-  //     count[element] = 1;
-  //   }
-  // }
-  // console.log(count);
+  const count = [];
+  console.log(activities);
+  for (const element of activities) {
+    if (count[element]) {
+      count[element] += 1;
+    } else {
+      count[element] = 1;
+    }
+  }
 
   return (
     <>
       <WrapperCard>
         <LinkStyling to={`/friend/${friend}`}>
-          <strong>{friend}</strong>
+          <NameStyling>
+            <strong>{friend}</strong>
+          </NameStyling>
+          <NumStyling>
+            #
+            {friend === activities.find(activity => activity.friend === friend)
+              ? ''
+              : count[friend]}
+          </NumStyling>
         </LinkStyling>
       </WrapperCard>
     </>
@@ -29,10 +34,6 @@ export default function FriendCard({ friend, activities }) {
 const WrapperCard = styled.section`
   color: rgba(71, 39, 35, 0.72);
   border-bottom: 0.5px solid rgba(71, 39, 35, 0.72);
-  display: grid;
-  grid-template-columns: auto auto;
-  align-items: center;
-  overflow: hidden;
   padding: 5px;
 `;
 
@@ -43,6 +44,15 @@ const LinkStyling = styled(Link)`
   background-color: transparent;
   text-decoration: none;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: auto auto;
+`;
+
+const NameStyling = styled.p`
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+`;
+const NumStyling = styled.p`
+  justify-self: end;
 `;
