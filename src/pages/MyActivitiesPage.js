@@ -1,4 +1,4 @@
-import { Link, NavLink, useParams, useNavigate } from 'react-router-dom';
+import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import List from '../components/List';
 import Button from '../components/Button';
 import Header from '../components/Header';
