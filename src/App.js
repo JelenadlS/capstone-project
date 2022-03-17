@@ -37,7 +37,7 @@ export default function App() {
             }
           />
           <Route
-            path="/:friendsName/details/:id"
+            path="/:friendsName/:activityName"
             element={<ActivityOverviewPage activities={activities} />}
           />
           <Route
@@ -45,7 +45,7 @@ export default function App() {
             element={<NewActivityPage onAddActivity={onAddActivity} />}
           />
           <Route
-            path="/:friendsName/details/:id/editactivity"
+            path="/:friendsName/:activityName/:id/editactivity"
             element={
               <EditActivityPage
                 activities={activities}

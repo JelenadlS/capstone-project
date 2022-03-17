@@ -10,14 +10,14 @@ export default function Card({
   errorMessage,
   onDeleteActivity,
   id,
-  nameOfSelectedFriend,
+  nameOfSelectedFriend,nameOfSelectedActivity
 }) {
   const [show, setShow] = useState(false);
 
   return (
     <>
       <WrapperCard>
-        <LinkStyling to={`/${nameOfSelectedFriend}/details/${id}`}>
+        <LinkStyling to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}>
           <strong>{activity}</strong>
         </LinkStyling>
         <Button

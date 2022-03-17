@@ -5,8 +5,10 @@ import styled from 'styled-components';
 
 export default function ActivityOverviewPage({ activities }) {
   const navigate = useNavigate();
-  const { id } = useParams();
-  const selectedActivity = activities.find(activity => activity.id === id);
+  const { activityName } = useParams();
+  const selectedActivity = activities.find(
+    activity => activity.activity === activityName
+  );
 
   return (
     <>
@@ -65,7 +67,7 @@ export default function ActivityOverviewPage({ activities }) {
         )}
         <EditPositioning
           background="transparent"
-          to={`/${selectedActivity.friend}/details/${selectedActivity.id}/editactivity`}
+          to={`/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`}
         >
           <img src={editicon} alt="edit" />
         </EditPositioning>

@@ -39,7 +39,7 @@ export default function Form({
         date: data.date,
         location: data.location,
       });
-      navigate(`/${preloadedValues.friend}/details/${preloadedValues.id}`);
+      navigate(`/${preloadedValues.friend}/${preloadedValues.activity}`);
       //  navigate(`/details/${preloadedValues.id}`);
     } else {
       const id = nanoid();
@@ -51,7 +51,7 @@ export default function Form({
         date: data.date,
         location: data.location,
       });
-      navigate('/');
+      navigate(`/`);
     }
   };
 
