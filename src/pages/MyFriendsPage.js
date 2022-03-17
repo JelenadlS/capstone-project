@@ -44,8 +44,8 @@ export default function MyFriendsPage({ activities }) {
             </ListStyle>
           ) : (
             <ListStyle role="list" title="list of friends">
-              {updatedFriendList.map(friend => (
-                <li key={friend}>
+              {updatedFriendList.map((friend, index) => (
+                <li key={index}>
                   <FriendCard friend={friend} allFriends={friends} />
                 </li>
               ))}
