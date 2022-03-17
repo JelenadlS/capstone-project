@@ -1,7 +1,20 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function FriendCard({ friend }) {
+export default function FriendCard({ friend, activities }) {
+  // console.log(activities);
+
+  // const count = [];
+
+  // for (const element of activities) {
+  //   if (count[element]) {
+  //     count[element] += 1;
+  //   } else {
+  //     count[element] = 1;
+  //   }
+  // }
+  // console.log(count);
+
   return (
     <>
       <WrapperCard>

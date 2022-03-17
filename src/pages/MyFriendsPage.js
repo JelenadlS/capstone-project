@@ -6,25 +6,30 @@ import newicon from '../images/new.svg';
 import styled from 'styled-components';
 
 export default function MyFriendsPage({ activities }) {
-  const friends = activities.map(function (item) {
+  const friends = activities.map(item => {
     return item.friend;
   });
 
   const friendOnlyOnce = friends.filter((friend, index) => {
-    return friends.indexOf(friend) === index && friend !== '';
+    return friends.indexOf(friend) === index;
   });
 
-  // Funktioniert nicht nicht mehr
-  const sortedFriends = friendOnlyOnce.sort(function (a, b) {
-    if (a.key === b.key) return 0;
-    if (a.key === 'I still need to plan...') return -1;
-    if (b.key === 'I still need to plan...') return 1;
-    if (a.key < b.key) return -1;
-    if (a.key > b.key) return 1;
+  const withoutFriend = friendOnlyOnce.find(
+    friend => friend === 'I still need to plan...'
+  );
+  const onlyFriendsWithName = friendOnlyOnce.filter(
+    friend => friend !== withoutFriend
+  );
+  const sortedFriends = onlyFriendsWithName.sort(function (a, b) {
+    const firstFriend = a.toLowerCase();
+    const secondFriend = b.toLowerCase();
+    if (firstFriend < secondFriend) return -1;
+    if (firstFriend > secondFriend) return 1;
     return 0;
   });
 
-  console.log(sortedFriends);
+  const updatedFriendList = [withoutFriend, ...sortedFriends];
+
   return (
     <>
       <WrapperApp>
@@ -39,9 +44,9 @@ export default function MyFriendsPage({ activities }) {
             </ListStyle>
           ) : (
             <ListStyle role="list" title="list of friends">
-              {sortedFriends.map(friend => (
+              {updatedFriendList.map(friend => (
                 <li key={friend}>
-                  <FriendCard friend={friend} />
+                  <FriendCard friend={friend} activities={friends} />
                 </li>
               ))}
             </ListStyle>
