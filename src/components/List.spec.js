@@ -4,6 +4,7 @@ import List from './List.js';
 
 describe('List', () => {
   Element.prototype.scrollIntoView = jest.fn();
+
   it('renders the list', () => {
     const activities = [
       { id: '1', activity: 'Frau Möller', friend: 'Clara' },
@@ -12,7 +13,7 @@ describe('List', () => {
 
     render(
       <MemoryRouter>
-        <List activities={activities} />
+        <List activitiesOfSelectedFriend={activities} />
       </MemoryRouter>
     );
     const list = screen.getByRole('list');
@@ -20,15 +21,15 @@ describe('List', () => {
   });
 
   it('shows empty message when no list item is there', () => {
+    const activities = [];
+
     render(
       <MemoryRouter>
-        <List />
+        <List activitiesOfSelectedFriend={activities} />
       </MemoryRouter>
     );
 
-    const emptymessage = screen.queryByText(
-      'unfortunately you did not enter any activity yet. Start now and fill your list with amazing activities!'
-    );
+    const emptymessage = screen.getByTestId('emptylist');
     expect(emptymessage).toBeInTheDocument();
   });
 });
