@@ -1,5 +1,4 @@
 import { Link, NavLink, useParams, useNavigate } from 'react-router-dom';
-import Header from '../components/Header';
 import List from '../components/List';
 import Button from '../components/Button';
 import newicon from '../images/new.svg';

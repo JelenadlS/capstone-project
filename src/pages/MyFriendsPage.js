@@ -19,12 +19,12 @@ export default function MyFriendsPage({ activities }) {
     if (a.key === b.key) return 0;
     if (a.key === 'I still need to plan...') return -1;
     if (b.key === 'I still need to plan...') return 1;
-
     if (a.key < b.key) return -1;
     if (a.key > b.key) return 1;
     return 0;
   });
 
+  console.log(sortedFriends);
   return (
     <>
       <WrapperApp>
