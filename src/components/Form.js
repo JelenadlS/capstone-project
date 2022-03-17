@@ -34,18 +34,19 @@ export default function Form({
       handleActivity({
         id: preloadedValues.id,
         activity: data.activity,
-        friend: data.friend === '' ? 'my personal bucket list' : data.friend,
+        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
       });
+      // navigate(`/${name}/details/${preloadedValues.id}`);
       navigate(`/details/${preloadedValues.id}`);
     } else {
       const id = nanoid();
       handleActivity({
         id: id,
         activity: data.activity,
-        friend: data.friend === '' ? 'my personal bucket list' : data.friend,
+        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,

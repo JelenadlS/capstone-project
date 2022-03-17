@@ -1,4 +1,4 @@
-import { Link, NavLink, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import List from '../components/List';
 import Button from '../components/Button';
@@ -15,7 +15,8 @@ export default function MyActivitiesPage({
   const selectedFriendsActivity = activities.filter(
     activity => activity.friend === name
   );
-  console.log(selectedFriendsActivity[0].friend);
+  const navigate = useNavigate();
+
   return (
     <>
       <WrapperApp>
@@ -50,6 +51,14 @@ export default function MyActivitiesPage({
     setActivities(
       activities.filter(activity => activity.id !== thisActivityId)
     );
+    if (
+      !selectedFriendsActivity.activity ||
+      selectedFriendsActivity.length === 0
+    ) {
+      navigate('/');
+    } else {
+      navigate(`/friend/${selectedFriendsActivity.friend}`);
+    }
   }
 }
 

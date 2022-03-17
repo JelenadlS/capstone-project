@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function FriendCard({ friend }, noFriends) {
-  console.log(friend);
-  console.log(noFriends);
-
+export default function FriendCard({ friend }) {
   return (
     <>
       <WrapperCard>
@@ -23,6 +20,7 @@ const WrapperCard = styled.section`
   grid-template-columns: auto auto;
   align-items: center;
   overflow: hidden;
+  padding: 5px;
 `;
 
 const LinkStyling = styled(Link)`

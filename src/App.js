@@ -37,6 +37,7 @@ export default function App() {
             }
           />
           <Route
+            //  path="/:name/details/:id"
             path="/details/:id"
             element={<ActivityOverviewPage activities={activities} />}
           />

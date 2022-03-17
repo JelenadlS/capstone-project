@@ -1,6 +1,7 @@
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Header from '../components/Header';
 import Button from '../components/Button';
+import FriendCard from '../components/FriendCard';
 import newicon from '../images/new.svg';
 import styled from 'styled-components';
 
@@ -13,10 +14,11 @@ export default function MyFriendsPage({ activities }) {
     return friends.indexOf(friend) === index && friend !== '';
   });
 
+  // Funktioniert nicht nicht mehr
   const sortedFriends = friendOnlyOnce.sort(function (a, b) {
     if (a.key === b.key) return 0;
-    if (a.key === 'my personal bucket list') return -1;
-    if (b.key === 'my personal bucket list') return 1;
+    if (a.key === 'I still need to plan...') return -1;
+    if (b.key === 'I still need to plan...') return 1;
 
     if (a.key < b.key) return -1;
     if (a.key > b.key) return 1;
@@ -39,10 +41,7 @@ export default function MyFriendsPage({ activities }) {
             <ListStyle role="list" title="list of friends">
               {sortedFriends.map(friend => (
                 <li key={friend}>
-                  <LinkStyling to={`/friend/${friend}`}>
-                    <strong>{friend}</strong>
-                  </LinkStyling>
-                  <div></div>
+                  <FriendCard friend={friend} />
                 </li>
               ))}
             </ListStyle>
@@ -80,17 +79,6 @@ const ListStyle = styled.ul`
   li {
     padding: 5px;
   }
-`;
-
-const LinkStyling = styled(Link)`
-  padding: 8px 8px 0;
-  font-size: 18px;
-  color: rgba(71, 39, 35, 0.72);
-  background-color: transparent;
-  text-decoration: none;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
 const Bottom = styled.div`

@@ -11,6 +11,7 @@ export default function Card({ activity, errorMessage, onDeleteActivity, id }) {
   return (
     <>
       <WrapperCard>
+        {/* <LinkStyling to={`/${name}/details/${id}`}> */}
         <LinkStyling to={`/details/${id}`}>
           <strong>{activity}</strong>
         </LinkStyling>

@@ -13,7 +13,16 @@ export default function List({
   };
 
   useEffect(scrollToBottom, [activitiesOfSelectedFriend]);
-
+  if (!activitiesOfSelectedFriend || activitiesOfSelectedFriend.length === 0) {
+    return (
+      <ListStyle role="list">
+        <li>
+          {`there is nothing planned anymore with ${activitiesOfSelectedFriend.friend}, add a new activity now or go back to your other friends!`}
+        </li>
+        <div ref={activitiesEndRef} />
+      </ListStyle>
+    );
+  }
   return (
     <>
       <ListStyle role="list" title="list of activities">
