@@ -32,8 +32,8 @@ export default function MyFriendsPage({ activities }) {
 
   return (
     <>
+      <Header>my friends</Header>
       <WrapperApp>
-        <Header title="my friends" />
         <Main>
           {!activities || activities.length === 0 ? (
             <ListStyle data-testid="emptylist" role="list">
@@ -68,9 +68,8 @@ export default function MyFriendsPage({ activities }) {
 }
 
 const WrapperApp = styled.div`
-  height: 100vh;
   display: grid;
-  grid-template-rows: 60px 1fr auto;
+  grid-template-rows: 1fr auto;
 `;
 
 const Main = styled.main`
@@ -90,4 +89,6 @@ const Bottom = styled.div`
   background: #f0e7da;
   text-align: center;
   width: 100%;
+  position: fixed;
+  bottom: 0;
 `;

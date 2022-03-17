@@ -1,6 +1,7 @@
 import { Link, NavLink, useParams, useNavigate } from 'react-router-dom';
 import List from '../components/List';
 import Button from '../components/Button';
+import Header from '../components/Header';
 import newicon from '../images/new.svg';
 import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
@@ -18,13 +19,13 @@ export default function MyActivitiesPage({
 
   return (
     <>
+      <Header>
+        {selectedFriendsActivity[0].friend}
+        <ArrowbackLink to="/">
+          <img src={gobackicon} alt="go back" />
+        </ArrowbackLink>
+      </Header>
       <WrapperApp>
-        <Title>
-          <ArrowbackLink to="/">
-            <img src={gobackicon} alt="go back" />
-          </ArrowbackLink>
-          <HeaderText>{selectedFriendsActivity[0].friend}</HeaderText>
-        </Title>
         <Main>
           <List
             activitiesOfSelectedFriend={selectedFriendsActivity}
@@ -61,25 +62,6 @@ export default function MyActivitiesPage({
   }
 }
 
-const WrapperApp = styled.div`
-  height: 100vh;
-  display: grid;
-  grid-template-rows: 60px 1fr auto;
-`;
-
-const Title = styled.header`
-  background: #f0e7da;
-  padding: 10px;
-  text-align: left;
-  text-transform: uppercase;
-  color: rgba(71, 39, 35, 0.72);
-  position: sticky;
-  top: 0px;
-  z-index: 2;
-  height: 60px;
-  overflow: hidden;
-`;
-
 const ArrowbackLink = styled(Link)`
   border: none;
   background: transparent;
@@ -88,12 +70,11 @@ const ArrowbackLink = styled(Link)`
   left: 2px;
 `;
 
-const HeaderText = styled.h1`
-  margin-left: 70px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+const WrapperApp = styled.div`
+  display: grid;
+  grid-template-rows: 1fr auto;
 `;
+
 const Main = styled.main`
   overflow-y: auto;
 `;
@@ -101,4 +82,6 @@ const Bottom = styled.div`
   background: #f0e7da;
   text-align: center;
   width: 100%;
+  position: fixed;
+  bottom: 0;
 `;

@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import Form from '../components/Form';
+import Header from '../components/Header';
 import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
 
@@ -9,17 +10,17 @@ export default function EditActivityPage({ activities, onEditActivity }) {
   const activityToEdit = activities.find(activity => activity.id === id);
   return (
     <>
+      <Header>
+        Edit activity
+        <Arrowback
+          onClick={() =>
+            navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`)
+          }
+        >
+          <img src={gobackicon} alt="go back" />
+        </Arrowback>
+      </Header>
       <WrapperApp>
-        <Title>
-          <Arrowback
-            onClick={() =>
-              navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`)
-            }
-          >
-            <img src={gobackicon} alt="go back" />
-          </Arrowback>
-          <HeaderText>Edit activity</HeaderText>
-        </Title>
         <Main>
           <Form
             title="edit activity"
@@ -35,20 +36,7 @@ export default function EditActivityPage({ activities, onEditActivity }) {
 const WrapperApp = styled.div`
   height: 100vh;
   display: grid;
-  grid-template-rows: 60px 1fr auto;
-`;
-
-const Title = styled.header`
-  background: #f0e7da;
-  padding: 10px;
-  text-align: left;
-  text-transform: uppercase;
-  color: rgba(71, 39, 35, 0.72);
-  position: sticky;
-  top: 0px;
-  z-index: 2;
-  height: 60px;
-  overflow: hidden;
+  grid-template-rows: 1fr auto;
 `;
 
 const Arrowback = styled.button`
@@ -57,13 +45,6 @@ const Arrowback = styled.button`
   position: fixed;
   top: 5px;
   left: 2px;
-`;
-
-const HeaderText = styled.h1`
-  margin-left: 70px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
 const Main = styled.div`
