@@ -7,7 +7,6 @@ export default function EditActivityPage({ activities, onEditActivity }) {
   const navigate = useNavigate();
   const { id } = useParams();
   const activityToEdit = activities.find(activity => activity.id === id);
-  console.log(activityToEdit);
   return (
     <>
       <WrapperApp>

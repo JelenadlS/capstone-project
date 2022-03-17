@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function FriendCard({ friend, activities }) {
+export default function FriendCard({ friend, allFriends }) {
   const count = [];
-  console.log(activities);
-  for (const element of activities) {
+
+  for (const element of allFriends) {
     if (count[element]) {
       count[element] += 1;
     } else {
@@ -21,7 +21,7 @@ export default function FriendCard({ friend, activities }) {
           </NameStyling>
           <NumStyling>
             #
-            {friend === activities.find(activity => activity.friend === friend)
+            {friend === allFriends.find(fr => fr.friend === friend)
               ? ''
               : count[friend]}
           </NumStyling>
