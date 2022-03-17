@@ -10,14 +10,14 @@ const Template = args => <FriendCard {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   friend: 'Andrea',
-  activities: ['Andrea', 'Michi', 'Andrea'],
+  allFriends: ['Andrea', 'Michi', 'Andrea'],
 };
 
 export const GroupOfPersons = Template.bind({});
 GroupOfPersons.args = {
   friend:
     'Andrea, Michi, Lasse, Henning, Sven, Tanja, Tim, Mareike, Paul, Jerry',
-  activities: [
+  allFriends: [
     'Andrea, Michi, Lasse, Henning, Sven, Tanja, Tim, Mareike, Paul, Jerry',
     'Michi',
     'Andrea',

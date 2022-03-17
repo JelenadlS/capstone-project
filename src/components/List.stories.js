@@ -9,7 +9,7 @@ const Template = args => <List {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  activities: [
+  activitiesOfSelectedFriend: [
     { id: '1', activity: 'Frau Möller', friend: 'Clara' },
     { id: '2', activity: 'Stadtpark', friend: 'Jana' },
   ],
@@ -17,5 +17,5 @@ Default.args = {
 
 export const Empty = Template.bind({});
 Empty.args = {
-  activities: [],
+  activitiesOfSelectedFriend: [],
 };
