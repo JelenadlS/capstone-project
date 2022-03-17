@@ -21,9 +21,9 @@ export default function MyActivitiesPage({
     <>
       <Header>
         {selectedFriendsActivity[0].friend}
-        <ArrowbackLink to="/">
+        <ArrowbackButton onClick={() => navigate('/')}>
           <img src={gobackicon} alt="go back" />
-        </ArrowbackLink>
+        </ArrowbackButton>
       </Header>
       <WrapperApp>
         <Main>
@@ -62,7 +62,7 @@ export default function MyActivitiesPage({
   }
 }
 
-const ArrowbackLink = styled(Link)`
+const ArrowbackButton = styled.button`
   border: none;
   background: transparent;
   position: fixed;

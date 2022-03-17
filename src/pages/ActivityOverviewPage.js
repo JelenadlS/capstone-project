@@ -15,9 +15,11 @@ export default function ActivityOverviewPage({ activities }) {
     <>
       <Header>
         {selectedActivity.activity}
-        <Arrowback onClick={() => navigate(`/${selectedActivity.friend}`)}>
+        <ArrowbackButton
+          onClick={() => navigate(`/${selectedActivity.friend}`)}
+        >
           <img src={gobackicon} alt="go back" />
-        </Arrowback>
+        </ArrowbackButton>
       </Header>
       <WrapperCard>
         <p>
@@ -65,18 +67,22 @@ export default function ActivityOverviewPage({ activities }) {
             <strong>location: </strong>where do you have to go?
           </EmptyMessage>
         )}
-        <EditLinkPositioning
+        <EditButtonPositioning
           background="transparent"
-          to={`/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`}
+          onClick={() =>
+            navigate(
+              `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
+            )
+          }
         >
           <img src={editicon} alt="edit" />
-        </EditLinkPositioning>
+        </EditButtonPositioning>
       </WrapperCard>
     </>
   );
 }
 
-const Arrowback = styled.button`
+const ArrowbackButton = styled.button`
   border: none;
   background: transparent;
   position: fixed;
@@ -98,7 +104,9 @@ const EmptyMessage = styled.div`
   font-size: 16px;
 `;
 
-const EditLinkPositioning = styled(Link)`
+const EditButtonPositioning = styled.button`
+  border: none;
+  background: transparent;
   position: fixed;
   right: -2px;
   top: 60px;
