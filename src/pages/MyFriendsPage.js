@@ -36,7 +36,7 @@ export default function MyFriendsPage({ activities }) {
         <Header title="my friends" />
         <Main>
           {!activities || activities.length === 0 ? (
-            <ListStyle role="list">
+            <ListStyle data-testid="emptylist" role="list">
               <li>
                 unfortunately you did not enter any activity yet. Start now and
                 fill your list with amazing activities!

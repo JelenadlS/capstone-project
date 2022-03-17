@@ -22,4 +22,16 @@ describe('MyFriendsPage', () => {
     expect(list).toBeInTheDocument();
     expect(button).toBeInTheDocument();
   });
+
+  it('renders an error message when no activities are found', () => {
+    const activities = [];
+    render(
+      <MemoryRouter>
+        <MyFriendsPage activities={activities} />
+      </MemoryRouter>
+    );
+
+    const emptymessage = screen.getByTestId('emptylist');
+    expect(emptymessage).toBeInTheDocument();
+  });
 });
