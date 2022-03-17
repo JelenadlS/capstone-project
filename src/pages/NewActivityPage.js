@@ -6,24 +6,22 @@ import styled from 'styled-components';
 export default function NewActivityPage({ onAddActivity }) {
   const navigate = useNavigate();
   return (
-    <>
-      <WrapperApp>
-        <Title>
-          <Arrowback onClick={() => navigate(-1)}>
-            <img src={gobackicon} alt="go back" />
-          </Arrowback>
-          <HeaderText>new activity</HeaderText>
-        </Title>
-        <Main>
-          <Form
-            title="add activities"
-            buttonName={'Add'}
-            preloadedValues={null}
-            handleActivity={onAddActivity}
-          />
-        </Main>
-      </WrapperApp>
-    </>
+    <WrapperApp>
+      <Title>
+        <Arrowback onClick={() => navigate(-1)}>
+          <img src={gobackicon} alt="go back" />
+        </Arrowback>
+        <HeaderText>new activity</HeaderText>
+      </Title>
+      <Main>
+        <Form
+          title="add activities"
+          buttonName={'Add'}
+          preloadedValues={null}
+          handleActivity={onAddActivity}
+        />
+      </Main>
+    </WrapperApp>
   );
 }
 

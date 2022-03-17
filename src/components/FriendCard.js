@@ -15,7 +15,7 @@ export default function FriendCard({ friend, allFriends }) {
   return (
     <>
       <WrapperCard>
-        <LinkStyling to={`/friend/${friend}`}>
+        <LinkStyling to={`/${friend}`}>
           <NameStyling>
             <strong>{friend}</strong>
           </NameStyling>

@@ -32,6 +32,7 @@ export default function List({
               onDeleteActivity={() => onDeleteActivity(activity.id)}
               activity={activity.activity}
               id={activity.id}
+              nameOfSelectedFriend={activity.friend}
               errorMessage={
                 errorMessage &&
                 `unfortunately something went wrong with your data.`

@@ -11,8 +11,10 @@ export default function EditActivityPage({ activities, onEditActivity }) {
     <>
       <WrapperApp>
         <Title>
-          {/* <Arrowback onClick={() => navigate(`/${name}/details/${id}`)}> */}
-          <Arrowback onClick={() => navigate(`/details/${id}`)}>
+          <Arrowback
+            onClick={() => navigate(`/${activityToEdit.friend}/details/${id}`)}
+          >
+            {/* <Arrowback onClick={() => navigate(`/details/${id}`)}> */}
             <img src={gobackicon} alt="go back" />
           </Arrowback>
           <HeaderText>Edit activity</HeaderText>

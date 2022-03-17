@@ -56,7 +56,7 @@ export default function MyActivitiesPage({
     ) {
       navigate('/');
     } else {
-      navigate(`/friend/${selectedFriendsActivity.friend}`);
+      navigate(`/${selectedFriendsActivity.friend}`);
     }
   }
 }

@@ -11,9 +11,7 @@ export default function ActivityOverviewPage({ activities }) {
   return (
     <>
       <Title>
-        <Arrowback
-          onClick={() => navigate(`/friend/${selectedActivity.friend}`)}
-        >
+        <Arrowback onClick={() => navigate(`/${selectedActivity.friend}`)}>
           <img src={gobackicon} alt="go back" />
         </Arrowback>
 
@@ -67,7 +65,7 @@ export default function ActivityOverviewPage({ activities }) {
         )}
         <EditPositioning
           background="transparent"
-          to={`/editactivity/${selectedActivity.id}`}
+          to={`/${selectedActivity.friend}/details/${selectedActivity.id}/editactivity`}
         >
           <img src={editicon} alt="edit" />
         </EditPositioning>

@@ -1,18 +1,23 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Button from './Button.js';
 import deleteicon from '../images/binicon.svg';
 import DeleteModal from './DeleteModal.js';
 import styled from 'styled-components';
 
-export default function Card({ activity, errorMessage, onDeleteActivity, id }) {
+export default function Card({
+  activity,
+  errorMessage,
+  onDeleteActivity,
+  id,
+  nameOfSelectedFriend,
+}) {
   const [show, setShow] = useState(false);
 
   return (
     <>
       <WrapperCard>
-        {/* <LinkStyling to={`/${name}/details/${id}`}> */}
-        <LinkStyling to={`/details/${id}`}>
+        <LinkStyling to={`/${nameOfSelectedFriend}/details/${id}`}>
           <strong>{activity}</strong>
         </LinkStyling>
         <Button
