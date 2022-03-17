@@ -25,17 +25,10 @@ export default function ActivityOverviewPage({ activities }) {
         <p>
           <strong>{selectedActivity.activity}</strong>
         </p>
-        {selectedActivity.friend ? (
-          <p>
-            <strong>with: </strong>
-            {selectedActivity.friend}
-          </p>
-        ) : (
-          <EmptyMessage>
-            <strong>with: </strong>
-            plan who will join you!
-          </EmptyMessage>
-        )}
+        <p>
+          <strong>with: </strong>
+          {selectedActivity.friend}
+        </p>
         {selectedActivity.notes ? (
           <div>
             <p>
