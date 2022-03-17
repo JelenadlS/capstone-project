@@ -27,7 +27,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<MyFriendsPage activities={activities} />} />
           <Route
-            path="/:name"
+            path="/:friendsName"
             element={
               <MyActivitiesPage
                 activities={activities}
@@ -37,7 +37,7 @@ export default function App() {
             }
           />
           <Route
-            path="/:name/details/:id"
+            path="/:friendsName/details/:id"
             element={<ActivityOverviewPage activities={activities} />}
           />
           <Route
@@ -45,7 +45,7 @@ export default function App() {
             element={<NewActivityPage onAddActivity={onAddActivity} />}
           />
           <Route
-            path="/:name/details/:id/editactivity"
+            path="/:friendsName/details/:id/editactivity"
             element={
               <EditActivityPage
                 activities={activities}

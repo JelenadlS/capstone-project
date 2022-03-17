@@ -10,9 +10,9 @@ export default function MyActivitiesPage({
   setActivities,
   activities,
 }) {
-  const { name } = useParams();
+  const { friendsName } = useParams();
   const selectedFriendsActivity = activities.filter(
-    activity => activity.friend === name
+    activity => activity.friend === friendsName
   );
   const navigate = useNavigate();
 

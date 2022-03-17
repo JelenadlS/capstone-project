@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from './Button.js';
 import deleteicon from '../images/binicon.svg';
 import DeleteModal from './DeleteModal.js';
