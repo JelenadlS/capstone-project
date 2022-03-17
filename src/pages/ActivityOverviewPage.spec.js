@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import ActivityOverviewPage from './ActivityOverviewPage';
 
 describe('ActivityOverviewPage', () => {
-  it('renders ActivityOverviewPage with the back button and edit link, as well empty messages of the three inputs', () => {
+  it('renders ActivityOverviewPage with the back and edit button, as well empty messages of the three inputs', () => {
     const selectedActivity = [
       {
         activities: {
@@ -32,15 +32,13 @@ describe('ActivityOverviewPage', () => {
       </MemoryRouter>
     );
 
-    const link = screen.getByRole('link');
-    const button = screen.getByRole('button');
+    const buttons = screen.getAllByRole('button');
     const header = screen.getByRole('heading');
     const friendEmpty = screen.getByText('plan who will join you!');
     const dateEmpty = screen.getByText('plan your activity soon!');
     const locationEmpty = screen.getByText('where do you have to go?');
 
-    expect(link).toBeInTheDocument();
-    expect(button).toBeInTheDocument();
+    expect(buttons).toHaveLength(2);
     expect(header).toBeInTheDocument();
     expect(friendEmpty).toBeInTheDocument();
     expect(dateEmpty).toBeInTheDocument();
