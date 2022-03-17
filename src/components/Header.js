@@ -6,9 +6,9 @@ export default function Header({ title, link, textAlign }) {
   if (link || link === 'y') {
     return (
       <Title textAlign={textAlign}>
-        <Arrowback to="/">
+        <ArrowbackLink to="/">
           <img src={gobackicon} alt="go back" />
-        </Arrowback>
+        </ArrowbackLink>
         <HeaderText>{title}</HeaderText>
       </Title>
     );
@@ -33,7 +33,7 @@ const Title = styled.header`
   overflow: hidden;
 `;
 
-const Arrowback = styled(Link)`
+const ArrowbackLink = styled(Link)`
   position: fixed;
   top: 5px;
   left: 2px;

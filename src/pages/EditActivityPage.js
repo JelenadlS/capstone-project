@@ -16,7 +16,6 @@ export default function EditActivityPage({ activities, onEditActivity }) {
               navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`)
             }
           >
-            {/* <Arrowback onClick={() => navigate(`/details/${id}`)}> */}
             <img src={gobackicon} alt="go back" />
           </Arrowback>
           <HeaderText>Edit activity</HeaderText>

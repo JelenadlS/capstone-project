@@ -65,12 +65,12 @@ export default function ActivityOverviewPage({ activities }) {
             <strong>location: </strong>where do you have to go?
           </EmptyMessage>
         )}
-        <EditPositioning
+        <EditLinkPositioning
           background="transparent"
           to={`/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`}
         >
           <img src={editicon} alt="edit" />
-        </EditPositioning>
+        </EditLinkPositioning>
       </WrapperCard>
     </>
   );
@@ -118,7 +118,7 @@ const EmptyMessage = styled.div`
   font-size: 16px;
 `;
 
-const EditPositioning = styled(Link)`
+const EditLinkPositioning = styled(Link)`
   position: fixed;
   right: -2px;
   top: 60px;

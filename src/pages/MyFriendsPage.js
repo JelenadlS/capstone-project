@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import FriendCard from '../components/FriendCard';
@@ -53,14 +53,14 @@ export default function MyFriendsPage({ activities }) {
           )}
         </Main>
         <Bottom>
-          <NavLink to="newactivity">
+          <Link to="newactivity">
             <Button
               borderRadius="40%"
               boxShadow="0px 0px 20px rgba(0, 0, 0, 0.15)"
             >
               <img src={newicon} alt="new" />
             </Button>
-          </NavLink>
+          </Link>
         </Bottom>
       </WrapperApp>
     </>

@@ -20,9 +20,9 @@ export default function MyActivitiesPage({
     <>
       <WrapperApp>
         <Title>
-          <Arrowback to="/">
+          <ArrowbackLink to="/">
             <img src={gobackicon} alt="go back" />
-          </Arrowback>
+          </ArrowbackLink>
           <HeaderText>{selectedFriendsActivity[0].friend}</HeaderText>
         </Title>
         <Main>
@@ -80,7 +80,7 @@ const Title = styled.header`
   overflow: hidden;
 `;
 
-const Arrowback = styled(Link)`
+const ArrowbackLink = styled(Link)`
   border: none;
   background: transparent;
   position: fixed;
