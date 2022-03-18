@@ -6,21 +6,31 @@ import newicon from '../images/new.svg';
 import styled from 'styled-components';
 
 export default function MyFriendsPage({ activities }) {
-  const friends = activities.map(item => {
-    return item.friend;
-  });
-
-  const friendOnlyOnce = friends.filter((friend, index) => {
-    return friends.indexOf(friend) === index;
-  });
-
-  const withoutFriend = friendOnlyOnce.find(
-    friend => friend === 'I still need to plan...'
+  const activitiesWithFriendsName = activities.filter(
+    activity => activity.friend !== 'I still need to plan...'
   );
-  const onlyFriendsWithName = friendOnlyOnce.filter(
-    friend => friend !== withoutFriend
+
+  const activitiesWithoutFriend = activities.filter(
+    activity => activity.friend === 'I still need to plan...'
   );
-  const sortedFriends = onlyFriendsWithName.sort(function (a, b) {
+  console.log(activitiesWithoutFriend);
+
+  // const friendsNameWithoutDetails = activitiesWithFriendsName.map(item => {
+  //   return item.friend;
+  // });
+  // console.log(friendsNameWithoutDetails);
+
+  // const friendOnlyOnce = friendsNameWithoutDetails.filter((friend, index) => {
+  //   return friendsNameWithoutDetails.indexOf(friend) === index;
+  // });
+  // console.log(friendOnlyOnce);
+
+  const friendsOnlyOnceWithoutDetails = [
+    ...new Set(activitiesWithFriendsName.map(activity => activity.friend)),
+  ];
+  console.log(friendsOnlyOnceWithoutDetails);
+
+  const sortedFriendsList = friendsOnlyOnceWithoutDetails.sort(function (a, b) {
     const firstFriend = a.toLowerCase();
     const secondFriend = b.toLowerCase();
     if (firstFriend < secondFriend) return -1;
@@ -28,7 +38,8 @@ export default function MyFriendsPage({ activities }) {
     return 0;
   });
 
-  const updatedFriendList = [withoutFriend, ...sortedFriends];
+  console.log(sortedFriendsList);
+  //   const updatedFriendList = [activitiesWithoutFriend, ...sortedFriends];
 
   return (
     <>
@@ -36,13 +47,23 @@ export default function MyFriendsPage({ activities }) {
       <WrapperApp>
         <Main>
           {activities.length > 0 ? (
-            <ListStyle role="list" title="list of friends">
-              {updatedFriendList.map((friend, index) => (
-                <li key={index}>
-                  <FriendCard friend={friend} allFriends={friends} />
-                </li>
-              ))}
-            </ListStyle>
+            <>
+              {activitiesWithoutFriend.length > 0 && (
+                <p>
+                  Things I still have planned: {activitiesWithoutFriend.length}
+                </p>
+              )}
+              <ListStyle role="list" title="list of friends">
+                {sortedFriendsList.map((friend, index) => (
+                  <li key={index}>
+                    <FriendCard
+                      friend={friend}
+                      allFriends={activitiesWithFriendsName}
+                    />
+                  </li>
+                ))}
+              </ListStyle>
+            </>
           ) : (
             <ListStyle data-testid="emptylist" role="list">
               <li>
