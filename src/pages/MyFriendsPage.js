@@ -54,14 +54,19 @@ export default function MyFriendsPage({ activities }) {
                 </p>
               )}
               <ListStyle role="list" title="list of friends">
-                {sortedFriendsList.map((friend, index) => (
-                  <li key={index}>
-                    <FriendCard
-                      friend={friend}
-                      allFriends={activitiesWithFriendsName}
-                    />
-                  </li>
-                ))}
+                {sortedFriendsList.map((friend, index) => {
+                  const sumOfActivitiesEachFriend = activities.filter(
+                    activity => activity.friend === friend
+                  ).length;
+                  return (
+                    <li key={index}>
+                      <FriendCard
+                        friend={friend}
+                        sumOfActivitiesEachFriend={sumOfActivitiesEachFriend}
+                      />
+                    </li>
+                  );
+                })}
               </ListStyle>
             </>
           ) : (

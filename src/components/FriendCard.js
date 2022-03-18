@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function FriendCard({ friend, allFriends }) {
-  const count = [];
+export default function FriendCard({ friend, sumOfActivitiesEachFriend }) {
+  // const count = [];
 
-  for (const element of allFriends) {
-    if (count[element]) {
-      count[element] += 1;
-    } else {
-      count[element] = 1;
-    }
-  }
+  // for (const element of allFriends) {
+  //   if (count[element]) {
+  //     count[element] += 1;
+  //   } else {
+  //     count[element] = 1;
+  //   }
+  // }
 
   return (
     <>
@@ -20,10 +20,10 @@ export default function FriendCard({ friend, allFriends }) {
             <strong>{friend}</strong>
           </NameStyling>
           <NumStyling>
-            #
-            {friend === allFriends.find(fr => fr.friend === friend)
+            #{sumOfActivitiesEachFriend}
+            {/* {friend === allFriends.find(fr => fr.friend === friend)
               ? ''
-              : count[friend]}
+              : count[friend]} */}
           </NumStyling>
         </LinkStyling>
       </WrapperCard>
