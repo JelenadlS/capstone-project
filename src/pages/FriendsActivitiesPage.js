@@ -6,7 +6,7 @@ import newicon from '../images/new.svg';
 import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
 
-export default function MyActivitiesPage({
+export default function FriendsActivitiesPage({
   hasError,
   setActivities,
   activities,
