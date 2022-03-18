@@ -35,20 +35,20 @@ export default function MyFriendsPage({ activities }) {
       <Header>my friends</Header>
       <WrapperApp>
         <Main>
-          {!activities || activities.length === 0 ? (
-            <ListStyle data-testid="emptylist" role="list">
-              <li>
-                unfortunately you did not enter any activity yet. Start now and
-                fill your list with amazing activities!
-              </li>
-            </ListStyle>
-          ) : (
+          {activities.length > 0 ? (
             <ListStyle role="list" title="list of friends">
               {updatedFriendList.map((friend, index) => (
                 <li key={index}>
                   <FriendCard friend={friend} allFriends={friends} />
                 </li>
               ))}
+            </ListStyle>
+          ) : (
+            <ListStyle data-testid="emptylist" role="list">
+              <li>
+                unfortunately you did not enter any activity yet. Start now and
+                fill your list with amazing activities!
+              </li>
             </ListStyle>
           )}
         </Main>

@@ -88,7 +88,7 @@ export default function Form({
       </label>
 
       <label htmlFor="friend">
-        who should join you?{' '}
+        who should join you?
         <input
           id="friend"
           type="text"
