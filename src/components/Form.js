@@ -39,7 +39,7 @@ export default function Form({
         date: data.date,
         location: data.location,
       });
-      navigate(`/${preloadedValues.friend}/${preloadedValues.activity}`);
+      navigate(-1);
     } else {
       const id = nanoid();
       handleActivity({
@@ -65,7 +65,7 @@ export default function Form({
       onSubmit={handleSubmit(onSubmit)}
     >
       <label htmlFor="activity">
-        name of activity:{' '}
+        name of activity:
         <input
           id="activity"
           type="text"
@@ -148,10 +148,10 @@ export default function Form({
           {...register('location', {
             maxLength: {
               value: 50,
-              message: 'This adress is way too long!',
+              message: 'This address is way too long!',
             },
           })}
-        />{' '}
+        />
         {errors.location && (
           <ErrorMessage name="error-message">
             {errors.location.message}
