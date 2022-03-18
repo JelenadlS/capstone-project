@@ -13,22 +13,10 @@ export default function MyFriendsPage({ activities }) {
   const activitiesWithoutFriend = activities.filter(
     activity => activity.friend === 'I still need to plan...'
   );
-  console.log(activitiesWithoutFriend);
-
-  // const friendsNameWithoutDetails = activitiesWithFriendsName.map(item => {
-  //   return item.friend;
-  // });
-  // console.log(friendsNameWithoutDetails);
-
-  // const friendOnlyOnce = friendsNameWithoutDetails.filter((friend, index) => {
-  //   return friendsNameWithoutDetails.indexOf(friend) === index;
-  // });
-  // console.log(friendOnlyOnce);
 
   const friendsOnlyOnceWithoutDetails = [
     ...new Set(activitiesWithFriendsName.map(activity => activity.friend)),
   ];
-  console.log(friendsOnlyOnceWithoutDetails);
 
   const sortedFriendsList = friendsOnlyOnceWithoutDetails.sort(function (a, b) {
     const firstFriend = a.toLowerCase();
@@ -37,9 +25,6 @@ export default function MyFriendsPage({ activities }) {
     if (firstFriend > secondFriend) return 1;
     return 0;
   });
-
-  console.log(sortedFriendsList);
-  //   const updatedFriendList = [activitiesWithoutFriend, ...sortedFriends];
 
   return (
     <>

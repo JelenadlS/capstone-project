@@ -2,16 +2,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function FriendCard({ friend, sumOfActivitiesEachFriend }) {
-  // const count = [];
-
-  // for (const element of allFriends) {
-  //   if (count[element]) {
-  //     count[element] += 1;
-  //   } else {
-  //     count[element] = 1;
-  //   }
-  // }
-
   return (
     <>
       <WrapperCard>
@@ -19,12 +9,7 @@ export default function FriendCard({ friend, sumOfActivitiesEachFriend }) {
           <NameStyling>
             <strong>{friend}</strong>
           </NameStyling>
-          <NumStyling>
-            #{sumOfActivitiesEachFriend}
-            {/* {friend === allFriends.find(fr => fr.friend === friend)
-              ? ''
-              : count[friend]} */}
-          </NumStyling>
+          <NumStyling>#{sumOfActivitiesEachFriend}</NumStyling>
         </LinkStyling>
       </WrapperCard>
     </>
