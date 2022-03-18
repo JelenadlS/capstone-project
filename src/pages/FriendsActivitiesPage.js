@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import newicon from '../images/new.svg';
 import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
+import PageWrapper from '../components/PageWrapper';
 
 export default function FriendsActivitiesPage({
   hasError,
@@ -19,13 +20,14 @@ export default function FriendsActivitiesPage({
 
   return (
     <>
-      <Header>
-        {selectedFriendsActivity[0].friend}
-        <ArrowbackButton onClick={() => navigate('/')}>
-          <img src={gobackicon} alt="go back" />
-        </ArrowbackButton>
-      </Header>
-      <WrapperApp>
+      <PageWrapper>
+        <Header>
+          {selectedFriendsActivity[0].friend}
+          <ArrowbackButton onClick={() => navigate('/')}>
+            <img src={gobackicon} alt="go back" />
+          </ArrowbackButton>
+        </Header>
+
         <Main>
           <List
             activitiesOfSelectedFriend={selectedFriendsActivity}
@@ -43,7 +45,7 @@ export default function FriendsActivitiesPage({
             </Button>
           </NavLink>
         </Bottom>
-      </WrapperApp>
+      </PageWrapper>
     </>
   );
 
@@ -62,17 +64,13 @@ export default function FriendsActivitiesPage({
   }
 }
 
+//-----------------------------------------------------------------------
 const ArrowbackButton = styled.button`
   border: none;
   background: transparent;
   position: fixed;
   top: 5px;
   left: 2px;
-`;
-
-const WrapperApp = styled.div`
-  display: grid;
-  grid-template-rows: 1fr auto;
 `;
 
 const Main = styled.main`

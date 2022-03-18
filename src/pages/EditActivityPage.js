@@ -3,6 +3,7 @@ import Form from '../components/Form';
 import Header from '../components/Header';
 import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
+import PageWrapper from '../components/PageWrapper';
 
 export default function EditActivityPage({ activities, onEditActivity }) {
   const navigate = useNavigate();
@@ -11,17 +12,18 @@ export default function EditActivityPage({ activities, onEditActivity }) {
 
   return (
     <>
-      <Header>
-        Edit activity
-        <Arrowback
-          onClick={() =>
-            navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`)
-          }
-        >
-          <img src={gobackicon} alt="go back" />
-        </Arrowback>
-      </Header>
-      <WrapperApp>
+      <PageWrapper>
+        <Header>
+          Edit activity
+          <Arrowback
+            onClick={() =>
+              navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`)
+            }
+          >
+            <img src={gobackicon} alt="go back" />
+          </Arrowback>
+        </Header>
+
         <Main>
           <Form
             title="edit activity"
@@ -30,15 +32,11 @@ export default function EditActivityPage({ activities, onEditActivity }) {
             buttonName="save"
           />
         </Main>
-      </WrapperApp>
+        <footer>footer</footer>
+      </PageWrapper>
     </>
   );
 }
-const WrapperApp = styled.div`
-  height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr auto;
-`;
 
 const Arrowback = styled.button`
   border: none;

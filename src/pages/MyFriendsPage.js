@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import Button from '../components/Button';
-import FriendCard from '../components/FriendCard';
-import newicon from '../images/new.svg';
 import styled from 'styled-components';
+
+import Button from '../components/Button';
+import Header from '../components/Header';
+import FriendCard from '../components/FriendCard';
+import PageWrapper from '../components/PageWrapper';
+import newicon from '../images/new.svg';
 
 export default function MyFriendsPage({ activities }) {
   const activitiesWithFriendsName = activities.filter(
@@ -28,8 +30,8 @@ export default function MyFriendsPage({ activities }) {
 
   return (
     <>
-      <Header>my friends</Header>
-      <WrapperApp>
+      <PageWrapper>
+        <Header>my friends</Header>
         <Main>
           {activities.length > 0 ? (
             <>
@@ -64,7 +66,7 @@ export default function MyFriendsPage({ activities }) {
             </EmptyList>
           )}
         </Main>
-        <Bottom>
+        <Footer>
           <Link to="newactivity">
             <Button
               borderRadius="40%"
@@ -73,17 +75,18 @@ export default function MyFriendsPage({ activities }) {
               <img src={newicon} alt="new" />
             </Button>
           </Link>
-        </Bottom>
-      </WrapperApp>
+        </Footer>
+      </PageWrapper>
     </>
   );
 }
 
-const WrapperApp = styled.div`
+const WrapperApp = styled.span`
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 60px 1fr 60px;
 `;
 
+//-----------------------------------------------------------------------
 const Main = styled.main`
   overflow-y: auto;
 `;
@@ -94,6 +97,7 @@ const StyledLink = styled(Link)`
   padding: 20px 18px 10px 10px;
   display: grid;
   grid-template-columns: auto auto;
+  border-bottom: 2px solid rgba(71, 39, 35, 0.3);
 `;
 
 const NameStyling = styled.p`
@@ -121,7 +125,7 @@ const EmptyList = styled.p`
   padding: 10px;
 `;
 
-const Bottom = styled.div`
+const Footer = styled.footer`
   background: #f0e7da;
   text-align: center;
   width: 100%;

@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import gobackicon from '../images/goback.svg';
 import editicon from '../images/edit.svg';
 import styled from 'styled-components';
+import PageWrapper from '../components/PageWrapper';
 
 export default function ActivityOverviewPage({ activities }) {
   const navigate = useNavigate();
@@ -12,64 +13,67 @@ export default function ActivityOverviewPage({ activities }) {
   );
   return (
     <>
-      <Header>
-        {selectedActivity.activity}
-        <ArrowbackButton
-          onClick={() => navigate(`/${selectedActivity.friend}`)}
-        >
-          <img src={gobackicon} alt="go back" />
-        </ArrowbackButton>
-      </Header>
-      <WrapperCard>
-        <p>
-          <strong>{selectedActivity.activity}</strong>
-        </p>
-        <p>
-          <strong>with: </strong>
-          {selectedActivity.friend}
-        </p>
-        {selectedActivity.notes ? (
-          <div>
+      <PageWrapper>
+        <Header>
+          {selectedActivity.activity}
+          <ArrowbackButton
+            onClick={() => navigate(`/${selectedActivity.friend}`)}
+          >
+            <img src={gobackicon} alt="go back" />
+          </ArrowbackButton>
+        </Header>
+        <WrapperCard>
+          <p>
+            <strong>{selectedActivity.activity}</strong>
+          </p>
+          <p>
+            <strong>with: </strong>
+            {selectedActivity.friend}
+          </p>
+          {selectedActivity.notes ? (
+            <div>
+              <p>
+                <strong>additional notes:</strong>
+              </p>
+              <p>{selectedActivity.notes}</p>
+            </div>
+          ) : (
+            <div />
+          )}
+          {selectedActivity.date ? (
             <p>
-              <strong>additional notes:</strong>
+              <strong>on the: </strong>
+              {selectedActivity.date}
             </p>
-            <p>{selectedActivity.notes}</p>
-          </div>
-        ) : (
-          <div />
-        )}
-        {selectedActivity.date ? (
-          <p>
-            <strong>on the: </strong>
-            {selectedActivity.date}
-          </p>
-        ) : (
-          <EmptyMessage>
-            <strong>date: </strong>
-            plan your activity soon!
-          </EmptyMessage>
-        )}
-        {selectedActivity.location ? (
-          <p>
-            <strong>at: </strong>
-            {selectedActivity.location}
-          </p>
-        ) : (
-          <EmptyMessage>
-            <strong>location: </strong>where do you have to go?
-          </EmptyMessage>
-        )}
-        <EditButton
-          background="transparent"
-          onClick={() =>
-            navigate(
-              `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
-            )
-          }
-        >
-          <img src={editicon} alt="edit" />
-        </EditButton>
-      </WrapperCard>
+          ) : (
+            <EmptyMessage>
+              <strong>date: </strong>
+              plan your activity soon!
+            </EmptyMessage>
+          )}
+          {selectedActivity.location ? (
+            <p>
+              <strong>at: </strong>
+              {selectedActivity.location}
+            </p>
+          ) : (
+            <EmptyMessage>
+              <strong>location: </strong>where do you have to go?
+            </EmptyMessage>
+          )}
+          <EditButton
+            background="transparent"
+            onClick={() =>
+              navigate(
+                `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
+              )
+            }
+          >
+            <img src={editicon} alt="edit" />
+          </EditButton>
+        </WrapperCard>
+        <footer>Footer</footer>
+      </PageWrapper>
     </>
   );
 }
