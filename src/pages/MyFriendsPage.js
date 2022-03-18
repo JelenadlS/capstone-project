@@ -34,9 +34,9 @@ export default function MyFriendsPage({ activities }) {
           {activities.length > 0 ? (
             <>
               {activitiesWithoutFriend.length > 0 && (
-                <p>
+                <Link to="/I still need to plan...">
                   Things I still have planned: {activitiesWithoutFriend.length}
-                </p>
+                </Link>
               )}
               <ListStyle role="list" title="list of friends">
                 {sortedFriendsList.map((friend, index) => {
