@@ -97,4 +97,6 @@ export default function App() {
 const WrapperApp = styled.div`
   height: 100vh;
   background-image: url(${backgroundpicture});
+  display: grid;
+  grid-template-rows: 60px 1fr 60px;
 `;

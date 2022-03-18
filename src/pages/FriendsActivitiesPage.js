@@ -5,7 +5,6 @@ import Header from '../components/Header';
 import newicon from '../images/new.svg';
 import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
-import PageWrapper from '../components/PageWrapper';
 
 export default function FriendsActivitiesPage({
   hasError,
@@ -20,32 +19,29 @@ export default function FriendsActivitiesPage({
 
   return (
     <>
-      <PageWrapper>
-        <Header>
-          {selectedFriendsActivity[0].friend}
-          <ArrowbackButton onClick={() => navigate('/')}>
-            <img src={gobackicon} alt="go back" />
-          </ArrowbackButton>
-        </Header>
-
-        <Main>
-          <List
-            activitiesOfSelectedFriend={selectedFriendsActivity}
-            errorMessage={hasError}
-            onDeleteActivity={onDeleteActivity}
-          />
-        </Main>
-        <Bottom>
-          <NavLink to="/newactivity">
-            <Button
-              borderRadius="40%"
-              boxShadow="0px 0px 20px rgba(0, 0, 0, 0.15)"
-            >
-              <img src={newicon} alt="new" />
-            </Button>
-          </NavLink>
-        </Bottom>
-      </PageWrapper>
+      <Header>
+        {selectedFriendsActivity[0].friend}
+        <ArrowbackButton onClick={() => navigate('/')}>
+          <img src={gobackicon} alt="go back" />
+        </ArrowbackButton>
+      </Header>
+      <Main>
+        <List
+          activitiesOfSelectedFriend={selectedFriendsActivity}
+          errorMessage={hasError}
+          onDeleteActivity={onDeleteActivity}
+        />
+      </Main>
+      <Bottom>
+        <NavLink to="/newactivity">
+          <Button
+            borderRadius="40%"
+            boxShadow="0px 0px 20px rgba(0, 0, 0, 0.15)"
+          >
+            <img src={newicon} alt="new" />
+          </Button>
+        </NavLink>
+      </Bottom>
     </>
   );
 
