@@ -10,7 +10,6 @@ export default function ActivityOverviewPage({ activities }) {
   const selectedActivity = activities.find(
     activity => activity.activity === activityName
   );
-
   return (
     <>
       <Header>

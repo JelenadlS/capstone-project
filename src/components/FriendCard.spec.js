@@ -3,11 +3,14 @@ import { MemoryRouter } from 'react-router-dom';
 import FriendCard from './FriendCard.js';
 
 describe('FriendCard', () => {
-  it('renders card with friend including and a number', () => {
-    const allFriends = ['Clara', 'Andrea', 'Clara'];
+  it('renders the card with name of friend including and a number', () => {
+    const sumOfActivitiesEachFriend = '2';
     render(
       <MemoryRouter>
-        <FriendCard friend="Clara" allFriends={allFriends} />
+        <FriendCard
+          friend="Clara"
+          sumOfActivitiesEachFriend={sumOfActivitiesEachFriend}
+        />
       </MemoryRouter>
     );
 
