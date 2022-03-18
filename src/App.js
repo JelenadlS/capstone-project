@@ -28,36 +28,41 @@ export default function App() {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>
-        <Routes>
-          <Route path="/" element={<MyFriendsPage activities={activities} />} />
-          <Route
-            path="/:friendsName"
-            element={
-              <FriendsActivitiesPage
-                activities={activities}
-                hasError={hasError}
-                setActivities={setActivities}
-              />
-            }
-          />
-          <Route
-            path="/:friendsName/:activityName"
-            element={<ActivityOverviewPage activities={activities} />}
-          />
-          <Route
-            path="/:friendsName/:activityName/:id/editactivity"
-            element={
-              <EditActivityPage
-                activities={activities}
-                onEditActivity={onEditActivity}
-              />
-            }
-          />
-          <Route
-            path="/newactivity"
-            element={<NewActivityPage onAddActivity={onAddActivity} />}
-          />
-        </Routes>
+        <Picture>
+          <Routes>
+            <Route
+              path="/"
+              element={<MyFriendsPage activities={activities} />}
+            />
+            <Route
+              path="/:friendsName"
+              element={
+                <FriendsActivitiesPage
+                  activities={activities}
+                  hasError={hasError}
+                  setActivities={setActivities}
+                />
+              }
+            />
+            <Route
+              path="/:friendsName/:activityName"
+              element={<ActivityOverviewPage activities={activities} />}
+            />
+            <Route
+              path="/:friendsName/:activityName/:id/editactivity"
+              element={
+                <EditActivityPage
+                  activities={activities}
+                  onEditActivity={onEditActivity}
+                />
+              }
+            />
+            <Route
+              path="/newactivity"
+              element={<NewActivityPage onAddActivity={onAddActivity} />}
+            />
+          </Routes>
+        </Picture>
       </WrapperApp>
     </ErrorBoundary>
   );
@@ -96,5 +101,9 @@ export default function App() {
 
 const WrapperApp = styled.div`
   height: 100vh;
+`;
+
+const Picture = styled.div`
   background-image: url(${backgroundpicture});
+  background-size: cover;
 `;

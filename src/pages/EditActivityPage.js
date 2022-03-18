@@ -15,6 +15,8 @@ export default function EditActivityPage({ activities, onEditActivity }) {
       <Header>
         Edit activity
         <Arrowback
+          width="40px"
+          height="40px"
           onClick={() =>
             navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`)
           }

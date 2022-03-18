@@ -4,6 +4,7 @@ import gobackicon from '../images/goback.svg';
 import editicon from '../images/edit.svg';
 import styled from 'styled-components';
 import Footer from '../components/Footer';
+import backgroundpicture from '../images/background.svg';
 
 export default function ActivityOverviewPage({ activities }) {
   const navigate = useNavigate();

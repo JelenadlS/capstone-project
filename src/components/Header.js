@@ -15,13 +15,16 @@ const StyledHeader = styled.header`
   color: rgba(71, 39, 35, 0.72);
   position: sticky;
   top: 0px;
-  z-index: 2;
-  height: 60px;
+  z-index: 1;
+  height: 48px;
   overflow: hidden;
+  font-size: 14px;
+  text-align: center;
 `;
 
 const StyledTitle = styled.h1`
-  margin-left: 60px;
+  margin-left: 45px;
+  margin-right: 45px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
