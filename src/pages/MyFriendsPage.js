@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Button from '../components/Button';
 import Header from '../components/Header';
 import FriendCard from '../components/FriendCard';
+import Footer from '../components/Footer';
 import newicon from '../images/new.svg';
 
 export default function MyFriendsPage({ activities }) {
@@ -114,12 +115,4 @@ const ListStyle = styled.ul`
 const EmptyList = styled.p`
   color: rgba(71, 39, 35, 0.72);
   padding: 10px;
-`;
-
-const Footer = styled.footer`
-  background: #f0e7da;
-  text-align: center;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
 `;

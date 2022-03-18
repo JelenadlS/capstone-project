@@ -3,6 +3,7 @@ import Form from '../components/Form';
 import Header from '../components/Header';
 import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
+import Footer from '../components/Footer';
 
 export default function EditActivityPage({ activities, onEditActivity }) {
   const navigate = useNavigate();
@@ -21,15 +22,15 @@ export default function EditActivityPage({ activities, onEditActivity }) {
           <img src={gobackicon} alt="go back" />
         </Arrowback>
       </Header>
-      <Main>
-        <Form
-          title="edit activity"
-          preloadedValues={activityToEdit}
-          handleActivity={onEditActivity}
-          buttonName="save"
-        />
-      </Main>
-      <footer>footer</footer>
+
+      <Form
+        title="edit activity"
+        preloadedValues={activityToEdit}
+        handleActivity={onEditActivity}
+        buttonName="save"
+      />
+
+      <Footer />
     </>
   );
 }
@@ -40,8 +41,4 @@ const Arrowback = styled.button`
   position: fixed;
   top: 5px;
   left: 2px;
-`;
-
-const Main = styled.div`
-  width: 100%;
 `;

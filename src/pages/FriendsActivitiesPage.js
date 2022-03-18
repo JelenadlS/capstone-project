@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import newicon from '../images/new.svg';
 import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
+import Footer from '../components/Footer';
 
 export default function FriendsActivitiesPage({
   hasError,
@@ -32,7 +33,7 @@ export default function FriendsActivitiesPage({
           onDeleteActivity={onDeleteActivity}
         />
       </Main>
-      <Bottom>
+      <Footer>
         <NavLink to="/newactivity">
           <Button
             borderRadius="40%"
@@ -41,7 +42,7 @@ export default function FriendsActivitiesPage({
             <img src={newicon} alt="new" />
           </Button>
         </NavLink>
-      </Bottom>
+      </Footer>
     </>
   );
 
@@ -71,11 +72,4 @@ const ArrowbackButton = styled.button`
 
 const Main = styled.main`
   overflow-y: auto;
-`;
-const Bottom = styled.div`
-  background: #f0e7da;
-  text-align: center;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
 `;

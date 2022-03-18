@@ -160,7 +160,14 @@ export default function Form({
         )}
       </label>
 
-      <Button width="100%" height="fit-content" type="submit">
+      <Button
+        width="100%"
+        height="fit-content"
+        type="submit"
+        position="fixed"
+        bottom="0"
+        zIndex="1"
+      >
         {buttonName}
       </Button>
     </WrapperForm>

@@ -12,6 +12,9 @@ export default function Button({
   borderRadius,
   boxShadow,
   padding,
+  position,
+  bottom,
+  zIndex,
 }) {
   return (
     <WrapperButton
@@ -25,6 +28,9 @@ export default function Button({
       borderRadius={borderRadius}
       boxShadow={boxShadow}
       padding={padding}
+      position={position}
+      bottom={bottom}
+      zIndex={zIndex}
     >
       {children}
     </WrapperButton>
@@ -43,4 +49,7 @@ const WrapperButton = styled.button`
   width: ${props => props.width || '75px'};
   margin: ${props => props.margin || '0px'};
   height: ${props => props.height || '60px'};
+  position: ${props => props.position || 'fixed'};
+  bottom: ${props => props.bottom || '0'};
+  z-index: ${props => props.zIndex || '0'};
 `;

@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import gobackicon from '../images/goback.svg';
 import editicon from '../images/edit.svg';
 import styled from 'styled-components';
+import Footer from '../components/Footer';
 
 export default function ActivityOverviewPage({ activities }) {
   const navigate = useNavigate();
@@ -70,7 +71,7 @@ export default function ActivityOverviewPage({ activities }) {
           <img src={editicon} alt="edit" />
         </EditButton>
       </WrapperCard>
-      <footer>Footer</footer>
+      <Footer />
     </>
   );
 }

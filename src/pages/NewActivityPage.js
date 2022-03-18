@@ -3,6 +3,7 @@ import gobackicon from '../images/goback.svg';
 import Form from '../components/Form';
 import Header from '../components/Header';
 import styled from 'styled-components';
+import Footer from '../components/Footer';
 
 export default function NewActivityPage({ onAddActivity }) {
   const navigate = useNavigate();
@@ -15,15 +16,14 @@ export default function NewActivityPage({ onAddActivity }) {
         </Arrowback>
       </Header>
 
-      <Main>
-        <Form
-          title="add activities"
-          buttonName={'Add'}
-          preloadedValues={null}
-          handleActivity={onAddActivity}
-        />
-      </Main>
-      <footer>footer</footer>
+      <Form
+        title="add activities"
+        buttonName={'Add'}
+        preloadedValues={null}
+        handleActivity={onAddActivity}
+      />
+
+      <Footer />
     </>
   );
 }
@@ -34,8 +34,4 @@ const Arrowback = styled.button`
   position: fixed;
   top: 5px;
   left: 2px;
-`;
-
-const Main = styled.div`
-  width: 100%;
 `;
