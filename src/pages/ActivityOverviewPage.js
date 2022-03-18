@@ -59,7 +59,7 @@ export default function ActivityOverviewPage({ activities }) {
             <strong>location: </strong>where do you have to go?
           </EmptyMessage>
         )}
-        <EditButtonPositioning
+        <EditButton
           background="transparent"
           onClick={() =>
             navigate(
@@ -68,7 +68,7 @@ export default function ActivityOverviewPage({ activities }) {
           }
         >
           <img src={editicon} alt="edit" />
-        </EditButtonPositioning>
+        </EditButton>
       </WrapperCard>
     </>
   );
@@ -96,7 +96,7 @@ const EmptyMessage = styled.div`
   font-size: 16px;
 `;
 
-const EditButtonPositioning = styled.button`
+const EditButton = styled.button`
   border: none;
   background: transparent;
   position: fixed;

@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import ActivityOverviewPage from './ActivityOverviewPage';
 
 describe('ActivityOverviewPage', () => {
-  it('renders ActivityOverviewPage with the back and edit button, as well empty messages of the two inputs', () => {
+  it('renders page with a back and edit button, as well as a message to the user if there is no input', () => {
     const selectedActivity = [
       {
         activities: {

@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import NewActivityPage from './NewActivityPage.js';
 
 describe('NewActivityPage', () => {
-  it('renders NewActivityPage with the backbutton and the form elements (4 textboxes and button)', () => {
+  it('renders page with a button to go back as well as a form with four textboxes and a button)', () => {
     render(
       <MemoryRouter>
         <NewActivityPage />

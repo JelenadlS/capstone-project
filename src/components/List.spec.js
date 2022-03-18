@@ -19,17 +19,4 @@ describe('List', () => {
     const list = screen.getByRole('list');
     expect(list).toBeInTheDocument();
   });
-
-  it('shows empty message when no list item is there', () => {
-    const activities = [];
-
-    render(
-      <MemoryRouter>
-        <List activitiesOfSelectedFriend={activities} />
-      </MemoryRouter>
-    );
-
-    const emptymessage = screen.getByTestId('emptylist');
-    expect(emptymessage).toBeInTheDocument();
-  });
 });
