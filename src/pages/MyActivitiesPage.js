@@ -1,28 +1,40 @@
-import { NavLink } from 'react-router-dom';
-import Header from '../components/Header';
+import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import List from '../components/List';
 import Button from '../components/Button';
+import Header from '../components/Header';
 import newicon from '../images/new.svg';
+import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
 
 export default function MyActivitiesPage({
-  activities,
   hasError,
   setActivities,
+  activities,
 }) {
+  const { friendsName } = useParams();
+  const selectedFriendsActivity = activities.filter(
+    activity => activity.friend === friendsName
+  );
+  const navigate = useNavigate();
+
   return (
     <>
+      <Header>
+        {selectedFriendsActivity[0].friend}
+        <ArrowbackButton onClick={() => navigate('/')}>
+          <img src={gobackicon} alt="go back" />
+        </ArrowbackButton>
+      </Header>
       <WrapperApp>
-        <Header title="my activities" />
         <Main>
           <List
-            activities={activities}
+            activitiesOfSelectedFriend={selectedFriendsActivity}
             errorMessage={hasError}
             onDeleteActivity={onDeleteActivity}
           />
         </Main>
         <Bottom>
-          <NavLink to="newactivity">
+          <NavLink to="/newactivity">
             <Button
               borderRadius="40%"
               boxShadow="0px 0px 20px rgba(0, 0, 0, 0.15)"
@@ -39,13 +51,28 @@ export default function MyActivitiesPage({
     setActivities(
       activities.filter(activity => activity.id !== thisActivityId)
     );
+    if (
+      !selectedFriendsActivity.activity ||
+      selectedFriendsActivity.length === 0
+    ) {
+      navigate('/');
+    } else {
+      navigate(`/${selectedFriendsActivity.friend}`);
+    }
   }
 }
 
+const ArrowbackButton = styled.button`
+  border: none;
+  background: transparent;
+  position: fixed;
+  top: 5px;
+  left: 2px;
+`;
+
 const WrapperApp = styled.div`
-  height: 100vh;
   display: grid;
-  grid-template-rows: 60px 1fr auto;
+  grid-template-rows: 1fr auto;
 `;
 
 const Main = styled.main`
@@ -55,4 +82,6 @@ const Bottom = styled.div`
   background: #f0e7da;
   text-align: center;
   width: 100%;
+  position: fixed;
+  bottom: 0;
 `;

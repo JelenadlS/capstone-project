@@ -20,7 +20,13 @@ export default function Form({
   } = useForm({
     defaultValues: preloadedValues
       ? preloadedValues
-      : { activities: '', friend: '', notes: '', date: '', location: '' },
+      : {
+          activities: '',
+          friend: '',
+          notes: '',
+          date: '',
+          location: '',
+        },
   });
 
   const onSubmit = data => {
@@ -28,23 +34,23 @@ export default function Form({
       handleActivity({
         id: preloadedValues.id,
         activity: data.activity,
-        friend: data.friend,
+        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
       });
-      navigate(`/details/${preloadedValues.id}`);
+      navigate(-1);
     } else {
       const id = nanoid();
       handleActivity({
         id: id,
         activity: data.activity,
-        friend: data.friend,
+        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
       });
-      navigate('/');
+      navigate(`/`);
     }
   };
 
@@ -59,7 +65,7 @@ export default function Form({
       onSubmit={handleSubmit(onSubmit)}
     >
       <label htmlFor="activity">
-        name of activity:{' '}
+        name of activity:
         <input
           id="activity"
           type="text"
@@ -82,7 +88,7 @@ export default function Form({
       </label>
 
       <label htmlFor="friend">
-        who should join you?{' '}
+        who should join you?
         <input
           id="friend"
           type="text"
@@ -142,10 +148,10 @@ export default function Form({
           {...register('location', {
             maxLength: {
               value: 50,
-              message: 'This adress is way too long!',
+              message: 'This address is way too long!',
             },
           })}
-        />{' '}
+        />
         {errors.location && (
           <ErrorMessage name="error-message">
             {errors.location.message}

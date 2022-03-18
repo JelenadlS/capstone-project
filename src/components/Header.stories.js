@@ -9,11 +9,5 @@ const Template = args => <Header {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  title: 'my activities',
-};
-
-export const HeaderWArrow = Template.bind({});
-HeaderWArrow.args = {
-  title: 'Spazieren',
-  link: 'y',
+  children: 'my activities',
 };

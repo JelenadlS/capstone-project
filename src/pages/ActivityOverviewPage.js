@@ -1,34 +1,33 @@
-import { useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../components/Header';
+import gobackicon from '../images/goback.svg';
 import editicon from '../images/edit.svg';
 import styled from 'styled-components';
 
 export default function ActivityOverviewPage({ activities }) {
-  const { id } = useParams();
-  const selectedActivity = activities.find(activity => activity.id === id);
-
+  const navigate = useNavigate();
+  const { activityName } = useParams();
+  const selectedActivity = activities.find(
+    activity => activity.activity === activityName
+  );
   return (
     <>
-      <Header
-        textAlign="left"
-        title={selectedActivity.activity}
-        link="y"
-      ></Header>
+      <Header>
+        {selectedActivity.activity}
+        <ArrowbackButton
+          onClick={() => navigate(`/${selectedActivity.friend}`)}
+        >
+          <img src={gobackicon} alt="go back" />
+        </ArrowbackButton>
+      </Header>
       <WrapperCard>
         <p>
           <strong>{selectedActivity.activity}</strong>
         </p>
-        {selectedActivity.friend ? (
-          <p>
-            <strong>with: </strong>
-            {selectedActivity.friend}
-          </p>
-        ) : (
-          <EmptyMessage>
-            <strong>with: </strong>
-            plan who will join you!
-          </EmptyMessage>
-        )}
+        <p>
+          <strong>with: </strong>
+          {selectedActivity.friend}
+        </p>
         {selectedActivity.notes ? (
           <div>
             <p>
@@ -60,16 +59,28 @@ export default function ActivityOverviewPage({ activities }) {
             <strong>location: </strong>where do you have to go?
           </EmptyMessage>
         )}
-        <EditPositioning
+        <EditButton
           background="transparent"
-          to={`/editactivity/${selectedActivity.id}`}
+          onClick={() =>
+            navigate(
+              `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
+            )
+          }
         >
           <img src={editicon} alt="edit" />
-        </EditPositioning>
+        </EditButton>
       </WrapperCard>
     </>
   );
 }
+
+const ArrowbackButton = styled.button`
+  border: none;
+  background: transparent;
+  position: fixed;
+  top: 5px;
+  left: 2px;
+`;
 
 const WrapperCard = styled.section`
   color: rgba(71, 39, 35, 0.72);
@@ -85,7 +96,9 @@ const EmptyMessage = styled.div`
   font-size: 16px;
 `;
 
-const EditPositioning = styled(Link)`
+const EditButton = styled.button`
+  border: none;
+  background: transparent;
   position: fixed;
   right: -2px;
   top: 60px;

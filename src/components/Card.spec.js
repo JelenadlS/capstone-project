@@ -21,16 +21,17 @@ describe('Card', () => {
   });
 
   it('when clicking the bin, the DeleteModal is renderd with the delete button', () => {
+    const showCallback = jest.fn();
     render(
       <MemoryRouter>
-        <Card />
+        <Card onClick={showCallback} />
       </MemoryRouter>
     );
 
     const binButton = screen.getByRole('button', { name: /delete/i });
 
     userEvent.click(binButton);
-    expect(binButton).toBeInTheDocument();
+    expect(showCallback).toBeTruthy();
   });
 
   it('when clicking delete within the DeleteModal, the delete function will be called', () => {

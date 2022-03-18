@@ -2,34 +2,28 @@ import { useEffect, useRef } from 'react';
 import Card from './Card';
 import styled from 'styled-components';
 
-export default function List({ activities, errorMessage, onDeleteActivity }) {
+export default function List({
+  activitiesOfSelectedFriend,
+  errorMessage,
+  onDeleteActivity,
+}) {
   const activitiesEndRef = useRef(null);
   const scrollToBottom = () => {
     activitiesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
-  useEffect(scrollToBottom, [activities]);
-
-  if (!activities || activities.length === 0) {
-    return (
-      <ListStyle role="list">
-        <li>
-          unfortunately you did not enter any activity yet. Start now and fill
-          your list with amazing activities!
-        </li>
-        <div ref={activitiesEndRef} />
-      </ListStyle>
-    );
-  }
+  useEffect(scrollToBottom, [activitiesOfSelectedFriend]);
   return (
     <>
       <ListStyle role="list" title="list of activities">
-        {activities.map(activity => (
+        {activitiesOfSelectedFriend.map(activity => (
           <li key={activity.id}>
             <Card
               onDeleteActivity={() => onDeleteActivity(activity.id)}
               activity={activity.activity}
               id={activity.id}
+              nameOfSelectedFriend={activity.friend}
+              nameOfSelectedActivity={activity.activity}
               errorMessage={
                 errorMessage &&
                 `unfortunately something went wrong with your data.`

@@ -3,6 +3,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import ErrorFallback from './components/ErrorFallBack';
+import MyFriendsPage from './pages/MyFriendsPage';
 import MyActivitiesPage from './pages/MyActivitiesPage.js';
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
 import NewActivityPage from './pages/NewActivityPage.js';
@@ -24,8 +25,9 @@ export default function App() {
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>
         <Routes>
+          <Route path="/" element={<MyFriendsPage activities={activities} />} />
           <Route
-            path="/"
+            path="/:friendsName"
             element={
               <MyActivitiesPage
                 activities={activities}
@@ -35,7 +37,7 @@ export default function App() {
             }
           />
           <Route
-            path="/details/:id"
+            path="/:friendsName/:activityName"
             element={<ActivityOverviewPage activities={activities} />}
           />
           <Route
@@ -43,7 +45,7 @@ export default function App() {
             element={<NewActivityPage onAddActivity={onAddActivity} />}
           />
           <Route
-            path="/editactivity/:id"
+            path="/:friendsName/:activityName/:id/editactivity"
             element={
               <EditActivityPage
                 activities={activities}

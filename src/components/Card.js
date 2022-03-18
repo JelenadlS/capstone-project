@@ -5,13 +5,19 @@ import deleteicon from '../images/binicon.svg';
 import DeleteModal from './DeleteModal.js';
 import styled from 'styled-components';
 
-export default function Card({ activity, errorMessage, onDeleteActivity, id }) {
+export default function Card({
+  activity,
+  errorMessage,
+  onDeleteActivity,
+  id,
+  nameOfSelectedFriend,nameOfSelectedActivity
+}) {
   const [show, setShow] = useState(false);
 
   return (
     <>
       <WrapperCard>
-        <LinkStyling to={`/details/${id}`}>
+        <LinkStyling to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}>
           <strong>{activity}</strong>
         </LinkStyling>
         <Button

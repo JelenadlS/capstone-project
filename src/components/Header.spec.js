@@ -3,31 +3,15 @@ import { MemoryRouter } from 'react-router-dom';
 import Header from './Header.js';
 
 describe('Header', () => {
-  it('renders header with title and arrowlink when link===y', () => {
+  it('renders header', () => {
     render(
       <MemoryRouter>
-        <Header title="my activities" link={true} />
+        <Header />
       </MemoryRouter>
     );
 
-    const title = screen.getByText('my activities');
-    const link = screen.getByRole('link');
+    const heading = screen.getByRole('heading');
 
-    expect(title).toBeInTheDocument();
-    expect(link).toBeInTheDocument();
-  });
-
-  it('renders header only with title when link!==y', () => {
-    render(
-      <MemoryRouter>
-        <Header title="my activities" link={false} />
-      </MemoryRouter>
-    );
-
-    const title = screen.getByText('my activities');
-    const link = screen.queryByRole('link');
-
-    expect(title).toBeInTheDocument();
-    expect(link).not.toBeInTheDocument();
+    expect(heading).toBeInTheDocument();
   });
 });
