@@ -41,21 +41,21 @@ export default function App() {
             }
           />
           <Route
-            path="/:friendsName/:id"
+            path="/:friendsName/:activityName"
             element={<ActivityOverviewPage activities={activities} />}
           />
           <Route
-            path="/newactivity"
-            element={<NewActivityPage onAddActivity={onAddActivity} />}
-          />
-          <Route
-            path="/:friendsName/details/:id/editactivity"
+            path="/:friendsName/:activityName/:id/editactivity"
             element={
               <EditActivityPage
                 activities={activities}
                 onEditActivity={onEditActivity}
               />
             }
+          />
+          <Route
+            path="/newactivity"
+            element={<NewActivityPage onAddActivity={onAddActivity} />}
           />
         </Routes>
       </WrapperApp>
