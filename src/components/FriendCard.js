@@ -17,7 +17,6 @@ export default function FriendCard({ friend, sumOfActivitiesEachFriend }) {
 }
 
 const WrapperCard = styled.section`
-  color: rgba(71, 39, 35, 0.72);
   border-bottom: 0.5px solid rgba(71, 39, 35, 0.72);
   padding: 5px;
 `;

@@ -12,7 +12,6 @@ const StyledHeader = styled.header`
   background: #f0e7da;
   padding: 10px;
   text-transform: uppercase;
-  color: rgba(71, 39, 35, 0.72);
   position: sticky;
   top: 0px;
   z-index: 1;

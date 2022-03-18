@@ -10,7 +10,8 @@ export default function Card({
   errorMessage,
   onDeleteActivity,
   id,
-  nameOfSelectedFriend,nameOfSelectedActivity
+  nameOfSelectedFriend,
+  nameOfSelectedActivity,
 }) {
   const [show, setShow] = useState(false);
 
@@ -26,6 +27,7 @@ export default function Card({
           padding="10px"
           width="auto"
           height="auto"
+          position="0"
           onClick={() => setShow(true)}
         >
           <img src={deleteicon} alt="delete" />
@@ -44,7 +46,6 @@ export default function Card({
 }
 
 const WrapperCard = styled.section`
-  color: rgba(71, 39, 35, 0.72);
   border-bottom: 0.5px solid rgba(71, 39, 35, 0.72);
   display: grid;
   grid-template-columns: auto auto;

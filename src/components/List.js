@@ -39,7 +39,6 @@ export default function List({
 
 const ListStyle = styled.ul`
   list-style-type: none;
-  color: rgba(71, 39, 35, 0.72);
 
   li {
     padding: 5px;
