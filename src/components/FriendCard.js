@@ -26,7 +26,6 @@ const LinkStyling = styled(Link)`
   padding: 8px 8px 0;
   font-size: 18px;
   color: rgba(71, 39, 35, 0.72);
-  background-color: transparent;
   text-decoration: none;
   overflow: hidden;
   display: grid;

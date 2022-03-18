@@ -34,9 +34,12 @@ export default function MyFriendsPage({ activities }) {
           {activities.length > 0 ? (
             <>
               {activitiesWithoutFriend.length > 0 && (
-                <Link to="/I still need to plan...">
-                  Things I still have planned: {activitiesWithoutFriend.length}
-                </Link>
+                <StyledLink to="/I still need to plan...">
+                  <NameStyling>
+                    Things I still need to plan with someone:
+                  </NameStyling>
+                  <NumStyling>#{activitiesWithoutFriend.length}</NumStyling>
+                </StyledLink>
               )}
               <ListStyle role="list" title="list of friends">
                 {sortedFriendsList.map((friend, index) => {
@@ -55,12 +58,10 @@ export default function MyFriendsPage({ activities }) {
               </ListStyle>
             </>
           ) : (
-            <ListStyle data-testid="emptylist" role="list">
-              <li>
-                unfortunately you did not enter any activity yet. Start now and
-                fill your list with amazing activities!
-              </li>
-            </ListStyle>
+            <EmptyList>
+              unfortunately you did not enter any activity yet. Start now and
+              fill your list with amazing activities!
+            </EmptyList>
           )}
         </Main>
         <Bottom>
@@ -87,6 +88,25 @@ const Main = styled.main`
   overflow-y: auto;
 `;
 
+const StyledLink = styled(Link)`
+  color: rgba(71, 39, 35, 0.72);
+  text-decoration: none;
+  padding: 20px 18px 10px 10px;
+  display: grid;
+  grid-template-columns: auto auto;
+`;
+
+const NameStyling = styled.p`
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: auto auto;
+`;
+
+const NumStyling = styled.span`
+  justify-self: end;
+  align-self: center;
+`;
+
 const ListStyle = styled.ul`
   list-style-type: none;
   color: rgba(71, 39, 35, 0.72);
@@ -94,6 +114,11 @@ const ListStyle = styled.ul`
   li {
     padding: 5px;
   }
+`;
+
+const EmptyList = styled.p`
+  color: rgba(71, 39, 35, 0.72);
+  padding: 10px;
 `;
 
 const Bottom = styled.div`
