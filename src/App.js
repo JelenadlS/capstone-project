@@ -8,6 +8,7 @@ import MyActivitiesPage from './pages/MyActivitiesPage.js';
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
 import NewActivityPage from './pages/NewActivityPage.js';
 import EditActivityPage from './pages/EditActivityPage.js';
+import backgroundpicture from './images/background.svg';
 import styled from 'styled-components';
 
 export default function App() {
@@ -37,7 +38,7 @@ export default function App() {
             }
           />
           <Route
-            path="/:friendsName/:activityName"
+            path="/:friendsName/:id"
             element={<ActivityOverviewPage activities={activities} />}
           />
           <Route
@@ -45,7 +46,7 @@ export default function App() {
             element={<NewActivityPage onAddActivity={onAddActivity} />}
           />
           <Route
-            path="/:friendsName/:activityName/:id/editactivity"
+            path="/:friendsName/details/:id/editactivity"
             element={
               <EditActivityPage
                 activities={activities}
@@ -92,4 +93,5 @@ export default function App() {
 
 const WrapperApp = styled.div`
   height: 100vh;
+  background-image: url(${backgroundpicture});
 `;
