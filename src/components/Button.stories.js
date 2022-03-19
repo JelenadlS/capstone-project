@@ -1,4 +1,5 @@
 import Button from './Button.js';
+import { IconButton } from './Button.js';
 import deleteicon from '../images/binicon.svg';
 import gobackicon from '../images/goback.svg';
 import newicon from '../images/new.svg';
@@ -18,11 +19,9 @@ Default.args = {
   height: 'fit-content',
 };
 
-export const Delete = Template.bind();
+export const Delete = Template.bind({ IconButton });
 Delete.args = {
   children: <img src={deleteicon} alt="delete" />,
-  background: 'transparent',
-  justifySelf: 'end',
 };
 
 export const Yes = Template.bind();

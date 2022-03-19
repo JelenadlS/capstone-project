@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Button from './Button.js';
+import { IconButton } from './Button.js';
 import deleteicon from '../images/binicon.svg';
 import DeleteModal from './DeleteModal.js';
 import styled from 'styled-components';
@@ -21,17 +21,9 @@ export default function Card({
         <LinkStyling to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}>
           <strong>{activity}</strong>
         </LinkStyling>
-        <Button
-          background="transparent"
-          justifySelf="end"
-          padding="10px"
-          width="auto"
-          height="auto"
-          position="0"
-          onClick={() => setShow(true)}
-        >
+        <IconButton onClick={() => setShow(true)}>
           <img src={deleteicon} alt="delete" />
-        </Button>
+        </IconButton>
         <DeleteModal
           onDelete={onDeleteActivity}
           onClose={() => setShow(false)}
