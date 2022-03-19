@@ -29,6 +29,14 @@ const ArrowbackButton = styled(Button)`
 `;
 export { ArrowbackButton };
 
+const EditButton = styled(Button)`
+  background: transparent;
+  position: fixed;
+  right: 2px;
+  top: 60px;
+`;
+export { EditButton };
+
 const IconButton = styled(Button)`
   background: transparent;
   justify-self: end;

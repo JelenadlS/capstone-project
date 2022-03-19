@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Footer from '../components/Footer';
 import Picture from '../components/Picture';
 import Main from '../components/Main';
-import { ArrowbackButton } from '../components/Button';
+import { ArrowbackButton, EditButton } from '../components/Button';
 
 export default function ActivityOverviewPage({ activities }) {
   const navigate = useNavigate();
@@ -89,12 +89,4 @@ const StyledParagraph = styled.p`
 const EmptyMessage = styled.div`
   font-size: 16px;
   margin: 15px;
-`;
-
-const EditButton = styled.button`
-  border: none;
-  background: transparent;
-  position: fixed;
-  right: -2px;
-  top: 60px;
 `;
