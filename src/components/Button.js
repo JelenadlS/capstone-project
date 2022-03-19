@@ -22,19 +22,17 @@ const MainNavButton = styled(Button)`
 
 export { MainNavButton };
 
-// background: #92dec5;
-// color: rgba(71, 39, 35, 0.72);
-// font-size: 18px;
-// box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
-// border-radius: 40px;
-// padding: 10px;
-// justify-self: stretch;
-// width: 75px;
-// margin: 0px;
-// height: 60px;
-// position: fixed;
-// bottom: 0;
-// z-index: 0;
+const ModalButton = styled(Button)`
+  background: #92dec5;
+  color: rgba(71, 39, 35, 0.72);
+  font-size: 14px;
+  border-radius: 40px;
+  padding: 8px;
+  width: fit-content;
+  margin: 10px;
+`;
+
+export { ModalButton };
 
 const ArrowbackButton = styled(Button)`
   background: transparent;
@@ -52,13 +50,11 @@ const EditButton = styled(Button)`
 `;
 export { EditButton };
 
-const IconButton = styled(Button)`
+const DeleteButton = styled(Button)`
   background: transparent;
   justify-self: end;
   align-self: flex-end;
   width: auto;
   height: auto;
 `;
-export { IconButton };
-
-export const ModalButton = styled(Button)``;
+export { DeleteButton };

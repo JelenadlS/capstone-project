@@ -1,4 +1,4 @@
-import Button from './Button.js';
+import { ModalButton } from './Button.js';
 import styled from 'styled-components';
 
 export default function DeleteModal(props) {
@@ -8,53 +8,39 @@ export default function DeleteModal(props) {
   return (
     <WrapperModal>
       <p>Are you sure you want to delete?</p>
-      <div>
-        <Button
-          width="fit-content"
-          height="fit-content"
-          fontSize="14px"
-          type="submit"
-          onClick={props.onClose}
-        >
+      <span>
+        <ModalButton type="submit" onClick={props.onClose}>
           NO, I wanna keep it
-        </Button>
-        <Button
-          width="fit-content"
-          height="fit-content"
-          fontSize="14px"
-          type="submit"
-          margin="15px"
-          onClick={props.onDelete}
-        >
+        </ModalButton>
+        <ModalButton type="submit" onClick={props.onDelete}>
           please delete
-        </Button>
-      </div>
+        </ModalButton>
+      </span>
     </WrapperModal>
   );
 }
 
 const WrapperModal = styled.section`
   border: none;
-  border-radius: 15px;
+  border-radius: 20px;
   background: #f0e7da;
   display: grid;
   grid-template-rows: auto auto;
   position: fixed;
-  width: 350px;
-  height: 130px;
+  width: 300px;
+  height: 110px;
   top: 50%;
   left: 50%;
+  padding-top: 10px;
   margin-top: -100px;
-  margin-left: -175px;
+  margin-left: -150px;
 
   p {
-    color: rgba(71, 39, 35, 0.72);
     text-align: center;
     align-self: center;
   }
 
-  div {
+  span {
     text-align: center;
-    align-self: start;
   }
 `;
