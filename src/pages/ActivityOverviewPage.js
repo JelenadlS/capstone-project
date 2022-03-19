@@ -66,7 +66,6 @@ export default function ActivityOverviewPage({ activities }) {
             </EmptyMessage>
           )}
           <EditButton
-            background="transparent"
             onClick={() =>
               navigate(
                 `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`

@@ -1,10 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
-import Button from './Button';
+
 import { nanoid } from 'nanoid';
 import styled from 'styled-components';
-
+import { MainNavButton } from './Button';
+import saveicon from '../images/save.svg';
 export default function Form({
   handleActivity,
   preloadedValues,
@@ -168,16 +169,9 @@ export default function Form({
         )}
       </label>
 
-      <Button
-        width="100%"
-        height="fit-content"
-        type="submit"
-        position="fixed"
-        bottom="0"
-        zIndex="1"
-      >
-        {buttonName}
-      </Button>
+      <MainNavButton type="submit">
+        <img src={saveicon} alt="save" />
+      </MainNavButton>
     </WrapperForm>
   );
 }

@@ -10,14 +10,14 @@ const MainNavButton = styled(Button)`
   background: #92dec5;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
   border-radius: 40px;
-  padding: 10px;
+  padding: 5px;
   width: 75px;
   height: 60px;
   position: fixed;
   bottom: 0;
   left: 50%;
   transform: translate(-50%);
-  z-index: 0;
+  z-index: 1;
 `;
 
 export { MainNavButton };
