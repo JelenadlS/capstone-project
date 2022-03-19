@@ -15,28 +15,26 @@ export default function EditActivityPage({ activities, onEditActivity }) {
   const activityToEdit = activities.find(activity => activity.id === id);
 
   return (
-    <>
-      <Picture>
-        <Header>
-          Edit activity
-          <ArrowbackButton
-            onClick={() =>
-              navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`)
-            }
-          >
-            <img src={gobackicon} alt="go back" />
-          </ArrowbackButton>
-        </Header>
-        <Main>
-          <Form
-            title="edit activity"
-            preloadedValues={activityToEdit}
-            handleActivity={onEditActivity}
-            buttonName="save"
-          />
-        </Main>
-        <Footer />
-      </Picture>
-    </>
+    <Picture>
+      <Header>
+        Edit activity
+        <ArrowbackButton
+          onClick={() =>
+            navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`)
+          }
+        >
+          <img src={gobackicon} alt="go back" />
+        </ArrowbackButton>
+      </Header>
+      <Main>
+        <Form
+          title="edit activity"
+          preloadedValues={activityToEdit}
+          handleActivity={onEditActivity}
+          buttonName="save"
+        />
+      </Main>
+      <Footer />
+    </Picture>
   );
 }

@@ -22,28 +22,26 @@ export default function FriendsActivitiesPage({
   const navigate = useNavigate();
 
   return (
-    <>
-      <Picture>
-        <Header>
-          {selectedFriendsActivity[0].friend}
-          <ArrowbackButton onClick={() => navigate('/')}>
-            <img src={gobackicon} alt="go back" />
-          </ArrowbackButton>
-        </Header>
-        <Main>
-          <List
-            activitiesOfSelectedFriend={selectedFriendsActivity}
-            errorMessage={hasError}
-            onDeleteActivity={onDeleteActivity}
-          />
-        </Main>
-        <Navigation>
-          <NavLink to="/newactivity">
-            <img src={newicon} alt="new" />
-          </NavLink>
-        </Navigation>
-      </Picture>
-    </>
+    <Picture>
+      <Header>
+        {selectedFriendsActivity[0].friend}
+        <ArrowbackButton onClick={() => navigate('/')}>
+          <img src={gobackicon} alt="go back" />
+        </ArrowbackButton>
+      </Header>
+      <Main>
+        <List
+          activitiesOfSelectedFriend={selectedFriendsActivity}
+          errorMessage={hasError}
+          onDeleteActivity={onDeleteActivity}
+        />
+      </Main>
+      <Navigation>
+        <NavLink to="/newactivity">
+          <img src={newicon} alt="new" />
+        </NavLink>
+      </Navigation>
+    </Picture>
   );
 
   function onDeleteActivity(thisActivityId) {

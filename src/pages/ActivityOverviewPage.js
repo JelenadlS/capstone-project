@@ -18,72 +18,70 @@ export default function ActivityOverviewPage({ activities }) {
     activity => activity.activity === activityName
   );
   return (
-    <>
-      <Picture>
-        <Header>
-          {selectedActivity.activity}
-          <ArrowbackButton
-            onClick={() => navigate(`/${selectedActivity.friend}`)}
-          >
-            <img src={gobackicon} alt="go back" />
-          </ArrowbackButton>
-        </Header>
-        <Main>
-          <StyledParagraph>
-            <strong>{selectedActivity.activity}</strong>
-          </StyledParagraph>
-          <StyledParagraph>
-            <strong>with: </strong>
-            {selectedActivity.friend}
-          </StyledParagraph>
-          {selectedActivity.notes ? (
-            <div>
-              <StyledParagraph>
-                <strong>additional notes:</strong>
-              </StyledParagraph>
-              <StyledParagraph>{selectedActivity.notes}</StyledParagraph>
-            </div>
-          ) : (
-            <div />
-          )}
-          {selectedActivity.date ? (
+    <Picture>
+      <Header>
+        {selectedActivity.activity}
+        <ArrowbackButton
+          onClick={() => navigate(`/${selectedActivity.friend}`)}
+        >
+          <img src={gobackicon} alt="go back" />
+        </ArrowbackButton>
+      </Header>
+      <Main>
+        <StyledParagraph>
+          <strong>{selectedActivity.activity}</strong>
+        </StyledParagraph>
+        <StyledParagraph>
+          <strong>with: </strong>
+          {selectedActivity.friend}
+        </StyledParagraph>
+        {selectedActivity.notes ? (
+          <div>
             <StyledParagraph>
-              <strong>on the: </strong>
-              {selectedActivity.date}
+              <strong>additional notes:</strong>
             </StyledParagraph>
-          ) : (
-            <EmptyMessage>
-              <strong>date: </strong>
-              plan your activity soon!
-            </EmptyMessage>
-          )}
-          {selectedActivity.location ? (
-            <StyledParagraph>
-              <strong>at: </strong>
-              {selectedActivity.location}
-            </StyledParagraph>
-          ) : (
-            <EmptyMessage>
-              <strong>location: </strong>where do you have to go?
-            </EmptyMessage>
-          )}
-          <EditButton
-            onClick={() =>
-              navigate(
-                `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
-              )
-            }
-          >
-            <img src={editicon} alt="edit" />
-          </EditButton>
-        </Main>
-        <Navigation>
-          <Link to="/newactivity">
-            <img src={newicon} alt="new" />
-          </Link>
-        </Navigation>
-      </Picture>
-    </>
+            <StyledParagraph>{selectedActivity.notes}</StyledParagraph>
+          </div>
+        ) : (
+          <div />
+        )}
+        {selectedActivity.date ? (
+          <StyledParagraph>
+            <strong>on the: </strong>
+            {selectedActivity.date}
+          </StyledParagraph>
+        ) : (
+          <EmptyMessage>
+            <strong>date: </strong>
+            plan your activity soon!
+          </EmptyMessage>
+        )}
+        {selectedActivity.location ? (
+          <StyledParagraph>
+            <strong>at: </strong>
+            {selectedActivity.location}
+          </StyledParagraph>
+        ) : (
+          <EmptyMessage>
+            <strong>location: </strong>where do you have to go?
+          </EmptyMessage>
+        )}
+        <EditButton
+          onClick={() =>
+            navigate(
+              `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
+            )
+          }
+        >
+          <img src={editicon} alt="edit" />
+        </EditButton>
+      </Main>
+      <Navigation>
+        <Link to="/newactivity">
+          <img src={newicon} alt="new" />
+        </Link>
+      </Navigation>
+    </Picture>
   );
 }
 

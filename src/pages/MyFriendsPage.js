@@ -31,50 +31,48 @@ export default function MyFriendsPage({ activities }) {
   });
 
   return (
-    <>
-      <Picture>
-        <Header>my friends</Header>
-        <Main>
-          {activities.length > 0 ? (
-            <>
-              {activitiesWithoutFriend.length > 0 && (
-                <StyledLink to="/I still need to plan...">
-                  <NameStyling>
-                    Things I still need to plan with someone:
-                  </NameStyling>
-                  <NumStyling>#{activitiesWithoutFriend.length}</NumStyling>
-                </StyledLink>
-              )}
-              <ListStyle role="list" title="list of friends">
-                {sortedFriendsList.map((friend, index) => {
-                  const sumOfActivitiesEachFriend = activities.filter(
-                    activity => activity.friend === friend
-                  ).length;
-                  return (
-                    <li key={index}>
-                      <FriendCard
-                        friend={friend}
-                        sumOfActivitiesEachFriend={sumOfActivitiesEachFriend}
-                      />
-                    </li>
-                  );
-                })}
-              </ListStyle>
-            </>
-          ) : (
-            <EmptyList data-testid="emptylist">
-              Unfortunately you did not enter any activity yet. Start now and
-              fill your list with amazing activities!
-            </EmptyList>
-          )}
-        </Main>
-        <Navigation>
-          <Link to="newactivity">
-            <img src={newicon} alt="new" />
-          </Link>
-        </Navigation>
-      </Picture>
-    </>
+    <Picture>
+      <Header>my friends</Header>
+      <Main>
+        {activities.length > 0 ? (
+          <>
+            {activitiesWithoutFriend.length > 0 && (
+              <StyledLink to="/I still need to plan...">
+                <NameStyling>
+                  Things I still need to plan with someone:
+                </NameStyling>
+                <NumStyling>#{activitiesWithoutFriend.length}</NumStyling>
+              </StyledLink>
+            )}
+            <ListStyle role="list" title="list of friends">
+              {sortedFriendsList.map((friend, index) => {
+                const sumOfActivitiesEachFriend = activities.filter(
+                  activity => activity.friend === friend
+                ).length;
+                return (
+                  <li key={index}>
+                    <FriendCard
+                      friend={friend}
+                      sumOfActivitiesEachFriend={sumOfActivitiesEachFriend}
+                    />
+                  </li>
+                );
+              })}
+            </ListStyle>
+          </>
+        ) : (
+          <EmptyList data-testid="emptylist">
+            Unfortunately you did not enter any activity yet. Start now and fill
+            your list with amazing activities!
+          </EmptyList>
+        )}
+      </Main>
+      <Navigation>
+        <Link to="newactivity">
+          <img src={newicon} alt="new" />
+        </Link>
+      </Navigation>
+    </Picture>
   );
 }
 

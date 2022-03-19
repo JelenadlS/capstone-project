@@ -12,24 +12,22 @@ import gobackicon from '../images/goback.svg';
 export default function NewActivityPage({ onAddActivity }) {
   const navigate = useNavigate();
   return (
-    <>
-      <Picture>
-        <Header>
-          new activity
-          <ArrowbackButton onClick={() => navigate(-1)}>
-            <img src={gobackicon} alt="go back" />
-          </ArrowbackButton>
-        </Header>
-        <Main>
-          <Form
-            title="add activities"
-            buttonName={'Add'}
-            preloadedValues={null}
-            handleActivity={onAddActivity}
-          />
-        </Main>
-        <Navigation />
-      </Picture>
-    </>
+    <Picture>
+      <Header>
+        new activity
+        <ArrowbackButton onClick={() => navigate(-1)}>
+          <img src={gobackicon} alt="go back" />
+        </ArrowbackButton>
+      </Header>
+      <Main>
+        <Form
+          title="add activities"
+          buttonName={'Add'}
+          preloadedValues={null}
+          handleActivity={onAddActivity}
+        />
+      </Main>
+      <Navigation />
+    </Picture>
   );
 }

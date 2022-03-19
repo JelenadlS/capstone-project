@@ -3,16 +3,14 @@ import styled from 'styled-components';
 
 export default function FriendCard({ friend, sumOfActivitiesEachFriend }) {
   return (
-    <>
-      <WrapperCard>
-        <LinkStyling to={`/${friend}`}>
-          <NameStyling>
-            <strong>{friend}</strong>
-          </NameStyling>
-          <NumStyling>#{sumOfActivitiesEachFriend}</NumStyling>
-        </LinkStyling>
-      </WrapperCard>
-    </>
+    <WrapperCard>
+      <LinkStyling to={`/${friend}`}>
+        <NameStyling>
+          <strong>{friend}</strong>
+        </NameStyling>
+        <NumStyling>#{sumOfActivitiesEachFriend}</NumStyling>
+      </LinkStyling>
+    </WrapperCard>
   );
 }
 
