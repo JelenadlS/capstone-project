@@ -62,7 +62,7 @@ export default function MyFriendsPage({ activities }) {
             </>
           ) : (
             <EmptyList data-testid="emptylist">
-              unfortunately you did not enter any activity yet. Start now and
+              Unfortunately you did not enter any activity yet. Start now and
               fill your list with amazing activities!
             </EmptyList>
           )}
