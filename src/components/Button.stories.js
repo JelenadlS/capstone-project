@@ -1,9 +1,10 @@
 import Button from './Button.js';
 import { IconButton } from './Button.js';
+
 import deleteicon from '../images/binicon.svg';
+import editicon from '../images/edit.svg';
 import gobackicon from '../images/goback.svg';
 import newicon from '../images/new.svg';
-import editicon from '../images/edit.svg';
 
 export default {
   title: 'Component/Button',

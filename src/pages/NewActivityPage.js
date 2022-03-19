@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import gobackicon from '../images/goback.svg';
+
+import { ArrowbackButton } from '../components/Button';
 import Form from '../components/Form';
 import Header from '../components/Header';
+import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
-import Main from '../components/Main';
-import { ArrowbackButton } from '../components/Button';
+
+import gobackicon from '../images/goback.svg';
 
 export default function NewActivityPage({ onAddActivity }) {
   const navigate = useNavigate();

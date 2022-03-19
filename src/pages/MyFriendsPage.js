@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Header from '../components/Header';
 import FriendCard from '../components/FriendCard';
-import Navigation from '../components/Navigation';
-import newicon from '../images/new.svg';
-import Picture from '../components/Picture';
+import Header from '../components/Header';
 import Main from '../components/Main';
+import Navigation from '../components/Navigation';
+import Picture from '../components/Picture';
+
+import newicon from '../images/new.svg';
 
 export default function MyFriendsPage({ activities }) {
   const activitiesWithFriendsName = activities.filter(

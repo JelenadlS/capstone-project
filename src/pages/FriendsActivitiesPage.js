@@ -1,12 +1,14 @@
 import { NavLink, useParams, useNavigate } from 'react-router-dom';
-import List from '../components/List';
+
+import { ArrowbackButton } from '../components/Button';
 import Header from '../components/Header';
-import newicon from '../images/new.svg';
-import gobackicon from '../images/goback.svg';
+import List from '../components/List';
+import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
-import Main from '../components/Main';
-import { ArrowbackButton } from '../components/Button';
+
+import gobackicon from '../images/goback.svg';
+import newicon from '../images/new.svg';
 
 export default function FriendsActivitiesPage({
   hasError,

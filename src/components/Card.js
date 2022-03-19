@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { DeleteButton } from './Button.js';
-import deleteicon from '../images/binicon.svg';
-import DeleteModal from './DeleteModal.js';
 import styled from 'styled-components';
+
+import { DeleteButton } from './Button.js';
+import DeleteModal from './DeleteModal.js';
+
+import deleteicon from '../images/binicon.svg';
 
 export default function Card({
   activity,

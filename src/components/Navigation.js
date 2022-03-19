@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { MainNavButton } from './Button';
 
 export default function Navigation({ children }) {

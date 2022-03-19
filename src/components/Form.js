@@ -1,11 +1,13 @@
+import { nanoid } from 'nanoid';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
-import { useEffect } from 'react';
-
-import { nanoid } from 'nanoid';
 import styled from 'styled-components';
+
 import { MainNavButton } from './Button';
+
 import saveicon from '../images/save.svg';
+
 export default function Form({
   handleActivity,
   preloadedValues,

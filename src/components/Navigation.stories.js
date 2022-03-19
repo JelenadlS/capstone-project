@@ -1,4 +1,5 @@
 import Navigation from './Navigation.js';
+
 import newicon from '../images/new.svg';
 
 export default {

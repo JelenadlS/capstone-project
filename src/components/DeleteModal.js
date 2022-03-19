@@ -1,5 +1,6 @@
-import { ModalButton } from './Button.js';
 import styled from 'styled-components';
+
+import { ModalButton } from './Button.js';
 
 export default function DeleteModal(props) {
   if (!props.show) {

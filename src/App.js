@@ -1,6 +1,6 @@
+import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
