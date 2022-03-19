@@ -42,6 +42,5 @@ const ListStyle = styled.ul`
 
   li {
     padding: 5px;
-    background-color: transparent;
   }
 `;

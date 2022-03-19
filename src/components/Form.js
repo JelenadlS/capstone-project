@@ -41,7 +41,7 @@ export default function Form({
         date: data.date,
         location: data.location,
       });
-      navigate(-1);
+      navigate(`/${preloadedValues.friend}/${data.activity}/`);
     } else {
       const id = nanoid();
       handleActivity({
@@ -213,7 +213,7 @@ const StyledDate = styled.input`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
-const ErrorMessage = styled.span`
+const ErrorMessage = styled.p`
   font-size: 12px;
-  color: red;
+  color: rgba(210, 129, 53, 1);
 `;

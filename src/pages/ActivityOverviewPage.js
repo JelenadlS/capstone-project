@@ -76,7 +76,7 @@ export default function ActivityOverviewPage({ activities }) {
           </EditButton>
         </Main>
         <Navigation>
-          <Link to="newactivity">
+          <Link to="/newactivity">
             <img src={newicon} alt="new" />
           </Link>
         </Navigation>
@@ -90,7 +90,7 @@ const StyledParagraph = styled.p`
   font-size: 25px;
   word-break: break-word;
 `;
-const EmptyMessage = styled.div`
+const EmptyMessage = styled.p`
   font-size: 16px;
   margin: 15px;
 `;
