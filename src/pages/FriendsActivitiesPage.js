@@ -7,6 +7,7 @@ import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
 import Footer from '../components/Footer';
 import Picture from '../components/Picture';
+import Main from '../components/Main';
 
 export default function FriendsActivitiesPage({
   hasError,
@@ -70,8 +71,4 @@ const ArrowbackButton = styled.button`
   position: fixed;
   top: 5px;
   left: 2px;
-`;
-
-const Main = styled.main`
-  overflow-y: auto;
 `;

@@ -5,6 +5,7 @@ import editicon from '../images/edit.svg';
 import styled from 'styled-components';
 import Footer from '../components/Footer';
 import Picture from '../components/Picture';
+import Main from '../components/Main';
 
 export default function ActivityOverviewPage({ activities }) {
   const navigate = useNavigate();
@@ -23,29 +24,29 @@ export default function ActivityOverviewPage({ activities }) {
             <img src={gobackicon} alt="go back" />
           </ArrowbackButton>
         </Header>
-        <WrapperCard>
-          <p>
+        <Main>
+          <StyledParagraph>
             <strong>{selectedActivity.activity}</strong>
-          </p>
-          <p>
+          </StyledParagraph>
+          <StyledParagraph>
             <strong>with: </strong>
             {selectedActivity.friend}
-          </p>
+          </StyledParagraph>
           {selectedActivity.notes ? (
             <div>
-              <p>
+              <StyledParagraph>
                 <strong>additional notes:</strong>
-              </p>
-              <p>{selectedActivity.notes}</p>
+              </StyledParagraph>
+              <StyledParagraph>{selectedActivity.notes}</StyledParagraph>
             </div>
           ) : (
             <div />
           )}
           {selectedActivity.date ? (
-            <p>
+            <StyledParagraph>
               <strong>on the: </strong>
               {selectedActivity.date}
-            </p>
+            </StyledParagraph>
           ) : (
             <EmptyMessage>
               <strong>date: </strong>
@@ -53,10 +54,10 @@ export default function ActivityOverviewPage({ activities }) {
             </EmptyMessage>
           )}
           {selectedActivity.location ? (
-            <p>
+            <StyledParagraph>
               <strong>at: </strong>
               {selectedActivity.location}
-            </p>
+            </StyledParagraph>
           ) : (
             <EmptyMessage>
               <strong>location: </strong>where do you have to go?
@@ -72,9 +73,9 @@ export default function ActivityOverviewPage({ activities }) {
           >
             <img src={editicon} alt="edit" />
           </EditButton>
-        </WrapperCard>
+        </Main>
+        <Footer />
       </Picture>
-      <Footer />
     </>
   );
 }
@@ -87,17 +88,14 @@ const ArrowbackButton = styled.button`
   left: 2px;
 `;
 
-const WrapperCard = styled.main`
-  margin: 20px;
+const StyledParagraph = styled.p`
+  margin: 15px;
   font-size: 25px;
-  display: grid;
-  grid-template-rows: repeat(2, auto);
-  gap: 15px;
   word-break: break-word;
 `;
-
 const EmptyMessage = styled.div`
   font-size: 16px;
+  margin: 15px;
 `;
 
 const EditButton = styled.button`

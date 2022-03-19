@@ -7,6 +7,7 @@ import FriendCard from '../components/FriendCard';
 import Footer from '../components/Footer';
 import newicon from '../images/new.svg';
 import Picture from '../components/Picture';
+import Main from '../components/Main';
 
 export default function MyFriendsPage({ activities }) {
   const activitiesWithFriendsName = activities.filter(
@@ -81,10 +82,6 @@ export default function MyFriendsPage({ activities }) {
     </>
   );
 }
-
-const Main = styled.main`
-  overflow-y: auto;
-`;
 
 const StyledLink = styled(Link)`
   color: rgba(71, 39, 35, 0.72);

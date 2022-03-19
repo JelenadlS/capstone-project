@@ -92,6 +92,6 @@ export default function App() {
   }
 }
 
-const WrapperApp = styled.span`
+const WrapperApp = styled.div`
   height: 100vh;
 `;
