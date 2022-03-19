@@ -6,6 +6,7 @@ import newicon from '../images/new.svg';
 import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
 import Footer from '../components/Footer';
+import Picture from '../components/Picture';
 
 export default function FriendsActivitiesPage({
   hasError,
@@ -20,29 +21,31 @@ export default function FriendsActivitiesPage({
 
   return (
     <>
-      <Header>
-        {selectedFriendsActivity[0].friend}
-        <ArrowbackButton onClick={() => navigate('/')}>
-          <img src={gobackicon} alt="go back" />
-        </ArrowbackButton>
-      </Header>
-      <Main>
-        <List
-          activitiesOfSelectedFriend={selectedFriendsActivity}
-          errorMessage={hasError}
-          onDeleteActivity={onDeleteActivity}
-        />
-      </Main>
-      <Footer>
-        <NavLink to="/newactivity">
-          <Button
-            borderRadius="40%"
-            boxShadow="0px 0px 20px rgba(0, 0, 0, 0.15)"
-          >
-            <img src={newicon} alt="new" />
-          </Button>
-        </NavLink>
-      </Footer>
+      <Picture>
+        <Header>
+          {selectedFriendsActivity[0].friend}
+          <ArrowbackButton onClick={() => navigate('/')}>
+            <img src={gobackicon} alt="go back" />
+          </ArrowbackButton>
+        </Header>
+        <Main>
+          <List
+            activitiesOfSelectedFriend={selectedFriendsActivity}
+            errorMessage={hasError}
+            onDeleteActivity={onDeleteActivity}
+          />
+        </Main>
+        <Footer>
+          <NavLink to="/newactivity">
+            <Button
+              borderRadius="40%"
+              boxShadow="0px 0px 20px rgba(0, 0, 0, 0.15)"
+            >
+              <img src={newicon} alt="new" />
+            </Button>
+          </NavLink>
+        </Footer>
+      </Picture>
     </>
   );
 
@@ -64,7 +67,6 @@ export default function FriendsActivitiesPage({
 //-----------------------------------------------------------------------
 const ArrowbackButton = styled.button`
   border: none;
-  background: transparent;
   position: fixed;
   top: 5px;
   left: 2px;

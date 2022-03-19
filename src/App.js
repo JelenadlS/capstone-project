@@ -6,8 +6,6 @@ import styled from 'styled-components';
 
 import ErrorFallback from './components/ErrorFallBack';
 
-import backgroundpicture from './images/background.svg';
-
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
 import EditActivityPage from './pages/EditActivityPage.js';
 import FriendsActivitiesPage from './pages/FriendsActivitiesPage.js';
@@ -28,41 +26,36 @@ export default function App() {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>
-        <Picture>
-          <Routes>
-            <Route
-              path="/"
-              element={<MyFriendsPage activities={activities} />}
-            />
-            <Route
-              path="/:friendsName"
-              element={
-                <FriendsActivitiesPage
-                  activities={activities}
-                  hasError={hasError}
-                  setActivities={setActivities}
-                />
-              }
-            />
-            <Route
-              path="/:friendsName/:activityName"
-              element={<ActivityOverviewPage activities={activities} />}
-            />
-            <Route
-              path="/:friendsName/:activityName/:id/editactivity"
-              element={
-                <EditActivityPage
-                  activities={activities}
-                  onEditActivity={onEditActivity}
-                />
-              }
-            />
-            <Route
-              path="/newactivity"
-              element={<NewActivityPage onAddActivity={onAddActivity} />}
-            />
-          </Routes>
-        </Picture>
+        <Routes>
+          <Route path="/" element={<MyFriendsPage activities={activities} />} />
+          <Route
+            path="/:friendsName"
+            element={
+              <FriendsActivitiesPage
+                activities={activities}
+                hasError={hasError}
+                setActivities={setActivities}
+              />
+            }
+          />
+          <Route
+            path="/:friendsName/:activityName"
+            element={<ActivityOverviewPage activities={activities} />}
+          />
+          <Route
+            path="/:friendsName/:activityName/:id/editactivity"
+            element={
+              <EditActivityPage
+                activities={activities}
+                onEditActivity={onEditActivity}
+              />
+            }
+          />
+          <Route
+            path="/newactivity"
+            element={<NewActivityPage onAddActivity={onAddActivity} />}
+          />
+        </Routes>
       </WrapperApp>
     </ErrorBoundary>
   );
@@ -99,11 +92,6 @@ export default function App() {
   }
 }
 
-const WrapperApp = styled.div`
+const WrapperApp = styled.span`
   height: 100vh;
-`;
-
-const Picture = styled.div`
-  background-image: url(${backgroundpicture});
-  background-size: cover;
 `;

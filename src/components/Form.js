@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import Button from './Button';
 import { nanoid } from 'nanoid';
 import styled from 'styled-components';
-import backgroundpicture from '../images/background.svg';
 
 export default function Form({
   handleActivity,
@@ -188,8 +187,6 @@ const WrapperForm = styled.form`
   display: grid;
   grid-template-rows: repeat(5, auto) 40px;
   padding: 20px;
-  background-image: url(${backgroundpicture});
-
   label {
     padding: 0px 10px;
   }

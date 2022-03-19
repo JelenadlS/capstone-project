@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import gobackicon from '../images/goback.svg';
 import styled from 'styled-components';
 import Footer from '../components/Footer';
+import Picture from '../components/Picture';
 
 export default function EditActivityPage({ activities, onEditActivity }) {
   const navigate = useNavigate();
@@ -12,27 +13,29 @@ export default function EditActivityPage({ activities, onEditActivity }) {
 
   return (
     <>
-      <Header>
-        Edit activity
-        <Arrowback
-          width="40px"
-          height="40px"
-          onClick={() =>
-            navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`)
-          }
-        >
-          <img src={gobackicon} alt="go back" />
-        </Arrowback>
-      </Header>
+      <Picture>
+        <Header>
+          Edit activity
+          <Arrowback
+            width="40px"
+            height="40px"
+            onClick={() =>
+              navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`)
+            }
+          >
+            <img src={gobackicon} alt="go back" />
+          </Arrowback>
+        </Header>
 
-      <Form
-        title="edit activity"
-        preloadedValues={activityToEdit}
-        handleActivity={onEditActivity}
-        buttonName="save"
-      />
+        <Form
+          title="edit activity"
+          preloadedValues={activityToEdit}
+          handleActivity={onEditActivity}
+          buttonName="save"
+        />
 
-      <Footer />
+        <Footer />
+      </Picture>
     </>
   );
 }

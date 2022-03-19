@@ -4,26 +4,30 @@ import Form from '../components/Form';
 import Header from '../components/Header';
 import styled from 'styled-components';
 import Footer from '../components/Footer';
+import Picture from '../components/Picture';
 
 export default function NewActivityPage({ onAddActivity }) {
   const navigate = useNavigate();
   return (
     <>
-      <Header>
-        new activity
-        <Arrowback onClick={() => navigate(-1)}>
-          <img src={gobackicon} alt="go back" />
-        </Arrowback>
-      </Header>
+      {' '}
+      <Picture>
+        <Header>
+          new activity
+          <Arrowback onClick={() => navigate(-1)}>
+            <img src={gobackicon} alt="go back" />
+          </Arrowback>
+        </Header>
 
-      <Form
-        title="add activities"
-        buttonName={'Add'}
-        preloadedValues={null}
-        handleActivity={onAddActivity}
-      />
+        <Form
+          title="add activities"
+          buttonName={'Add'}
+          preloadedValues={null}
+          handleActivity={onAddActivity}
+        />
 
-      <Footer />
+        <Footer />
+      </Picture>
     </>
   );
 }
