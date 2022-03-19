@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-import Card from './Card';
+import ActivityCard from './ActivityCard';
 
 export default function List({
   activitiesOfSelectedFriend,
@@ -19,7 +19,7 @@ export default function List({
       <ListStyle role="list" title="list of activities">
         {activitiesOfSelectedFriend.map(activity => (
           <li key={activity.id}>
-            <Card
+            <ActivityCard
               onDeleteActivity={() => onDeleteActivity(activity.id)}
               activity={activity.activity}
               id={activity.id}

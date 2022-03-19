@@ -7,7 +7,7 @@ import DeleteModal from './DeleteModal.js';
 
 import deleteicon from '../images/binicon.svg';
 
-export default function Card({
+export default function ActivityCard({
   activity,
   errorMessage,
   onDeleteActivity,
@@ -48,7 +48,7 @@ const WrapperCard = styled.section`
 `;
 
 const LinkStyling = styled(Link)`
-  padding: 8px 8px 0;
+  padding: 8px 8px 5px;
   font-size: 18px;
   color: rgba(71, 39, 35, 0.72);
   background-color: transparent;

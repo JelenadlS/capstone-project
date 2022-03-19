@@ -2,13 +2,13 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Card from './Card.js';
+import ActivityCard from './ActivityCard.js';
 
 describe('Card', () => {
   it('renders card with activity including link and delete button', () => {
     render(
       <MemoryRouter>
-        <Card activity="Frau Möller" />
+        <ActivityCard activity="Frau Möller" />
       </MemoryRouter>
     );
 
@@ -25,7 +25,7 @@ describe('Card', () => {
     const showCallback = jest.fn();
     render(
       <MemoryRouter>
-        <Card onClick={showCallback} />
+        <ActivityCard onClick={showCallback} />
       </MemoryRouter>
     );
 
@@ -39,7 +39,7 @@ describe('Card', () => {
     const deleteCallback = jest.fn();
     render(
       <MemoryRouter>
-        <Card onDeleteActivity={deleteCallback} />
+        <ActivityCard onDeleteActivity={deleteCallback} />
       </MemoryRouter>
     );
 
@@ -57,7 +57,7 @@ describe('Card', () => {
   it('when clicking the keep activity button, the delete button cannot be found as DeleteModal is closing', () => {
     render(
       <MemoryRouter>
-        <Card />
+        <ActivityCard />
       </MemoryRouter>
     );
 
