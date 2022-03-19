@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Button from '../components/Button';
 import Header from '../components/Header';
 import FriendCard from '../components/FriendCard';
-import Footer from '../components/Footer';
+import Navigation from '../components/Navigation';
 import newicon from '../images/new.svg';
 import Picture from '../components/Picture';
 import Main from '../components/Main';
@@ -68,16 +67,11 @@ export default function MyFriendsPage({ activities }) {
             </EmptyList>
           )}
         </Main>
-        <Footer>
+        <Navigation>
           <Link to="newactivity">
-            <Button
-              borderRadius="40%"
-              boxShadow="0px 0px 20px rgba(0, 0, 0, 0.15)"
-            >
-              <img src={newicon} alt="new" />
-            </Button>
+            <img src={newicon} alt="new" />
           </Link>
-        </Footer>
+        </Navigation>
       </Picture>
     </>
   );

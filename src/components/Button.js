@@ -6,21 +6,36 @@ const Button = styled.button`
 
 export default Button;
 
-export const CallToActionButton = styled(Button)`
+const MainNavButton = styled(Button)`
   background: #92dec5;
-  color: rgba(71, 39, 35, 0.72);
-  font-size: 18px;
-  box-shadow: none;
-  border-radius: 60px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 40px;
   padding: 10px;
-  justify-self: stretch;
   width: 75px;
-  margin: 0px;
   height: 60px;
   position: fixed;
   bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
   z-index: 0;
 `;
+
+export { MainNavButton };
+
+// background: #92dec5;
+// color: rgba(71, 39, 35, 0.72);
+// font-size: 18px;
+// box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+// border-radius: 40px;
+// padding: 10px;
+// justify-self: stretch;
+// width: 75px;
+// margin: 0px;
+// height: 60px;
+// position: fixed;
+// bottom: 0;
+// z-index: 0;
+
 const ArrowbackButton = styled(Button)`
   background: transparent;
   position: fixed;

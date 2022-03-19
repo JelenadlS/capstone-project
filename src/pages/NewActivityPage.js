@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import gobackicon from '../images/goback.svg';
 import Form from '../components/Form';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Footer from '../components/Navigation';
 import Picture from '../components/Picture';
 import Main from '../components/Main';
 import { ArrowbackButton } from '../components/Button';

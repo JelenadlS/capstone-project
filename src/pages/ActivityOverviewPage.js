@@ -1,9 +1,10 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import gobackicon from '../images/goback.svg';
 import editicon from '../images/edit.svg';
 import styled from 'styled-components';
-import Footer from '../components/Footer';
+import Navigation from '../components/Navigation';
+import newicon from '../images/new.svg';
 import Picture from '../components/Picture';
 import Main from '../components/Main';
 import { ArrowbackButton, EditButton } from '../components/Button';
@@ -75,7 +76,11 @@ export default function ActivityOverviewPage({ activities }) {
             <img src={editicon} alt="edit" />
           </EditButton>
         </Main>
-        <Footer />
+        <Navigation>
+          <Link to="newactivity">
+            <img src={newicon} alt="new" />
+          </Link>
+        </Navigation>
       </Picture>
     </>
   );

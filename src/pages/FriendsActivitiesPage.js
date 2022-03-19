@@ -1,11 +1,9 @@
 import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import List from '../components/List';
-import Button from '../components/Button';
 import Header from '../components/Header';
 import newicon from '../images/new.svg';
 import gobackicon from '../images/goback.svg';
-
-import Footer from '../components/Footer';
+import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 import Main from '../components/Main';
 import { ArrowbackButton } from '../components/Button';
@@ -37,16 +35,11 @@ export default function FriendsActivitiesPage({
             onDeleteActivity={onDeleteActivity}
           />
         </Main>
-        <Footer>
+        <Navigation>
           <NavLink to="/newactivity">
-            <Button
-              borderRadius="40%"
-              boxShadow="0px 0px 20px rgba(0, 0, 0, 0.15)"
-            >
-              <img src={newicon} alt="new" />
-            </Button>
+            <img src={newicon} alt="new" />
           </NavLink>
-        </Footer>
+        </Navigation>
       </Picture>
     </>
   );
