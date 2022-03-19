@@ -20,12 +20,7 @@ export default function NewActivityPage({ onAddActivity }) {
         </ArrowbackButton>
       </Header>
       <Main>
-        <Form
-          title="add activities"
-          buttonName={'Add'}
-          preloadedValues={null}
-          handleActivity={onAddActivity}
-        />
+        <Form preloadedValues={null} handleActivity={onAddActivity} />
       </Main>
       <Navigation />
     </Picture>

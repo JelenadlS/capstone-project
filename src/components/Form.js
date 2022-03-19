@@ -8,12 +8,7 @@ import { MainNavButton } from './Button';
 
 import saveicon from '../images/save.svg';
 
-export default function Form({
-  handleActivity,
-  preloadedValues,
-  buttonName,
-  title,
-}) {
+export default function Form({ handleActivity, preloadedValues, title }) {
   const navigate = useNavigate();
   const {
     register,

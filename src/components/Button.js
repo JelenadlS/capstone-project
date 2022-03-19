@@ -46,7 +46,7 @@ const EditButton = styled(Button)`
   background: transparent;
   position: fixed;
   right: 2px;
-  top: 60px;
+  top: 90px;
 `;
 export { EditButton };
 

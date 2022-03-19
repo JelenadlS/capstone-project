@@ -86,7 +86,7 @@ export default function ActivityOverviewPage({ activities }) {
 }
 
 const StyledParagraph = styled.p`
-  margin: 15px;
+  margin: 25px 15px;
   font-size: 25px;
   word-break: break-word;
 `;

@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import ActivityOverviewPage from './ActivityOverviewPage';
 
 describe('ActivityOverviewPage', () => {
-  it('renders page with a back and edit button, as well as a message to the user if there is no input', () => {
+  it('renders page with a back, new and edit button, as well as a message to the user if there is no input', () => {
     const selectedActivity = [
       {
         activities: {
@@ -38,7 +38,7 @@ describe('ActivityOverviewPage', () => {
     const dateEmpty = screen.getByText('plan your activity soon!');
     const locationEmpty = screen.getByText('where do you have to go?');
 
-    expect(buttons).toHaveLength(2);
+    expect(buttons).toHaveLength(3);
     expect(header).toBeInTheDocument();
     expect(dateEmpty).toBeInTheDocument();
     expect(locationEmpty).toBeInTheDocument();
