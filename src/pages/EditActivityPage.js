@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Footer from '../components/Footer';
 import Picture from '../components/Picture';
 import Main from '../components/Main';
+import { ArrowbackButton } from '../components/Button';
 
 export default function EditActivityPage({ activities, onEditActivity }) {
   const navigate = useNavigate();
@@ -17,15 +18,13 @@ export default function EditActivityPage({ activities, onEditActivity }) {
       <Picture>
         <Header>
           Edit activity
-          <Arrowback
-            width="40px"
-            height="40px"
+          <ArrowbackButton
             onClick={() =>
               navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`)
             }
           >
             <img src={gobackicon} alt="go back" />
-          </Arrowback>
+          </ArrowbackButton>
         </Header>
         <Main>
           <Form
@@ -40,11 +39,3 @@ export default function EditActivityPage({ activities, onEditActivity }) {
     </>
   );
 }
-
-const Arrowback = styled.button`
-  border: none;
-  background: transparent;
-  position: fixed;
-  top: 5px;
-  left: 2px;
-`;

@@ -21,6 +21,13 @@ export const CallToActionButton = styled(Button)`
   bottom: 0;
   z-index: 0;
 `;
+const ArrowbackButton = styled(Button)`
+  background: transparent;
+  position: fixed;
+  top: 5px;
+  left: 2px;
+`;
+export { ArrowbackButton };
 
 const IconButton = styled(Button)`
   background: transparent;

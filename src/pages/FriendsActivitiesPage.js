@@ -4,10 +4,11 @@ import Button from '../components/Button';
 import Header from '../components/Header';
 import newicon from '../images/new.svg';
 import gobackicon from '../images/goback.svg';
-import styled from 'styled-components';
+
 import Footer from '../components/Footer';
 import Picture from '../components/Picture';
 import Main from '../components/Main';
+import { ArrowbackButton } from '../components/Button';
 
 export default function FriendsActivitiesPage({
   hasError,
@@ -64,11 +65,3 @@ export default function FriendsActivitiesPage({
     }
   }
 }
-
-//-----------------------------------------------------------------------
-const ArrowbackButton = styled.button`
-  border: none;
-  position: fixed;
-  top: 5px;
-  left: 2px;
-`;

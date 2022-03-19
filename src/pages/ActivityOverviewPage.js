@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Footer from '../components/Footer';
 import Picture from '../components/Picture';
 import Main from '../components/Main';
+import { ArrowbackButton } from '../components/Button';
 
 export default function ActivityOverviewPage({ activities }) {
   const navigate = useNavigate();
@@ -79,14 +80,6 @@ export default function ActivityOverviewPage({ activities }) {
     </>
   );
 }
-
-const ArrowbackButton = styled.button`
-  border: none;
-  background: transparent;
-  position: fixed;
-  top: 5px;
-  left: 2px;
-`;
 
 const StyledParagraph = styled.p`
   margin: 15px;
