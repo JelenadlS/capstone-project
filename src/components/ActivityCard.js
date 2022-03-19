@@ -39,7 +39,7 @@ export default function ActivityCard({
 }
 
 const WrapperCard = styled.section`
-  border-bottom: 0.5px solid var(--darkBrown);
+  border-bottom: 0.5px solid rgba(71, 39, 35, 0.72);
   display: grid;
   grid-template-columns: auto auto;
   align-items: center;
@@ -49,7 +49,7 @@ const WrapperCard = styled.section`
 const LinkStyling = styled(Link)`
   padding: 8px 8px 5px;
   font-size: 18px;
-  color: var(--darkBrown);
+  color: rgba(71, 39, 35, 0.72);
   background-color: transparent;
   text-decoration: none;
   overflow: hidden;
