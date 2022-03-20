@@ -1,7 +1,7 @@
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ArrowbackButton, EditButton } from '../components/Button';
+import { ArrowBackButton, EditButton } from '../components/Button';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
@@ -21,11 +21,11 @@ export default function ActivityOverviewPage({ activities }) {
     <Picture>
       <Header>
         {selectedActivity.activity}
-        <ArrowbackButton
+        <ArrowBackButton
           onClick={() => navigate(`/${selectedActivity.friend}`)}
         >
           <img src={goBackIcon} alt="go back" />
-        </ArrowbackButton>
+        </ArrowBackButton>
       </Header>
       <Main>
         <StyledParagraph>

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { ArrowbackButton } from '../components/Button';
+import { ArrowBackButton } from '../components/Button';
 import Form from '../components/Form';
 import Header from '../components/Header';
 import Main from '../components/Main';
@@ -14,9 +14,9 @@ export default function NewActivityPage({ onAddActivity }) {
     <Picture>
       <Header>
         new activity
-        <ArrowbackButton onClick={() => navigate(-1)}>
+        <ArrowBackButton onClick={() => navigate(-1)}>
           <img src={goBackIcon} alt="go back" />
-        </ArrowbackButton>
+        </ArrowBackButton>
       </Header>
       <Main>
         <Form preloadedValues={null} handleActivity={onAddActivity} />

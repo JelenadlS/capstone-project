@@ -1,6 +1,6 @@
 import { NavLink, useParams, useNavigate } from 'react-router-dom';
 
-import { ArrowbackButton } from '../components/Button';
+import { ArrowBackButton } from '../components/Button';
 import Header from '../components/Header';
 import List from '../components/List';
 import Main from '../components/Main';
@@ -25,9 +25,9 @@ export default function FriendsActivitiesPage({
     <Picture>
       <Header>
         {selectedFriendsActivity[0].friend}
-        <ArrowbackButton onClick={() => navigate('/')}>
+        <ArrowBackButton onClick={() => navigate('/')}>
           <img src={goBackIcon} alt="go back" />
-        </ArrowbackButton>
+        </ArrowBackButton>
       </Header>
       <Main>
         <List

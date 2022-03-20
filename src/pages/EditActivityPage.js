@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { ArrowbackButton } from '../components/Button';
+import { ArrowBackButton } from '../components/Button';
 import Form from '../components/Form';
 import Header from '../components/Header';
 import Main from '../components/Main';
@@ -17,13 +17,13 @@ export default function EditActivityPage({ activities, onEditActivity }) {
     <Picture>
       <Header>
         Edit activity
-        <ArrowbackButton
+        <ArrowBackButton
           onClick={() =>
             navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`)
           }
         >
           <img src={goBackIcon} alt="go back" />
-        </ArrowbackButton>
+        </ArrowBackButton>
       </Header>
       <Main>
         <Form

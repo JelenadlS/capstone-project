@@ -34,13 +34,13 @@ const ModalButton = styled(Button)`
 
 export { ModalButton };
 
-const ArrowbackButton = styled(Button)`
+const ArrowBackButton = styled(Button)`
   background: transparent;
   position: fixed;
   top: 5px;
   left: 2px;
 `;
-export { ArrowbackButton };
+export { ArrowBackButton };
 
 const EditButton = styled(Button)`
   background: transparent;

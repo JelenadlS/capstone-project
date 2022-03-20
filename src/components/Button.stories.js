@@ -1,4 +1,4 @@
-import { ArrowbackButton } from './Button.js';
+import { ArrowBackButton } from './Button.js';
 import Button from './Button.js';
 import { DeleteButton } from './Button.js';
 import { EditButton } from './Button.js';
@@ -14,7 +14,7 @@ import saveIcon from '../images/saveIcon.svg';
 export default {
   title: 'Component/Button',
   component: Button,
-  subcomponents: { ArrowbackButton, MainNavButton, ModalButton },
+  subcomponents: { ArrowBackButton, MainNavButton, ModalButton },
 };
 
 export const Empty = args => <Button {...args} />;
@@ -39,10 +39,10 @@ export const ModalKeep = args => (
   <ModalButton {...args}>no, I want to keep it</ModalButton>
 );
 
-export const Arrowback = args => (
-  <ArrowbackButton {...args}>
+export const ArrowBack = args => (
+  <ArrowBackButton {...args}>
     <img src={goBackIcon} alt="goback" />
-  </ArrowbackButton>
+  </ArrowBackButton>
 );
 
 export const Edit = args => (
