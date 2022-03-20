@@ -38,7 +38,7 @@ export default function Form({ handleActivity, preloadedValues, title }) {
         date: data.date,
         location: data.location,
       });
-      navigate(`/${preloadedValues.friend}/${data.activity}/`);
+      navigate(`/${data.friend}/${data.activity}/`);
     } else {
       const id = nanoid();
       handleActivity({
