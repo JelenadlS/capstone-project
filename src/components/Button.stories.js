@@ -1,67 +1,58 @@
+import { ArrowbackButton } from './Button.js';
 import Button from './Button.js';
-import { IconButton } from './Button.js';
+import { DeleteButton } from './Button.js';
+import { EditButton } from './Button.js';
+import { MainNavButton } from './Button.js';
+import { ModalButton } from './Button.js';
 
 import deleteicon from '../images/binicon.svg';
 import editicon from '../images/edit.svg';
 import gobackicon from '../images/goback.svg';
 import newicon from '../images/new.svg';
+import saveicon from '../images/save.svg';
 
 export default {
   title: 'Component/Button',
   component: Button,
+  subcomponents: { ArrowbackButton, MainNavButton, ModalButton },
 };
 
-const Template = args => <Button {...args} />;
+export const Empty = args => <Button {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
-  children: 'Add',
-  width: '100%',
-  height: 'fit-content',
-};
+export const MainNavPlus = args => (
+  <MainNavButton {...args}>
+    <img src={newicon} alt="new" />
+  </MainNavButton>
+);
 
-export const Delete = Template.bind({ IconButton });
-Delete.args = {
-  children: <img src={deleteicon} alt="delete" />,
-};
+export const MainNavSave = args => (
+  <MainNavButton {...args}>
+    <img src={saveicon} alt="save" />
+  </MainNavButton>
+);
 
-export const Yes = Template.bind();
-Yes.args = {
-  children: 'please delete',
-  fontSize: '14px',
-  width: 'fit-content',
-  height: 'fit-content',
-};
+export const ModalDelete = args => (
+  <ModalButton {...args}>please delete</ModalButton>
+);
 
-export const No = Template.bind();
-No.args = {
-  children: 'no, I want to keep it',
-  fontSize: '14px',
-  width: 'fit-content',
-  height: 'fit-content',
-};
+export const ModalKeep = args => (
+  <ModalButton {...args}>no, I want to keep it</ModalButton>
+);
 
-export const Arrow = Template.bind();
-Arrow.args = {
-  children: <img src={gobackicon} alt="delete" />,
-  background: 'transparent',
-  justifySelf: 'start',
-};
+export const Arrowback = args => (
+  <ArrowbackButton {...args}>
+    <img src={gobackicon} alt="goback" />
+  </ArrowbackButton>
+);
 
-export const New = Template.bind();
-New.args = {
-  children: <img src={newicon} alt="new" />,
-  borderRadius: '40%',
-  boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.15)',
-};
+export const Edit = args => (
+  <EditButton {...args}>
+    <img src={editicon} alt="edit" />
+  </EditButton>
+);
 
-export const Edit = Template.bind();
-Edit.args = {
-  children: <img src={editicon} alt="edit" />,
-  background: 'transparent',
-};
-
-export const Save = Template.bind({});
-Save.args = {
-  children: 'save',
-};
+export const Delete = args => (
+  <DeleteButton {...args}>
+    <img src={deleteicon} alt="delete" />
+  </DeleteButton>
+);
