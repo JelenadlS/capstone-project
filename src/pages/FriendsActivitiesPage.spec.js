@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import MyActivitiesPage from './MyFriendsPage.js';
+import { render, screen } from '@testing-library/react';
+
+import FriendsActivitiesPage from './FriendsActivitiesPage.js';
 
 describe('MyFriendsPage', () => {
   it('renders a page with headertitle and link, a list and button', () => {
@@ -10,7 +11,7 @@ describe('MyFriendsPage', () => {
     ];
     render(
       <MemoryRouter>
-        <MyActivitiesPage activities={activities} />
+        <FriendsActivitiesPage activities={activities} />
       </MemoryRouter>
     );
 
@@ -27,7 +28,7 @@ describe('MyFriendsPage', () => {
     const activities = [];
     render(
       <MemoryRouter>
-        <MyActivitiesPage activities={activities} />
+        <FriendsActivitiesPage activities={activities} />
       </MemoryRouter>
     );
 

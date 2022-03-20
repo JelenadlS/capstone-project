@@ -1,46 +1,60 @@
 import styled from 'styled-components';
 
-export default function Button({
-  children,
-  fontSize,
-  margin,
-  background,
-  justifySelf,
-  onClick,
-  width,
-  height,
-  borderRadius,
-  boxShadow,
-  padding,
-}) {
-  return (
-    <WrapperButton
-      fontSize={fontSize}
-      background={background}
-      margin={margin}
-      justifySelf={justifySelf}
-      onClick={onClick}
-      width={width}
-      height={height}
-      borderRadius={borderRadius}
-      boxShadow={boxShadow}
-      padding={padding}
-    >
-      {children}
-    </WrapperButton>
-  );
-}
-
-const WrapperButton = styled.button`
-  background: ${props => props.background || '#92dec5'};
-  color: rgba(71, 39, 35, 0.72);
-  font-size: ${props => props.fontSize || '18px'};
+const Button = styled.button`
   border: none;
-  box-shadow: ${props => props.boxShadow || 'none'};
-  border-radius: ${props => props.borderRadius || '60px'};
-  padding: ${props => props.padding || '10px'};
-  justify-self: ${props => props.justifySelf || 'stretch'};
-  width: ${props => props.width || '75px'};
-  margin: ${props => props.margin || '0px'};
-  height: ${props => props.height || '60px'};
 `;
+
+export default Button;
+
+const MainNavButton = styled(Button)`
+  background: #92dec5;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 40px;
+  padding: 5px;
+  width: 75px;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1;
+`;
+
+export { MainNavButton };
+
+const ModalButton = styled(Button)`
+  background: #92dec5;
+  color: rgba(71, 39, 35, 0.72);
+  font-size: 14px;
+  border-radius: 40px;
+  padding: 8px;
+  width: fit-content;
+  margin: 10px;
+`;
+
+export { ModalButton };
+
+const ArrowBackButton = styled(Button)`
+  background: transparent;
+  position: fixed;
+  top: 5px;
+  left: 2px;
+`;
+export { ArrowBackButton };
+
+const EditButton = styled(Button)`
+  background: transparent;
+  position: fixed;
+  right: 2px;
+  top: 90px;
+`;
+export { EditButton };
+
+const DeleteButton = styled(Button)`
+  background: transparent;
+  justify-self: end;
+  align-self: flex-end;
+  width: auto;
+  height: auto;
+`;
+export { DeleteButton };

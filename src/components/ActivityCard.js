@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Button from './Button.js';
-import deleteicon from '../images/binicon.svg';
-import DeleteModal from './DeleteModal.js';
 import styled from 'styled-components';
 
-export default function Card({
+import { DeleteButton } from './Button.js';
+import DeleteModal from './DeleteModal.js';
+
+import deleteIcon from '../images/binIcon.svg';
+
+export default function ActivityCard({
   activity,
   errorMessage,
   onDeleteActivity,
-  id,
-  nameOfSelectedFriend,nameOfSelectedActivity
+  nameOfSelectedFriend,
+  nameOfSelectedActivity,
 }) {
   const [show, setShow] = useState(false);
 
@@ -20,16 +22,9 @@ export default function Card({
         <LinkStyling to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}>
           <strong>{activity}</strong>
         </LinkStyling>
-        <Button
-          background="transparent"
-          justifySelf="end"
-          padding="10px"
-          width="auto"
-          height="auto"
-          onClick={() => setShow(true)}
-        >
-          <img src={deleteicon} alt="delete" />
-        </Button>
+        <DeleteButton onClick={() => setShow(true)}>
+          <img src={deleteIcon} alt="delete" />
+        </DeleteButton>
         <DeleteModal
           onDelete={onDeleteActivity}
           onClose={() => setShow(false)}
@@ -44,8 +39,7 @@ export default function Card({
 }
 
 const WrapperCard = styled.section`
-  color: rgba(71, 39, 35, 0.72);
-  border-bottom: 0.5px solid rgba(71, 39, 35, 0.72);
+  border-bottom: 1px solid rgba(71, 39, 35, 0.4);
   display: grid;
   grid-template-columns: auto auto;
   align-items: center;
@@ -53,8 +47,7 @@ const WrapperCard = styled.section`
 `;
 
 const LinkStyling = styled(Link)`
-  padding: 8px 8px 0;
-  font-size: 18px;
+  padding: 8px 8px 5px;
   color: rgba(71, 39, 35, 0.72);
   background-color: transparent;
   text-decoration: none;

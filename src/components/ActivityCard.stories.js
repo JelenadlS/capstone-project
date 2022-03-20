@@ -1,11 +1,11 @@
-import Card from './Card.js';
+import ActivityCard from './ActivityCard.js';
 
 export default {
-  title: 'Component/Card',
-  component: Card,
+  title: 'Component/ActivityCard',
+  component: ActivityCard,
 };
 
-const Template = args => <Card {...args} />;
+const Template = args => <ActivityCard {...args} />;
 
 export const FullCard = Template.bind({});
 FullCard.args = {

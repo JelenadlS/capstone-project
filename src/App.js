@@ -2,13 +2,15 @@ import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import ErrorFallback from './components/ErrorFallBack';
-import MyFriendsPage from './pages/MyFriendsPage';
-import MyActivitiesPage from './pages/MyActivitiesPage.js';
-import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
-import NewActivityPage from './pages/NewActivityPage.js';
-import EditActivityPage from './pages/EditActivityPage.js';
 import styled from 'styled-components';
+
+import ErrorFallback from './components/ErrorFallBack';
+
+import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
+import EditActivityPage from './pages/EditActivityPage.js';
+import FriendsActivitiesPage from './pages/FriendsActivitiesPage.js';
+import MyFriendsPage from './pages/MyFriendsPage';
+import NewActivityPage from './pages/NewActivityPage.js';
 
 export default function App() {
   const [hasError, setHasError] = useState(false);
@@ -29,7 +31,7 @@ export default function App() {
           <Route
             path="/:friendsName"
             element={
-              <MyActivitiesPage
+              <FriendsActivitiesPage
                 activities={activities}
                 hasError={hasError}
                 setActivities={setActivities}
@@ -41,10 +43,6 @@ export default function App() {
             element={<ActivityOverviewPage activities={activities} />}
           />
           <Route
-            path="/newactivity"
-            element={<NewActivityPage onAddActivity={onAddActivity} />}
-          />
-          <Route
             path="/:friendsName/:activityName/:id/editactivity"
             element={
               <EditActivityPage
@@ -52,6 +50,10 @@ export default function App() {
                 onEditActivity={onEditActivity}
               />
             }
+          />
+          <Route
+            path="/newactivity"
+            element={<NewActivityPage onAddActivity={onAddActivity} />}
           />
         </Routes>
       </WrapperApp>

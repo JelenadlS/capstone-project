@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import Button from '../components/Button';
-import FriendCard from '../components/FriendCard';
-import newicon from '../images/new.svg';
 import styled from 'styled-components';
+
+import FriendCard from '../components/FriendCard';
+import Header from '../components/Header';
+import Main from '../components/Main';
+import Navigation from '../components/Navigation';
+import Picture from '../components/Picture';
+
+import newIcon from '../images/newIcon.svg';
+import nextIcon from '../images/nextIcon.svg';
 
 export default function MyFriendsPage({ activities }) {
   const activitiesWithFriendsName = activities.filter(
@@ -27,66 +32,55 @@ export default function MyFriendsPage({ activities }) {
   });
 
   return (
-    <>
+    <Picture>
       <Header>my friends</Header>
-      <WrapperApp>
-        <Main>
-          {activities.length > 0 ? (
-            <>
-              {activitiesWithoutFriend.length > 0 && (
-                <StyledLink to="/I still need to plan...">
-                  <NameStyling>
-                    Things I still need to plan with someone:
-                  </NameStyling>
-                  <NumStyling>#{activitiesWithoutFriend.length}</NumStyling>
-                </StyledLink>
-              )}
-              <ListStyle role="list" title="list of friends">
-                {sortedFriendsList.map((friend, index) => {
-                  const sumOfActivitiesEachFriend = activities.filter(
-                    activity => activity.friend === friend
-                  ).length;
-                  return (
-                    <li key={index}>
-                      <FriendCard
-                        friend={friend}
-                        sumOfActivitiesEachFriend={sumOfActivitiesEachFriend}
-                      />
-                    </li>
-                  );
-                })}
-              </ListStyle>
-            </>
-          ) : (
-            <EmptyList data-testid="emptylist">
-              unfortunately you did not enter any activity yet. Start now and
-              fill your list with amazing activities!
-            </EmptyList>
-          )}
-        </Main>
-        <Bottom>
-          <Link to="newactivity">
-            <Button
-              borderRadius="40%"
-              boxShadow="0px 0px 20px rgba(0, 0, 0, 0.15)"
-            >
-              <img src={newicon} alt="new" />
-            </Button>
-          </Link>
-        </Bottom>
-      </WrapperApp>
-    </>
+      <Main>
+        {activities.length > 0 ? (
+          <>
+            {activitiesWithoutFriend.length > 0 && (
+              <StyledLink to="/I still need to plan...">
+                <NameStyling>
+                  Things I still need to plan with someone:
+                </NameStyling>
+                <NumStyling>
+                  #{activitiesWithoutFriend.length}{' '}
+                  <StyledArrow>
+                    <img src={nextIcon} alt="next page" />
+                  </StyledArrow>
+                </NumStyling>
+              </StyledLink>
+            )}
+            <ListStyle role="list" title="list of friends">
+              {sortedFriendsList.map((friend, index) => {
+                const sumOfActivitiesEachFriend = activities.filter(
+                  activity => activity.friend === friend
+                ).length;
+                return (
+                  <li key={index}>
+                    <FriendCard
+                      friend={friend}
+                      sumOfActivitiesEachFriend={sumOfActivitiesEachFriend}
+                    />
+                  </li>
+                );
+              })}
+            </ListStyle>
+          </>
+        ) : (
+          <EmptyList data-testid="emptylist">
+            Unfortunately you did not enter any activity yet. Start now and fill
+            your list with amazing activities!
+          </EmptyList>
+        )}
+      </Main>
+      <Navigation>
+        <Link to="newactivity">
+          <img src={newIcon} alt="new" />
+        </Link>
+      </Navigation>
+    </Picture>
   );
 }
-
-const WrapperApp = styled.div`
-  display: grid;
-  grid-template-rows: 1fr auto;
-`;
-
-const Main = styled.main`
-  overflow-y: auto;
-`;
 
 const StyledLink = styled(Link)`
   color: rgba(71, 39, 35, 0.72);
@@ -94,6 +88,7 @@ const StyledLink = styled(Link)`
   padding: 20px 18px 10px 10px;
   display: grid;
   grid-template-columns: auto auto;
+  border-bottom: 2px solid rgba(71, 39, 35, 0.3);
 `;
 
 const NameStyling = styled.p`
@@ -121,10 +116,6 @@ const EmptyList = styled.p`
   padding: 10px;
 `;
 
-const Bottom = styled.div`
-  background: #f0e7da;
-  text-align: center;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
+const StyledArrow = styled.span`
+  margin-left: 5px;
 `;

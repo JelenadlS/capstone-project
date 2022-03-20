@@ -1,48 +1,26 @@
 import { useNavigate } from 'react-router-dom';
-import gobackicon from '../images/goback.svg';
+
+import { ArrowBackButton } from '../components/Button';
 import Form from '../components/Form';
 import Header from '../components/Header';
-import styled from 'styled-components';
+import Main from '../components/Main';
+import Picture from '../components/Picture';
+
+import goBackIcon from '../images/goBackIcon.svg';
 
 export default function NewActivityPage({ onAddActivity }) {
   const navigate = useNavigate();
   return (
-    <>
+    <Picture>
       <Header>
         new activity
-        <Arrowback onClick={() => navigate(-1)}>
-          <img src={gobackicon} alt="go back" />
-        </Arrowback>
+        <ArrowBackButton onClick={() => navigate(-1)}>
+          <img src={goBackIcon} alt="go back" />
+        </ArrowBackButton>
       </Header>
-      <WrapperApp>
-        <Main>
-          <Form
-            title="add activities"
-            buttonName={'Add'}
-            preloadedValues={null}
-            handleActivity={onAddActivity}
-          />
-        </Main>
-      </WrapperApp>
-    </>
+      <Main>
+        <Form preloadedValues={null} handleActivity={onAddActivity} />
+      </Main>
+    </Picture>
   );
 }
-
-const Arrowback = styled.button`
-  border: none;
-  background: transparent;
-  position: fixed;
-  top: 5px;
-  left: 2px;
-`;
-
-const WrapperApp = styled.div`
-  height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr auto;
-`;
-
-const Main = styled.div`
-  background: white;
-  width: 100%;
-`;

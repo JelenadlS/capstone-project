@@ -1,8 +1,15 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import Header from '../components/Header';
-import gobackicon from '../images/goback.svg';
-import editicon from '../images/edit.svg';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { ArrowBackButton, EditButton } from '../components/Button';
+import Header from '../components/Header';
+import Main from '../components/Main';
+import Navigation from '../components/Navigation';
+import Picture from '../components/Picture';
+
+import editIcon from '../images/editIcon.svg';
+import goBackIcon from '../images/goBackIcon.svg';
+import newIcon from '../images/newIcon.svg';
 
 export default function ActivityOverviewPage({ activities }) {
   const navigate = useNavigate();
@@ -11,38 +18,38 @@ export default function ActivityOverviewPage({ activities }) {
     activity => activity.activity === activityName
   );
   return (
-    <>
+    <Picture>
       <Header>
         {selectedActivity.activity}
-        <ArrowbackButton
+        <ArrowBackButton
           onClick={() => navigate(`/${selectedActivity.friend}`)}
         >
-          <img src={gobackicon} alt="go back" />
-        </ArrowbackButton>
+          <img src={goBackIcon} alt="go back" />
+        </ArrowBackButton>
       </Header>
-      <WrapperCard>
-        <p>
+      <Main>
+        <StyledParagraph>
           <strong>{selectedActivity.activity}</strong>
-        </p>
-        <p>
+        </StyledParagraph>
+        <StyledParagraph>
           <strong>with: </strong>
           {selectedActivity.friend}
-        </p>
+        </StyledParagraph>
         {selectedActivity.notes ? (
           <div>
-            <p>
+            <StyledParagraph>
               <strong>additional notes:</strong>
-            </p>
-            <p>{selectedActivity.notes}</p>
+            </StyledParagraph>
+            <StyledParagraph>{selectedActivity.notes}</StyledParagraph>
           </div>
         ) : (
           <div />
         )}
         {selectedActivity.date ? (
-          <p>
+          <StyledParagraph>
             <strong>on the: </strong>
             {selectedActivity.date}
-          </p>
+          </StyledParagraph>
         ) : (
           <EmptyMessage>
             <strong>date: </strong>
@@ -50,56 +57,40 @@ export default function ActivityOverviewPage({ activities }) {
           </EmptyMessage>
         )}
         {selectedActivity.location ? (
-          <p>
+          <StyledParagraph>
             <strong>at: </strong>
             {selectedActivity.location}
-          </p>
+          </StyledParagraph>
         ) : (
           <EmptyMessage>
             <strong>location: </strong>where do you have to go?
           </EmptyMessage>
         )}
         <EditButton
-          background="transparent"
           onClick={() =>
             navigate(
               `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
             )
           }
         >
-          <img src={editicon} alt="edit" />
+          <img src={editIcon} alt="edit" />
         </EditButton>
-      </WrapperCard>
-    </>
+      </Main>
+      <Navigation>
+        <Link to="/newactivity">
+          <img src={newIcon} alt="new" />
+        </Link>
+      </Navigation>
+    </Picture>
   );
 }
 
-const ArrowbackButton = styled.button`
-  border: none;
-  background: transparent;
-  position: fixed;
-  top: 5px;
-  left: 2px;
-`;
-
-const WrapperCard = styled.section`
-  color: rgba(71, 39, 35, 0.72);
-  margin: 20px;
+const StyledParagraph = styled.p`
+  margin: 25px 15px;
   font-size: 25px;
-  display: grid;
-  grid-template-rows: repeat(2, auto);
-  gap: 15px;
   word-break: break-word;
 `;
-
-const EmptyMessage = styled.div`
+const EmptyMessage = styled.p`
   font-size: 16px;
-`;
-
-const EditButton = styled.button`
-  border: none;
-  background: transparent;
-  position: fixed;
-  right: -2px;
-  top: 60px;
+  margin: 15px;
 `;

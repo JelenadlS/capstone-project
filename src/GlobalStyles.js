@@ -7,9 +7,10 @@ export default createGlobalStyle`
   box-sizing: border-box;
 };
 
+
 body {
   font-family:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background: rgba(235, 240, 242, 0.2);
+  color: rgba(71, 39, 35, 0.72);
   font-size: 18px;
 }
 `;

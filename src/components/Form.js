@@ -1,21 +1,20 @@
+import { nanoid } from 'nanoid';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
-import { useEffect } from 'react';
-import Button from './Button';
-import { nanoid } from 'nanoid';
 import styled from 'styled-components';
 
-export default function Form({
-  handleActivity,
-  preloadedValues,
-  buttonName,
-  title,
-}) {
+import Navigation from './Navigation';
+
+import saveIcon from '../images/saveIcon.svg';
+
+export default function Form({ handleActivity, preloadedValues, title }) {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     setFocus,
+    trigger,
     formState: { errors },
   } = useForm({
     defaultValues: preloadedValues
@@ -39,7 +38,7 @@ export default function Form({
         date: data.date,
         location: data.location,
       });
-      navigate(-1);
+      navigate(`/${data.friend}/${data.activity}/`);
     } else {
       const id = nanoid();
       handleActivity({
@@ -72,13 +71,18 @@ export default function Form({
           name="activity"
           {...register('activity', {
             required: 'So, you plan to do nothing?? 😉',
-            maxLength: { value: 50 },
+            maxLength: {
+              value: 50,
+              message:
+                'This might be a little too long for just an activty, use the notes!',
+            },
             minLength: {
               value: 3,
               message:
                 'This is an activity with not even 2 characters? - I do not believe you..',
             },
           })}
+          onKeyUp={() => trigger('activity')}
         />
         {errors.activity && (
           <ErrorMessage name="error-message">
@@ -99,6 +103,7 @@ export default function Form({
               message: 'I can not believe that someone has so many friends',
             },
           })}
+          onKeyUp={() => trigger('friend')}
         />
         {errors.friend && (
           <ErrorMessage name="error-message">
@@ -120,6 +125,7 @@ export default function Form({
               message: 'Do you really need such a long note?',
             },
           })}
+          onKeyUp={() => trigger('notes')}
         />
         {errors.notes && (
           <ErrorMessage name="error-message">
@@ -130,7 +136,7 @@ export default function Form({
 
       <label htmlFor="date">
         do you already have a date in mind?
-        <input
+        <StyledDate
           data-testid="date"
           id="date"
           type="date"
@@ -151,6 +157,7 @@ export default function Form({
               message: 'This address is way too long!',
             },
           })}
+          onKeyUp={() => trigger('location')}
         />
         {errors.location && (
           <ErrorMessage name="error-message">
@@ -158,10 +165,9 @@ export default function Form({
           </ErrorMessage>
         )}
       </label>
-
-      <Button width="100%" height="fit-content" type="submit">
-        {buttonName}
-      </Button>
+      <Navigation>
+        <img src={saveIcon} alt="save" />
+      </Navigation>
     </WrapperForm>
   );
 }
@@ -169,38 +175,41 @@ export default function Form({
 const WrapperForm = styled.form`
   height: 85vh;
   display: grid;
-  grid-template-rows: repeat(5, auto) 40px;
-  color: rgba(71, 39, 35, 0.72);
-  margin: 20px;
+  grid-template-rows: repeat(5, auto) 90px;
+  margin-top: 20px;
 
   label {
-    margin: 0px 10px;
+    padding: 0 30px;
   }
 
   input {
-    border: none;
-    background: #f0e7da;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background: transparent;
+    border: 1px solid rgba(71, 39, 35, 0.42);
     border-radius: 5px;
-    height: 30px;
+    padding: 1px;
     width: 100%;
     color: rgba(71, 39, 35, 0.72);
     font-size: 20px;
   }
 
   textarea {
-    border: none;
-    background: #f0e7da;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background: transparent;
+    border: 1px solid rgba(71, 39, 35, 0.42);
     border-radius: 5px;
     height: 90px;
     width: 100%;
     color: rgba(71, 39, 35, 0.72);
-    font-size: 20px;
+    font-size: 18px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 `;
 
-const ErrorMessage = styled.span`
+const StyledDate = styled.input`
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+`;
+const ErrorMessage = styled.p`
   font-size: 12px;
-  color: red;
+  color: rgba(210, 129, 53, 1);
 `;

@@ -1,17 +1,9 @@
-import styled from 'styled-components';
-
 export default function ErrorFallback({ error, resetErrorBoundary }) {
   return (
-    <Wrapper>
+    <div>
       <h1>Something went wrong:</h1>
       <pre style={{ color: 'red' }}>{error.message}</pre>
       <button onClick={resetErrorBoundary}>Try again</button>
-    </Wrapper>
+    </div>
   );
 }
-
-const Wrapper = styled.div.attrs(() => ({ role: 'alert' }))`
-  padding: 20px;
-  border: 1px dotted crimson;
-  border-radius: 8px;
-`;
