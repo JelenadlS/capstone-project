@@ -8,6 +8,7 @@ import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
 import newicon from '../images/new.svg';
+import nexticon from '../images/next.svg';
 
 export default function MyFriendsPage({ activities }) {
   const activitiesWithFriendsName = activities.filter(
@@ -41,7 +42,12 @@ export default function MyFriendsPage({ activities }) {
                 <NameStyling>
                   Things I still need to plan with someone:
                 </NameStyling>
-                <NumStyling>#{activitiesWithoutFriend.length}</NumStyling>
+                <NumStyling>
+                  #{activitiesWithoutFriend.length}{' '}
+                  <StyledArrow>
+                    <img src={nexticon} alt="next page" />
+                  </StyledArrow>
+                </NumStyling>
               </StyledLink>
             )}
             <ListStyle role="list" title="list of friends">
@@ -108,4 +114,8 @@ const ListStyle = styled.ul`
 const EmptyList = styled.p`
   color: rgba(71, 39, 35, 0.72);
   padding: 10px;
+`;
+
+const StyledArrow = styled.span`
+  margin-left: 5px;
 `;

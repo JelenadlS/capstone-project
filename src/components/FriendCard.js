@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import nexticon from '../images/next.svg';
+
 export default function FriendCard({ friend, sumOfActivitiesEachFriend }) {
   return (
     <WrapperCard>
@@ -8,7 +10,12 @@ export default function FriendCard({ friend, sumOfActivitiesEachFriend }) {
         <NameStyling>
           <strong>{friend}</strong>
         </NameStyling>
-        <NumStyling>#{sumOfActivitiesEachFriend}</NumStyling>
+        <NumStyling>
+          #{sumOfActivitiesEachFriend}{' '}
+          <StyledArrow>
+            <img src={nexticon} alt="next page" />
+          </StyledArrow>
+        </NumStyling>
       </LinkStyling>
     </WrapperCard>
   );
@@ -36,4 +43,8 @@ const NameStyling = styled.p`
 `;
 const NumStyling = styled.p`
   justify-self: end;
+`;
+
+const StyledArrow = styled.span`
+  margin-left: 5px;
 `;
