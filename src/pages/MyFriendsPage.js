@@ -7,8 +7,8 @@ import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
-import newicon from '../images/new.svg';
-import nexticon from '../images/next.svg';
+import newIcon from '../images/newIcon.svg';
+import nextIcon from '../images/nextIcon.svg';
 
 export default function MyFriendsPage({ activities }) {
   const activitiesWithFriendsName = activities.filter(
@@ -45,7 +45,7 @@ export default function MyFriendsPage({ activities }) {
                 <NumStyling>
                   #{activitiesWithoutFriend.length}{' '}
                   <StyledArrow>
-                    <img src={nexticon} alt="next page" />
+                    <img src={nextIcon} alt="next page" />
                   </StyledArrow>
                 </NumStyling>
               </StyledLink>
@@ -75,7 +75,7 @@ export default function MyFriendsPage({ activities }) {
       </Main>
       <Navigation>
         <Link to="newactivity">
-          <img src={newicon} alt="new" />
+          <img src={newIcon} alt="new" />
         </Link>
       </Navigation>
     </Picture>

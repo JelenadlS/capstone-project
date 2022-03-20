@@ -7,9 +7,9 @@ import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
-import editicon from '../images/edit.svg';
-import gobackicon from '../images/goback.svg';
-import newicon from '../images/new.svg';
+import editIcon from '../images/editIcon.svg';
+import goBackIcon from '../images/goBackIcon.svg';
+import newIcon from '../images/newIcon.svg';
 
 export default function ActivityOverviewPage({ activities }) {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export default function ActivityOverviewPage({ activities }) {
         <ArrowbackButton
           onClick={() => navigate(`/${selectedActivity.friend}`)}
         >
-          <img src={gobackicon} alt="go back" />
+          <img src={goBackIcon} alt="go back" />
         </ArrowbackButton>
       </Header>
       <Main>
@@ -73,12 +73,12 @@ export default function ActivityOverviewPage({ activities }) {
             )
           }
         >
-          <img src={editicon} alt="edit" />
+          <img src={editIcon} alt="edit" />
         </EditButton>
       </Main>
       <Navigation>
         <Link to="/newactivity">
-          <img src={newicon} alt="new" />
+          <img src={newIcon} alt="new" />
         </Link>
       </Navigation>
     </Picture>

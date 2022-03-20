@@ -5,11 +5,11 @@ import { EditButton } from './Button.js';
 import { MainNavButton } from './Button.js';
 import { ModalButton } from './Button.js';
 
-import deleteicon from '../images/binicon.svg';
-import editicon from '../images/edit.svg';
-import gobackicon from '../images/goback.svg';
-import newicon from '../images/new.svg';
-import saveicon from '../images/save.svg';
+import deleteIcon from '../images/binIcon.svg';
+import editIcon from '../images/editIcon.svg';
+import goBackIcon from '../images/goBackIcon.svg';
+import newIcon from '../images/newIcon.svg';
+import saveIcon from '../images/saveIcon.svg';
 
 export default {
   title: 'Component/Button',
@@ -21,13 +21,13 @@ export const Empty = args => <Button {...args} />;
 
 export const MainNavPlus = args => (
   <MainNavButton {...args}>
-    <img src={newicon} alt="new" />
+    <img src={newIcon} alt="new" />
   </MainNavButton>
 );
 
 export const MainNavSave = args => (
   <MainNavButton {...args}>
-    <img src={saveicon} alt="save" />
+    <img src={saveIcon} alt="save" />
   </MainNavButton>
 );
 
@@ -41,18 +41,18 @@ export const ModalKeep = args => (
 
 export const Arrowback = args => (
   <ArrowbackButton {...args}>
-    <img src={gobackicon} alt="goback" />
+    <img src={goBackIcon} alt="goback" />
   </ArrowbackButton>
 );
 
 export const Edit = args => (
   <EditButton {...args}>
-    <img src={editicon} alt="edit" />
+    <img src={editIcon} alt="edit" />
   </EditButton>
 );
 
 export const Delete = args => (
   <DeleteButton {...args}>
-    <img src={deleteicon} alt="delete" />
+    <img src={deleteIcon} alt="delete" />
   </DeleteButton>
 );

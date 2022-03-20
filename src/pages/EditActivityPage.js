@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import Main from '../components/Main';
 import Picture from '../components/Picture';
 
-import gobackicon from '../images/goback.svg';
+import goBackIcon from '../images/goBackIcon.svg';
 
 export default function EditActivityPage({ activities, onEditActivity }) {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export default function EditActivityPage({ activities, onEditActivity }) {
             navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`)
           }
         >
-          <img src={gobackicon} alt="go back" />
+          <img src={goBackIcon} alt="go back" />
         </ArrowbackButton>
       </Header>
       <Main>

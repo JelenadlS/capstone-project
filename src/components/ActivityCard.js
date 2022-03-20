@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { DeleteButton } from './Button.js';
 import DeleteModal from './DeleteModal.js';
 
-import deleteicon from '../images/binicon.svg';
+import deleteIcon from '../images/binIcon.svg';
 
 export default function ActivityCard({
   activity,
@@ -23,7 +23,7 @@ export default function ActivityCard({
           <strong>{activity}</strong>
         </LinkStyling>
         <DeleteButton onClick={() => setShow(true)}>
-          <img src={deleteicon} alt="delete" />
+          <img src={deleteIcon} alt="delete" />
         </DeleteButton>
         <DeleteModal
           onDelete={onDeleteActivity}
@@ -39,7 +39,7 @@ export default function ActivityCard({
 }
 
 const WrapperCard = styled.section`
-  border-bottom: 0.5px solid rgba(71, 39, 35, 0.72);
+  border-bottom: 1px solid rgba(71, 39, 35, 0.4);
   display: grid;
   grid-template-columns: auto auto;
   align-items: center;
@@ -48,7 +48,6 @@ const WrapperCard = styled.section`
 
 const LinkStyling = styled(Link)`
   padding: 8px 8px 5px;
-  font-size: 18px;
   color: rgba(71, 39, 35, 0.72);
   background-color: transparent;
   text-decoration: none;

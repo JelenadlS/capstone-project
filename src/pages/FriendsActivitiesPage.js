@@ -7,8 +7,8 @@ import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
-import gobackicon from '../images/goback.svg';
-import newicon from '../images/new.svg';
+import goBackIcon from '../images/goBackIcon.svg';
+import newIcon from '../images/newIcon.svg';
 
 export default function FriendsActivitiesPage({
   hasError,
@@ -26,7 +26,7 @@ export default function FriendsActivitiesPage({
       <Header>
         {selectedFriendsActivity[0].friend}
         <ArrowbackButton onClick={() => navigate('/')}>
-          <img src={gobackicon} alt="go back" />
+          <img src={goBackIcon} alt="go back" />
         </ArrowbackButton>
       </Header>
       <Main>
@@ -38,7 +38,7 @@ export default function FriendsActivitiesPage({
       </Main>
       <Navigation>
         <NavLink to="/newactivity">
-          <img src={newicon} alt="new" />
+          <img src={newIcon} alt="new" />
         </NavLink>
       </Navigation>
     </Picture>

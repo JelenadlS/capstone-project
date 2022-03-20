@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import Navigation from './Navigation';
 
-import saveicon from '../images/save.svg';
+import saveIcon from '../images/saveIcon.svg';
 
 export default function Form({ handleActivity, preloadedValues, title }) {
   const navigate = useNavigate();
@@ -166,7 +166,7 @@ export default function Form({ handleActivity, preloadedValues, title }) {
         )}
       </label>
       <Navigation>
-        <img src={saveicon} alt="save" />
+        <img src={saveIcon} alt="save" />
       </Navigation>
     </WrapperForm>
   );

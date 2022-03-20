@@ -1,6 +1,6 @@
 import Navigation from './Navigation.js';
 
-import newicon from '../images/new.svg';
+import newIcon from '../images/newIcon.svg';
 
 export default {
   title: 'Component/Navigation',
@@ -11,5 +11,5 @@ const Template = args => <Navigation {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  children: <img src={newicon} alt="new" />,
+  children: <img src={newIcon} alt="new" />,
 };
