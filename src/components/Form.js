@@ -90,6 +90,16 @@ export default function Form({ handleActivity, preloadedValues, title }) {
           </ErrorMessage>
         )}
       </label>
+      <StyledCategory>
+        category:
+        <select name="select category" {...register('category')}>
+          <option value="culture">culture</option>
+          <option value="food and beverages">food and beverages</option>
+          <option value="outdoor">outdoor</option>
+          <option value="sport">sport</option>
+          <option value="other">other</option>
+        </select>
+      </StyledCategory>
 
       <label htmlFor="friend">
         who should join you?
@@ -175,7 +185,7 @@ export default function Form({ handleActivity, preloadedValues, title }) {
 const WrapperForm = styled.form`
   height: 85vh;
   display: grid;
-  grid-template-rows: repeat(5, auto) 90px;
+  grid-template-rows: repeat(6, auto) 90px;
   margin-top: 20px;
 
   label {
@@ -205,10 +215,27 @@ const WrapperForm = styled.form`
   }
 `;
 
+const StyledCategory = styled.p`
+  margin: 5px 30px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  select {
+    color: rgba(71, 39, 35, 0.72);
+    font-size: 14px;
+    padding: 3px;
+    background: transparent;
+    border: 1px solid rgba(71, 39, 35, 0.42);
+    border-radius: 5px;
+  }
+`;
+
 const StyledDate = styled.input`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
+
 const ErrorMessage = styled.p`
   font-size: 12px;
   color: rgba(210, 129, 53, 1);
