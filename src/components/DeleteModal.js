@@ -2,18 +2,18 @@ import styled from 'styled-components';
 
 import { ModalButton } from './Button.js';
 
-export default function DeleteModal(props) {
-  if (!props.show) {
+export default function DeleteModal({ show, onClose, onDelete }) {
+  if (!show) {
     return null;
   }
   return (
     <WrapperModal>
       <p>Are you sure you want to delete?</p>
       <span>
-        <ModalButton type="submit" onClick={props.onClose}>
+        <ModalButton type="submit" onClick={onClose}>
           NO, I wanna keep it
         </ModalButton>
-        <ModalButton type="submit" onClick={props.onDelete}>
+        <ModalButton type="submit" onClick={onDelete}>
           please delete
         </ModalButton>
       </span>
