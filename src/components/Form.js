@@ -219,7 +219,7 @@ const WrapperForm = styled.form`
 `;
 
 const StyledCategory = styled.p`
-  margin: 5px 30px;
+  margin: 0 30px 8px;
   display: flex;
   align-items: center;
   gap: 30px;
@@ -237,6 +237,7 @@ const StyledCategory = styled.p`
 const StyledDate = styled.input`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  height: 30px;
 `;
 
 const ErrorMessage = styled.p`
