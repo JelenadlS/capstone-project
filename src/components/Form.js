@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
-import { MainNavButton } from './Button';
+import Navigation from './Navigation';
 
 import saveicon from '../images/save.svg';
 
@@ -165,10 +165,9 @@ export default function Form({ handleActivity, preloadedValues, title }) {
           </ErrorMessage>
         )}
       </label>
-
-      <MainNavButton type="submit">
+      <Navigation>
         <img src={saveicon} alt="save" />
-      </MainNavButton>
+      </Navigation>
     </WrapperForm>
   );
 }

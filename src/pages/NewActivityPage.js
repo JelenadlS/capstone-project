@@ -4,7 +4,6 @@ import { ArrowbackButton } from '../components/Button';
 import Form from '../components/Form';
 import Header from '../components/Header';
 import Main from '../components/Main';
-import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
 import gobackicon from '../images/goback.svg';
@@ -22,7 +21,6 @@ export default function NewActivityPage({ onAddActivity }) {
       <Main>
         <Form preloadedValues={null} handleActivity={onAddActivity} />
       </Main>
-      <Navigation />
     </Picture>
   );
 }
