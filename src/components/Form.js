@@ -175,18 +175,18 @@ export default function Form({ handleActivity, preloadedValues, title }) {
 const WrapperForm = styled.form`
   height: 85vh;
   display: grid;
-  grid-template-rows: repeat(5, auto) 40px;
-  padding: 20px;
+  grid-template-rows: repeat(5, auto) 90px;
+  margin-top: 20px;
+
   label {
-    padding: 0px 10px;
+    padding: 0 30px;
   }
 
   input {
     background: transparent;
     border: 1px solid rgba(71, 39, 35, 0.42);
-    box-sizing: border-box;
     border-radius: 5px;
-    height: 30px;
+    padding: 1px;
     width: 100%;
     color: rgba(71, 39, 35, 0.72);
     font-size: 20px;
