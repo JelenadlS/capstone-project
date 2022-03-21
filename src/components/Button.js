@@ -45,8 +45,8 @@ export { ArrowBackButton };
 const EditButton = styled(Button)`
   background: transparent;
   position: fixed;
-  right: 2px;
-  top: 90px;
+  right: 20px;
+  top: 80px;
 `;
 export { EditButton };
 

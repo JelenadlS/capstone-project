@@ -7,9 +7,18 @@ import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
+import cultureIcon from '../images/cultureIcon.svg';
+import dateIcon from '../images/dateIcon.svg';
 import editIcon from '../images/editIcon.svg';
+import fAndBIcon from '../images/fAndBIcon.svg';
+import friendIcon from '../images/friendIcon.svg';
 import goBackIcon from '../images/goBackIcon.svg';
+import locationIcon from '../images/locationIcon.svg';
 import newIcon from '../images/newIcon.svg';
+import notesIcon from '../images/notesIcon.svg';
+import otherIcon from '../images/otherIcon.svg';
+import outdoorIcon from '../images/outdoorIcon.svg';
+import sportIcon from '../images/sportIcon.svg';
 
 export default function ActivityOverviewPage({ activities }) {
   const navigate = useNavigate();
@@ -27,77 +36,85 @@ export default function ActivityOverviewPage({ activities }) {
           <img src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
-      <MainGrid>
-        <StyledTitle>
-          <strong>Activity</strong>
-        </StyledTitle>
+      <Main>
+        <MainGrid>
+          <StyledTitle>
+            <strong>Activity</strong>
+          </StyledTitle>
 
-        <StyledActivity>{selectedActivity.activity}</StyledActivity>
+          <StyledActivity>{selectedActivity.activity}</StyledActivity>
 
-        <StyledCategory>
-          <strong>category: </strong>
-          {selectedActivity.category}
-        </StyledCategory>
+          <StyledCategory>
+            {selectedActivity.category === 'culture' ? (
+              <img src={cultureIcon} alt="culture" />
+            ) : (
+              ''
+            )}
+            {selectedActivity.category === 'food and beverages' ? (
+              <img src={fAndBIcon} alt="food and beverages" />
+            ) : (
+              ''
+            )}
+            {selectedActivity.category === 'outdoor' ? (
+              <img src={outdoorIcon} alt="outdoor" />
+            ) : (
+              ''
+            )}
+            {selectedActivity.category === 'sport' ? (
+              <img src={sportIcon} alt="sport" />
+            ) : (
+              ''
+            )}
+            {selectedActivity.category === 'other' ? (
+              <img src={otherIcon} alt="other" />
+            ) : (
+              ''
+            )}
+            {selectedActivity.category}
+          </StyledCategory>
 
-        <p>
-          <strong>with: </strong>
-        </p>
+          <StyledIcon src={friendIcon} alt="friend" />
 
-        <p> {selectedActivity.friend}</p>
+          <StyledParagraph> {selectedActivity.friend}</StyledParagraph>
 
-        {selectedActivity.notes ? (
-          <>
-            <p>
-              <strong>additional notes:</strong>
-            </p>
-            <p>{selectedActivity.notes}</p>
-          </>
-        ) : (
-          <div />
-        )}
+          {selectedActivity.notes ? (
+            <>
+              <StyledIcon src={notesIcon} alt="notes" />
+              <StyledParagraph>{selectedActivity.notes}</StyledParagraph>
+            </>
+          ) : (
+            <>
+              <StyledNoNotes />
+            </>
+          )}
 
-        {selectedActivity.date ? (
-          <>
-            <p>
-              <strong>on the: </strong>
-            </p>
-            <p>{selectedActivity.date}</p>
-          </>
-        ) : (
-          <>
-            <p>
-              <strong>date: </strong>
-            </p>
-            <p>plan your activity soon!</p>
-          </>
-        )}
+          <StyledIcon src={dateIcon} alt="date" />
 
-        {selectedActivity.location ? (
-          <>
-            <p>
-              <strong>at: </strong>
-            </p>
-            <p>{selectedActivity.location}</p>
-          </>
-        ) : (
-          <>
-            <p>
-              <strong>location: </strong>
-            </p>
-            <p>where do you have to go?</p>
-          </>
-        )}
+          {selectedActivity.date ? (
+            <StyledParagraph>{selectedActivity.date}</StyledParagraph>
+          ) : (
+            <StyledParagraph>plan your activity soon!</StyledParagraph>
+          )}
 
-        <EditButton
-          onClick={() =>
-            navigate(
-              `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
-            )
-          }
-        >
-          <img src={editIcon} alt="edit" />
-        </EditButton>
-      </MainGrid>
+          <StyledIcon src={locationIcon} alt="location" />
+
+          {selectedActivity.location ? (
+            <StyledParagraph>{selectedActivity.location}</StyledParagraph>
+          ) : (
+            <StyledParagraph>where do you have to go?</StyledParagraph>
+          )}
+
+          <EditButton
+            onClick={() =>
+              navigate(
+                `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
+              )
+            }
+          >
+            <img src={editIcon} alt="edit" />
+          </EditButton>
+        </MainGrid>
+      </Main>
       <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
@@ -107,32 +124,51 @@ export default function ActivityOverviewPage({ activities }) {
   );
 }
 
-const MainGrid = styled(Main)`
+const MainGrid = styled.div`
   display: grid;
-  grid-template-columns: 77px auto;
-  grid-template-rows: repeat(7, 50px);
+  grid-template-columns: 57px 30px auto;
+  grid-template-rows: repeat(7, auto);
   margin: 30px;
+  align-items: center;
 `;
 
-const StyledTitle = styled.h2`
+const StyledTitle = styled.h3`
   grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-end: 4;
+  padding: 10px;
 `;
 
 const StyledActivity = styled.p`
   grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-end: 4;
+  padding: 5px;
 `;
 
 const StyledCategory = styled.p`
-  grid-column-start: 1;
-  grid-column-end: 3;
-  margin-left: 30px;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  padding: 5px;
+  margin-bottom: 10px;
+  align-self: start;
+
+  img {
+    margin-right: 10px;
+  }
 `;
+
+const StyledIcon = styled.img`
+  justify-self: center;
+  padding: 5px;
+`;
+
 const StyledParagraph = styled.p`
-  margin: 25px 15px;
-  font-size: 18px;
+  grid-column-start: 2;
+  grid-column-end: 4;
   word-break: break-word;
+`;
+const StyledNoNotes = styled.span`
+  grid-column-start: 1;
+  grid-column-end: 4;
 `;
 
 const EmptyMessage = styled.div`
