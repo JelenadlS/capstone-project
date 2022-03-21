@@ -27,6 +27,14 @@ export default function ActivityOverviewPage({ activities }) {
     activity => activity.activity === activityName
   );
 
+  const mappedCategories = {
+    culture: <img src={cultureIcon} alt="culture" />,
+    'food and beverages': <img src={fAndBIcon} alt="food and beverages" />,
+    outdoor: <img src={outdoorIcon} alt="outdoor" />,
+    sport: <img src={sportIcon} alt="sport" />,
+    other: <img src={otherIcon} alt="other" />,
+  };
+
   return (
     <Picture>
       <Header>
@@ -44,31 +52,7 @@ export default function ActivityOverviewPage({ activities }) {
           <StyledActivity>{selectedActivity.activity}</StyledActivity>
 
           <StyledCategory>
-            {selectedActivity.category === 'culture' ? (
-              <img src={cultureIcon} alt="culture" />
-            ) : (
-              ''
-            )}
-            {selectedActivity.category === 'food and beverages' ? (
-              <img src={fAndBIcon} alt="food and beverages" />
-            ) : (
-              ''
-            )}
-            {selectedActivity.category === 'outdoor' ? (
-              <img src={outdoorIcon} alt="outdoor" />
-            ) : (
-              ''
-            )}
-            {selectedActivity.category === 'sport' ? (
-              <img src={sportIcon} alt="sport" />
-            ) : (
-              ''
-            )}
-            {selectedActivity.category === 'other' ? (
-              <img src={otherIcon} alt="other" />
-            ) : (
-              ''
-            )}
+            {mappedCategories[selectedActivity.category]}
             {selectedActivity.category}
           </StyledCategory>
 
