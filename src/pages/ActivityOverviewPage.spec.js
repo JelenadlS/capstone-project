@@ -9,7 +9,7 @@ jest.mock('react-router-dom', () => ({
     friendsName: 'Clara',
     activityName: 'Frau Möller',
   }),
-  useRouteMatch: () => ({ url: '/Frau Möller' }),
+  useNavigate: () => ({ url: '/Frau Möller' }),
 }));
 
 describe('ActivityOverviewPage', () => {

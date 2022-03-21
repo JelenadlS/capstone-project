@@ -8,7 +8,7 @@ jest.mock('react-router-dom', () => ({
   useParams: () => ({
     friendsName: 'Clara',
   }),
-  useRouteMatch: () => ({ url: '/Clara' }),
+  useNavigate: () => ({ url: '/Clara' }),
 }));
 
 Element.prototype.scrollIntoView = jest.fn();
