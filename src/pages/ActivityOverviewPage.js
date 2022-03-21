@@ -39,9 +39,7 @@ export default function ActivityOverviewPage({ activities }) {
       </Header>
       <Main>
         <MainGrid>
-          <StyledTitle>
-            <strong>Activity</strong>
-          </StyledTitle>
+          <StyledTitle>Activity</StyledTitle>
 
           <StyledActivity>{selectedActivity.activity}</StyledActivity>
 
@@ -140,7 +138,7 @@ const MainGrid = styled.div`
 const StyledTitle = styled.h3`
   grid-column-start: 1;
   grid-column-end: 4;
-  padding: 10px;
+  padding: 10px 0;
 `;
 
 const StyledActivity = styled.p`
