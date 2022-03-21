@@ -35,7 +35,21 @@ export default function Form({ handleActivity, preloadedValues, title }) {
         id: preloadedValues.id,
         activity: data.activity,
         category: data.category === '' ? 'other' : data.category,
-        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
+        friend:
+          data.friend === ''
+            ? 'I still need to plan...'
+            : data.friend
+                .split(',')
+                .map(tag => tag.trim())
+                .sort(function (a, b) {
+                  const firstFriend = a.toLowerCase();
+                  const secondFriend = b.toLowerCase();
+
+                  if (firstFriend < secondFriend) return -1;
+                  if (firstFriend > secondFriend) return 1;
+                  return 0;
+                })
+                .join(', '),
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -47,7 +61,21 @@ export default function Form({ handleActivity, preloadedValues, title }) {
         id: id,
         activity: data.activity,
         category: data.category === '' ? 'other' : data.category,
-        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
+        friend:
+          data.friend === ''
+            ? 'I still need to plan...'
+            : data.friend
+                .split(',')
+                .map(tag => tag.trim())
+                .sort(function (a, b) {
+                  const firstFriend = a.toLowerCase();
+                  const secondFriend = b.toLowerCase();
+
+                  if (firstFriend < secondFriend) return -1;
+                  if (firstFriend > secondFriend) return 1;
+                  return 0;
+                })
+                .join(', '),
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -106,6 +134,9 @@ export default function Form({ handleActivity, preloadedValues, title }) {
 
       <label htmlFor="friend">
         who should join you?
+        <div>
+          <i>*Please seperate by comma*</i>
+        </div>
         <input
           id="friend"
           type="text"
@@ -215,6 +246,10 @@ const WrapperForm = styled.form`
     font-size: 18px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  i {
+    font-size: 14px;
   }
 `;
 
