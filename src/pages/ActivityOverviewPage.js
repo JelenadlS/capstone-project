@@ -27,53 +27,65 @@ export default function ActivityOverviewPage({ activities }) {
           <img src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
-      <Main>
-        <StyledParagraph>
-          <strong>{selectedActivity.activity}</strong>
-        </StyledParagraph>
+      <MainGrid>
+        <StyledTitle>
+          <strong>Activity</strong>
+        </StyledTitle>
 
-        <StyledParagraph>
+        <StyledActivity>{selectedActivity.activity}</StyledActivity>
+
+        <StyledCategory>
           <strong>category: </strong>
           {selectedActivity.category}
-        </StyledParagraph>
+        </StyledCategory>
 
-        <StyledParagraph>
+        <p>
           <strong>with: </strong>
-          {selectedActivity.friend}
-        </StyledParagraph>
+        </p>
+
+        <p> {selectedActivity.friend}</p>
 
         {selectedActivity.notes ? (
-          <div>
-            <StyledParagraph>
+          <>
+            <p>
               <strong>additional notes:</strong>
-            </StyledParagraph>
-            <StyledParagraph>{selectedActivity.notes}</StyledParagraph>
-          </div>
+            </p>
+            <p>{selectedActivity.notes}</p>
+          </>
         ) : (
           <div />
         )}
 
         {selectedActivity.date ? (
-          <StyledParagraph>
-            <strong>on the: </strong>
-            {selectedActivity.date}
-          </StyledParagraph>
+          <>
+            <p>
+              <strong>on the: </strong>
+            </p>
+            <p>{selectedActivity.date}</p>
+          </>
         ) : (
-          <EmptyMessage>
-            <strong>date: </strong>
-            plan your activity soon!
-          </EmptyMessage>
+          <>
+            <p>
+              <strong>date: </strong>
+            </p>
+            <p>plan your activity soon!</p>
+          </>
         )}
 
         {selectedActivity.location ? (
-          <StyledParagraph>
-            <strong>at: </strong>
-            {selectedActivity.location}
-          </StyledParagraph>
+          <>
+            <p>
+              <strong>at: </strong>
+            </p>
+            <p>{selectedActivity.location}</p>
+          </>
         ) : (
-          <EmptyMessage>
-            <strong>location: </strong>where do you have to go?
-          </EmptyMessage>
+          <>
+            <p>
+              <strong>location: </strong>
+            </p>
+            <p>where do you have to go?</p>
+          </>
         )}
 
         <EditButton
@@ -85,7 +97,7 @@ export default function ActivityOverviewPage({ activities }) {
         >
           <img src={editIcon} alt="edit" />
         </EditButton>
-      </Main>
+      </MainGrid>
       <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
@@ -95,12 +107,35 @@ export default function ActivityOverviewPage({ activities }) {
   );
 }
 
+const MainGrid = styled(Main)`
+  display: grid;
+  grid-template-columns: 77px auto;
+  grid-template-rows: repeat(7, 50px);
+  margin: 30px;
+`;
+
+const StyledTitle = styled.h2`
+  grid-column-start: 1;
+  grid-column-end: 3;
+`;
+
+const StyledActivity = styled.p`
+  grid-column-start: 1;
+  grid-column-end: 3;
+`;
+
+const StyledCategory = styled.p`
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin-left: 30px;
+`;
 const StyledParagraph = styled.p`
   margin: 25px 15px;
   font-size: 18px;
   word-break: break-word;
 `;
-const EmptyMessage = styled.p`
+
+const EmptyMessage = styled.div`
   font-size: 16px;
   margin: 15px;
 `;
