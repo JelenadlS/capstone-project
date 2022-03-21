@@ -75,7 +75,11 @@ export default function ActivityOverviewPage({ activities }) {
 
           <StyledIcon src={friendIcon} alt="friend" />
 
-          <StyledParagraph> {selectedActivity.friend}</StyledParagraph>
+          {selectedActivity.friend !== 'I still need to plan...' ? (
+            <StyledParagraph>{selectedActivity.friend}</StyledParagraph>
+          ) : (
+            <StyledParagraph>make plans with a friend!</StyledParagraph>
+          )}
 
           {selectedActivity.notes ? (
             <>
