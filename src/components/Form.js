@@ -30,26 +30,26 @@ export default function Form({ handleActivity, preloadedValues, title }) {
   });
 
   const onSubmit = data => {
+    const sortedFriendNames = data.friend
+      .split(',')
+      .map(tag => tag.trim())
+      .sort(function (a, b) {
+        const firstFriend = a.toLowerCase();
+        const secondFriend = b.toLowerCase();
+
+        if (firstFriend < secondFriend) return -1;
+        if (firstFriend > secondFriend) return 1;
+        return 0;
+      })
+      .join(', ');
+
     if (preloadedValues) {
       handleActivity({
         id: preloadedValues.id,
         activity: data.activity,
         category: data.category === '' ? 'other' : data.category,
         friend:
-          data.friend === ''
-            ? 'I still need to plan...'
-            : data.friend
-                .split(',')
-                .map(tag => tag.trim())
-                .sort(function (a, b) {
-                  const firstFriend = a.toLowerCase();
-                  const secondFriend = b.toLowerCase();
-
-                  if (firstFriend < secondFriend) return -1;
-                  if (firstFriend > secondFriend) return 1;
-                  return 0;
-                })
-                .join(', '),
+          data.friend === '' ? 'I still need to plan...' : sortedFriendNames,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -62,20 +62,7 @@ export default function Form({ handleActivity, preloadedValues, title }) {
         activity: data.activity,
         category: data.category === '' ? 'other' : data.category,
         friend:
-          data.friend === ''
-            ? 'I still need to plan...'
-            : data.friend
-                .split(',')
-                .map(tag => tag.trim())
-                .sort(function (a, b) {
-                  const firstFriend = a.toLowerCase();
-                  const secondFriend = b.toLowerCase();
-
-                  if (firstFriend < secondFriend) return -1;
-                  if (firstFriend > secondFriend) return 1;
-                  return 0;
-                })
-                .join(', '),
+          data.friend === '' ? 'I still need to plan...' : sortedFriendNames,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -135,7 +122,7 @@ export default function Form({ handleActivity, preloadedValues, title }) {
       <label htmlFor="friend">
         who should join you?
         <div>
-          <i>*Please seperate by comma when more than one friend*</i>
+          <i>*Seperate by comma when more than one friend*</i>
         </div>
         <input
           id="friend"
@@ -249,7 +236,7 @@ const WrapperForm = styled.form`
   }
 
   i {
-    font-size: 14px;
+    font-size: 12px;
   }
 `;
 
