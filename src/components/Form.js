@@ -135,7 +135,7 @@ export default function Form({ handleActivity, preloadedValues, title }) {
       <label htmlFor="friend">
         who should join you?
         <div>
-          <i>*Please seperate by comma*</i>
+          <i>*Please seperate by comma when more than one friend*</i>
         </div>
         <input
           id="friend"
