@@ -26,6 +26,7 @@ export default function ActivityOverviewPage({ activities }) {
   const selectedActivity = activities.find(
     activity => activity.activity === activityName
   );
+
   return (
     <Picture>
       <Header>
@@ -88,7 +89,7 @@ export default function ActivityOverviewPage({ activities }) {
             </>
           ) : (
             <>
-              <StyledNoNotes />
+              <StyledNoNotes data-testid="noNotes" />
             </>
           )}
 

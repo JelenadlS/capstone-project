@@ -22,7 +22,7 @@ export default function MyFriendsPage({ activities }) {
   const friendsOnlyOnceWithoutDetails = [
     ...new Set(activitiesWithFriendsName.map(activity => activity.friend)),
   ];
-  console.log(friendsOnlyOnceWithoutDetails);
+
   const sortedFriendsList = friendsOnlyOnceWithoutDetails.sort(function (a, b) {
     const firstFriend = a.toLowerCase();
     const secondFriend = b.toLowerCase();
