@@ -59,15 +59,15 @@ export default function ActivityOverviewPage({ activities }) {
           <StyledIcon src={friendIcon} alt="friend" />
 
           {selectedActivity.friend !== 'I still need to plan...' ? (
-            <StyledParagraph>{selectedActivity.friend}</StyledParagraph>
+            <StyledText>{selectedActivity.friend}</StyledText>
           ) : (
-            <StyledParagraph>make plans with a friend!</StyledParagraph>
+            <StyledText>make plans with a friend!</StyledText>
           )}
 
           {selectedActivity.notes ? (
             <>
               <StyledIcon src={notesIcon} alt="notes" />
-              <StyledParagraph>{selectedActivity.notes}</StyledParagraph>
+              <StyledText>{selectedActivity.notes}</StyledText>
             </>
           ) : (
             <>
@@ -78,17 +78,17 @@ export default function ActivityOverviewPage({ activities }) {
           <StyledIcon src={dateIcon} alt="date" />
 
           {selectedActivity.date ? (
-            <StyledParagraph>{selectedActivity.date}</StyledParagraph>
+            <StyledText>{selectedActivity.date}</StyledText>
           ) : (
-            <StyledParagraph>plan your activity soon!</StyledParagraph>
+            <StyledText>plan your activity soon!</StyledText>
           )}
 
           <StyledIcon src={locationIcon} alt="location" />
 
           {selectedActivity.location ? (
-            <StyledParagraph>{selectedActivity.location}</StyledParagraph>
+            <StyledText>{selectedActivity.location}</StyledText>
           ) : (
-            <StyledParagraph>where do you have to go?</StyledParagraph>
+            <StyledText>where do you have to go?</StyledText>
           )}
 
           <EditButton
@@ -125,13 +125,13 @@ const StyledTitle = styled.h3`
   padding: 10px 0;
 `;
 
-const StyledActivity = styled.p`
+const StyledActivity = styled.span`
   grid-column-start: 1;
   grid-column-end: 4;
   padding: 5px;
 `;
 
-const StyledCategory = styled.p`
+const StyledCategory = styled.span`
   grid-column-start: 2;
   grid-column-end: 4;
   padding: 5px;
@@ -148,7 +148,7 @@ const StyledIcon = styled.img`
   padding: 5px;
 `;
 
-const StyledParagraph = styled.p`
+const StyledText = styled.span`
   grid-column-start: 2;
   grid-column-end: 4;
   word-break: break-word;
