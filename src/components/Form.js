@@ -34,7 +34,7 @@ export default function Form({ handleActivity, preloadedValues, title }) {
       handleActivity({
         id: preloadedValues.id,
         activity: data.activity,
-        other: data.category === '' ? 'other' : data.category,
+        category: data.category === '' ? 'other' : data.category,
         friend: data.friend === '' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
@@ -46,7 +46,7 @@ export default function Form({ handleActivity, preloadedValues, title }) {
       handleActivity({
         id: id,
         activity: data.activity,
-        other: data.category === '' ? 'other' : data.category,
+        category: data.category === '' ? 'other' : data.category,
         friend: data.friend === '' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,

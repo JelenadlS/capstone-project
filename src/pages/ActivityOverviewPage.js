@@ -31,10 +31,17 @@ export default function ActivityOverviewPage({ activities }) {
         <StyledParagraph>
           <strong>{selectedActivity.activity}</strong>
         </StyledParagraph>
+
+        <StyledParagraph>
+          <strong>category: </strong>
+          {selectedActivity.category}
+        </StyledParagraph>
+
         <StyledParagraph>
           <strong>with: </strong>
           {selectedActivity.friend}
         </StyledParagraph>
+
         {selectedActivity.notes ? (
           <div>
             <StyledParagraph>
@@ -45,6 +52,7 @@ export default function ActivityOverviewPage({ activities }) {
         ) : (
           <div />
         )}
+
         {selectedActivity.date ? (
           <StyledParagraph>
             <strong>on the: </strong>
@@ -56,6 +64,7 @@ export default function ActivityOverviewPage({ activities }) {
             plan your activity soon!
           </EmptyMessage>
         )}
+
         {selectedActivity.location ? (
           <StyledParagraph>
             <strong>at: </strong>
@@ -66,6 +75,7 @@ export default function ActivityOverviewPage({ activities }) {
             <strong>location: </strong>where do you have to go?
           </EmptyMessage>
         )}
+
         <EditButton
           onClick={() =>
             navigate(
@@ -87,7 +97,7 @@ export default function ActivityOverviewPage({ activities }) {
 
 const StyledParagraph = styled.p`
   margin: 25px 15px;
-  font-size: 25px;
+  font-size: 18px;
   word-break: break-word;
 `;
 const EmptyMessage = styled.p`
