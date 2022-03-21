@@ -176,8 +176,3 @@ const StyledNoNotes = styled.span`
   grid-column-start: 1;
   grid-column-end: 4;
 `;
-
-const EmptyMessage = styled.div`
-  font-size: 16px;
-  margin: 15px;
-`;
