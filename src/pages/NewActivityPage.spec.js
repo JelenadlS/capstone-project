@@ -14,7 +14,7 @@ describe('NewActivityPage', () => {
     const button = screen.getAllByRole('button');
     const textboxes = screen.getAllByRole('textbox');
 
-    expect(button).toHaveLength(3);
+    expect(button).toHaveLength(2);
     expect(textboxes).toHaveLength(4);
   });
 });

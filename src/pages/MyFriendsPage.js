@@ -26,6 +26,7 @@ export default function MyFriendsPage({ activities }) {
   const sortedFriendsList = friendsOnlyOnceWithoutDetails.sort(function (a, b) {
     const firstFriend = a.toLowerCase();
     const secondFriend = b.toLowerCase();
+
     if (firstFriend < secondFriend) return -1;
     if (firstFriend > secondFriend) return 1;
     return 0;

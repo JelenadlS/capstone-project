@@ -60,20 +60,36 @@ export default function App() {
     </ErrorBoundary>
   );
 
-  function onAddActivity({ id, activity, friend, notes, date, location }) {
+  function onAddActivity({
+    id,
+    activity,
+    category,
+    friend,
+    notes,
+    date,
+    location,
+  }) {
     setHasError(false);
     setActivities([
       ...activities,
-      { activity, friend, id, notes, date, location },
+      { activity, category, friend, id, notes, date, location },
     ]);
     navigate('/');
   }
 
-  function onEditActivity({ id, activity, friend, notes, date, location }) {
+  function onEditActivity({
+    id,
+    activity,
+    category,
+    friend,
+    notes,
+    date,
+    location,
+  }) {
     setActivities(
       activities.map(act =>
         act.id === id
-          ? { ...act, id, activity, friend, notes, date, location }
+          ? { ...act, id, activity, category, friend, notes, date, location }
           : act
       )
     );

@@ -11,11 +11,12 @@ You can add an activity to your list either together with a friends name or not.
 ## Functionality
 
 - Overview
-  - Start screen shows a list of friends with a #no, when clicking on this friend a list with activities is displayed (#no of activities = #no in start screen)
-  - At the very top "I still need to plan..." will be displayed for all activities which did not get a friends information
+  - Start screen shows a list of friends with a #no. When clicking on this friend a list with activities is displayed (#no of activities = #no in start screen)
+  - At the very top "Things I still need to plan with someone:" will be displayed for all activities which did not get a friends information
   - It is possible to click on each activity to receive further information which was entered.
 - Add/ edit an activity with the following information:
   - Activity (required)
+  - Category (optional, other by default)
   - Friends (optional)
   - Notes (optional)
   - Date (optional)

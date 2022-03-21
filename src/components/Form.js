@@ -21,6 +21,7 @@ export default function Form({ handleActivity, preloadedValues, title }) {
       ? preloadedValues
       : {
           activities: '',
+          category: 'other',
           friend: '',
           notes: '',
           date: '',
@@ -29,11 +30,26 @@ export default function Form({ handleActivity, preloadedValues, title }) {
   });
 
   const onSubmit = data => {
+    const sortedFriendNames = data.friend
+      .split(',')
+      .map(tag => tag.trim())
+      .sort(function (a, b) {
+        const firstFriend = a.toLowerCase();
+        const secondFriend = b.toLowerCase();
+
+        if (firstFriend < secondFriend) return -1;
+        if (firstFriend > secondFriend) return 1;
+        return 0;
+      })
+      .join(', ');
+
     if (preloadedValues) {
       handleActivity({
         id: preloadedValues.id,
         activity: data.activity,
-        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
+        category: data.category === '' ? 'other' : data.category,
+        friend:
+          data.friend === '' ? 'I still need to plan...' : sortedFriendNames,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -44,7 +60,9 @@ export default function Form({ handleActivity, preloadedValues, title }) {
       handleActivity({
         id: id,
         activity: data.activity,
-        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
+        category: data.category === '' ? 'other' : data.category,
+        friend:
+          data.friend === '' ? 'I still need to plan...' : sortedFriendNames,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -90,9 +108,22 @@ export default function Form({ handleActivity, preloadedValues, title }) {
           </ErrorMessage>
         )}
       </label>
+      <StyledCategory>
+        category:
+        <select name="select category" {...register('category')}>
+          <option value="culture">culture</option>
+          <option value="food and beverages">food and beverages</option>
+          <option value="outdoor">outdoor</option>
+          <option value="sport">sport</option>
+          <option value="other">other</option>
+        </select>
+      </StyledCategory>
 
       <label htmlFor="friend">
         who should join you?
+        <div>
+          <i>*Seperate by comma when more than one friend*</i>
+        </div>
         <input
           id="friend"
           type="text"
@@ -175,7 +206,7 @@ export default function Form({ handleActivity, preloadedValues, title }) {
 const WrapperForm = styled.form`
   height: 85vh;
   display: grid;
-  grid-template-rows: repeat(5, auto) 90px;
+  grid-template-rows: repeat(6, auto) 90px;
   margin-top: 20px;
 
   label {
@@ -203,12 +234,34 @@ const WrapperForm = styled.form`
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
+
+  i {
+    font-size: 12px;
+  }
+`;
+
+const StyledCategory = styled.p`
+  margin: 0 30px 8px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  select {
+    color: rgba(71, 39, 35, 0.72);
+    font-size: 14px;
+    padding: 3px;
+    background: transparent;
+    border: 1px solid rgba(71, 39, 35, 0.42);
+    border-radius: 5px;
+  }
 `;
 
 const StyledDate = styled.input`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  height: 30px;
 `;
+
 const ErrorMessage = styled.p`
   font-size: 12px;
   color: rgba(210, 129, 53, 1);

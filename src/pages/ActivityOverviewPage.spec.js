@@ -3,44 +3,108 @@ import { render, screen } from '@testing-library/react';
 
 import ActivityOverviewPage from './ActivityOverviewPage';
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useParams: () => ({
+    friendsName: 'Clara',
+    activityName: 'Frau Möller',
+  }),
+  useNavigate: () => ({ url: '/Frau Möller' }),
+}));
+
 describe('ActivityOverviewPage', () => {
-  it('renders page with a back, new and edit button, as well as a message to the user if there is no input', () => {
-    const selectedActivity = [
+  it('renders page with a back and new button as well as heading and activity name', () => {
+    const activities = [
       {
-        activities: {
-          id: '1',
-          path: '/project/:id',
-          friend: 'Clara',
-          activity: 'Frau Möller',
-          notes: 'notes',
-          date: '13/02/21',
-          location: 'HH',
-        },
-      },
-      {
-        id: '2',
-        path: '/project/:id',
+        id: '1',
         friend: 'Clara',
         activity: 'Frau Möller',
+        category: 'culture',
         notes: 'notes',
         date: '13/02/21',
         location: 'HH',
       },
     ];
+
     render(
       <MemoryRouter>
-        <ActivityOverviewPage activities={selectedActivity} />
+        <ActivityOverviewPage activities={activities} />
       </MemoryRouter>
     );
 
-    const buttons = screen.getAllByRole('button');
-    const header = screen.getByRole('heading');
-    const dateEmpty = screen.getByText('plan your activity soon!');
-    const locationEmpty = screen.getByText('where do you have to go?');
+    const backButton = screen.getByRole('button', { name: 'go back' });
+    const saveButton = screen.getByRole('button', { name: 'new' });
+    const headingAndActivity = screen.getAllByText('Frau Möller');
 
-    expect(buttons).toHaveLength(3);
-    expect(header).toBeInTheDocument();
-    expect(dateEmpty).toBeInTheDocument();
-    expect(locationEmpty).toBeInTheDocument();
+    expect(backButton).toBeInTheDocument();
+    expect(saveButton).toBeInTheDocument();
+    expect(headingAndActivity).toHaveLength(2);
+  });
+
+  it('renders page with category, friend, notes, date and location', () => {
+    const activities = [
+      {
+        id: '1',
+        friend: 'Clara',
+        activity: 'Frau Möller',
+        category: 'culture',
+        notes: 'notes',
+        date: '13/02/21',
+        location: 'HH',
+      },
+    ];
+
+    render(
+      <MemoryRouter>
+        <ActivityOverviewPage activities={activities} />
+      </MemoryRouter>
+    );
+
+    const category = screen.getByText('culture');
+    expect(category).toBeInTheDocument();
+
+    const friend = screen.getByText('Clara');
+    expect(friend).toBeInTheDocument();
+
+    const notes = screen.getByText('notes');
+    expect(notes).toBeInTheDocument();
+
+    const date = screen.getByText('13/02/21');
+    expect(date).toBeInTheDocument();
+
+    const location = screen.getByText('HH');
+    expect(location).toBeInTheDocument();
+  });
+
+  it('renders page with empty messages for category, friend, date and location, as well as no note', () => {
+    const activities = [
+      {
+        id: '1',
+        friend: 'I still need to plan...',
+        activity: 'Frau Möller',
+        category: 'culture',
+        notes: '',
+        date: '',
+        location: '',
+      },
+    ];
+
+    render(
+      <MemoryRouter>
+        <ActivityOverviewPage activities={activities} />
+      </MemoryRouter>
+    );
+
+    const friend = screen.getByText('make plans with a friend!');
+    expect(friend).toBeInTheDocument();
+
+    const notes = screen.getByTestId('noNotes');
+    expect(notes).toBeInTheDocument();
+
+    const date = screen.getByText('plan your activity soon!');
+    expect(date).toBeInTheDocument();
+
+    const location = screen.getByText('where do you have to go?');
+    expect(location).toBeInTheDocument();
   });
 });

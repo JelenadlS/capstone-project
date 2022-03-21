@@ -3,19 +3,25 @@ import { render, screen } from '@testing-library/react';
 
 import MyFriendsPage from './MyFriendsPage.js';
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useParams: () => ({
+    friendsName: 'Clara',
+  }),
+  useNavigate: () => ({ url: '/Clara' }),
+}));
+
 describe('MyFriendsPage', () => {
   it('renders a page with headertitle, a list and button', () => {
-    const activities = [
-      { id: '1', activity: 'Frau Möller', friend: 'Clara' },
-      { id: '2', activity: 'Stadtpark', friend: 'Jana' },
-    ];
+    const activities = [{ id: '1', activity: 'Frau Möller', friend: 'Clara' }];
+
     render(
       <MemoryRouter>
         <MyFriendsPage activities={activities} />
       </MemoryRouter>
     );
 
-    const title = screen.getByText('my friends');
+    const title = screen.getByText('Clara');
     const list = screen.getByRole('list');
     const button = screen.getByRole('button');
 
@@ -26,6 +32,7 @@ describe('MyFriendsPage', () => {
 
   it('renders an error message when no activities are found', () => {
     const activities = [];
+
     render(
       <MemoryRouter>
         <MyFriendsPage activities={activities} />
