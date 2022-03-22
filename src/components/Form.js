@@ -60,7 +60,7 @@ export default function Form({
         notes: data.notes,
         date: data.date,
         location: data.location,
-        photo: photo,
+        photo: data.photo,
       });
       navigate(`/${data.friend}/${data.activity}/`);
     } else {
@@ -207,7 +207,15 @@ export default function Form({
       </label>
       <div>
         <input type="file" onChange={e => setImage(e.target.files[0])}></input>
-        <button onClick={uploadImage}>Upload</button>
+        <button
+          type="button"
+          onClick={event => {
+            event.stopPropagation();
+            uploadImage();
+          }}
+        >
+          Upload
+        </button>
       </div>
       <Navigation>
         <img src={saveIcon} alt="save" />
