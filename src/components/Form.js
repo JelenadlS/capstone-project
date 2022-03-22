@@ -216,6 +216,7 @@ export default function Form({
         >
           Upload
         </button>
+        <img width="80" height="80" alt="upload" src={photo} />
       </div>
       <Navigation>
         <img src={saveIcon} alt="save" />

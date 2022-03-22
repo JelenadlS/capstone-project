@@ -7,6 +7,10 @@ import DeleteModal from './DeleteModal.js';
 
 import deleteIcon from '../images/binIcon.svg';
 
+// import otherIcon from '../images/otherIcon.svg';
+// import outdoorIcon from '../images/outdoorIcon.svg';
+// import sportIcon from '../images/sportIcon.svg';
+
 export default function ActivityCard({
   photo,
   activity,
@@ -17,6 +21,12 @@ export default function ActivityCard({
 }) {
   const [show, setShow] = useState(false);
 
+  // const placeholderWhenNoPic = {
+  //   photoOne: otherIcon,
+  //   photoTwo: outdoorIcon,
+  //   photoThree: sportIcon,
+  // };
+  // console.log(placeholderWhenNoPic);
   return (
     <>
       <WrapperCard>
@@ -61,6 +71,6 @@ const LinkStyling = styled(Link)`
 `;
 
 const StyledImage = styled.img`
-  box-shadow: 0px 0px 20px rgba(71, 39, 35, 0.35);
+  box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
   border-radius: 50px;
 `;

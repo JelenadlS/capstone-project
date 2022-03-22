@@ -45,6 +45,7 @@ export default function App() {
                 activities={activities}
                 hasError={hasError}
                 setActivities={setActivities}
+                image={image}
               />
             }
           />
@@ -127,9 +128,8 @@ export default function App() {
       })
       .then(response => {
         setPhoto(response.data.url);
-        console.log(response.data.url);
-        // photo: response.data.url);
       })
+      // .then(uploadImage)
       .catch(error => console.log(error));
   }
 

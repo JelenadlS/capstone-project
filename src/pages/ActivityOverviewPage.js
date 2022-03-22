@@ -176,6 +176,6 @@ const StyledImage = styled.img`
   grid-row: 2 / span 2;
   grid-column: 1 / span 2;
   width: 87px;
-  box-shadow: 0px 0px 20px rgba(71, 39, 35, 0.35);
+  box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
   border-radius: 50px;
 `;
