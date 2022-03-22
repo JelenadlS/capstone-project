@@ -21,6 +21,8 @@ export default function FriendsActivitiesPage({
   const selectedFriendsActivity = activities.filter(
     activity => activity.friend === friendsName
   );
+  const [currentFilter, setCurrentFilter] = useState('all');
+  const [active, setActive] = useState(false);
 
   const navigate = useNavigate();
 
@@ -29,7 +31,12 @@ export default function FriendsActivitiesPage({
   ];
 
   const categoryTagsAndAll = ['all', ...eachExistingCategoryOnce].sort();
-  console.log(categoryTagsAndAll);
+
+  function onFilter(category) {
+    setCurrentFilter(category);
+    setActive(!active);
+  }
+
   return (
     <Picture>
       <Header>
@@ -39,15 +46,25 @@ export default function FriendsActivitiesPage({
         </ArrowBackButton>
       </Header>
       <Main>
-        <ListStyle role="list" title="list of activities">
+        <ScrollCategories>
           {categoryTagsAndAll.map((category, index) => {
-            return <li key={index}>{category}</li>;
+            return (
+              <CategoryButton
+                key={index}
+                onClick={() => onFilter(category)}
+                active={active}
+              >
+                {category}
+              </CategoryButton>
+            );
           })}
-        </ListStyle>
+        </ScrollCategories>
         <List
           activitiesOfSelectedFriend={selectedFriendsActivity}
           errorMessage={hasError}
           onDeleteActivity={onDeleteActivity}
+          currentFilter={currentFilter}
+          selectedFriendsActivity={selectedFriendsActivity}
         />
       </Main>
       <Navigation>
@@ -72,22 +89,25 @@ export default function FriendsActivitiesPage({
     }
   }
 }
-
-const ListStyle = styled.ul`
-  list-style-type: none;
+const ScrollCategories = styled.div`
   display: flex;
-  flex-wrap: nowrap;
-  gap: 10px;
-  margin: 10px;
   overflow-x: auto;
-  height: 35px;
+`;
+const CategoryButton = styled.button`
+  gap: 5px;
+  margin: 10px;
+  width: fit-content;
+  background: ${props =>
+    props.active ? 'rgba(71, 39, 35, 0.72)' : 'transparent'};
+  color: rgba(71, 39, 35, 0.72);
+  border: 2px solid rgba(71, 39, 35, 0.42);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 16px;
+  white-space: nowrap;
 
-  li {
-    background: transparent;
-    border: 2px solid rgba(71, 39, 35, 0.42);
-    border-radius: 20px;
-    padding: 5px;
-    font-size: 16px;
-    white-space: nowrap;
-  }
+  /* &:active {
+    color: white;
+    background: rgba(71, 39, 35, 0.72);
+  } */
 `;
