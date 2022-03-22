@@ -8,6 +8,7 @@ import DeleteModal from './DeleteModal.js';
 import deleteIcon from '../images/binIcon.svg';
 
 export default function ActivityCard({
+  photo,
   activity,
   errorMessage,
   onDeleteActivity,
@@ -19,6 +20,7 @@ export default function ActivityCard({
   return (
     <>
       <WrapperCard>
+        <StyledImage width="30" height="30" alt="upload" src={photo} />
         <LinkStyling to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}>
           <strong>{activity}</strong>
         </LinkStyling>
@@ -43,7 +45,7 @@ export default function ActivityCard({
 const WrapperCard = styled.section`
   border-bottom: 1px solid rgba(71, 39, 35, 0.4);
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   overflow: hidden;
 `;
@@ -56,4 +58,9 @@ const LinkStyling = styled(Link)`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+`;
+
+const StyledImage = styled.img`
+  box-shadow: 0px 0px 20px rgba(71, 39, 35, 0.35);
+  border-radius: 50px;
 `;

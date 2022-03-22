@@ -32,6 +32,7 @@ export default function List({
               nameOfSelectedFriend={activity.friend}
               nameOfSelectedActivity={activity.activity}
               errorMessage={errorMessage}
+              photo={activity.photo}
             />
           </li>
         ))}
