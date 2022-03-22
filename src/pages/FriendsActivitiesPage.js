@@ -22,7 +22,6 @@ export default function FriendsActivitiesPage({
     activity => activity.friend === friendsName
   );
   const [currentFilter, setCurrentFilter] = useState('all');
-  const [active, setActive] = useState(false);
 
   const navigate = useNavigate();
 
@@ -34,9 +33,8 @@ export default function FriendsActivitiesPage({
 
   function onFilter(category) {
     setCurrentFilter(category);
-    setActive(!active);
   }
-
+  console.log(categoryTagsAndAll);
   return (
     <Picture>
       <Header>
@@ -46,13 +44,14 @@ export default function FriendsActivitiesPage({
         </ArrowBackButton>
       </Header>
       <Main>
+        {/* {categoryTagsAndAll> 2} */}
         <ScrollCategories>
           {categoryTagsAndAll.map((category, index) => {
             return (
               <CategoryButton
                 key={index}
                 onClick={() => onFilter(category)}
-                active={active}
+                active={category === currentFilter}
               >
                 {category}
               </CategoryButton>
@@ -99,15 +98,10 @@ const CategoryButton = styled.button`
   width: fit-content;
   background: ${props =>
     props.active ? 'rgba(71, 39, 35, 0.72)' : 'transparent'};
-  color: rgba(71, 39, 35, 0.72);
+  color: ${props => (props.active ? '#f0e7da' : 'rgba(71, 39, 35, 0.72)')};
   border: 2px solid rgba(71, 39, 35, 0.42);
   border-radius: 20px;
   padding: 3px 10px;
   font-size: 16px;
   white-space: nowrap;
-
-  /* &:active {
-    color: white;
-    background: rgba(71, 39, 35, 0.72);
-  } */
 `;
