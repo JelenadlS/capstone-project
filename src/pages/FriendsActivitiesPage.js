@@ -44,20 +44,23 @@ export default function FriendsActivitiesPage({
         </ArrowBackButton>
       </Header>
       <Main>
-        {/* {categoryTagsAndAll> 2} */}
-        <ScrollCategories title="filter options">
-          {categoryTagsAndAll.map((category, index) => {
-            return (
-              <CategoryButton
-                key={index}
-                onClick={() => onFilter(category)}
-                active={category === currentFilter}
-              >
-                {category}
-              </CategoryButton>
-            );
-          })}
-        </ScrollCategories>
+        {categoryTagsAndAll.length > 2 ? (
+          <ScrollCategories title="filter options">
+            {categoryTagsAndAll.map((category, index) => {
+              return (
+                <CategoryButton
+                  key={index}
+                  onClick={() => onFilter(category)}
+                  active={category === currentFilter}
+                >
+                  {category}
+                </CategoryButton>
+              );
+            })}
+          </ScrollCategories>
+        ) : (
+          ''
+        )}
         <List
           errorMessage={hasError}
           onDeleteActivity={onDeleteActivity}
