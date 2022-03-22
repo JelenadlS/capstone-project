@@ -91,6 +91,10 @@ export default function ActivityOverviewPage({ activities }) {
             <StyledText>where do you have to go?</StyledText>
           )}
 
+          <div>
+            <img alt="upload" src={selectedActivity.photo} />
+          </div>
+
           <EditButton
             onClick={() =>
               navigate(
@@ -114,7 +118,7 @@ export default function ActivityOverviewPage({ activities }) {
 const MainGrid = styled.div`
   display: grid;
   grid-template-columns: 57px 30px auto;
-  grid-template-rows: repeat(7, auto) 40px;
+  grid-template-rows: repeat(8, auto) 40px;
   margin: 30px;
   align-items: center;
 `;

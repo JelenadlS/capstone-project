@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router-dom';
@@ -12,16 +13,25 @@ import FriendsActivitiesPage from './pages/FriendsActivitiesPage.js';
 import MyFriendsPage from './pages/MyFriendsPage';
 import NewActivityPage from './pages/NewActivityPage.js';
 
+const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
+const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
+
 export default function App() {
   const [hasError, setHasError] = useState(false);
   const [activities, setActivities] = useState(
     (!hasError && loadFromLocal('activities')) || []
   );
   const navigate = useNavigate();
+  const [image, setImage] = useState('');
+  const [photo, setPhoto] = useState('');
+
+  console.log(photo);
 
   useEffect(() => {
     saveToLocal('activities', activities);
   }, [activities]);
+
+  console.log(activities);
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
@@ -53,7 +63,14 @@ export default function App() {
           />
           <Route
             path="/newactivity"
-            element={<NewActivityPage onAddActivity={onAddActivity} />}
+            element={
+              <NewActivityPage
+                onAddActivity={onAddActivity}
+                setImage={setImage}
+                uploadImage={uploadImage}
+                photo={photo}
+              />
+            }
           />
         </Routes>
       </WrapperApp>
@@ -68,11 +85,12 @@ export default function App() {
     notes,
     date,
     location,
+    photo,
   }) {
     setHasError(false);
     setActivities([
       ...activities,
-      { activity, category, friend, id, notes, date, location },
+      { activity, category, friend, id, notes, date, location, photo },
     ]);
     navigate('/');
   }
@@ -93,6 +111,26 @@ export default function App() {
           : act
       )
     );
+  }
+
+  function uploadImage() {
+    const data = new FormData();
+    const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/image/upload`;
+    data.append('file', image);
+    data.append('upload_preset', PRESET);
+
+    axios
+      .post(url, data, {
+        headers: {
+          'Content-type': 'multipart/data',
+        },
+      })
+      .then(response => {
+        setPhoto(response.data.url);
+        console.log(response.data.url);
+        // photo: response.data.url);
+      })
+      .catch(error => console.log(error));
   }
 
   function loadFromLocal(key) {

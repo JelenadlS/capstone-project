@@ -8,7 +8,12 @@ import Picture from '../components/Picture';
 
 import goBackIcon from '../images/goBackIcon.svg';
 
-export default function NewActivityPage({ onAddActivity }) {
+export default function NewActivityPage({
+  onAddActivity,
+  setImage,
+  uploadImage,
+  photo,
+}) {
   const navigate = useNavigate();
   return (
     <Picture>
@@ -19,7 +24,13 @@ export default function NewActivityPage({ onAddActivity }) {
         </ArrowBackButton>
       </Header>
       <Main>
-        <Form preloadedValues={null} handleActivity={onAddActivity} />
+        <Form
+          preloadedValues={null}
+          handleActivity={onAddActivity}
+          setImage={setImage}
+          uploadImage={uploadImage}
+          photo={photo}
+        />
       </Main>
     </Picture>
   );

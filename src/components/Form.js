@@ -8,7 +8,14 @@ import Navigation from './Navigation';
 
 import saveIcon from '../images/saveIcon.svg';
 
-export default function Form({ handleActivity, preloadedValues, title }) {
+export default function Form({
+  handleActivity,
+  preloadedValues,
+  title,
+  setImage,
+  uploadImage,
+  photo,
+}) {
   const navigate = useNavigate();
   const {
     register,
@@ -53,6 +60,7 @@ export default function Form({ handleActivity, preloadedValues, title }) {
         notes: data.notes,
         date: data.date,
         location: data.location,
+        photo: photo,
       });
       navigate(`/${data.friend}/${data.activity}/`);
     } else {
@@ -66,6 +74,7 @@ export default function Form({ handleActivity, preloadedValues, title }) {
         notes: data.notes,
         date: data.date,
         location: data.location,
+        photo: photo,
       });
       navigate(`/`);
     }
@@ -196,6 +205,10 @@ export default function Form({ handleActivity, preloadedValues, title }) {
           </ErrorMessage>
         )}
       </label>
+      <div>
+        <input type="file" onChange={e => setImage(e.target.files[0])}></input>
+        <button onClick={uploadImage}>Upload</button>
+      </div>
       <Navigation>
         <img src={saveIcon} alt="save" />
       </Navigation>
@@ -206,7 +219,7 @@ export default function Form({ handleActivity, preloadedValues, title }) {
 const WrapperForm = styled.form`
   height: 85vh;
   display: grid;
-  grid-template-rows: repeat(6, auto) 90px;
+  grid-template-rows: repeat(7, auto) 90px;
   margin-top: 20px;
 
   label {
