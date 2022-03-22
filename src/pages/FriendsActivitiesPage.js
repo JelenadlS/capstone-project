@@ -44,7 +44,7 @@ export default function FriendsActivitiesPage({
         </ArrowBackButton>
       </Header>
       <Main>
-        {categoryTagsAndAll.length > 2 ? (
+        {categoryTagsAndAll.length > 2 && (
           <ScrollCategories title="filter options">
             {categoryTagsAndAll.map((category, index) => {
               return (
@@ -58,8 +58,6 @@ export default function FriendsActivitiesPage({
               );
             })}
           </ScrollCategories>
-        ) : (
-          ''
         )}
         <List
           errorMessage={hasError}
