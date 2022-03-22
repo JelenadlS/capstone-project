@@ -13,7 +13,9 @@ jest.mock('react-router-dom', () => ({
 
 describe('MyFriendsPage', () => {
   it('renders a page with headertitle, a list and button', () => {
-    const activities = [{ id: '1', activity: 'Frau Möller', friend: 'Clara' }];
+    const activities = [
+      { id: '1', activity: 'Frau Möller', category: 'sport', friend: 'Clara' },
+    ];
 
     render(
       <MemoryRouter>

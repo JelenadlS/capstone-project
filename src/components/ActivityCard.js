@@ -32,7 +32,9 @@ export default function ActivityCard({
         />
       </WrapperCard>
       <p>
-        <strong>{errorMessage}</strong>
+        <strong>
+          {errorMessage && `unfortunately something went wrong with your data.`}
+        </strong>
       </p>
     </>
   );
