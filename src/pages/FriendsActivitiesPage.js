@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -20,25 +21,15 @@ export default function FriendsActivitiesPage({
   const selectedFriendsActivity = activities.filter(
     activity => activity.friend === friendsName
   );
+
   const navigate = useNavigate();
 
   const eachExistingCategoryOnce = [
     ...new Set(selectedFriendsActivity.map(activity => activity.category)),
   ];
 
-  const eachExistingCategorySorted = eachExistingCategoryOnce.sort(function (
-    a,
-    b
-  ) {
-    const firstFriend = a.toLowerCase();
-    const secondFriend = b.toLowerCase();
-
-    if (firstFriend < secondFriend) return -1;
-    if (firstFriend > secondFriend) return 1;
-    return 0;
-  });
-  const categoryTagsAndAll = ['all', ...eachExistingCategorySorted];
-
+  const categoryTagsAndAll = ['all', ...eachExistingCategoryOnce].sort();
+  console.log(categoryTagsAndAll);
   return (
     <Picture>
       <Header>
