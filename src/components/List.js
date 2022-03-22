@@ -31,10 +31,7 @@ export default function List({
               id={activity.id}
               nameOfSelectedFriend={activity.friend}
               nameOfSelectedActivity={activity.activity}
-              errorMessage={
-                errorMessage &&
-                `unfortunately something went wrong with your data.`
-              }
+              errorMessage={errorMessage}
             />
           </li>
         ))}

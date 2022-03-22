@@ -90,7 +90,7 @@ export default function FriendsActivitiesPage({
     }
   }
 }
-const ScrollCategories = styled.span`
+const ScrollCategories = styled.section`
   display: flex;
   overflow-x: auto;
 `;
