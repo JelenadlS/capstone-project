@@ -34,7 +34,7 @@ export default function FriendsActivitiesPage({
   function onFilter(category) {
     setCurrentFilter(category);
   }
-  console.log(categoryTagsAndAll);
+
   return (
     <Picture>
       <Header>
@@ -59,7 +59,6 @@ export default function FriendsActivitiesPage({
           })}
         </ScrollCategories>
         <List
-          activitiesOfSelectedFriend={selectedFriendsActivity}
           errorMessage={hasError}
           onDeleteActivity={onDeleteActivity}
           currentFilter={currentFilter}
