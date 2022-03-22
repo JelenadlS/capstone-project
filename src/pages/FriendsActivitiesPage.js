@@ -45,7 +45,7 @@ export default function FriendsActivitiesPage({
       </Header>
       <Main>
         {/* {categoryTagsAndAll> 2} */}
-        <ScrollCategories>
+        <ScrollCategories title="filter options">
           {categoryTagsAndAll.map((category, index) => {
             return (
               <CategoryButton
@@ -87,7 +87,7 @@ export default function FriendsActivitiesPage({
     }
   }
 }
-const ScrollCategories = styled.div`
+const ScrollCategories = styled.span`
   display: flex;
   overflow-x: auto;
 `;
