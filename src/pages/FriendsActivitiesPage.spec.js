@@ -17,6 +17,12 @@ describe('MyFriendsPage', () => {
   it('renders a page with headertitle, go back and new button, as well as filter button, a list and link', () => {
     const activities = [
       { id: '1', activity: 'Frau Möller', category: 'sport', friend: 'Clara' },
+      {
+        id: '2',
+        activity: 'Elbstrand',
+        category: 'culture',
+        friend: 'Clara',
+      },
     ];
 
     render(
@@ -38,5 +44,26 @@ describe('MyFriendsPage', () => {
     expect(categoryButton).toBeInTheDocument();
     expect(list).toBeInTheDocument();
     expect(link).toBeInTheDocument();
+  });
+  it('renders no category, when only one type is given', () => {
+    const activities = [
+      { id: '1', activity: 'Frau Möller', category: 'sport', friend: 'Clara' },
+      {
+        id: '2',
+        activity: 'Elbstrand',
+        category: 'sport',
+        friend: 'Clara',
+      },
+    ];
+
+    render(
+      <MemoryRouter>
+        <FriendsActivitiesPage activities={activities} />
+      </MemoryRouter>
+    );
+
+    const categoryText = screen.queryByText('sport');
+
+    expect(categoryText).not.toBeInTheDocument();
   });
 });
