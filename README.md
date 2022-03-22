@@ -22,7 +22,7 @@ You can add an activity to your list either together with a friends name or not.
   - Date (optional)
   - Location (optional)
 - Delete items from the list
-- Filter tyour activities which you have with a specific friend
+- Filter your activities which you have with a specific friend
 - Storage: localStorage
 
 ## How to use it?
