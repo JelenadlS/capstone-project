@@ -24,9 +24,6 @@ export default function App() {
   const navigate = useNavigate();
   const [photo, setPhoto] = useState('');
 
-  console.log(photo, 'photo');
-  console.log(setPhoto, 'setPhoto');
-
   useEffect(() => {
     saveToLocal('activities', activities);
   }, [activities]);

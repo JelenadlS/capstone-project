@@ -90,10 +90,6 @@ export default function Form({
     setFocus('activity');
   }, [setFocus]);
 
-  // useEffect(() => {
-  //   setPreloadedPicture(photo);
-  // }, [photo]);
-
   function onDeletePicture(event) {
     event.preventDefault();
     setPhoto('');
@@ -104,14 +100,7 @@ export default function Form({
   function onDeletePreloadedPicture(event) {
     event.preventDefault();
     setPreloadedPicture('');
-    // setPhoto('');
   }
-  console.log(preloadedValues, 'preloadedValues');
-  console.log(photo, 'photo');
-  console.log(setPhoto, 'setPhoto');
-  console.log(uploadImage, 'uploadImage');
-  console.log(preloadedPicture, 'preloadedPicture');
-  console.log(setPreloadedPicture, 'setPreloadedPicture');
 
   return (
     <WrapperForm
