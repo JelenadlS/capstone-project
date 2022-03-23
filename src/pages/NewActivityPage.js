@@ -10,10 +10,8 @@ import goBackIcon from '../images/goBackIcon.svg';
 
 export default function NewActivityPage({
   onAddActivity,
-  setImage,
   uploadImage,
   photo,
-  image,
   setPhoto,
 }) {
   const navigate = useNavigate();
@@ -35,10 +33,8 @@ export default function NewActivityPage({
         <Form
           preloadedValues={null}
           handleActivity={onAddActivity}
-          setImage={setImage}
           uploadImage={uploadImage}
           photo={photo}
-          image={image}
           setPhoto={setPhoto}
         />
       </Main>

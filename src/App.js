@@ -22,11 +22,8 @@ export default function App() {
     (!hasError && loadFromLocal('activities')) || []
   );
   const navigate = useNavigate();
-  const [image, setImage] = useState('');
   const [photo, setPhoto] = useState('');
 
-  console.log(image, 'image');
-  console.log(setImage, 'setImage');
   console.log(photo, 'photo');
   console.log(setPhoto, 'setPhoto');
 
@@ -48,7 +45,6 @@ export default function App() {
                 activities={activities}
                 hasError={hasError}
                 setActivities={setActivities}
-                image={image}
               />
             }
           />
@@ -70,8 +66,6 @@ export default function App() {
             element={
               <NewActivityPage
                 onAddActivity={onAddActivity}
-                setImage={setImage}
-                image={image}
                 uploadImage={uploadImage}
                 photo={photo}
                 setPhoto={setPhoto}

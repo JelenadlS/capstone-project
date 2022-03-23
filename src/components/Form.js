@@ -15,10 +15,8 @@ export default function Form({
   handleActivity,
   preloadedValues,
   title,
-  setImage,
   uploadImage,
   photo,
-  image,
   setPhoto,
 }) {
   const navigate = useNavigate();
