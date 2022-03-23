@@ -327,11 +327,11 @@ const ErrorMessage = styled.p`
   color: rgba(210, 129, 53, 1);
 `;
 
-const StyledPictureUpload = styled.div`
+const StyledPictureUpload = styled.section`
   margin: 0 30px;
-
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
   align-items: center;
 `;
 
