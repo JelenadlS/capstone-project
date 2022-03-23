@@ -94,9 +94,9 @@ export default function Form({
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <label htmlFor="activity">
+      <StyledLabels htmlFor="activity">
         name of activity:
-        <input
+        <StyledInputs
           id="activity"
           type="text"
           name="activity"
@@ -120,7 +120,8 @@ export default function Form({
             {errors.activity.message}
           </ErrorMessage>
         )}
-      </label>
+      </StyledLabels>
+
       <StyledCategory>
         category:
         <select name="select category" {...register('category')}>
@@ -132,12 +133,12 @@ export default function Form({
         </select>
       </StyledCategory>
 
-      <label htmlFor="friend">
+      <StyledLabels htmlFor="friend">
         who should join you?
         <div>
           <i>*Seperate by comma when more than one friend*</i>
         </div>
-        <input
+        <StyledInputs
           id="friend"
           type="text"
           name="friend"
@@ -154,9 +155,9 @@ export default function Form({
             {errors.friend.message}
           </ErrorMessage>
         )}
-      </label>
+      </StyledLabels>
 
-      <label htmlFor="notes">
+      <StyledLabels htmlFor="notes">
         space for some additional notes...
         <textarea
           id="notes"
@@ -176,43 +177,54 @@ export default function Form({
             {errors.notes.message}
           </ErrorMessage>
         )}
-      </label>
+      </StyledLabels>
 
       {/* --------------------------------------------------------------------------- */}
       {!preloadedValues && (
         <StyledPictureUpload>
-          <label htmlFor="selectPhoto">
+          <StyledUpload htmlFor="selectPhoto">
+            Uploadpicture
             <input
               id="selectPhoto"
               name="selectPhoto"
               type="file"
-              onChange={e => setImage(e.target.files[0])}
+              // onChange={e => setImage(e.target.files[0])}
+              onChange={uploadImage}
             />
-          </label>
+          </StyledUpload>
+
+          <StyledImage>
+            {photo ? (
+              <img width="80" height="80" alt="preview" src={photo} />
+            ) : (
+              'your preview will appear here'
+            )}
+          </StyledImage>
           {/* <label htmlFor="uploadPhoto">
-          <input
-            id="uploadPhoto"
-            name="uploadPhoto"
-            type="button"
-            onChange={uploadImage}
-            hidden
-          />
-        </label> */}
-          <button
+            <input
+              id="uploadPhoto"
+              name="uploadPhoto"
+              type="button"
+              onChange={uploadImage}
+            />
+          </label> */}
+          {/* <StyledPreview
             type="button"
             onClick={event => {
               event.stopPropagation();
-              uploadImage();
+              uploadImage(image);
             }}
           >
             preview
-          </button>
-          <img width="40" height="40" alt="preview" src={photo} />
+          </StyledPreview> */}
+          <StyledUploadInfo>
+            <i>*preview your picture otherwise it will not only be saved*</i>
+          </StyledUploadInfo>
         </StyledPictureUpload>
       )}
       {/* --------------------------------------------------------------------------- */}
 
-      <label htmlFor="date">
+      <StyledLabels htmlFor="date">
         do you already have a date in mind?
         <StyledDate
           data-testid="date"
@@ -221,11 +233,11 @@ export default function Form({
           name="date"
           {...register('date')}
         />
-      </label>
+      </StyledLabels>
 
-      <label htmlFor="location">
+      <StyledLabels htmlFor="location">
         where is the activity taking place?
-        <input
+        <StyledInputs
           id="location"
           type="text"
           name="location"
@@ -242,7 +254,7 @@ export default function Form({
             {errors.location.message}
           </ErrorMessage>
         )}
-      </label>
+      </StyledLabels>
 
       <Navigation>
         <img src={saveIcon} alt="save" />
@@ -254,22 +266,8 @@ export default function Form({
 const WrapperForm = styled.form`
   height: 85vh;
   display: grid;
-  grid-template-rows: repeat(7, auto) 90px;
+  grid-template-rows: repeat(7, auto) 30px;
   margin-top: 20px;
-
-  label {
-    padding: 0 30px;
-  }
-
-  input {
-    background: transparent;
-    border: 1px solid rgba(71, 39, 35, 0.42);
-    border-radius: 5px;
-    padding: 1px;
-    width: 100%;
-    color: rgba(71, 39, 35, 0.72);
-    font-size: 20px;
-  }
 
   textarea {
     background: transparent;
@@ -304,10 +302,31 @@ const StyledCategory = styled.p`
   }
 `;
 
+const StyledLabels = styled.label`
+  padding: 0 30px;
+`;
+
+const StyledInputs = styled.input`
+  background: transparent;
+  border: 1px solid rgba(71, 39, 35, 0.42);
+  border-radius: 5px;
+  padding: 1px;
+  width: 100%;
+  color: rgba(71, 39, 35, 0.72);
+  font-size: 20px;
+`;
+
 const StyledDate = styled.input`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   height: 30px;
+  background: transparent;
+  border: 1px solid rgba(71, 39, 35, 0.42);
+  border-radius: 5px;
+  padding: 1px;
+  width: 100%;
+  color: rgba(71, 39, 35, 0.72);
+  font-size: 20px;
 `;
 
 const ErrorMessage = styled.p`
@@ -316,5 +335,34 @@ const ErrorMessage = styled.p`
 `;
 
 const StyledPictureUpload = styled.section`
-  display: flex;
+  margin: 0 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, auto);
+`;
+
+const StyledUpload = styled.label`
+  align-self: center;
+`;
+
+const StyledPreview = styled.button`
+  width: fit-content;
+  height: fit-content;
+  align-self: center;
+  //
+`;
+
+const StyledUploadInfo = styled.p`
+  grid-column-start: span 2;
+`;
+const StyledImage = styled.span`
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  justify-self: center;
+  align-self: center;
+
+  img {
+    box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
+    border-radius: 50px;
+  }
 `;

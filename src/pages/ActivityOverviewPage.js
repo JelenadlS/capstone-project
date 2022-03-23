@@ -172,6 +172,14 @@ const StyledCategoryText = styled.span`
   align-self: center;
 `;
 
+const StyledImage = styled.img`
+  grid-row: 2 / span 2;
+  grid-column: 1 / span 2;
+  width: 87px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
+  border-radius: 50px;
+`;
+
 const StyledOtherInfo = styled.span`
   grid-column-start: 1;
   grid-column-end: 6;
@@ -192,12 +200,4 @@ const StyledText = styled.span`
 const StyledNoNotes = styled.span`
   grid-column-start: 1;
   grid-column-end: 6;
-`;
-
-const StyledImage = styled.img`
-  grid-row: 2 / span 2;
-  grid-column: 1 / span 2;
-  width: 87px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
-  border-radius: 50px;
 `;

@@ -119,10 +119,10 @@ export default function App() {
     );
   }
 
-  function uploadImage() {
+  function uploadImage(e) {
     const data = new FormData();
     const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/image/upload`;
-    data.append('file', image);
+    data.append('file', e.target.files[0]);
     data.append('upload_preset', PRESET);
 
     axios
@@ -134,7 +134,6 @@ export default function App() {
       .then(response => {
         setPhoto(response.data.url);
       })
-      // .then(uploadImage)
       .catch(error => console.log(error));
   }
 
