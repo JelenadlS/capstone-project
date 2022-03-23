@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
@@ -93,6 +93,14 @@ export default function Form({
     event.preventDefault();
     setPhoto('');
   }
+  const [preloadedPicture, setPreloadedPicture] = useState(
+    preloadedValues.photo
+  );
+  function onDeletePreloadedPicture(event) {
+    event.preventDefault();
+    setPreloadedPicture('');
+  }
+
   return (
     <WrapperForm
       title={title}
@@ -184,6 +192,42 @@ export default function Form({
         )}
       </StyledLabels>
 
+      {preloadedValues && (
+        <StyledPictureUpload>
+          <label htmlFor="selectPhoto">
+            <img width="50" height="50" alt="preview1" src={addPictureIcon} />
+            <input
+              id="selectPhoto"
+              name="selectPhoto"
+              type="file"
+              onChange={uploadImage}
+              hidden
+            />
+          </label>
+          {preloadedPicture ? (
+            <PositionedSection>
+              <StyledImage
+                width="60"
+                height="60"
+                alt="preview"
+                src={preloadedPicture}
+              />
+              {preloadedPicture && (
+                <DeletePictureButton onClick={e => onDeletePreloadedPicture(e)}>
+                  <img
+                    src={deletePictureIcon}
+                    alt="save"
+                    width="20"
+                    height="20"
+                  />
+                </DeletePictureButton>
+              )}
+            </PositionedSection>
+          ) : (
+            <StyledPreviewText>preview</StyledPreviewText>
+          )}
+        </StyledPictureUpload>
+      )}
       {!preloadedValues && (
         <StyledPictureUpload>
           <label htmlFor="selectPhoto">
@@ -196,7 +240,6 @@ export default function Form({
               hidden
             />
           </label>
-
           {photo ? (
             <PositionedSection>
               <StyledImage width="60" height="60" alt="preview" src={photo} />
