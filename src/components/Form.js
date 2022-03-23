@@ -15,6 +15,8 @@ export default function Form({
   setImage,
   uploadImage,
   photo,
+  image,
+  setPhoto,
 }) {
   const navigate = useNavigate();
   const {
@@ -33,9 +35,10 @@ export default function Form({
           notes: '',
           date: '',
           location: '',
+          photo: '',
         },
   });
-
+  console.log(preloadedValues);
   const onSubmit = data => {
     const sortedFriendNames = data.friend
       .split(',')
@@ -60,7 +63,7 @@ export default function Form({
         notes: data.notes,
         date: data.date,
         location: data.location,
-        photo: data.photo,
+        photo: photo,
       });
       navigate(`/${data.friend}/${data.activity}/`);
     } else {
@@ -77,6 +80,7 @@ export default function Form({
         photo: photo,
       });
       navigate(`/`);
+      setPhoto('');
     }
   };
 
@@ -205,19 +209,39 @@ export default function Form({
           </ErrorMessage>
         )}
       </label>
-      <div>
-        <input type="file" onChange={e => setImage(e.target.files[0])}></input>
-        <button
-          type="button"
-          onClick={event => {
-            event.stopPropagation();
-            uploadImage();
-          }}
-        >
-          Upload
-        </button>
-        <img width="80" height="80" alt="upload" src={photo} />
-      </div>
+      {/* --------------------------------------------------------------------------- */}
+      {!preloadedValues && (
+        <div>
+          <label htmlFor="selectPhoto">
+            <input
+              id="selectPhoto"
+              name="selectPhoto"
+              type="file"
+              onChange={e => setImage(e.target.files[0])}
+            />
+          </label>
+          {/* <label htmlFor="uploadPhoto">
+          <input
+            id="uploadPhoto"
+            name="uploadPhoto"
+            type="button"
+            onChange={uploadImage}
+            hidden
+          />
+        </label> */}
+          <button
+            type="button"
+            onClick={event => {
+              event.stopPropagation();
+              uploadImage();
+            }}
+          >
+            save
+          </button>
+          <img width="40" height="40" alt="preview" src={photo} />
+        </div>
+      )}
+      {/* --------------------------------------------------------------------------- */}
       <Navigation>
         <img src={saveIcon} alt="save" />
       </Navigation>

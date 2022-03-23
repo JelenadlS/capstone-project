@@ -25,13 +25,16 @@ export default function App() {
   const [image, setImage] = useState('');
   const [photo, setPhoto] = useState('');
 
-  console.log(photo);
+  console.log(image, 'image');
+  console.log(setImage, 'setImage');
+  console.log(photo, 'photo');
+  console.log(setPhoto, 'setPhoto');
 
   useEffect(() => {
     saveToLocal('activities', activities);
   }, [activities]);
 
-  console.log(activities);
+  console.log(activities, 'activities');
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
@@ -68,8 +71,10 @@ export default function App() {
               <NewActivityPage
                 onAddActivity={onAddActivity}
                 setImage={setImage}
+                image={image}
                 uploadImage={uploadImage}
                 photo={photo}
+                setPhoto={setPhoto}
               />
             }
           />

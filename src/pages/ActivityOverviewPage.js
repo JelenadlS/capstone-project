@@ -8,17 +8,22 @@ import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
 import cultureIcon from '../images/cultureIcon.svg';
+import cultureImage from '../images/cultureImage.jpg';
 import dateIcon from '../images/dateIcon.svg';
 import editIcon from '../images/editIcon.svg';
 import fAndBIcon from '../images/fAndBIcon.svg';
+import fAndBImage from '../images/fAndBImage.jpg';
 import friendIcon from '../images/friendIcon.svg';
 import goBackIcon from '../images/goBackIcon.svg';
 import locationIcon from '../images/locationIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import notesIcon from '../images/notesIcon.svg';
 import otherIcon from '../images/otherIcon.svg';
+import otherImage from '../images/otherImage.jpg';
 import outdoorIcon from '../images/outdoorIcon.svg';
+import outdoorImage from '../images/outdoorImage.jpg';
 import sportIcon from '../images/sportIcon.svg';
+import sportImage from '../images/sportImage.jpg';
 
 export default function ActivityOverviewPage({ activities }) {
   const navigate = useNavigate();
@@ -33,6 +38,14 @@ export default function ActivityOverviewPage({ activities }) {
     outdoor: outdoorIcon,
     sport: sportIcon,
     other: otherIcon,
+  };
+
+  const placeholderWhenNoPic = {
+    culture: cultureImage,
+    'food and beverages': fAndBImage,
+    outdoor: outdoorImage,
+    sport: sportImage,
+    other: otherImage,
   };
 
   return (
@@ -51,12 +64,21 @@ export default function ActivityOverviewPage({ activities }) {
 
           <StyledActivity>{selectedActivity.activity}</StyledActivity>
 
-          <StyledImage
-            width="80"
-            height="80"
-            alt="upload"
-            src={selectedActivity.photo}
-          />
+          {!selectedActivity.photo > 0 ? (
+            <StyledImage
+              width="80"
+              height="80"
+              alt="upload"
+              src={placeholderWhenNoPic[selectedActivity.category]}
+            />
+          ) : (
+            <StyledImage
+              width="80"
+              height="80"
+              alt="upload"
+              src={selectedActivity.photo}
+            />
+          )}
 
           <StyledCategoryIcon
             src={mappedCategories[selectedActivity.category]}

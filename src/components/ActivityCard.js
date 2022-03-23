@@ -7,9 +7,11 @@ import DeleteModal from './DeleteModal.js';
 
 import deleteIcon from '../images/binIcon.svg';
 
-// import otherIcon from '../images/otherIcon.svg';
-// import outdoorIcon from '../images/outdoorIcon.svg';
-// import sportIcon from '../images/sportIcon.svg';
+import cultureImage from '../images/cultureImage.jpg';
+import fAndBImage from '../images/fAndBImage.jpg';
+import otherImage from '../images/otherImage.jpg';
+import outdoorImage from '../images/outdoorImage.jpg';
+import sportImage from '../images/sportImage.jpg';
 
 export default function ActivityCard({
   photo,
@@ -18,19 +20,32 @@ export default function ActivityCard({
   onDeleteActivity,
   nameOfSelectedFriend,
   nameOfSelectedActivity,
+  nameOfSelectedCategory,
 }) {
   const [show, setShow] = useState(false);
 
-  // const placeholderWhenNoPic = {
-  //   photoOne: otherIcon,
-  //   photoTwo: outdoorIcon,
-  //   photoThree: sportIcon,
-  // };
-  // console.log(placeholderWhenNoPic);
+  const placeholderWhenNoPic = {
+    culture: cultureImage,
+    'food and beverages': fAndBImage,
+    outdoor: outdoorImage,
+    sport: sportImage,
+    other: otherImage,
+  };
+  console.log(placeholderWhenNoPic);
   return (
     <>
       <WrapperCard>
-        <StyledImage width="30" height="30" alt="upload" src={photo} />
+        {!photo > 0 ? (
+          <StyledImage
+            width="30"
+            height="30"
+            alt="upload"
+            src={placeholderWhenNoPic[nameOfSelectedCategory]}
+          />
+        ) : (
+          <StyledImage width="30" height="30" alt="upload" src={photo} />
+        )}
+
         <LinkStyling to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}>
           <strong>{activity}</strong>
         </LinkStyling>
