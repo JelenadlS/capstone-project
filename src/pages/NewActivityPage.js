@@ -16,7 +16,7 @@ export default function NewActivityPage({
 }) {
   const navigate = useNavigate();
 
-  function resetForm(event) {
+  function resetForm() {
     navigate(-1);
     setPhoto('');
   }

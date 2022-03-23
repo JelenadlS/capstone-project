@@ -31,8 +31,6 @@ export default function App() {
     saveToLocal('activities', activities);
   }, [activities]);
 
-  console.log(activities, 'activities');
-
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>
@@ -58,6 +56,9 @@ export default function App() {
               <EditActivityPage
                 activities={activities}
                 onEditActivity={onEditActivity}
+                uploadImage={uploadImage}
+                photo={photo}
+                setPhoto={setPhoto}
               />
             }
           />
@@ -103,11 +104,22 @@ export default function App() {
     notes,
     date,
     location,
+    photo,
   }) {
     setActivities(
       activities.map(act =>
         act.id === id
-          ? { ...act, id, activity, category, friend, notes, date, location }
+          ? {
+              ...act,
+              id,
+              activity,
+              category,
+              friend,
+              notes,
+              date,
+              location,
+              photo,
+            }
           : act
       )
     );

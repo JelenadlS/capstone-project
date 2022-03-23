@@ -39,7 +39,7 @@ export default function Form({
           photo: '',
         },
   });
-  console.log(preloadedValues);
+
   const onSubmit = data => {
     const sortedFriendNames = data.friend
       .split(',')
@@ -64,9 +64,10 @@ export default function Form({
         notes: data.notes,
         date: data.date,
         location: data.location,
-        photo: photo,
+        photo: photo.length > 0 ? photo : '',
       });
       navigate(`/${data.friend}/${data.activity}/`);
+      setPhoto('');
     } else {
       const id = nanoid();
       handleActivity({
@@ -89,17 +90,28 @@ export default function Form({
     setFocus('activity');
   }, [setFocus]);
 
+  // useEffect(() => {
+  //   setPreloadedPicture(photo);
+  // }, [photo]);
+
   function onDeletePicture(event) {
     event.preventDefault();
     setPhoto('');
   }
   const [preloadedPicture, setPreloadedPicture] = useState(
-    preloadedValues.photo
+    preloadedValues?.photo
   );
   function onDeletePreloadedPicture(event) {
     event.preventDefault();
     setPreloadedPicture('');
+    // setPhoto('');
   }
+  console.log(preloadedValues, 'preloadedValues');
+  console.log(photo, 'photo');
+  console.log(setPhoto, 'setPhoto');
+  console.log(uploadImage, 'uploadImage');
+  console.log(preloadedPicture, 'preloadedPicture');
+  console.log(setPreloadedPicture, 'setPreloadedPicture');
 
   return (
     <WrapperForm
@@ -192,7 +204,7 @@ export default function Form({
         )}
       </StyledLabels>
 
-      {preloadedValues && (
+      {preloadedValues ? (
         <StyledPictureUpload>
           <label htmlFor="selectPhoto">
             <img width="50" height="50" alt="preview1" src={addPictureIcon} />
@@ -206,29 +218,62 @@ export default function Form({
           </label>
           {preloadedPicture ? (
             <PositionedSection>
-              <StyledImage
-                width="60"
-                height="60"
-                alt="preview"
-                src={preloadedPicture}
-              />
-              {preloadedPicture && (
-                <DeletePictureButton onClick={e => onDeletePreloadedPicture(e)}>
-                  <img
-                    src={deletePictureIcon}
-                    alt="save"
-                    width="20"
-                    height="20"
+              <div>
+                {/* {preloadedPicture && (
+                  <StyledImage
+                    width="60"
+                    height="60"
+                    alt="preview"
+                    src={preloadedPicture}
                   />
-                </DeletePictureButton>
-              )}
+                )} */}
+
+                {/* ------------------------------------------- */}
+                {/* {photo ? (
+                  <StyledImage
+                    width="60"
+                    height="60"
+                    alt="preview3"
+                    src={photo}
+                  />
+                ) : (
+                  <StyledImage
+                    width="60"
+                    height="60"
+                    alt="preview"
+                    src={preloadedPicture}
+                  />
+                )} */}
+                {/* ------------------------------------------- */}
+                <StyledImage
+                  width="60"
+                  height="60"
+                  alt="preview"
+                  src={preloadedPicture}
+                  // src={preloadedPicture && photo}
+                  // {!preloadedPicture.length > 0 && hidden}
+                />
+                <StyledImage
+                  width="60"
+                  height="60"
+                  alt="preview3"
+                  src={photo}
+                />
+              </div>
+              <DeletePictureButton onClick={e => onDeletePreloadedPicture(e)}>
+                <img
+                  src={deletePictureIcon}
+                  alt="save"
+                  width="20"
+                  height="20"
+                />
+              </DeletePictureButton>
             </PositionedSection>
           ) : (
             <StyledPreviewText>preview</StyledPreviewText>
           )}
         </StyledPictureUpload>
-      )}
-      {!preloadedValues && (
+      ) : (
         <StyledPictureUpload>
           <label htmlFor="selectPhoto">
             <img width="50" height="50" alt="preview1" src={addPictureIcon} />

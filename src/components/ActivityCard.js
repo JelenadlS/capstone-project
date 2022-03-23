@@ -31,7 +31,7 @@ export default function ActivityCard({
     sport: sportImage,
     other: otherImage,
   };
-  console.log(placeholderWhenNoPic);
+
   return (
     <>
       <WrapperCard>

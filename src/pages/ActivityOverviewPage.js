@@ -47,7 +47,7 @@ export default function ActivityOverviewPage({ activities }) {
     sport: sportImage,
     other: otherImage,
   };
-
+  console.log(selectedActivity);
   return (
     <Picture>
       <Header>
