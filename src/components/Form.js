@@ -80,7 +80,7 @@ export default function Form({
         photo: photo,
       });
       navigate(`/`);
-      setPhoto('');
+      setPhoto();
     }
   };
 
@@ -178,6 +178,40 @@ export default function Form({
         )}
       </label>
 
+      {/* --------------------------------------------------------------------------- */}
+      {!preloadedValues && (
+        <StyledPictureUpload>
+          <label htmlFor="selectPhoto">
+            <input
+              id="selectPhoto"
+              name="selectPhoto"
+              type="file"
+              onChange={e => setImage(e.target.files[0])}
+            />
+          </label>
+          {/* <label htmlFor="uploadPhoto">
+          <input
+            id="uploadPhoto"
+            name="uploadPhoto"
+            type="button"
+            onChange={uploadImage}
+            hidden
+          />
+        </label> */}
+          <button
+            type="button"
+            onClick={event => {
+              event.stopPropagation();
+              uploadImage();
+            }}
+          >
+            preview
+          </button>
+          <img width="40" height="40" alt="preview" src={photo} />
+        </StyledPictureUpload>
+      )}
+      {/* --------------------------------------------------------------------------- */}
+
       <label htmlFor="date">
         do you already have a date in mind?
         <StyledDate
@@ -209,39 +243,7 @@ export default function Form({
           </ErrorMessage>
         )}
       </label>
-      {/* --------------------------------------------------------------------------- */}
-      {!preloadedValues && (
-        <div>
-          <label htmlFor="selectPhoto">
-            <input
-              id="selectPhoto"
-              name="selectPhoto"
-              type="file"
-              onChange={e => setImage(e.target.files[0])}
-            />
-          </label>
-          {/* <label htmlFor="uploadPhoto">
-          <input
-            id="uploadPhoto"
-            name="uploadPhoto"
-            type="button"
-            onChange={uploadImage}
-            hidden
-          />
-        </label> */}
-          <button
-            type="button"
-            onClick={event => {
-              event.stopPropagation();
-              uploadImage();
-            }}
-          >
-            save
-          </button>
-          <img width="40" height="40" alt="preview" src={photo} />
-        </div>
-      )}
-      {/* --------------------------------------------------------------------------- */}
+
       <Navigation>
         <img src={saveIcon} alt="save" />
       </Navigation>
@@ -311,4 +313,8 @@ const StyledDate = styled.input`
 const ErrorMessage = styled.p`
   font-size: 12px;
   color: rgba(210, 129, 53, 1);
+`;
+
+const StyledPictureUpload = styled.section`
+  display: flex;
 `;

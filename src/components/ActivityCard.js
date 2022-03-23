@@ -7,11 +7,11 @@ import DeleteModal from './DeleteModal.js';
 
 import deleteIcon from '../images/binIcon.svg';
 
-import cultureImage from '../images/cultureImage.jpg';
-import fAndBImage from '../images/fAndBImage.jpg';
-import otherImage from '../images/otherImage.jpg';
-import outdoorImage from '../images/outdoorImage.jpg';
-import sportImage from '../images/sportImage.jpg';
+import cultureImage from '../images/cultureImage.png';
+import fAndBImage from '../images/fAndBImage.png';
+import otherImage from '../images/otherImage.png';
+import outdoorImage from '../images/outdoorImage.png';
+import sportImage from '../images/sportImage.png';
 
 export default function ActivityCard({
   photo,
