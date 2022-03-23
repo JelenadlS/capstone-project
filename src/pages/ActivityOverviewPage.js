@@ -9,7 +9,6 @@ import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
 import cultureIcon from '../images/cultureIcon.svg';
-import cultureImage from '../images/cultureImage.png';
 import dateIcon from '../images/dateIcon.svg';
 import editIcon from '../images/editIcon.svg';
 import fAndBIcon from '../images/fAndBIcon.svg';

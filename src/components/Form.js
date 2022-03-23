@@ -216,48 +216,15 @@ export default function Form({
               hidden
             />
           </label>
+
           {preloadedPicture ? (
             <PositionedSection>
               <div>
-                {/* {preloadedPicture && (
-                  <StyledImage
-                    width="60"
-                    height="60"
-                    alt="preview"
-                    src={preloadedPicture}
-                  />
-                )} */}
-
-                {/* ------------------------------------------- */}
-                {/* {photo ? (
-                  <StyledImage
-                    width="60"
-                    height="60"
-                    alt="preview3"
-                    src={photo}
-                  />
-                ) : (
-                  <StyledImage
-                    width="60"
-                    height="60"
-                    alt="preview"
-                    src={preloadedPicture}
-                  />
-                )} */}
-                {/* ------------------------------------------- */}
                 <StyledImage
                   width="60"
                   height="60"
                   alt="preview"
                   src={preloadedPicture}
-                  // src={preloadedPicture && photo}
-                  // {!preloadedPicture.length > 0 && hidden}
-                />
-                <StyledImage
-                  width="60"
-                  height="60"
-                  alt="preview3"
-                  src={photo}
                 />
               </div>
               <DeletePictureButton onClick={e => onDeletePreloadedPicture(e)}>
@@ -270,7 +237,30 @@ export default function Form({
               </DeletePictureButton>
             </PositionedSection>
           ) : (
-            <StyledPreviewText>preview</StyledPreviewText>
+            <div>
+              {photo ? (
+                <PositionedSection>
+                  <StyledImage
+                    width="60"
+                    height="60"
+                    alt="preview"
+                    src={photo}
+                  />
+                  {photo && (
+                    <DeletePictureButton onClick={e => onDeletePicture(e)}>
+                      <img
+                        src={deletePictureIcon}
+                        alt="save"
+                        width="20"
+                        height="20"
+                      />
+                    </DeletePictureButton>
+                  )}
+                </PositionedSection>
+              ) : (
+                <StyledPreviewText>preview</StyledPreviewText>
+              )}
+            </div>
           )}
         </StyledPictureUpload>
       ) : (
