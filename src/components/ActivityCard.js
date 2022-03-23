@@ -4,14 +4,9 @@ import styled from 'styled-components';
 
 import { DeleteButton } from './Button.js';
 import DeleteModal from './DeleteModal.js';
+import MappedPlaceholderPictures from './MappedPlaceholderPictures.js';
 
 import deleteIcon from '../images/binIcon.svg';
-
-import cultureImage from '../images/cultureImage.png';
-import fAndBImage from '../images/fAndBImage.png';
-import otherImage from '../images/otherImage.png';
-import outdoorImage from '../images/outdoorImage.png';
-import sportImage from '../images/sportImage.png';
 
 export default function ActivityCard({
   photo,
@@ -24,14 +19,6 @@ export default function ActivityCard({
 }) {
   const [show, setShow] = useState(false);
 
-  const placeholderWhenNoPic = {
-    culture: cultureImage,
-    'food and beverages': fAndBImage,
-    outdoor: outdoorImage,
-    sport: sportImage,
-    other: otherImage,
-  };
-
   return (
     <>
       <WrapperCard>
@@ -40,7 +27,7 @@ export default function ActivityCard({
             width="30"
             height="30"
             alt="upload"
-            src={placeholderWhenNoPic[nameOfSelectedCategory]}
+            src={MappedPlaceholderPictures[nameOfSelectedCategory]}
           />
         ) : (
           <StyledImage width="30" height="30" alt="upload" src={photo} />

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ArrowBackButton, EditButton } from '../components/Button';
 import Header from '../components/Header';
 import Main from '../components/Main';
+import MappedPlaceholderPictures from '../components/MappedPlaceholderPictures.js';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
@@ -12,18 +13,14 @@ import cultureImage from '../images/cultureImage.png';
 import dateIcon from '../images/dateIcon.svg';
 import editIcon from '../images/editIcon.svg';
 import fAndBIcon from '../images/fAndBIcon.svg';
-import fAndBImage from '../images/fAndBImage.png';
 import friendIcon from '../images/friendIcon.svg';
 import goBackIcon from '../images/goBackIcon.svg';
 import locationIcon from '../images/locationIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import notesIcon from '../images/notesIcon.svg';
 import otherIcon from '../images/otherIcon.svg';
-import otherImage from '../images/otherImage.png';
 import outdoorIcon from '../images/outdoorIcon.svg';
-import outdoorImage from '../images/outdoorImage.png';
 import sportIcon from '../images/sportIcon.svg';
-import sportImage from '../images/sportImage.png';
 
 export default function ActivityOverviewPage({ activities }) {
   const navigate = useNavigate();
@@ -40,13 +37,6 @@ export default function ActivityOverviewPage({ activities }) {
     other: otherIcon,
   };
 
-  const placeholderWhenNoPic = {
-    culture: cultureImage,
-    'food and beverages': fAndBImage,
-    outdoor: outdoorImage,
-    sport: sportImage,
-    other: otherImage,
-  };
   console.log(selectedActivity);
   return (
     <Picture>
@@ -69,7 +59,7 @@ export default function ActivityOverviewPage({ activities }) {
               width="80"
               height="80"
               alt="upload"
-              src={placeholderWhenNoPic[selectedActivity.category]}
+              src={MappedPlaceholderPictures[selectedActivity.category]}
             />
           ) : (
             <StyledImage
