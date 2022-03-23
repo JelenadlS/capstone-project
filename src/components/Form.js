@@ -197,25 +197,23 @@ export default function Form({
             />
           </label>
 
-          <StyledImage>
-            {photo ? (
-              <section>
-                <img width="60" height="60" alt="preview" src={photo} />
-                {photo && (
-                  <DeletePictureButton onClick={e => onDeletePicture(e)}>
-                    <img
-                      src={deletePictureIcon}
-                      alt="save"
-                      width="20"
-                      height="20"
-                    />
-                  </DeletePictureButton>
-                )}
-              </section>
-            ) : (
-              <p>preview</p>
-            )}
-          </StyledImage>
+          {photo ? (
+            <PositionedSection>
+              <StyledImage width="60" height="60" alt="preview" src={photo} />
+              {photo && (
+                <DeletePictureButton onClick={e => onDeletePicture(e)}>
+                  <img
+                    src={deletePictureIcon}
+                    alt="save"
+                    width="20"
+                    height="20"
+                  />
+                </DeletePictureButton>
+              )}
+            </PositionedSection>
+          ) : (
+            <StyledPreviewText>preview</StyledPreviewText>
+          )}
         </StyledPictureUpload>
       )}
 
@@ -281,7 +279,7 @@ const WrapperForm = styled.form`
   }
 `;
 
-const StyledCategory = styled.p`
+const StyledCategory = styled.section`
   margin: 0 30px 8px;
   display: flex;
   align-items: center;
@@ -329,35 +327,30 @@ const ErrorMessage = styled.p`
   color: rgba(210, 129, 53, 1);
 `;
 
-const StyledPictureUpload = styled.section`
+const StyledPictureUpload = styled.div`
   margin: 0 30px;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
-
-  section {
-    position: relative;
-  }
-  p {
-    height: 60px;
-    width: 60px;
-    padding-top: 18px;
-    padding-left: 4px;
-    border: none;
-    box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
-    border-radius: 50px;
-    font-size: 14px;
-  }
 `;
 
-const StyledImage = styled.span`
-  grid-row: 1 / span 2;
-  grid-column: 2;
-  justify-self: center;
-  align-self: center;
+const PositionedSection = styled.section`
+  position: relative;
+`;
 
-  img {
-    box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
-    border-radius: 50px;
-  }
+const StyledPreviewText = styled.section`
+  height: 60px;
+  width: 60px;
+  padding-top: 18px;
+  padding-left: 4px;
+  border: none;
+  box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
+  border-radius: 50px;
+  font-size: 14px;
+`;
+
+const StyledImage = styled.img`
+  box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
+  border-radius: 50px;
 `;
