@@ -17,11 +17,17 @@ export default function NewActivityPage({
   setPhoto,
 }) {
   const navigate = useNavigate();
+
+  function resetForm(event) {
+    navigate(-1);
+    setPhoto('');
+  }
+
   return (
     <Picture>
       <Header>
         new activity
-        <ArrowBackButton onClick={() => navigate(-1)}>
+        <ArrowBackButton onClick={resetForm}>
           <img src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>

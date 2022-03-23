@@ -50,6 +50,20 @@ const EditButton = styled(Button)`
 `;
 export { EditButton };
 
+const AddPictureButton = styled(Button)`
+  background: transparent;
+`;
+export { AddPictureButton };
+
+const DeletePictureButton = styled(Button)`
+  background: none;
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 43px;
+`;
+export { DeletePictureButton };
+
 const DeleteButton = styled(Button)`
   background: transparent;
   justify-self: end;

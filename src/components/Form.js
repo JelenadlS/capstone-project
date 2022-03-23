@@ -4,8 +4,11 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
+import { DeletePictureButton } from '../components/Button';
 import Navigation from './Navigation';
 
+import addPictureIcon from '../images/addPictureIcon.svg';
+import deletePictureIcon from '../images/deletePictureIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
 export default function Form({
@@ -80,7 +83,7 @@ export default function Form({
         photo: photo,
       });
       navigate(`/`);
-      setPhoto();
+      setPhoto('');
     }
   };
 
@@ -88,6 +91,10 @@ export default function Form({
     setFocus('activity');
   }, [setFocus]);
 
+  function onDeletePicture(event) {
+    event.preventDefault();
+    setPhoto('');
+  }
   return (
     <WrapperForm
       title={title}
@@ -179,50 +186,40 @@ export default function Form({
         )}
       </StyledLabels>
 
-      {/* --------------------------------------------------------------------------- */}
       {!preloadedValues && (
         <StyledPictureUpload>
-          <StyledUpload htmlFor="selectPhoto">
-            Uploadpicture
+          <label htmlFor="selectPhoto">
+            <img width="50" height="50" alt="preview1" src={addPictureIcon} />
             <input
               id="selectPhoto"
               name="selectPhoto"
               type="file"
-              // onChange={e => setImage(e.target.files[0])}
               onChange={uploadImage}
+              hidden
             />
-          </StyledUpload>
+          </label>
 
           <StyledImage>
             {photo ? (
-              <img width="80" height="80" alt="preview" src={photo} />
+              <section>
+                <img width="60" height="60" alt="preview" src={photo} />
+                {photo && (
+                  <DeletePictureButton onClick={e => onDeletePicture(e)}>
+                    <img
+                      src={deletePictureIcon}
+                      alt="save"
+                      width="20"
+                      height="20"
+                    />
+                  </DeletePictureButton>
+                )}
+              </section>
             ) : (
-              'your preview will appear here'
+              <p>preview</p>
             )}
           </StyledImage>
-          {/* <label htmlFor="uploadPhoto">
-            <input
-              id="uploadPhoto"
-              name="uploadPhoto"
-              type="button"
-              onChange={uploadImage}
-            />
-          </label> */}
-          {/* <StyledPreview
-            type="button"
-            onClick={event => {
-              event.stopPropagation();
-              uploadImage(image);
-            }}
-          >
-            preview
-          </StyledPreview> */}
-          <StyledUploadInfo>
-            <i>*preview your picture otherwise it will not only be saved*</i>
-          </StyledUploadInfo>
         </StyledPictureUpload>
       )}
-      {/* --------------------------------------------------------------------------- */}
 
       <StyledLabels htmlFor="date">
         do you already have a date in mind?
@@ -266,7 +263,7 @@ export default function Form({
 const WrapperForm = styled.form`
   height: 85vh;
   display: grid;
-  grid-template-rows: repeat(7, auto) 30px;
+  grid-template-rows: repeat(7, auto) 50px;
   margin-top: 20px;
 
   textarea {
@@ -336,25 +333,25 @@ const ErrorMessage = styled.p`
 
 const StyledPictureUpload = styled.section`
   margin: 0 30px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, auto);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  section {
+    position: relative;
+  }
+  p {
+    height: 60px;
+    width: 60px;
+    padding-top: 18px;
+    padding-left: 4px;
+    border: none;
+    box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
+    border-radius: 50px;
+    font-size: 14px;
+  }
 `;
 
-const StyledUpload = styled.label`
-  align-self: center;
-`;
-
-const StyledPreview = styled.button`
-  width: fit-content;
-  height: fit-content;
-  align-self: center;
-  //
-`;
-
-const StyledUploadInfo = styled.p`
-  grid-column-start: span 2;
-`;
 const StyledImage = styled.span`
   grid-row: 1 / span 2;
   grid-column: 2;
