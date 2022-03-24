@@ -196,7 +196,12 @@ export default function Form({
       {preloadedValues ? (
         <StyledPictureUpload>
           <label htmlFor="selectPhoto">
-            <img width="50" height="50" alt="preview" src={addPictureIcon} />
+            <img
+              width="50"
+              height="50"
+              alt="selectPhoto"
+              src={addPictureIcon}
+            />
             <input
               id="selectPhoto"
               name="selectPhoto"
@@ -212,14 +217,14 @@ export default function Form({
                 <StyledImage
                   width="60"
                   height="60"
-                  alt="preview"
+                  alt={`preview ${preloadedPicture}`}
                   src={preloadedPicture}
                 />
               </div>
               <DeletePictureButton onClick={e => onDeletePreloadedPicture(e)}>
                 <img
                   src={deletePictureIcon}
-                  alt="save"
+                  alt="delete"
                   width="20"
                   height="20"
                 />
@@ -232,14 +237,14 @@ export default function Form({
                   <StyledImage
                     width="60"
                     height="60"
-                    alt="preview"
+                    alt={`preview ${photo}`}
                     src={photo}
                   />
                   {photo && (
                     <DeletePictureButton onClick={e => onDeletePicture(e)}>
                       <img
                         src={deletePictureIcon}
-                        alt="save"
+                        alt="delete"
                         width="20"
                         height="20"
                       />
@@ -255,7 +260,12 @@ export default function Form({
       ) : (
         <StyledPictureUpload>
           <label htmlFor="selectPhoto">
-            <img width="50" height="50" alt="preview" src={addPictureIcon} />
+            <img
+              width="50"
+              height="50"
+              alt="selectPhoto"
+              src={addPictureIcon}
+            />
             <input
               id="selectPhoto"
               name="selectPhoto"
@@ -266,12 +276,17 @@ export default function Form({
           </label>
           {photo ? (
             <PositionedSection>
-              <StyledImage width="60" height="60" alt="preview" src={photo} />
+              <StyledImage
+                width="60"
+                height="60"
+                alt={`preview ${photo}`}
+                src={photo}
+              />
               {photo && (
                 <DeletePictureButton onClick={e => onDeletePicture(e)}>
                   <img
                     src={deletePictureIcon}
-                    alt="save"
+                    alt="delete"
                     width="20"
                     height="20"
                   />

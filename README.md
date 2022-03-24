@@ -19,6 +19,7 @@ You can add an activity to your list either together with a friends name or not.
   - Category (optional, other by default)
   - Friends (optional)
   - Notes (optional)
+  - Picture (optional - if not uploaded placeholder picture is available)
   - Date (optional)
   - Location (optional)
 - Delete items from the list

@@ -26,11 +26,16 @@ export default function ActivityCard({
           <StyledImage
             width="30"
             height="30"
-            alt="upload"
+            alt={`placeholder picture ${nameOfSelectedCategory}`}
             src={MappedPlaceholderPictures[nameOfSelectedCategory]}
           />
         ) : (
-          <StyledImage width="30" height="30" alt="upload" src={photo} />
+          <StyledImage
+            width="30"
+            height="30"
+            alt={`uploaded picture ${photo}`}
+            src={photo}
+          />
         )}
 
         <LinkStyling to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}>
@@ -73,6 +78,5 @@ const LinkStyling = styled(Link)`
 `;
 
 const StyledImage = styled.img`
-  box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
   border-radius: 50px;
 `;
