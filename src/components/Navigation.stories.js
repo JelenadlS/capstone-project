@@ -13,3 +13,13 @@ export const Default = Template.bind({});
 Default.args = {
   children: <img src={newIcon} alt="new" />,
 };
+
+export const ActiveHome = Template.bind({});
+Default.args = {
+  children: <img src={newIcon} alt="new" />,
+};
+
+export const ActiveSearch = Template.bind({});
+Default.args = {
+  children: <img src={newIcon} alt="new" />,
+};
