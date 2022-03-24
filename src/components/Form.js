@@ -204,14 +204,12 @@ export default function Form({
 
           {preloadedPicture ? (
             <PositionedSection>
-              <div>
-                <StyledImage
-                  width="60"
-                  height="60"
-                  alt={`preview ${preloadedPicture}`}
-                  src={preloadedPicture}
-                />
-              </div>
+              <StyledImage
+                width="60"
+                height="60"
+                alt={`preview ${preloadedPicture}`}
+                src={preloadedPicture}
+              />
               <DeletePictureButton onClick={e => onDeletePreloadedPicture(e)}>
                 <img
                   src={deletePictureIcon}
