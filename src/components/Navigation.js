@@ -13,7 +13,7 @@ export default function Navigation({ children }) {
         <img width="50" height="50" alt="homeIcon" src={homeIcon} />
       </StyledNavLinkHome>
       <StyledNewButton>{children}</StyledNewButton>
-      <StyledNavLinkSearch to="/">
+      <StyledNavLinkSearch to="/search">
         <img width="50" height="50" alt="searchIcon" src={searchIcon} />
       </StyledNavLinkSearch>
     </Footer>

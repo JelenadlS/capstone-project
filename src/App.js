@@ -12,6 +12,7 @@ import EditActivityPage from './pages/EditActivityPage.js';
 import FriendsActivitiesPage from './pages/FriendsActivitiesPage.js';
 import MyFriendsPage from './pages/MyFriendsPage';
 import NewActivityPage from './pages/NewActivityPage.js';
+import SearchPage from './pages/SearchPage.js';
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
@@ -69,6 +70,10 @@ export default function App() {
                 setPhoto={setPhoto}
               />
             }
+          />
+          <Route
+            path="/search"
+            element={<SearchPage activities={activities} />}
           />
         </Routes>
       </WrapperApp>
