@@ -36,7 +36,6 @@ export default function ActivityOverviewPage({ activities }) {
     other: otherIcon,
   };
 
-  console.log(selectedActivity);
   return (
     <Picture>
       <Header>

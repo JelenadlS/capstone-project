@@ -196,7 +196,7 @@ export default function Form({
       {preloadedValues ? (
         <StyledPictureUpload>
           <label htmlFor="selectPhoto">
-            <img width="50" height="50" alt="preview1" src={addPictureIcon} />
+            <img width="50" height="50" alt="preview" src={addPictureIcon} />
             <input
               id="selectPhoto"
               name="selectPhoto"
@@ -255,7 +255,7 @@ export default function Form({
       ) : (
         <StyledPictureUpload>
           <label htmlFor="selectPhoto">
-            <img width="50" height="50" alt="preview1" src={addPictureIcon} />
+            <img width="50" height="50" alt="preview" src={addPictureIcon} />
             <input
               id="selectPhoto"
               name="selectPhoto"
