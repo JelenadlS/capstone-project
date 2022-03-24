@@ -3,18 +3,18 @@ import styled from 'styled-components';
 
 import { MainNavButton } from './Button';
 
-import homeIcon from '../images/homeIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
+import friendIcon from '../images/friendIcon.svg';
+import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 
 export default function Navigation({ children }) {
   return (
     <Footer>
       <StyledNavLinkHome to="/">
-        <img width="50" height="50" alt="homeIcon" src={homeIcon} />
+        <img width="60" height="60" alt="friendsHomeIcon" src={friendIcon} />
       </StyledNavLinkHome>
       <StyledNewButton>{children}</StyledNewButton>
       <StyledNavLinkSearch to="/search">
-        <img width="50" height="50" alt="searchIcon" src={searchIcon} />
+        <img width="50" height="50" alt="searchIcon" src={allActivitiesIcon} />
       </StyledNavLinkSearch>
     </Footer>
   );
