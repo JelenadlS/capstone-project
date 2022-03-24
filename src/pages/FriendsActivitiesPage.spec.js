@@ -14,14 +14,21 @@ jest.mock('react-router-dom', () => ({
 Element.prototype.scrollIntoView = jest.fn();
 
 describe('MyFriendsPage', () => {
-  it('renders a page with headertitle, go back and new button, as well as filter button, a list and link', () => {
+  it('renders a page with headertitle, go back and new button, as well as three filter buttons, a list with two pictures and link and two delete buttons(picture and activity)', () => {
     const activities = [
-      { id: '1', activity: 'Frau Möller', category: 'sport', friend: 'Clara' },
+      {
+        id: '1',
+        activity: 'Frau Möller',
+        category: 'sport',
+        friend: 'Clara',
+        photo: 'activity.png',
+      },
       {
         id: '2',
         activity: 'Elbstrand',
         category: 'culture',
         friend: 'Clara',
+        photo: 'activity.png',
       },
     ];
 
@@ -34,16 +41,26 @@ describe('MyFriendsPage', () => {
     const title = screen.getByText('Clara');
     const goBackButton = screen.getByRole('button', { name: 'go back' });
     const newButton = screen.getByRole('button', { name: 'new' });
-    const categoryButton = screen.getByRole('button', { name: 'sport' });
-    const list = screen.getByRole('list');
+    const categoryButtonAll = screen.getByRole('button', { name: 'all' });
+    const categoryButtonSport = screen.getByRole('button', { name: 'sport' });
+    const categoryButtonCulture = screen.getByRole('button', {
+      name: 'culture',
+    });
+    const list = screen.getByRole('list', { name: 'list of activities' });
+    const picture = screen.getAllByRole('img', { name: 'upload' });
     const link = screen.getByRole('link', { name: 'new' });
+    const deleteButton = screen.getAllByRole('button', { name: 'delete' });
 
     expect(title).toBeInTheDocument();
     expect(goBackButton).toBeInTheDocument();
     expect(newButton).toBeInTheDocument();
-    expect(categoryButton).toBeInTheDocument();
+    expect(categoryButtonAll).toBeInTheDocument();
+    expect(categoryButtonSport).toBeInTheDocument();
+    expect(categoryButtonCulture).toBeInTheDocument();
     expect(list).toBeInTheDocument();
     expect(link).toBeInTheDocument();
+    expect(picture).toHaveLength(2);
+    expect(deleteButton).toHaveLength(2);
   });
   it('renders no category, when only one type is given', () => {
     const activities = [
@@ -65,5 +82,36 @@ describe('MyFriendsPage', () => {
     const categoryText = screen.queryByText('sport');
 
     expect(categoryText).not.toBeInTheDocument();
+  });
+
+  it('renders category picture, once with upload but also when no picture was uploaded', () => {
+    const activities = [
+      {
+        id: '1',
+        activity: 'Frau Möller',
+        category: 'sport',
+        friend: 'Clara',
+        photo: '',
+      },
+      {
+        id: '2',
+        activity: 'Elbstrand',
+        category: 'sport',
+        friend: 'Clara',
+        photo: 'activity.png',
+      },
+    ];
+
+    render(
+      <MemoryRouter>
+        <FriendsActivitiesPage activities={activities} />
+      </MemoryRouter>
+    );
+
+    const placeholderAndUploadedImage = screen.getAllByRole('img', {
+      name: 'upload',
+    });
+
+    expect(placeholderAndUploadedImage).toHaveLength(2);
   });
 });

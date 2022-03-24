@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import NewActivityPage from './NewActivityPage.js';
 
 describe('NewActivityPage', () => {
-  it('renders page with a go back and save button as well as a form with four textboxes and a button)', () => {
+  it('renders page with its heading, a go back and save button as well as a form with four textboxes, a combobox with five options and the preview of the picture upload)', () => {
     render(
       <MemoryRouter>
         <NewActivityPage />

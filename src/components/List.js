@@ -15,7 +15,6 @@ export default function List({
   };
 
   useEffect(scrollToBottom, [selectedFriendsActivity]);
-
   return (
     <ListStyle role="list" title="list of activities">
       {selectedFriendsActivity

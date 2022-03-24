@@ -12,10 +12,12 @@ describe('Card', () => {
       </MemoryRouter>
     );
 
+    const picture = screen.getByRole('img', { name: 'upload' });
     const activity = screen.getByText('Frau Möller');
     const link = screen.getByRole('link');
     const button = screen.getByRole('button');
 
+    expect(picture).toBeInTheDocument();
     expect(activity).toBeInTheDocument();
     expect(link).toBeInTheDocument();
     expect(button).toBeInTheDocument();
