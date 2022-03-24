@@ -19,6 +19,9 @@ export default function Form({
   photo,
   setPhoto,
 }) {
+  const [preloadedPicture, setPreloadedPicture] = useState(
+    preloadedValues?.photo
+  );
   const navigate = useNavigate();
   const {
     register,
@@ -89,18 +92,6 @@ export default function Form({
   useEffect(() => {
     setFocus('activity');
   }, [setFocus]);
-
-  function onDeletePicture(event) {
-    event.preventDefault();
-    setPhoto('');
-  }
-  const [preloadedPicture, setPreloadedPicture] = useState(
-    preloadedValues?.photo
-  );
-  function onDeletePreloadedPicture(event) {
-    event.preventDefault();
-    setPreloadedPicture('');
-  }
 
   return (
     <WrapperForm
@@ -336,6 +327,16 @@ export default function Form({
       </Navigation>
     </WrapperForm>
   );
+
+  function onDeletePicture(event) {
+    event.preventDefault();
+    setPhoto('');
+  }
+
+  function onDeletePreloadedPicture(event) {
+    event.preventDefault();
+    setPreloadedPicture('');
+  }
 }
 
 const WrapperForm = styled.form`
@@ -391,17 +392,10 @@ const StyledInputs = styled.input`
   font-size: 20px;
 `;
 
-const StyledDate = styled.input`
+const StyledDate = styled(StyledInputs)`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   height: 30px;
-  background: transparent;
-  border: 1px solid rgba(71, 39, 35, 0.42);
-  border-radius: 5px;
-  padding: 1px;
-  width: 100%;
-  color: rgba(71, 39, 35, 0.72);
-  font-size: 20px;
 `;
 
 const ErrorMessage = styled.p`
