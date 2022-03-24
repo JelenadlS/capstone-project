@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { MainNavButton } from './Button';
@@ -8,14 +9,13 @@ import searchIcon from '../images/searchIcon.svg';
 export default function Navigation({ children }) {
   return (
     <Footer>
-      <StyledHomeIcon width="50" height="50" alt="homeIcon" src={homeIcon} />
+      <StyledNavLinkHome to="/">
+        <img width="50" height="50" alt="homeIcon" src={homeIcon} />
+      </StyledNavLinkHome>
       <StyledNewButton>{children}</StyledNewButton>
-      <StyledSearchIcon
-        width="50"
-        height="50"
-        alt="searchIcon"
-        src={searchIcon}
-      />
+      <StyledNavLinkSearch to="/">
+        <img width="50" height="50" alt="searchIcon" src={searchIcon} />
+      </StyledNavLinkSearch>
     </Footer>
   );
 }
@@ -32,14 +32,25 @@ const Footer = styled.footer`
   grid-template-columns: repeat(7, 1fr);
 `;
 
-const StyledHomeIcon = styled.img`
+const StyledNavLinkHome = styled(NavLink)`
   grid-column-start: 2;
+  padding-top: 3px;
+  border-radius: 10px;
+
+  &:active {
+    transform: translateY(-8px);
+  }
 `;
 
 const StyledNewButton = styled(MainNavButton)`
   grid-column-start: 4;
 `;
 
-const StyledSearchIcon = styled.img`
+const StyledNavLinkSearch = styled(NavLink)`
   grid-column-start: 6;
+  padding-top: 5px;
+
+  &:active {
+    transform: translateY(-8px);
+  }
 `;
