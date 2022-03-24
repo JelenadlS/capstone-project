@@ -47,7 +47,7 @@ describe('MyFriendsPage', () => {
       name: 'culture',
     });
     const list = screen.getByRole('list', { name: 'list of activities' });
-    const picture = screen.getAllByRole('img', { name: 'upload' });
+    const picture = screen.getAllByRole('img', { name: /uploaded picture/i });
     const link = screen.getByRole('link', { name: 'new' });
     const deleteButton = screen.getAllByRole('button', { name: 'delete' });
 
@@ -84,7 +84,7 @@ describe('MyFriendsPage', () => {
     expect(categoryText).not.toBeInTheDocument();
   });
 
-  it('renders category picture, once with upload but also when no picture was uploaded', () => {
+  it('renders placeholder picture when no picture was uploaded', () => {
     const activities = [
       {
         id: '1',
@@ -108,10 +108,10 @@ describe('MyFriendsPage', () => {
       </MemoryRouter>
     );
 
-    const placeholderAndUploadedImage = screen.getAllByRole('img', {
-      name: 'upload',
+    const placeholderImage = screen.getByRole('img', {
+      name: /placeholder/i,
     });
 
-    expect(placeholderAndUploadedImage).toHaveLength(2);
+    expect(placeholderImage).toBeInTheDocument();
   });
 });

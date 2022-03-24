@@ -5,14 +5,14 @@ import userEvent from '@testing-library/user-event';
 import ActivityCard from './ActivityCard.js';
 
 describe('Card', () => {
-  it('renders card with activity including link and delete button', () => {
+  it('renders card with activity including picture, link and delete button', () => {
     render(
       <MemoryRouter>
         <ActivityCard activity="Frau Möller" />
       </MemoryRouter>
     );
 
-    const picture = screen.getByRole('img', { name: 'upload' });
+    const picture = screen.getByRole('img', { name: /placeholder picture/i });
     const activity = screen.getByText('Frau Möller');
     const link = screen.getByRole('link');
     const button = screen.getByRole('button');
