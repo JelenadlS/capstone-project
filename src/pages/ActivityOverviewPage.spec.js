@@ -41,7 +41,7 @@ describe('ActivityOverviewPage', () => {
     expect(headingAndActivity).toHaveLength(2);
   });
 
-  it('renders page with category, friend, notes, date and location', () => {
+  it('renders page with picture, category, friend, notes, date and location', () => {
     const activities = [
       {
         id: '1',
@@ -51,6 +51,7 @@ describe('ActivityOverviewPage', () => {
         notes: 'notes',
         date: '13/02/21',
         location: 'HH',
+        photo: 'activity.png',
       },
     ];
 
@@ -74,9 +75,12 @@ describe('ActivityOverviewPage', () => {
 
     const location = screen.getByText('HH');
     expect(location).toBeInTheDocument();
+
+    const picture = screen.getByRole('img', { name: 'upload' });
+    expect(picture).toBeInTheDocument();
   });
 
-  it('renders page with empty messages for category, friend, date and location, as well as no note', () => {
+  it('renders page with empty messages for category, friend, date and location, as well as no note, but a picture', () => {
     const activities = [
       {
         id: '1',
@@ -86,6 +90,7 @@ describe('ActivityOverviewPage', () => {
         notes: '',
         date: '',
         location: '',
+        photo: '',
       },
     ];
 
@@ -106,5 +111,8 @@ describe('ActivityOverviewPage', () => {
 
     const location = screen.getByText('where do you have to go?');
     expect(location).toBeInTheDocument();
+
+    const picture = screen.getByRole('img', { name: 'upload' });
+    expect(picture).toBeInTheDocument();
   });
 });

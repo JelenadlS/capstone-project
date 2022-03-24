@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router-dom';
@@ -12,12 +13,16 @@ import FriendsActivitiesPage from './pages/FriendsActivitiesPage.js';
 import MyFriendsPage from './pages/MyFriendsPage';
 import NewActivityPage from './pages/NewActivityPage.js';
 
+const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
+const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
+
 export default function App() {
   const [hasError, setHasError] = useState(false);
   const [activities, setActivities] = useState(
     (!hasError && loadFromLocal('activities')) || []
   );
   const navigate = useNavigate();
+  const [photo, setPhoto] = useState('');
 
   useEffect(() => {
     saveToLocal('activities', activities);
@@ -48,12 +53,22 @@ export default function App() {
               <EditActivityPage
                 activities={activities}
                 onEditActivity={onEditActivity}
+                uploadImage={uploadImage}
+                photo={photo}
+                setPhoto={setPhoto}
               />
             }
           />
           <Route
             path="/newactivity"
-            element={<NewActivityPage onAddActivity={onAddActivity} />}
+            element={
+              <NewActivityPage
+                onAddActivity={onAddActivity}
+                uploadImage={uploadImage}
+                photo={photo}
+                setPhoto={setPhoto}
+              />
+            }
           />
         </Routes>
       </WrapperApp>
@@ -68,11 +83,12 @@ export default function App() {
     notes,
     date,
     location,
+    photo,
   }) {
     setHasError(false);
     setActivities([
       ...activities,
-      { activity, category, friend, id, notes, date, location },
+      { activity, category, friend, id, notes, date, location, photo },
     ]);
     navigate('/');
   }
@@ -85,14 +101,43 @@ export default function App() {
     notes,
     date,
     location,
+    photo,
   }) {
     setActivities(
       activities.map(act =>
         act.id === id
-          ? { ...act, id, activity, category, friend, notes, date, location }
+          ? {
+              ...act,
+              id,
+              activity,
+              category,
+              friend,
+              notes,
+              date,
+              location,
+              photo,
+            }
           : act
       )
     );
+  }
+
+  function uploadImage(e) {
+    const data = new FormData();
+    const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/image/upload`;
+    data.append('file', e.target.files[0]);
+    data.append('upload_preset', PRESET);
+
+    axios
+      .post(url, data, {
+        headers: {
+          'Content-type': 'multipart/data',
+        },
+      })
+      .then(response => {
+        setPhoto(response.data.url);
+      })
+      .catch(error => console.log(error));
   }
 
   function loadFromLocal(key) {

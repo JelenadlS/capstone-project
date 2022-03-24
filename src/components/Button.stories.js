@@ -5,7 +5,9 @@ import { EditButton } from './Button.js';
 import { MainNavButton } from './Button.js';
 import { ModalButton } from './Button.js';
 
+import addPictureIcon from '../images/addPictureIcon.svg';
 import deleteIcon from '../images/binIcon.svg';
+import deletePictureIcon from '../images/deletePictureIcon.svg';
 import editIcon from '../images/editIcon.svg';
 import goBackIcon from '../images/goBackIcon.svg';
 import newIcon from '../images/newIcon.svg';
@@ -53,6 +55,18 @@ export const Edit = args => (
 
 export const Delete = args => (
   <DeleteButton {...args}>
-    <img src={deleteIcon} alt="delete" />
+    <img src={deleteIcon} alt="deleteactivity" />
+  </DeleteButton>
+);
+
+export const AddPictureButton = args => (
+  <DeleteButton {...args}>
+    <img src={addPictureIcon} alt="addpicture" />
+  </DeleteButton>
+);
+
+export const DeletePictureButton = args => (
+  <DeleteButton {...args}>
+    <img src={deletePictureIcon} alt="deletepicture" />
   </DeleteButton>
 );

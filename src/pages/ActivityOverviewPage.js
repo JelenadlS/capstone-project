@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ArrowBackButton, EditButton } from '../components/Button';
 import Header from '../components/Header';
 import Main from '../components/Main';
+import MappedPlaceholderPictures from '../components/MappedPlaceholderPictures.js';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
@@ -28,11 +29,11 @@ export default function ActivityOverviewPage({ activities }) {
   );
 
   const mappedCategories = {
-    culture: <img src={cultureIcon} alt="culture" />,
-    'food and beverages': <img src={fAndBIcon} alt="food and beverages" />,
-    outdoor: <img src={outdoorIcon} alt="outdoor" />,
-    sport: <img src={sportIcon} alt="sport" />,
-    other: <img src={otherIcon} alt="other" />,
+    culture: cultureIcon,
+    'food and beverages': fAndBIcon,
+    outdoor: outdoorIcon,
+    sport: sportIcon,
+    other: otherIcon,
   };
 
   return (
@@ -51,46 +52,64 @@ export default function ActivityOverviewPage({ activities }) {
 
           <StyledActivity>{selectedActivity.activity}</StyledActivity>
 
-          <StyledCategory>
-            {mappedCategories[selectedActivity.category]}
-            {selectedActivity.category}
-          </StyledCategory>
-
-          <StyledIcon src={friendIcon} alt="friend" />
-
-          {selectedActivity.friend !== 'I still need to plan...' ? (
-            <StyledText>{selectedActivity.friend}</StyledText>
+          {!selectedActivity.photo > 0 ? (
+            <StyledImage
+              width="80"
+              height="80"
+              alt="upload"
+              src={MappedPlaceholderPictures[selectedActivity.category]}
+            />
           ) : (
-            <StyledText>make plans with a friend!</StyledText>
+            <StyledImage
+              width="80"
+              height="80"
+              alt="upload"
+              src={selectedActivity.photo}
+            />
           )}
 
-          {selectedActivity.notes ? (
-            <>
-              <StyledIcon src={notesIcon} alt="notes" />
-              <StyledText>{selectedActivity.notes}</StyledText>
-            </>
-          ) : (
-            <>
-              <StyledNoNotes data-testid="noNotes" />
-            </>
-          )}
+          <StyledCategoryIcon
+            src={mappedCategories[selectedActivity.category]}
+            alt={mappedCategories[selectedActivity.category]}
+          />
+          <StyledCategoryText>{selectedActivity.category}</StyledCategoryText>
 
-          <StyledIcon src={dateIcon} alt="date" />
+          <StyledOtherInfo>
+            <StyledIcon src={friendIcon} alt="friend" />
 
-          {selectedActivity.date ? (
-            <StyledText>{selectedActivity.date}</StyledText>
-          ) : (
-            <StyledText>plan your activity soon!</StyledText>
-          )}
+            {selectedActivity.friend !== 'I still need to plan...' ? (
+              <StyledText>{selectedActivity.friend}</StyledText>
+            ) : (
+              <StyledText>make plans with a friend!</StyledText>
+            )}
 
-          <StyledIcon src={locationIcon} alt="location" />
+            {selectedActivity.notes ? (
+              <>
+                <StyledIcon src={notesIcon} alt="notes" />
+                <StyledText>{selectedActivity.notes}</StyledText>
+              </>
+            ) : (
+              <>
+                <StyledNoNotes data-testid="noNotes" />
+              </>
+            )}
 
-          {selectedActivity.location ? (
-            <StyledText>{selectedActivity.location}</StyledText>
-          ) : (
-            <StyledText>where do you have to go?</StyledText>
-          )}
+            <StyledIcon src={dateIcon} alt="date" />
 
+            {selectedActivity.date ? (
+              <StyledText>{selectedActivity.date}</StyledText>
+            ) : (
+              <StyledText>plan your activity soon!</StyledText>
+            )}
+
+            <StyledIcon src={locationIcon} alt="location" />
+
+            {selectedActivity.location ? (
+              <StyledText>{selectedActivity.location}</StyledText>
+            ) : (
+              <StyledText>where do you have to go?</StyledText>
+            )}
+          </StyledOtherInfo>
           <EditButton
             onClick={() =>
               navigate(
@@ -113,36 +132,48 @@ export default function ActivityOverviewPage({ activities }) {
 
 const MainGrid = styled.div`
   display: grid;
-  grid-template-columns: 57px 30px auto;
-  grid-template-rows: repeat(7, auto) 40px;
+  grid-template-columns: 57px 30px 20px 30px auto;
+  grid-template-rows: repeat(4, auto) 40px;
   margin: 30px;
   align-items: center;
 `;
 
-const StyledTitle = styled.h3`
+const StyledTitle = styled.h2`
   grid-column-start: 1;
-  grid-column-end: 4;
+  grid-column-end: 6;
   padding: 10px 0;
 `;
 
-const StyledActivity = styled.span`
+const StyledActivity = styled.h3`
+  grid-column-start: 4;
+  grid-column-end: 6;
+  padding: 5px;
+`;
+
+const StyledCategoryIcon = styled.img`
+  grid-column-start: 4;
+  grid-column-end: 4;
+  padding-left: 5px;
+  align-self: center;
+`;
+const StyledCategoryText = styled.span`
+  align-self: center;
+`;
+
+const StyledImage = styled.img`
+  grid-row: 2 / span 2;
+  grid-column: 1 / span 2;
+  width: 87px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
+  border-radius: 50px;
+`;
+
+const StyledOtherInfo = styled.span`
   grid-column-start: 1;
-  grid-column-end: 4;
-  padding: 5px;
+  grid-column-end: 6;
+  margin-top: 20px;
+  display: grid;
 `;
-
-const StyledCategory = styled.span`
-  grid-column-start: 2;
-  grid-column-end: 4;
-  padding: 5px;
-  margin-bottom: 10px;
-  align-self: start;
-
-  img {
-    margin-right: 10px;
-  }
-`;
-
 const StyledIcon = styled.img`
   justify-self: center;
   padding: 5px;
@@ -150,11 +181,11 @@ const StyledIcon = styled.img`
 
 const StyledText = styled.span`
   grid-column-start: 2;
-  grid-column-end: 4;
+  grid-column-end: 6;
   word-break: break-word;
   margin: 3px;
 `;
 const StyledNoNotes = styled.span`
   grid-column-start: 1;
-  grid-column-end: 4;
+  grid-column-end: 6;
 `;

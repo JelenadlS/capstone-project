@@ -4,21 +4,40 @@ import styled from 'styled-components';
 
 import { DeleteButton } from './Button.js';
 import DeleteModal from './DeleteModal.js';
+import MappedPlaceholderPictures from './MappedPlaceholderPictures.js';
 
 import deleteIcon from '../images/binIcon.svg';
 
 export default function ActivityCard({
+  photo,
   activity,
   errorMessage,
   onDeleteActivity,
   nameOfSelectedFriend,
   nameOfSelectedActivity,
+  nameOfSelectedCategory,
 }) {
   const [show, setShow] = useState(false);
 
   return (
     <>
       <WrapperCard>
+        {!photo > 0 ? (
+          <StyledImage
+            width="30"
+            height="30"
+            alt={`placeholder picture ${nameOfSelectedCategory}`}
+            src={MappedPlaceholderPictures[nameOfSelectedCategory]}
+          />
+        ) : (
+          <StyledImage
+            width="30"
+            height="30"
+            alt={`uploaded picture ${photo}`}
+            src={photo}
+          />
+        )}
+
         <LinkStyling to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}>
           <strong>{activity}</strong>
         </LinkStyling>
@@ -43,7 +62,7 @@ export default function ActivityCard({
 const WrapperCard = styled.section`
   border-bottom: 1px solid rgba(71, 39, 35, 0.4);
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   overflow: hidden;
 `;
@@ -56,4 +75,8 @@ const LinkStyling = styled(Link)`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+`;
+
+const StyledImage = styled.img`
+  border-radius: 50px;
 `;

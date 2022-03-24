@@ -1,14 +1,27 @@
 import { nanoid } from 'nanoid';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
+import { DeletePictureButton } from '../components/Button';
 import Navigation from './Navigation';
 
+import addPictureIcon from '../images/addPictureIcon.svg';
+import deletePictureIcon from '../images/deletePictureIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
-export default function Form({ handleActivity, preloadedValues, title }) {
+export default function Form({
+  handleActivity,
+  preloadedValues,
+  title,
+  uploadImage,
+  photo,
+  setPhoto,
+}) {
+  const [preloadedPicture, setPreloadedPicture] = useState(
+    preloadedValues?.photo
+  );
   const navigate = useNavigate();
   const {
     register,
@@ -26,6 +39,7 @@ export default function Form({ handleActivity, preloadedValues, title }) {
           notes: '',
           date: '',
           location: '',
+          photo: '',
         },
   });
 
@@ -53,8 +67,10 @@ export default function Form({ handleActivity, preloadedValues, title }) {
         notes: data.notes,
         date: data.date,
         location: data.location,
+        photo: photo.length > 0 ? photo : '',
       });
       navigate(`/${data.friend}/${data.activity}/`);
+      setPhoto('');
     } else {
       const id = nanoid();
       handleActivity({
@@ -66,8 +82,10 @@ export default function Form({ handleActivity, preloadedValues, title }) {
         notes: data.notes,
         date: data.date,
         location: data.location,
+        photo: photo,
       });
       navigate(`/`);
+      setPhoto('');
     }
   };
 
@@ -81,9 +99,9 @@ export default function Form({ handleActivity, preloadedValues, title }) {
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <label htmlFor="activity">
+      <StyledLabels htmlFor="activity">
         name of activity:
-        <input
+        <StyledInputs
           id="activity"
           type="text"
           name="activity"
@@ -107,7 +125,8 @@ export default function Form({ handleActivity, preloadedValues, title }) {
             {errors.activity.message}
           </ErrorMessage>
         )}
-      </label>
+      </StyledLabels>
+
       <StyledCategory>
         category:
         <select name="select category" {...register('category')}>
@@ -119,12 +138,12 @@ export default function Form({ handleActivity, preloadedValues, title }) {
         </select>
       </StyledCategory>
 
-      <label htmlFor="friend">
+      <StyledLabels htmlFor="friend">
         who should join you?
         <div>
           <i>*Seperate by comma when more than one friend*</i>
         </div>
-        <input
+        <StyledInputs
           id="friend"
           type="text"
           name="friend"
@@ -141,9 +160,9 @@ export default function Form({ handleActivity, preloadedValues, title }) {
             {errors.friend.message}
           </ErrorMessage>
         )}
-      </label>
+      </StyledLabels>
 
-      <label htmlFor="notes">
+      <StyledLabels htmlFor="notes">
         space for some additional notes...
         <textarea
           id="notes"
@@ -163,9 +182,115 @@ export default function Form({ handleActivity, preloadedValues, title }) {
             {errors.notes.message}
           </ErrorMessage>
         )}
-      </label>
+      </StyledLabels>
 
-      <label htmlFor="date">
+      {preloadedValues ? (
+        <StyledPictureUpload>
+          <label htmlFor="selectPhoto">
+            <img
+              width="50"
+              height="50"
+              alt="selectPhoto"
+              src={addPictureIcon}
+            />
+            <input
+              id="selectPhoto"
+              name="selectPhoto"
+              type="file"
+              onChange={uploadImage}
+              hidden
+            />
+          </label>
+
+          {preloadedPicture ? (
+            <PositionedSection>
+              <div>
+                <StyledImage
+                  width="60"
+                  height="60"
+                  alt={`preview ${preloadedPicture}`}
+                  src={preloadedPicture}
+                />
+              </div>
+              <DeletePictureButton onClick={e => onDeletePreloadedPicture(e)}>
+                <img
+                  src={deletePictureIcon}
+                  alt="delete"
+                  width="20"
+                  height="20"
+                />
+              </DeletePictureButton>
+            </PositionedSection>
+          ) : (
+            <div>
+              {photo ? (
+                <PositionedSection>
+                  <StyledImage
+                    width="60"
+                    height="60"
+                    alt={`preview ${photo}`}
+                    src={photo}
+                  />
+                  {photo && (
+                    <DeletePictureButton onClick={e => onDeletePicture(e)}>
+                      <img
+                        src={deletePictureIcon}
+                        alt="delete"
+                        width="20"
+                        height="20"
+                      />
+                    </DeletePictureButton>
+                  )}
+                </PositionedSection>
+              ) : (
+                <StyledPreviewText>preview</StyledPreviewText>
+              )}
+            </div>
+          )}
+        </StyledPictureUpload>
+      ) : (
+        <StyledPictureUpload>
+          <label htmlFor="selectPhoto">
+            <img
+              width="50"
+              height="50"
+              alt="selectPhoto"
+              src={addPictureIcon}
+            />
+            <input
+              id="selectPhoto"
+              name="selectPhoto"
+              type="file"
+              onChange={uploadImage}
+              hidden
+            />
+          </label>
+          {photo ? (
+            <PositionedSection>
+              <StyledImage
+                width="60"
+                height="60"
+                alt={`preview ${photo}`}
+                src={photo}
+              />
+              {photo && (
+                <DeletePictureButton onClick={e => onDeletePicture(e)}>
+                  <img
+                    src={deletePictureIcon}
+                    alt="delete"
+                    width="20"
+                    height="20"
+                  />
+                </DeletePictureButton>
+              )}
+            </PositionedSection>
+          ) : (
+            <StyledPreviewText>preview</StyledPreviewText>
+          )}
+        </StyledPictureUpload>
+      )}
+
+      <StyledLabels htmlFor="date">
         do you already have a date in mind?
         <StyledDate
           data-testid="date"
@@ -174,11 +299,11 @@ export default function Form({ handleActivity, preloadedValues, title }) {
           name="date"
           {...register('date')}
         />
-      </label>
+      </StyledLabels>
 
-      <label htmlFor="location">
+      <StyledLabels htmlFor="location">
         where is the activity taking place?
-        <input
+        <StyledInputs
           id="location"
           type="text"
           name="location"
@@ -195,33 +320,30 @@ export default function Form({ handleActivity, preloadedValues, title }) {
             {errors.location.message}
           </ErrorMessage>
         )}
-      </label>
+      </StyledLabels>
+
       <Navigation>
         <img src={saveIcon} alt="save" />
       </Navigation>
     </WrapperForm>
   );
+
+  function onDeletePicture(event) {
+    event.preventDefault();
+    setPhoto('');
+  }
+
+  function onDeletePreloadedPicture(event) {
+    event.preventDefault();
+    setPreloadedPicture('');
+  }
 }
 
 const WrapperForm = styled.form`
   height: 85vh;
   display: grid;
-  grid-template-rows: repeat(6, auto) 90px;
+  grid-template-rows: repeat(7, auto) 50px;
   margin-top: 20px;
-
-  label {
-    padding: 0 30px;
-  }
-
-  input {
-    background: transparent;
-    border: 1px solid rgba(71, 39, 35, 0.42);
-    border-radius: 5px;
-    padding: 1px;
-    width: 100%;
-    color: rgba(71, 39, 35, 0.72);
-    font-size: 20px;
-  }
 
   textarea {
     background: transparent;
@@ -240,7 +362,7 @@ const WrapperForm = styled.form`
   }
 `;
 
-const StyledCategory = styled.p`
+const StyledCategory = styled.section`
   margin: 0 30px 8px;
   display: flex;
   align-items: center;
@@ -256,7 +378,21 @@ const StyledCategory = styled.p`
   }
 `;
 
-const StyledDate = styled.input`
+const StyledLabels = styled.label`
+  padding: 0 30px;
+`;
+
+const StyledInputs = styled.input`
+  background: transparent;
+  border: 1px solid rgba(71, 39, 35, 0.42);
+  border-radius: 5px;
+  padding: 1px;
+  width: 100%;
+  color: rgba(71, 39, 35, 0.72);
+  font-size: 20px;
+`;
+
+const StyledDate = styled(StyledInputs)`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   height: 30px;
@@ -265,4 +401,32 @@ const StyledDate = styled.input`
 const ErrorMessage = styled.p`
   font-size: 12px;
   color: rgba(210, 129, 53, 1);
+`;
+
+const StyledPictureUpload = styled.section`
+  margin: 0 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+`;
+
+const PositionedSection = styled.section`
+  position: relative;
+`;
+
+const StyledPreviewText = styled.section`
+  height: 60px;
+  width: 60px;
+  padding-top: 18px;
+  padding-left: 4px;
+  border: none;
+  box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
+  border-radius: 50px;
+  font-size: 14px;
+`;
+
+const StyledImage = styled.img`
+  box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
+  border-radius: 50px;
 `;

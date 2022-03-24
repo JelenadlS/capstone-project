@@ -8,18 +8,35 @@ import Picture from '../components/Picture';
 
 import goBackIcon from '../images/goBackIcon.svg';
 
-export default function NewActivityPage({ onAddActivity }) {
+export default function NewActivityPage({
+  onAddActivity,
+  uploadImage,
+  photo,
+  setPhoto,
+}) {
   const navigate = useNavigate();
+
+  function resetForm() {
+    navigate(-1);
+    setPhoto('');
+  }
+
   return (
     <Picture>
       <Header>
         new activity
-        <ArrowBackButton onClick={() => navigate(-1)}>
+        <ArrowBackButton onClick={resetForm}>
           <img src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
       <Main>
-        <Form preloadedValues={null} handleActivity={onAddActivity} />
+        <Form
+          preloadedValues={null}
+          handleActivity={onAddActivity}
+          uploadImage={uploadImage}
+          photo={photo}
+          setPhoto={setPhoto}
+        />
       </Main>
     </Picture>
   );

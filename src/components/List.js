@@ -15,7 +15,6 @@ export default function List({
   };
 
   useEffect(scrollToBottom, [selectedFriendsActivity]);
-
   return (
     <ListStyle role="list" title="list of activities">
       {selectedFriendsActivity
@@ -31,7 +30,9 @@ export default function List({
               id={activity.id}
               nameOfSelectedFriend={activity.friend}
               nameOfSelectedActivity={activity.activity}
+              nameOfSelectedCategory={activity.category}
               errorMessage={errorMessage}
+              photo={activity.photo}
             />
           </li>
         ))}
