@@ -12,7 +12,7 @@ import Searchbar from '../components/Searchbar';
 import newIcon from '../images/newIcon.svg';
 import nextIcon from '../images/nextIcon.svg';
 
-export default function SearchPage({ activities }) {
+export default function AllActivitiesPage({ activities }) {
   const [searchInput, setSearchInput] = useState('');
 
   const searchInputHandler = dataInput => {

@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import ActivityCard from './ActivityCard';

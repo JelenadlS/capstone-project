@@ -12,7 +12,7 @@ import EditActivityPage from './pages/EditActivityPage.js';
 import FriendsActivitiesPage from './pages/FriendsActivitiesPage.js';
 import MyFriendsPage from './pages/MyFriendsPage';
 import NewActivityPage from './pages/NewActivityPage.js';
-import SearchPage from './pages/SearchPage.js';
+import AllActivitiesPage from './pages/AllActivitiesPage.js';
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
@@ -73,7 +73,7 @@ export default function App() {
           />
           <Route
             path="/search"
-            element={<SearchPage activities={activities} />}
+            element={<AllActivitiesPage activities={activities} />}
           />
         </Routes>
       </WrapperApp>
