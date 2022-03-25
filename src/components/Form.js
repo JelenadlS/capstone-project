@@ -100,11 +100,12 @@ export default function Form({
       onSubmit={handleSubmit(onSubmit)}
     >
       <StyledLabels htmlFor="activity">
-        name of activity:
+        Name of activity:
         <StyledInputs
           id="activity"
           type="text"
           name="activity"
+          placeholder="Brunch, favorite Restaurant,..."
           {...register('activity', {
             required: 'So, you plan to do nothing?? 😉',
             maxLength: {
@@ -128,7 +129,7 @@ export default function Form({
       </StyledLabels>
 
       <StyledCategory>
-        category:
+        Category:
         <select name="select category" {...register('category')}>
           <option value="culture">culture</option>
           <option value="food and beverages">food and beverages</option>
@@ -139,7 +140,7 @@ export default function Form({
       </StyledCategory>
 
       <StyledLabels htmlFor="friend">
-        who should join you?
+        Who should join you?
         <div>
           <i>*Seperate by comma when more than one friend*</i>
         </div>
@@ -147,6 +148,7 @@ export default function Form({
           id="friend"
           type="text"
           name="friend"
+          placeholder="Lasse, Andrea, Michael,..."
           {...register('friend', {
             maxLength: {
               value: 100,
@@ -163,11 +165,12 @@ export default function Form({
       </StyledLabels>
 
       <StyledLabels htmlFor="notes">
-        space for some additional notes...
+        Space for some additional notes...
         <textarea
           id="notes"
           type="text"
           name="notes"
+          placeholder="Don't forget..."
           row="6"
           {...register('notes', {
             maxLength: {
@@ -289,7 +292,7 @@ export default function Form({
       )}
 
       <StyledLabels htmlFor="date">
-        do you already have a date in mind?
+        Do you already have a date in mind?
         <StyledDate
           data-testid="date"
           id="date"
@@ -300,11 +303,12 @@ export default function Form({
       </StyledLabels>
 
       <StyledLabels htmlFor="location">
-        where is the activity taking place?
+        Where is the activity taking place?
         <StyledInputs
           id="location"
           type="text"
           name="location"
+          placeholder="Street name,..."
           {...register('location', {
             maxLength: {
               value: 50,
