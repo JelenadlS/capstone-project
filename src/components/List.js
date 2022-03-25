@@ -9,8 +9,6 @@ export default function List({
   currentFilter,
   activities,
 }) {
-  console.log(activities);
-  console.log(selectedFriendsActivity);
   return (
     <ListStyle role="list" title="list of activities">
       {(selectedFriendsActivity?.length > 0

@@ -1,4 +1,3 @@
-import { useEffect, useCallback } from 'react';
 import { NavLink, useParams, useNavigate } from 'react-router-dom';
 
 import { ArrowBackButton } from '../components/Button';
@@ -15,32 +14,25 @@ import newIcon from '../images/newIcon.svg';
 export default function FriendsActivitiesPage({
   hasError,
   activities,
-  handleSelectedFriendsActivities,
-  onDeleteActivity,
+  setActivities,
 }) {
   const { friendsName } = useParams();
-
-  const filteredSelectedFriendsActivities = activities.filter(
+  const selectedFriendsActivities = activities.filter(
     activity => activity.friend === friendsName
   );
-
-  useEffect(() => {
-    handleSelectedFriendsActivities(filteredSelectedFriendsActivities);
-  }, [friendsName]);
-
   const navigate = useNavigate();
 
   return (
     <Picture>
       <Header>
-        {filteredSelectedFriendsActivities[0].friend}
+        {selectedFriendsActivities[0].friend}
         <ArrowBackButton onClick={() => navigate('/')}>
           <img src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
       <Main>
         <FilterTags
-          selectedFriendsActivity={filteredSelectedFriendsActivities}
+          selectedFriendsActivity={selectedFriendsActivities}
           errorMessage={hasError}
           onDeleteActivity={onDeleteActivity}
         />
@@ -52,4 +44,18 @@ export default function FriendsActivitiesPage({
       </Navigation>
     </Picture>
   );
+
+  function onDeleteActivity(thisActivityId) {
+    setActivities(
+      activities.filter(activity => activity.id !== thisActivityId)
+    );
+    if (
+      !selectedFriendsActivities.activity ||
+      selectedFriendsActivities.length === 0
+    ) {
+      navigate('/');
+    } else {
+      navigate(`/${selectedFriendsActivities.friend}`);
+    }
+  }
 }

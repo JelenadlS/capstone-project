@@ -24,19 +24,11 @@ export default function App() {
   );
   const navigate = useNavigate();
   const [photo, setPhoto] = useState('');
-  const [selectedFriendsActivities, setSelectedFriendsActivities] = useState(
-    (!hasError && loadFromLocal('selectedFriendsActivities')) || []
-  );
 
   useEffect(() => {
     saveToLocal('activities', activities);
-    saveToLocal('selectedFriendsActivities', selectedFriendsActivities);
-  }, [activities, selectedFriendsActivities]);
+  }, [activities]);
 
-  function handleSelectedFriendsActivities(friendsName) {
-    setSelectedFriendsActivities(friendsName);
-  }
-  console.log(selectedFriendsActivities);
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>
@@ -48,10 +40,7 @@ export default function App() {
               <FriendsActivitiesPage
                 activities={activities}
                 hasError={hasError}
-                handleSelectedFriendsActivities={
-                  handleSelectedFriendsActivities
-                }
-                onDeleteActivity={onDeleteActivity}
+                setActivities={setActivities}
               />
             }
           />
@@ -138,19 +127,6 @@ export default function App() {
     );
   }
 
-  function onDeleteActivity(thisActivityId) {
-    setActivities(
-      activities.filter(activity => activity.id !== thisActivityId)
-    );
-    if (
-      !selectedFriendsActivities.activity ||
-      selectedFriendsActivities.length === 0
-    ) {
-      navigate('/');
-    } else {
-      navigate(`/${selectedFriendsActivities.friend}`);
-    }
-  }
   function uploadImage(e) {
     const data = new FormData();
     const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/image/upload`;
