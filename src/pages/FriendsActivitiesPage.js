@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { NavLink, useParams, useNavigate } from 'react-router-dom';
 
 import { ArrowBackButton } from '../components/Button';
@@ -18,12 +19,17 @@ export default function FriendsActivitiesPage({
   setActivities,
   currentFilter,
   onFilter,
+  setCurrentFilter,
 }) {
   const { friendsName } = useParams();
   const selectedFriendsActivities = activities.filter(
     activity => activity.friend === friendsName
   );
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setCurrentFilter('all');
+  }, [activities]);
 
   return (
     <Picture>

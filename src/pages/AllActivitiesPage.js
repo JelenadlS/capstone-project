@@ -1,24 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import FilterTags from '../components/FilterTags';
 import Header from '../components/Header';
+import List from '../components/List';
 import Main from '../components/Main';
-import MappedPlaceholderPictures from '../components/MappedPlaceholderPictures.js';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 import Searchbar from '../components/Searchbar';
 
 import newIcon from '../images/newIcon.svg';
-import nextIcon from '../images/nextIcon.svg';
 
 export default function AllActivitiesPage({
   activities,
   currentFilter,
   onFilter,
+  setCurrentFilter,
 }) {
   const [searchInput, setSearchInput] = useState('');
+  const [activeSearch, setActiveSearch] = useState(false);
+  const [activeFilter, setActiveFilter] = useState(true);
 
   const filteredSearchActivities = activities.filter(activity => {
     if (searchInput === '') {
@@ -28,6 +30,23 @@ export default function AllActivitiesPage({
     }
   });
 
+  useEffect(() => {
+    setActiveSearch(false);
+    setCurrentFilter('all');
+  }, [activities]);
+
+  function onShowFilter() {
+    setActiveFilter(true);
+    setActiveSearch(false);
+  }
+
+  function onShowSearch() {
+    setActiveSearch(true);
+    setActiveFilter(false);
+    setCurrentFilter('all');
+  }
+  console.log(activeFilter);
+  console.log(activeSearch);
   return (
     <Picture>
       <Header>all activities</Header>
@@ -35,46 +54,24 @@ export default function AllActivitiesPage({
         <Searchbar
           activities={activities}
           setSearchInput={setSearchInput}
+          onShowSearch={onShowSearch}
+          setActiveFilter={setActiveFilter}
         ></Searchbar>
         <FilterTags
           activities={activities}
           currentFilter={currentFilter}
           onFilter={onFilter}
+          onShowFilter={onShowFilter}
         />
         {filteredSearchActivities.length > 0 ? (
-          <ListStyle data-testid="list of activties" searchInput={searchInput}>
-            {filteredSearchActivities.map(activity => {
-              return (
-                <li key={activity.id}>
-                  <WrapperCard>
-                    {!activity.photo > 0 ? (
-                      <StyledImage
-                        width="30"
-                        height="30"
-                        alt={`placeholder picture ${activity.category}`}
-                        src={MappedPlaceholderPictures[activity.category]}
-                      />
-                    ) : (
-                      <StyledImage
-                        width="30"
-                        height="30"
-                        alt={`uploaded picture ${activity.photo}`}
-                        src={activity.photo}
-                      />
-                    )}
-                    <LinkStyling
-                      to={`/${activity.friend}/${activity.activity}`}
-                    >
-                      <strong>{activity.activity}</strong>
-                    </LinkStyling>
-                    <StyledArrow>
-                      <img src={nextIcon} alt="next page" />
-                    </StyledArrow>
-                  </WrapperCard>
-                </li>
-              );
-            })}
-          </ListStyle>
+          <List
+            activities={activities}
+            currentFilter={currentFilter}
+            searchInput={searchInput}
+            filteredSearchActivities={filteredSearchActivities}
+            activeSearch={activeSearch}
+            activeFilter={activeFilter}
+          />
         ) : (
           <EmptyList data-testid="emptylist">
             There is no activity with this name.
@@ -89,39 +86,6 @@ export default function AllActivitiesPage({
     </Picture>
   );
 }
-
-const ListStyle = styled.ul`
-  list-style-type: none;
-
-  li {
-    padding: 5px;
-  }
-`;
-
-const WrapperCard = styled.section`
-  border-bottom: 1px solid rgba(71, 39, 35, 0.4);
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  overflow: hidden;
-`;
-
-const LinkStyling = styled(Link)`
-  padding: 8px 8px 5px;
-  color: rgba(71, 39, 35, 0.72);
-  background-color: transparent;
-  text-decoration: none;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-const StyledImage = styled.img`
-  border-radius: 50px;
-`;
-
-const StyledArrow = styled.span`
-  margin-left: 5px;
-`;
 
 const EmptyList = styled.p`
   color: rgba(71, 39, 35, 0.72);

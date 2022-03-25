@@ -44,6 +44,7 @@ export default function App() {
                 setActivities={setActivities}
                 currentFilter={currentFilter}
                 onFilter={onFilter}
+                setCurrentFilter={setCurrentFilter}
               />
             }
           />
@@ -81,6 +82,7 @@ export default function App() {
                 activities={activities}
                 currentFilter={currentFilter}
                 onFilter={onFilter}
+                setCurrentFilter={setCurrentFilter}
               />
             }
           />
