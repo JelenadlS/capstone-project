@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Header from '../components/Header';
@@ -7,46 +7,76 @@ import Main from '../components/Main';
 import MappedPlaceholderPictures from '../components/MappedPlaceholderPictures.js';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
+import Searchbar from '../components/Searchbar';
 
 import newIcon from '../images/newIcon.svg';
 import nextIcon from '../images/nextIcon.svg';
 
 export default function SearchPage({ activities }) {
+  const [searchInput, setSearchInput] = useState('');
+
+  const searchInputHandler = dataInput => {
+    const lowerCase = dataInput.target.value.toLowerCase();
+    setSearchInput(lowerCase);
+  };
+
+  const filteredActivities = activities.filter(activity => {
+    if (searchInput === '') {
+      return activity;
+    } else {
+      return activity.activity.toLowerCase().includes(searchInput);
+    }
+  });
+
   return (
     <Picture>
       <Header>all activities</Header>
       <Main>
-        <ListStyle>
-          {activities.map(activity => {
-            return (
-              <li key={activity.id}>
-                <WrapperCard>
-                  {!activity.photo > 0 ? (
-                    <StyledImage
-                      width="30"
-                      height="30"
-                      alt={`placeholder picture ${activity.category}`}
-                      src={MappedPlaceholderPictures[activity.category]}
-                    />
-                  ) : (
-                    <StyledImage
-                      width="30"
-                      height="30"
-                      alt={`uploaded picture ${activity.photo}`}
-                      src={activity.photo}
-                    />
-                  )}
-                  <LinkStyling to={`/${activity.friend}/${activity.activity}`}>
-                    <strong>{activity.activity}</strong>
-                  </LinkStyling>
-                  <StyledArrow>
-                    <img src={nextIcon} alt="next page" />
-                  </StyledArrow>
-                </WrapperCard>
-              </li>
-            );
-          })}
-        </ListStyle>
+        <Searchbar
+          activities={activities}
+          searchInputHandler={searchInputHandler}
+        ></Searchbar>
+        {filteredActivities.length > 0 ? (
+          <div>
+            {filteredActivities.map(activity => {
+              return (
+                <ListStyle key={activity.id} searchInput={searchInput}>
+                  <li>
+                    <WrapperCard>
+                      {!activity.photo > 0 ? (
+                        <StyledImage
+                          width="30"
+                          height="30"
+                          alt={`placeholder picture ${activity.category}`}
+                          src={MappedPlaceholderPictures[activity.category]}
+                        />
+                      ) : (
+                        <StyledImage
+                          width="30"
+                          height="30"
+                          alt={`uploaded picture ${activity.photo}`}
+                          src={activity.photo}
+                        />
+                      )}
+                      <LinkStyling
+                        to={`/${activity.friend}/${activity.activity}`}
+                      >
+                        <strong>{activity.activity}</strong>
+                      </LinkStyling>
+                      <StyledArrow>
+                        <img src={nextIcon} alt="next page" />
+                      </StyledArrow>
+                    </WrapperCard>
+                  </li>
+                </ListStyle>
+              );
+            })}
+          </div>
+        ) : (
+          <EmptyList data-testid="emptylist">
+            There is no activity with this name.
+          </EmptyList>
+        )}
       </Main>
       <Navigation>
         <Link to="/newactivity">
@@ -88,4 +118,10 @@ const StyledImage = styled.img`
 
 const StyledArrow = styled.span`
   margin-left: 5px;
+`;
+
+const EmptyList = styled.p`
+  color: rgba(71, 39, 35, 0.72);
+  padding: 10px;
+  text-align: center;
 `;

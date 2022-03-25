@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
-export default function Searchbar() {
+export default function Searchbar({ searchInputHandler }) {
   return (
     <div>
       <StyledInput
@@ -9,6 +10,7 @@ export default function Searchbar() {
         aria-label="searchbar"
         type="text"
         placeholder="Search..."
+        onChange={searchInputHandler}
       ></StyledInput>
     </div>
   );

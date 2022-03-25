@@ -115,6 +115,7 @@ const ListStyle = styled.ul`
 const EmptyList = styled.p`
   color: rgba(71, 39, 35, 0.72);
   padding: 10px;
+  text-align: center;
 `;
 
 const StyledArrow = styled.span`
