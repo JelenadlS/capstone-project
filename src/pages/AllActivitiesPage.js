@@ -37,7 +37,7 @@ export default function AllActivitiesPage({ activities }) {
           searchInputHandler={searchInputHandler}
         ></Searchbar>
         {filteredActivities.length > 0 ? (
-          <div>
+          <>
             <ListStyle
               data-testid="list of activties"
               searchInput={searchInput}
@@ -74,7 +74,7 @@ export default function AllActivitiesPage({ activities }) {
                 );
               })}
             </ListStyle>{' '}
-          </div>
+          </>
         ) : (
           <EmptyList data-testid="emptylist">
             There is no activity with this name.
