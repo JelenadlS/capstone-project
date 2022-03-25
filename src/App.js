@@ -76,7 +76,13 @@ export default function App() {
           />
           <Route
             path="/allactivities"
-            element={<AllActivitiesPage activities={activities} />}
+            element={
+              <AllActivitiesPage
+                activities={activities}
+                currentFilter={currentFilter}
+                onFilter={onFilter}
+              />
+            }
           />
         </Routes>
       </WrapperApp>

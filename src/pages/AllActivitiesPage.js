@@ -13,7 +13,11 @@ import Searchbar from '../components/Searchbar';
 import newIcon from '../images/newIcon.svg';
 import nextIcon from '../images/nextIcon.svg';
 
-export default function AllActivitiesPage({ activities }) {
+export default function AllActivitiesPage({
+  activities,
+  currentFilter,
+  onFilter,
+}) {
   const [searchInput, setSearchInput] = useState('');
 
   const filteredSearchActivities = activities.filter(activity => {
@@ -32,46 +36,45 @@ export default function AllActivitiesPage({ activities }) {
           activities={activities}
           setSearchInput={setSearchInput}
         ></Searchbar>
+        <FilterTags
+          activities={activities}
+          currentFilter={currentFilter}
+          onFilter={onFilter}
+        />
         {filteredSearchActivities.length > 0 ? (
-          <>
-            <ListStyle
-              data-testid="list of activties"
-              searchInput={searchInput}
-            >
-              {filteredSearchActivities.map(activity => {
-                return (
-                  <li key={activity.id}>
-                    <WrapperCard>
-                      {!activity.photo > 0 ? (
-                        <StyledImage
-                          width="30"
-                          height="30"
-                          alt={`placeholder picture ${activity.category}`}
-                          src={MappedPlaceholderPictures[activity.category]}
-                        />
-                      ) : (
-                        <StyledImage
-                          width="30"
-                          height="30"
-                          alt={`uploaded picture ${activity.photo}`}
-                          src={activity.photo}
-                        />
-                      )}
-                      <LinkStyling
-                        to={`/${activity.friend}/${activity.activity}`}
-                      >
-                        <strong>{activity.activity}</strong>
-                      </LinkStyling>
-                      <StyledArrow>
-                        <img src={nextIcon} alt="next page" />
-                      </StyledArrow>
-                    </WrapperCard>
-                  </li>
-                );
-              })}
-            </ListStyle>
-            <FilterTags activities={activities} />
-          </>
+          <ListStyle data-testid="list of activties" searchInput={searchInput}>
+            {filteredSearchActivities.map(activity => {
+              return (
+                <li key={activity.id}>
+                  <WrapperCard>
+                    {!activity.photo > 0 ? (
+                      <StyledImage
+                        width="30"
+                        height="30"
+                        alt={`placeholder picture ${activity.category}`}
+                        src={MappedPlaceholderPictures[activity.category]}
+                      />
+                    ) : (
+                      <StyledImage
+                        width="30"
+                        height="30"
+                        alt={`uploaded picture ${activity.photo}`}
+                        src={activity.photo}
+                      />
+                    )}
+                    <LinkStyling
+                      to={`/${activity.friend}/${activity.activity}`}
+                    >
+                      <strong>{activity.activity}</strong>
+                    </LinkStyling>
+                    <StyledArrow>
+                      <img src={nextIcon} alt="next page" />
+                    </StyledArrow>
+                  </WrapperCard>
+                </li>
+              );
+            })}
+          </ListStyle>
         ) : (
           <EmptyList data-testid="emptylist">
             There is no activity with this name.

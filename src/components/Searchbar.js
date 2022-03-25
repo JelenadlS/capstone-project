@@ -18,6 +18,7 @@ export default function Searchbar({ setSearchInput }) {
     </StyledSearchbar>
   );
 }
+
 const StyledSearchbar = styled.section`
   margin: 10px 30px;
 `;
