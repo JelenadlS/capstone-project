@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export default function Searchbar({ searchInputHandler }) {
   return (
-    <div>
+    <StyledSearchbar>
       <StyledInput
         id="seachbar"
         name="searchbar"
@@ -12,15 +12,19 @@ export default function Searchbar({ searchInputHandler }) {
         placeholder="Search..."
         onChange={searchInputHandler}
       ></StyledInput>
-    </div>
+    </StyledSearchbar>
   );
 }
+const StyledSearchbar = styled.section`
+  margin: 10px 30px;
+`;
 
 const StyledInput = styled.input`
   background: transparent;
   border: 1px solid rgba(71, 39, 35, 0.42);
   border-radius: 5px;
-  padding: 1px;
+  padding: 5px;
   width: 100%;
   color: rgba(71, 39, 35, 0.72);
+  outline: none;
 `;

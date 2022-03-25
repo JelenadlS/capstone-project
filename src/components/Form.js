@@ -350,9 +350,10 @@ const WrapperForm = styled.form`
     height: 90px;
     width: 100%;
     color: rgba(71, 39, 35, 0.72);
-    font-size: 18px;
+    font-size: 16px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    outline: none;
   }
 
   i {
@@ -387,7 +388,7 @@ const StyledInputs = styled.input`
   padding: 1px;
   width: 100%;
   color: rgba(71, 39, 35, 0.72);
-  font-size: 20px;
+  outline: none;
 `;
 
 const StyledDate = styled(StyledInputs)`
