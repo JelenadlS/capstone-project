@@ -13,11 +13,6 @@ const MainNavButton = styled(Button)`
   padding: 5px;
   width: 75px;
   height: 60px;
-  /* position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%); */
-  /* z-index: 1; */
 `;
 
 export { MainNavButton };

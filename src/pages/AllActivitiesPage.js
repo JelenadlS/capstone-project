@@ -15,8 +15,8 @@ import nextIcon from '../images/nextIcon.svg';
 export default function AllActivitiesPage({ activities }) {
   const [searchInput, setSearchInput] = useState('');
 
-  const searchInputHandler = dataInput => {
-    const lowerCase = dataInput.target.value.toLowerCase();
+  const searchInputHandler = event => {
+    const lowerCase = event.target.value.toLowerCase();
     setSearchInput(lowerCase);
   };
 

@@ -7,5 +7,5 @@ export default {
 
 const Template = args => <Searchbar {...args} />;
 
-export const SearchbarAB = Template.bind({});
-SearchbarAB.args = {};
+export const Default = Template.bind({});
+Default.args = {};
