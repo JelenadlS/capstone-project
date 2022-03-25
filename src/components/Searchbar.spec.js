@@ -1,12 +1,12 @@
+import { render, screen } from '@testing-library/react';
+import Searchbar from './Searchbar.js';
 
-    import { render, screen } from '@testing-library/react';
-    import Searchbar from './Searchbar.js';
+describe('Searchbar', () => {
+  it('renders an input', () => {
+    render(<Searchbar />);
 
-    describe('Searchbar', () => {
-      it('renders..', () => {
-        render(<Searchbar />);
-    
-        expect(screen.getByText('Searchbar')).toBeInTheSocument()
-      });
-    });
-  
+    const input = screen.getByRole('textbox', { name: /searchbar/i });
+
+    expect(input).toBeInTheDocument();
+  });
+});
