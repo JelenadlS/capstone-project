@@ -36,8 +36,6 @@ export default function FriendsActivitiesPage({
       <Main>
         <FilterTags
           selectedFriendsActivity={selectedFriendsActivities}
-          errorMessage={hasError}
-          onDeleteActivity={onDeleteActivity}
           currentFilter={currentFilter}
           onFilter={onFilter}
         />

@@ -1,18 +1,11 @@
-import { useState } from 'react';
 import styled from 'styled-components';
-
-import List from '../components/List';
 
 export default function FilterTags({
   selectedFriendsActivity,
-  errorMessage,
-  onDeleteActivity,
   activities,
   currentFilter,
   onFilter,
 }) {
-  // const [currentFilter, setCurrentFilter] = useState('all');
-
   const eachExistingCategoryOnce = [
     ...new Set(
       selectedFriendsActivity?.length > 0
@@ -23,34 +16,22 @@ export default function FilterTags({
 
   const categoryTagsAndAll = ['all', ...eachExistingCategoryOnce].sort();
 
-  // function onFilter(category) {
-  //   setCurrentFilter(category);
-  // }
   return (
-    <>
-      {categoryTagsAndAll.length > 2 && (
-        <ScrollCategories title="filter options">
-          {categoryTagsAndAll.map((category, index) => {
-            return (
-              <CategoryButton
-                key={index}
-                onClick={() => onFilter(category)}
-                active={category === currentFilter}
-              >
-                {category}
-              </CategoryButton>
-            );
-          })}
-        </ScrollCategories>
-      )}
-      {/* <List
-        errorMessage={errorMessage}
-        onDeleteActivity={onDeleteActivity}
-        currentFilter={currentFilter}
-        selectedFriendsActivity={selectedFriendsActivity}
-        activities={activities}
-      /> */}
-    </>
+    categoryTagsAndAll.length > 2 && (
+      <ScrollCategories title="filter options">
+        {categoryTagsAndAll.map((category, index) => {
+          return (
+            <CategoryButton
+              key={index}
+              onClick={() => onFilter(category)}
+              active={category === currentFilter}
+            >
+              {category}
+            </CategoryButton>
+          );
+        })}
+      </ScrollCategories>
+    )
   );
 }
 
