@@ -100,11 +100,12 @@ export default function Form({
       onSubmit={handleSubmit(onSubmit)}
     >
       <StyledLabels htmlFor="activity">
-        name of activity:
+        Name of activity:
         <StyledInputs
           id="activity"
           type="text"
           name="activity"
+          placeholder="Brunch, favorite Restaurant,..."
           {...register('activity', {
             required: 'So, you plan to do nothing?? 😉',
             maxLength: {
@@ -128,7 +129,7 @@ export default function Form({
       </StyledLabels>
 
       <StyledCategory>
-        category:
+        Category:
         <select name="select category" {...register('category')}>
           <option value="culture">culture</option>
           <option value="food and beverages">food and beverages</option>
@@ -139,7 +140,7 @@ export default function Form({
       </StyledCategory>
 
       <StyledLabels htmlFor="friend">
-        who should join you?
+        Who should join you?
         <div>
           <i>*Seperate by comma when more than one friend*</i>
         </div>
@@ -147,6 +148,7 @@ export default function Form({
           id="friend"
           type="text"
           name="friend"
+          placeholder="Lasse, Andrea, Michael,..."
           {...register('friend', {
             maxLength: {
               value: 100,
@@ -163,11 +165,12 @@ export default function Form({
       </StyledLabels>
 
       <StyledLabels htmlFor="notes">
-        space for some additional notes...
+        Space for some additional notes...
         <textarea
           id="notes"
           type="text"
           name="notes"
+          placeholder="Don't forget..."
           row="6"
           {...register('notes', {
             maxLength: {
@@ -204,14 +207,12 @@ export default function Form({
 
           {preloadedPicture ? (
             <PositionedSection>
-              <div>
-                <StyledImage
-                  width="60"
-                  height="60"
-                  alt={`preview ${preloadedPicture}`}
-                  src={preloadedPicture}
-                />
-              </div>
+              <StyledImage
+                width="60"
+                height="60"
+                alt={`preview ${preloadedPicture}`}
+                src={preloadedPicture}
+              />
               <DeletePictureButton onClick={e => onDeletePreloadedPicture(e)}>
                 <img
                   src={deletePictureIcon}
@@ -291,7 +292,7 @@ export default function Form({
       )}
 
       <StyledLabels htmlFor="date">
-        do you already have a date in mind?
+        Do you already have a date in mind?
         <StyledDate
           data-testid="date"
           id="date"
@@ -302,11 +303,12 @@ export default function Form({
       </StyledLabels>
 
       <StyledLabels htmlFor="location">
-        where is the activity taking place?
+        Where is the activity taking place?
         <StyledInputs
           id="location"
           type="text"
           name="location"
+          placeholder="Street name,..."
           {...register('location', {
             maxLength: {
               value: 50,
@@ -352,9 +354,10 @@ const WrapperForm = styled.form`
     height: 90px;
     width: 100%;
     color: rgba(71, 39, 35, 0.72);
-    font-size: 18px;
+    font-size: 16px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    outline: none;
   }
 
   i {
@@ -389,7 +392,7 @@ const StyledInputs = styled.input`
   padding: 1px;
   width: 100%;
   color: rgba(71, 39, 35, 0.72);
-  font-size: 20px;
+  outline: none;
 `;
 
 const StyledDate = styled(StyledInputs)`

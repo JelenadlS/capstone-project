@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import ActivityCard from './ActivityCard';
@@ -9,12 +8,6 @@ export default function List({
   onDeleteActivity,
   currentFilter,
 }) {
-  const activitiesEndRef = useRef(null);
-  const scrollToBottom = () => {
-    activitiesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  useEffect(scrollToBottom, [selectedFriendsActivity]);
   return (
     <ListStyle role="list" title="list of activities">
       {selectedFriendsActivity
@@ -36,7 +29,6 @@ export default function List({
             />
           </li>
         ))}
-      <div ref={activitiesEndRef} />
     </ListStyle>
   );
 }

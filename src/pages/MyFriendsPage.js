@@ -44,7 +44,7 @@ export default function MyFriendsPage({ activities }) {
                   Things I still need to plan with someone:
                 </NameStyling>
                 <NumStyling>
-                  #{activitiesWithoutFriend.length}{' '}
+                  #{activitiesWithoutFriend.length}
                   <StyledArrow>
                     <img src={nextIcon} alt="next page" />
                   </StyledArrow>
@@ -115,6 +115,7 @@ const ListStyle = styled.ul`
 const EmptyList = styled.p`
   color: rgba(71, 39, 35, 0.72);
   padding: 10px;
+  text-align: center;
 `;
 
 const StyledArrow = styled.span`
