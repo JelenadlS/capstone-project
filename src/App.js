@@ -72,7 +72,7 @@ export default function App() {
             }
           />
           <Route
-            path="/search"
+            path="/allactivities"
             element={<AllActivitiesPage activities={activities} />}
           />
         </Routes>

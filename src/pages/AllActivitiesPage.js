@@ -38,10 +38,13 @@ export default function AllActivitiesPage({ activities }) {
         ></Searchbar>
         {filteredActivities.length > 0 ? (
           <div>
-            {filteredActivities.map(activity => {
-              return (
-                <ListStyle key={activity.id} searchInput={searchInput}>
-                  <li>
+            <ListStyle
+              data-testid="list of activties"
+              searchInput={searchInput}
+            >
+              {filteredActivities.map(activity => {
+                return (
+                  <li key={activity.id}>
                     <WrapperCard>
                       {!activity.photo > 0 ? (
                         <StyledImage
@@ -68,9 +71,9 @@ export default function AllActivitiesPage({ activities }) {
                       </StyledArrow>
                     </WrapperCard>
                   </li>
-                </ListStyle>
-              );
-            })}
+                );
+              })}
+            </ListStyle>{' '}
           </div>
         ) : (
           <EmptyList data-testid="emptylist">

@@ -12,15 +12,8 @@ describe('AllActivitiesPage', () => {
       friend: 'Clara',
       photo: 'activity.png',
     },
-    {
-      id: '2',
-      activity: 'Elbstrand',
-      category: 'culture',
-      friend: 'Clara',
-      photo: 'activity.png',
-    },
   ];
-  it('renders page with its heading, a go back and save button as well as a form with four textboxes, a combobox with five options and the select photo option)', () => {
+  it('renders page with its heading, navigation incl new button as well as the search bar and list with list items including picture, link and next page image', () => {
     render(
       <MemoryRouter>
         <AllActivitiesPage activities={activities} />
@@ -28,17 +21,23 @@ describe('AllActivitiesPage', () => {
     );
 
     const header = screen.getByRole('heading', { name: /all activities/i });
-    const button = screen.getAllByRole('button');
-    const textboxes = screen.getAllByRole('textbox');
-    const selectCategory = screen.getByRole('combobox');
-    const categoryOptions = screen.getAllByRole('option');
-    const selectImage = screen.getByRole('img', { name: /selectPhoto/i });
+    const buttonNewActivity = screen.getByRole('button');
+    const search = screen.getByRole('textbox', { name: /searchbar/i });
+    const list = screen.getByTestId('list of activties');
+    const pictureActivity = screen.getByRole('img', {
+      name: 'uploaded picture activity.png',
+    });
+    const pictureNext = screen.getByRole('img', { name: 'next page' });
+    const link = screen.getByRole('link', { name: /Frau Möller/i });
+    const navigation = screen.getByRole('navigation');
 
     expect(header).toBeInTheDocument();
-    expect(button).toHaveLength(2);
-    expect(textboxes).toHaveLength(4);
-    expect(selectCategory).toBeInTheDocument();
-    expect(categoryOptions).toHaveLength(5);
-    expect(selectImage).toBeInTheDocument();
+    expect(buttonNewActivity).toBeInTheDocument();
+    expect(search).toBeInTheDocument();
+    expect(list).toBeInTheDocument();
+    expect(pictureActivity).toBeInTheDocument();
+    expect(pictureNext).toBeInTheDocument();
+    expect(link).toBeInTheDocument();
+    expect(navigation).toBeInTheDocument();
   });
 });

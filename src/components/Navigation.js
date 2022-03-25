@@ -8,13 +8,13 @@ import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 
 export default function Navigation({ children }) {
   return (
-    <Footer>
+    <Footer area-label="navigation">
       <StyledNavLinkFriends to="/">
         <img width="40" height="20" alt="friendsHomeIcon" src={friendIcon} />
         <StyledDescription>friends</StyledDescription>
       </StyledNavLinkFriends>
       <StyledNewButton>{children}</StyledNewButton>
-      <StyledNavLinkActivities to="/search">
+      <StyledNavLinkActivities to="/allactivities">
         <img width="40" height="30" alt="searchIcon" src={allActivitiesIcon} />
         <StyledDescription>activities</StyledDescription>
       </StyledNavLinkActivities>
@@ -22,7 +22,7 @@ export default function Navigation({ children }) {
   );
 }
 
-const Footer = styled.footer`
+const Footer = styled.nav`
   background: #f0e7da;
   width: 100%;
   position: fixed;
