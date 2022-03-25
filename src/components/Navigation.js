@@ -8,7 +8,7 @@ import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 
 export default function Navigation({ children }) {
   return (
-    <Footer area-label="navigation">
+    <StyledNavigation area-label="StyledNavigation">
       <StyledNavLinkFriends to="/">
         <img width="40" height="20" alt="friendsHomeIcon" src={friendIcon} />
         <StyledDescription>friends</StyledDescription>
@@ -18,11 +18,11 @@ export default function Navigation({ children }) {
         <img width="40" height="30" alt="searchIcon" src={allActivitiesIcon} />
         <StyledDescription>activities</StyledDescription>
       </StyledNavLinkActivities>
-    </Footer>
+    </StyledNavigation>
   );
 }
 
-const Footer = styled.nav`
+const StyledNavigation = styled.nav`
   background: #f0e7da;
   width: 100%;
   position: fixed;
