@@ -24,6 +24,7 @@ export default function App() {
   );
   const navigate = useNavigate();
   const [photo, setPhoto] = useState('');
+  const [currentFilter, setCurrentFilter] = useState('all');
 
   useEffect(() => {
     saveToLocal('activities', activities);
@@ -41,6 +42,8 @@ export default function App() {
                 activities={activities}
                 hasError={hasError}
                 setActivities={setActivities}
+                currentFilter={currentFilter}
+                onFilter={onFilter}
               />
             }
           />
@@ -125,6 +128,10 @@ export default function App() {
           : act
       )
     );
+  }
+
+  function onFilter(category) {
+    setCurrentFilter(category);
   }
 
   function uploadImage(e) {

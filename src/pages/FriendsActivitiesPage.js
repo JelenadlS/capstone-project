@@ -4,6 +4,7 @@ import { ArrowBackButton } from '../components/Button';
 import FilterTags from '../components/FilterTags';
 
 import Header from '../components/Header';
+import List from '../components/List';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
@@ -15,6 +16,8 @@ export default function FriendsActivitiesPage({
   hasError,
   activities,
   setActivities,
+  currentFilter,
+  onFilter,
 }) {
   const { friendsName } = useParams();
   const selectedFriendsActivities = activities.filter(
@@ -35,6 +38,15 @@ export default function FriendsActivitiesPage({
           selectedFriendsActivity={selectedFriendsActivities}
           errorMessage={hasError}
           onDeleteActivity={onDeleteActivity}
+          currentFilter={currentFilter}
+          onFilter={onFilter}
+        />
+        <List
+          errorMessage={hasError}
+          onDeleteActivity={onDeleteActivity}
+          currentFilter={currentFilter}
+          selectedFriendsActivity={selectedFriendsActivities}
+          activities={activities}
         />
       </Main>
       <Navigation>

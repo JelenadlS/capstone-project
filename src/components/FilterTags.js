@@ -8,8 +8,10 @@ export default function FilterTags({
   errorMessage,
   onDeleteActivity,
   activities,
+  currentFilter,
+  onFilter,
 }) {
-  const [currentFilter, setCurrentFilter] = useState('all');
+  // const [currentFilter, setCurrentFilter] = useState('all');
 
   const eachExistingCategoryOnce = [
     ...new Set(
@@ -21,9 +23,9 @@ export default function FilterTags({
 
   const categoryTagsAndAll = ['all', ...eachExistingCategoryOnce].sort();
 
-  function onFilter(category) {
-    setCurrentFilter(category);
-  }
+  // function onFilter(category) {
+  //   setCurrentFilter(category);
+  // }
   return (
     <>
       {categoryTagsAndAll.length > 2 && (
@@ -41,13 +43,13 @@ export default function FilterTags({
           })}
         </ScrollCategories>
       )}
-      <List
+      {/* <List
         errorMessage={errorMessage}
         onDeleteActivity={onDeleteActivity}
         currentFilter={currentFilter}
         selectedFriendsActivity={selectedFriendsActivity}
         activities={activities}
-      />
+      /> */}
     </>
   );
 }
