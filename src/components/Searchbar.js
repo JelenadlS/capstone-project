@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export default function Searchbar({ searchInputHandler }) {
+export default function Searchbar({ setSearchInput }) {
+  const searchInputHandler = event => {
+    const lowerCase = event.target.value.toLowerCase();
+    setSearchInput(lowerCase);
+  };
   return (
     <StyledSearchbar>
       <StyledInput

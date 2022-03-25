@@ -16,12 +16,7 @@ import nextIcon from '../images/nextIcon.svg';
 export default function AllActivitiesPage({ activities }) {
   const [searchInput, setSearchInput] = useState('');
 
-  const searchInputHandler = event => {
-    const lowerCase = event.target.value.toLowerCase();
-    setSearchInput(lowerCase);
-  };
-
-  const filteredActivities = activities.filter(activity => {
+  const filteredSearchActivities = activities.filter(activity => {
     if (searchInput === '') {
       return activity;
     } else {
@@ -35,15 +30,15 @@ export default function AllActivitiesPage({ activities }) {
       <Main>
         <Searchbar
           activities={activities}
-          searchInputHandler={searchInputHandler}
+          setSearchInput={setSearchInput}
         ></Searchbar>
-        {filteredActivities.length > 0 ? (
+        {filteredSearchActivities.length > 0 ? (
           <>
             <ListStyle
               data-testid="list of activties"
               searchInput={searchInput}
             >
-              {filteredActivities.map(activity => {
+              {filteredSearchActivities.map(activity => {
                 return (
                   <li key={activity.id}>
                     <WrapperCard>
