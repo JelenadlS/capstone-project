@@ -24,16 +24,19 @@ export default function App() {
   );
   const navigate = useNavigate();
   const [photo, setPhoto] = useState('');
-  const [selectedFriendsActivities, setSelectedFriendsActivities] = useState();
+  const [selectedFriendsActivities, setSelectedFriendsActivities] = useState(
+    (!hasError && loadFromLocal('selectedFriendsActivities')) || []
+  );
 
   useEffect(() => {
     saveToLocal('activities', activities);
-  }, [activities]);
+    saveToLocal('selectedFriendsActivities', selectedFriendsActivities);
+  }, [activities, selectedFriendsActivities]);
 
   function handleSelectedFriendsActivities(friendsName) {
     setSelectedFriendsActivities(friendsName);
   }
-
+  console.log(selectedFriendsActivities);
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>

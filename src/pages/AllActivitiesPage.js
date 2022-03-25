@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import FilterTags from '../components/FilterTags';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import MappedPlaceholderPictures from '../components/MappedPlaceholderPictures.js';
@@ -73,7 +74,8 @@ export default function AllActivitiesPage({ activities }) {
                   </li>
                 );
               })}
-            </ListStyle>{' '}
+            </ListStyle>
+            <FilterTags activities={activities} />
           </>
         ) : (
           <EmptyList data-testid="emptylist">

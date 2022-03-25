@@ -7,10 +7,16 @@ export default function List({
   errorMessage,
   onDeleteActivity,
   currentFilter,
+  activities,
 }) {
+  console.log(activities);
+  console.log(selectedFriendsActivity);
   return (
     <ListStyle role="list" title="list of activities">
-      {selectedFriendsActivity
+      {(selectedFriendsActivity?.length > 0
+        ? selectedFriendsActivity
+        : activities
+      )
         .filter(
           activity =>
             activity.category.includes(currentFilter) || currentFilter === 'all'

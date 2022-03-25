@@ -7,11 +7,16 @@ export default function FilterTags({
   selectedFriendsActivity,
   errorMessage,
   onDeleteActivity,
+  activities,
 }) {
   const [currentFilter, setCurrentFilter] = useState('all');
 
   const eachExistingCategoryOnce = [
-    ...new Set(selectedFriendsActivity.map(activity => activity.category)),
+    ...new Set(
+      selectedFriendsActivity?.length > 0
+        ? selectedFriendsActivity.map(activity => activity.category)
+        : activities.map(activity => activity.category)
+    ),
   ];
 
   const categoryTagsAndAll = ['all', ...eachExistingCategoryOnce].sort();
@@ -41,6 +46,7 @@ export default function FilterTags({
         onDeleteActivity={onDeleteActivity}
         currentFilter={currentFilter}
         selectedFriendsActivity={selectedFriendsActivity}
+        activities={activities}
       />
     </>
   );
