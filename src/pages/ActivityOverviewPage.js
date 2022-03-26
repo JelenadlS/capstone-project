@@ -25,6 +25,9 @@ import sportIcon from '../images/sportIcon.svg';
 
 export default function ActivityOverviewPage({
   activities,
+  setActivities,
+  pastActivities,
+  setPastActivities,
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
@@ -138,7 +141,11 @@ export default function ActivityOverviewPage({
             </label>
           </StyledCheckbox>
         </MainGrid>
-        <PastActivityModal onClose={() => setShow(false)} show={show} />
+        <PastActivityModal
+          onClose={() => setShow(false)}
+          show={show}
+          onSetPastActivity={() => onSetPastActivity(selectedActivity.id)}
+        />
       </Main>
       <Navigation
         handleResetPage={handleResetPage}
@@ -150,6 +157,31 @@ export default function ActivityOverviewPage({
       </Navigation>
     </Picture>
   );
+
+  function onSetPastActivity(
+    thisActivityId,
+    id,
+    activity,
+    category,
+    friend,
+    notes,
+    date,
+    location,
+    photo
+  ) {
+    setPastActivities([
+      ...pastActivities,
+      { activity, category, friend, id, notes, date, location, photo },
+    ]);
+    setActivities(
+      activities.filter(activity => activity.id !== thisActivityId)
+    );
+    if (!activities.activity || activities.length === 0) {
+      navigate('/');
+    } else {
+      navigate(`/${activities.friend}`);
+    }
+  }
 }
 
 const MainGrid = styled.div`

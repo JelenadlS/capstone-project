@@ -23,6 +23,9 @@ export default function App() {
   const [activities, setActivities] = useState(
     (!hasError && loadFromLocal('activities')) || []
   );
+  const [pastActivities, setPastActivities] = useState(
+    loadFromLocal('pastActivities') || []
+  );
 
   const [photo, setPhoto] = useState('');
   const [searchInput, setSearchInput] = useState('');
@@ -42,7 +45,8 @@ export default function App() {
       return activity.activity.toLowerCase().includes(searchInput);
     }
   });
-
+  console.log(activities);
+  console.log(pastActivities);
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>
@@ -80,6 +84,9 @@ export default function App() {
             element={
               <ActivityOverviewPage
                 activities={activities}
+                setActivities={setActivities}
+                pastActivities={pastActivities}
+                setPastActivities={setPastActivities}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />

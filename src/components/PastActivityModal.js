@@ -5,7 +5,11 @@ import { ModalButton } from './Button.js';
 
 import deletePictureIcon from '../images/deletePictureIcon.svg';
 
-export default function PastActivityModal({ show, onClose }) {
+export default function PastActivityModal({
+  show,
+  onClose,
+  onSetPastActivity,
+}) {
   if (!show) {
     return null;
   }
@@ -18,10 +22,10 @@ export default function PastActivityModal({ show, onClose }) {
         transfered to a past activiy list.
       </i>
       <span>
-        <StyledModalButton type="submit">
+        <StyledModalButton type="submit" onClick={onSetPastActivity}>
           It was great, I wanna do it again!
         </StyledModalButton>
-        <StyledModalButton type="submit">
+        <StyledModalButton type="submit" onClick={onSetPastActivity}>
           Naahh it was not so good
         </StyledModalButton>
         <QuitButton>
