@@ -42,7 +42,7 @@ export default function ActivityOverviewPage({
 
   return (
     <Picture>
-      <Header>
+      <Header handleResetPage={handleResetPage}>
         {selectedActivity.activity}
         <ArrowBackButton
           onClick={() => navigate(`/${selectedActivity.friend}`)}

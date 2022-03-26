@@ -33,7 +33,7 @@ export default function FriendsActivitiesPage({
 
   return (
     <Picture>
-      <Header>
+      <Header handleResetPage={handleResetPage}>
         {selectedFriendsActivities[0].friend}
         <ArrowBackButton onClick={event => resetPage(event, navigate('/'))}>
           <img src={goBackIcon} alt="go back" />

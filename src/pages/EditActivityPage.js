@@ -28,7 +28,7 @@ export default function EditActivityPage({
 
   return (
     <Picture>
-      <Header>
+      <Header handleResetPage={handleResetPage}>
         Edit activity
         <ArrowBackButton onClick={resetForm}>
           <img src={goBackIcon} alt="go back" />
