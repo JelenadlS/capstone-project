@@ -22,7 +22,10 @@ export default function Navigation({
       </StyledNavLinkActivities>
 
       <StyledNewButton onClick={handleResetPage}>{children}</StyledNewButton>
-      <StyledNavLinkInspire to="/getinspired" onClick={handleResetPage}>
+      <StyledNavLinkInspire
+        to="/getinspired"
+        onClick={handleResetPageAndShowArrow}
+      >
         <img width="40" height="30" alt="inspireIcon" src={inspireIcon} />
         <StyledDescription>inspiration</StyledDescription>
       </StyledNavLinkInspire>
