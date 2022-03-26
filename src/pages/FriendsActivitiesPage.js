@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { NavLink, useParams, useNavigate } from 'react-router-dom';
 
 import { ArrowBackButton } from '../components/Button';
@@ -19,26 +18,14 @@ export default function FriendsActivitiesPage({
   setActivities,
   currentFilter,
   onFilter,
-  setCurrentFilter,
   filteredSearchActivities,
   setSearchInput,
-  //-------------------------------
-  // setActiveFilter,
-  // activeFilter,
-  // onShowFilter,
-  //-------------------------------
 }) {
   const { friendsName } = useParams();
   const selectedFriendsActivities = activities.filter(
     activity => activity.friend === friendsName
   );
   const navigate = useNavigate();
-  //-------------------------------
-  // useEffect(() => {
-  //   setCurrentFilter('all');
-  //   setActiveFilter(true);
-  // }, [activities]);
-  //-------------------------------
 
   return (
     <Picture>
@@ -54,8 +41,6 @@ export default function FriendsActivitiesPage({
           currentFilter={currentFilter}
           onFilter={onFilter}
           setSearchInput={setSearchInput}
-
-          //  onShowFilter={onShowFilter}
         />
         <List
           errorMessage={hasError}
@@ -64,7 +49,6 @@ export default function FriendsActivitiesPage({
           selectedFriendsActivity={selectedFriendsActivities}
           activities={activities}
           filteredSearchActivities={filteredSearchActivities}
-          // activeFilter={activeFilter}
         />
       </Main>
       <Navigation>

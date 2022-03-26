@@ -26,10 +26,6 @@ export default function App() {
   const [photo, setPhoto] = useState('');
   const [searchInput, setSearchInput] = useState('');
   const [currentFilter, setCurrentFilter] = useState('all');
-  //-------------------------------
-  // const [activeSearch, setActiveSearch] = useState(true);
-  // const [activeFilter, setActiveFilter] = useState(false);
-  //-------------------------------
 
   useEffect(() => {
     saveToLocal('activities', activities);
@@ -57,13 +53,8 @@ export default function App() {
                 setActivities={setActivities}
                 currentFilter={currentFilter}
                 onFilter={onFilter}
-                setCurrentFilter={setCurrentFilter}
                 filteredSearchActivities={filteredSearchActivities}
                 setSearchInput={setSearchInput}
-                //-------------------------------
-                // setActiveFilter={setActiveFilter}
-                // activeFilter={activeFilter}
-                //-------------------------------
               />
             }
           />
@@ -103,14 +94,6 @@ export default function App() {
                 onFilter={onFilter}
                 setCurrentFilter={setCurrentFilter}
                 filteredSearchActivities={filteredSearchActivities}
-                //-------------------------------
-                // activeSearch={activeSearch}
-                // setActiveSearch={setActiveSearch}
-                // activeFilter={activeFilter}
-                // setActiveFilter={setActiveFilter}
-                // onShowFilter={onShowFilter}
-                // onShowSearch={onShowSearch}
-                //-------------------------------
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}
               />
@@ -171,17 +154,6 @@ export default function App() {
   function onFilter(category) {
     setCurrentFilter(category);
   }
-
-  // function onShowFilter() {
-  //   setActiveFilter(false);
-  //   setActiveSearch(true);
-  // }
-
-  // function onShowSearch() {
-  //   setActiveSearch(false);
-  //   setActiveFilter(true);
-  //   setCurrentFilter('all');
-  // }
 
   function uploadImage(e) {
     const data = new FormData();

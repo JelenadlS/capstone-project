@@ -5,10 +5,7 @@ export default function FilterTags({
   activities,
   currentFilter,
   onFilter,
-  setActive,
-  active,
   setSearchInput,
-  // onShowFilter,
 }) {
   const eachExistingCategoryOnce = [
     ...new Set(
@@ -22,13 +19,9 @@ export default function FilterTags({
 
   function handleOnClick(category) {
     onFilter(category);
-    setActive(category);
+
     setSearchInput('');
   }
-  // function working(category) {
-  //   onFilter(category);
-  //   onShowFilter();
-  // }
   return (
     categoryTagsAndAll.length > 2 && (
       <ScrollCategories title="filter options">
@@ -36,9 +29,7 @@ export default function FilterTags({
           return (
             <CategoryButton
               key={index}
-              // onClick={() => onFilter(category)}
               onClick={() => handleOnClick(category)}
-              //    onClick={() => working(category)}
               active={category === currentFilter}
             >
               {category}

@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -17,54 +16,23 @@ export default function AllActivitiesPage({
   currentFilter,
   onFilter,
   filteredSearchActivities,
-  //-------------------------------
-  // setCurrentFilter,
-  // activeSearch,
-  // setActiveSearch,
-  // activeFilter,
-  // setActiveFilter,
-  // onShowFilter,
-  // onShowSearch,
-  //-------------------------------
   setSearchInput,
   searchInput,
   setCurrentFilter,
 }) {
-  // const filteredSearchActivities = activities.filter(activity => {
-  //   if (searchInput === '') {
-  //     return activity;
-  //   } else {
-  //     return activity.activity.toLowerCase().includes(searchInput);
-  //   }
-  // });
-
-  const [active, setActive] = useState('all');
-  //-------------------------------
-  // useEffect(() => {
-  //   setActiveSearch(true);
-  //   setCurrentFilter('all');
-  // }, [activities]);
-  //-------------------------------
-
   return (
     <Picture>
       <Header>all activities</Header>
       <Main>
         <Searchbar
           setSearchInput={setSearchInput}
-          setActive={setActive}
           setCurrentFilter={setCurrentFilter}
-          // onShowSearch={onShowSearch}
-          // setActiveFilter={setActiveFilter}
         ></Searchbar>
         <FilterTags
           activities={activities}
           currentFilter={currentFilter}
           onFilter={onFilter}
-          setActive={setActive}
-          active={active}
           setSearchInput={setSearchInput}
-          //onShowFilter={onShowFilter}
         />
         {filteredSearchActivities.length > 0 ? (
           <List
@@ -72,8 +40,6 @@ export default function AllActivitiesPage({
             currentFilter={currentFilter}
             searchInput={searchInput}
             filteredSearchActivities={filteredSearchActivities}
-            // activeSearch={activeSearch}
-            // activeFilter={activeFilter}
           />
         ) : (
           <EmptyList data-testid="emptylist">
