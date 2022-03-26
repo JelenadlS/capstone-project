@@ -16,52 +16,49 @@ export default function AllActivitiesPage({
   activities,
   currentFilter,
   onFilter,
-  setCurrentFilter,
+  filteredSearchActivities,
+  //-------------------------------
+  // setCurrentFilter,
+  // activeSearch,
+  // setActiveSearch,
+  // activeFilter,
+  // setActiveFilter,
+  // onShowFilter,
+  // onShowSearch,
+  //-------------------------------
+  setSearchInput,
+  searchInput,
 }) {
-  const [searchInput, setSearchInput] = useState('');
-  const [activeSearch, setActiveSearch] = useState(false);
-  const [activeFilter, setActiveFilter] = useState(true);
+  // const filteredSearchActivities = activities.filter(activity => {
+  //   if (searchInput === '') {
+  //     return activity;
+  //   } else {
+  //     return activity.activity.toLowerCase().includes(searchInput);
+  //   }
+  // });
 
-  const filteredSearchActivities = activities.filter(activity => {
-    if (searchInput === '') {
-      return activity;
-    } else {
-      return activity.activity.toLowerCase().includes(searchInput);
-    }
-  });
+  const [active, setActive] = useState('all');
+  //-------------------------------
+  // useEffect(() => {
+  //   setActiveSearch(true);
+  //   setCurrentFilter('all');
+  // }, [activities]);
+  //-------------------------------
 
-  useEffect(() => {
-    setActiveSearch(false);
-    setCurrentFilter('all');
-  }, [activities]);
-
-  function onShowFilter() {
-    setActiveFilter(true);
-    setActiveSearch(false);
-  }
-
-  function onShowSearch() {
-    setActiveSearch(true);
-    setActiveFilter(false);
-    setCurrentFilter('all');
-  }
-  console.log(activeFilter);
-  console.log(activeSearch);
   return (
     <Picture>
       <Header>all activities</Header>
       <Main>
         <Searchbar
-          activities={activities}
           setSearchInput={setSearchInput}
-          onShowSearch={onShowSearch}
-          setActiveFilter={setActiveFilter}
+          // onShowSearch={onShowSearch}
+          // setActiveFilter={setActiveFilter}
         ></Searchbar>
         <FilterTags
           activities={activities}
           currentFilter={currentFilter}
           onFilter={onFilter}
-          onShowFilter={onShowFilter}
+          //onShowFilter={onShowFilter}
         />
         {filteredSearchActivities.length > 0 ? (
           <List
@@ -69,8 +66,8 @@ export default function AllActivitiesPage({
             currentFilter={currentFilter}
             searchInput={searchInput}
             filteredSearchActivities={filteredSearchActivities}
-            activeSearch={activeSearch}
-            activeFilter={activeFilter}
+            // activeSearch={activeSearch}
+            // activeFilter={activeFilter}
           />
         ) : (
           <EmptyList data-testid="emptylist">

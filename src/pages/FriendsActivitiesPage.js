@@ -20,17 +20,24 @@ export default function FriendsActivitiesPage({
   currentFilter,
   onFilter,
   setCurrentFilter,
+  filteredSearchActivities,
+  //-------------------------------
+  // setActiveFilter,
+  // activeFilter,
+  // onShowFilter,
+  //-------------------------------
 }) {
   const { friendsName } = useParams();
   const selectedFriendsActivities = activities.filter(
     activity => activity.friend === friendsName
   );
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setCurrentFilter('all');
-  }, [activities]);
-
+  //-------------------------------
+  // useEffect(() => {
+  //   setCurrentFilter('all');
+  //   setActiveFilter(true);
+  // }, [activities]);
+  //-------------------------------
   return (
     <Picture>
       <Header>
@@ -44,6 +51,8 @@ export default function FriendsActivitiesPage({
           selectedFriendsActivity={selectedFriendsActivities}
           currentFilter={currentFilter}
           onFilter={onFilter}
+
+          //  onShowFilter={onShowFilter}
         />
         <List
           errorMessage={hasError}
@@ -51,6 +60,8 @@ export default function FriendsActivitiesPage({
           currentFilter={currentFilter}
           selectedFriendsActivity={selectedFriendsActivities}
           activities={activities}
+          filteredSearchActivities={filteredSearchActivities}
+          // activeFilter={activeFilter}
         />
       </Main>
       <Navigation>

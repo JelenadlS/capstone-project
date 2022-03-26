@@ -25,10 +25,22 @@ export default function App() {
   const navigate = useNavigate();
   const [photo, setPhoto] = useState('');
   const [currentFilter, setCurrentFilter] = useState('all');
-
+  //-------------------------------
+  // const [activeSearch, setActiveSearch] = useState(true);
+  // const [activeFilter, setActiveFilter] = useState(false);
+  //-------------------------------
+  const [searchInput, setSearchInput] = useState('');
   useEffect(() => {
     saveToLocal('activities', activities);
   }, [activities]);
+
+  const filteredSearchActivities = activities.filter(activity => {
+    if (searchInput === '') {
+      return activity;
+    } else {
+      return activity.activity.toLowerCase().includes(searchInput);
+    }
+  });
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
@@ -45,6 +57,11 @@ export default function App() {
                 currentFilter={currentFilter}
                 onFilter={onFilter}
                 setCurrentFilter={setCurrentFilter}
+                filteredSearchActivities={filteredSearchActivities}
+                //-------------------------------
+                // setActiveFilter={setActiveFilter}
+                // activeFilter={activeFilter}
+                //-------------------------------
               />
             }
           />
@@ -83,6 +100,17 @@ export default function App() {
                 currentFilter={currentFilter}
                 onFilter={onFilter}
                 setCurrentFilter={setCurrentFilter}
+                filteredSearchActivities={filteredSearchActivities}
+                //-------------------------------
+                // activeSearch={activeSearch}
+                // setActiveSearch={setActiveSearch}
+                // activeFilter={activeFilter}
+                // setActiveFilter={setActiveFilter}
+                // onShowFilter={onShowFilter}
+                // onShowSearch={onShowSearch}
+                //-------------------------------
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}
               />
             }
           />
@@ -141,6 +169,17 @@ export default function App() {
   function onFilter(category) {
     setCurrentFilter(category);
   }
+
+  // function onShowFilter() {
+  //   setActiveFilter(false);
+  //   setActiveSearch(true);
+  // }
+
+  // function onShowSearch() {
+  //   setActiveSearch(false);
+  //   setActiveFilter(true);
+  //   setCurrentFilter('all');
+  // }
 
   function uploadImage(e) {
     const data = new FormData();

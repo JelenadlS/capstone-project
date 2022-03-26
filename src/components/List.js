@@ -14,67 +14,76 @@ export default function List({
   activities,
   searchInput,
   filteredSearchActivities,
-  activeSearch,
-  activeFilter,
+  // activeSearch,
+  // activeFilter,
 }) {
-  console.log(activeFilter);
-  console.log(activeSearch);
+  console.log(currentFilter);
+  console.log(searchInput);
+  console.log(filteredSearchActivities);
   return (
     <ListStyle role="list" title="list of activities" searchInput={searchInput}>
-      {activeFilter &&
-        (selectedFriendsActivity?.length > 0
-          ? selectedFriendsActivity
-          : activities
-        )
-          .filter(
-            activity =>
-              activity.category.includes(currentFilter) ||
-              currentFilter === 'all'
-          )
-          .map(activity => (
-            <li key={activity.id}>
-              <ActivityCard
-                onDeleteActivity={() => onDeleteActivity(activity.id)}
-                activity={activity.activity}
-                id={activity.id}
-                nameOfSelectedFriend={activity.friend}
-                nameOfSelectedActivity={activity.activity}
-                nameOfSelectedCategory={activity.category}
-                errorMessage={errorMessage}
-                photo={activity.photo}
-              />
-            </li>
-          ))}
-      {activeSearch &&
-        filteredSearchActivities.map(activity => {
-          return (
-            <li key={activity.id}>
-              <WrapperCard>
-                {!activity.photo > 0 ? (
-                  <StyledImage
-                    width="30"
-                    height="30"
-                    alt={`placeholder picture ${activity.category}`}
-                    src={MappedPlaceholderPictures[activity.category]}
-                  />
-                ) : (
-                  <StyledImage
-                    width="30"
-                    height="30"
-                    alt={`uploaded picture ${activity.photo}`}
-                    src={activity.photo}
-                  />
-                )}
-                <LinkStyling to={`/${activity.friend}/${activity.activity}`}>
-                  <strong>{activity.activity}</strong>
-                </LinkStyling>
-                <StyledArrow>
-                  <img src={nextIcon} alt="next page" />
-                </StyledArrow>
-              </WrapperCard>
-            </li>
-          );
-        })}
+      {
+        (searchInput?.length > 0
+          ? filteredSearchActivities
+          : (selectedFriendsActivity?.length > 0
+              ? selectedFriendsActivity
+              : activities
+            ).filter(
+              activity =>
+                activity.category.includes(currentFilter) ||
+                currentFilter === 'all'
+            )
+        ).map(activity => (
+          <li key={activity.id}>
+            <WrapperCard>
+              {!activity.photo > 0 ? (
+                <StyledImage
+                  width="30"
+                  height="30"
+                  alt={`placeholder picture ${activity.category}`}
+                  src={MappedPlaceholderPictures[activity.category]}
+                />
+              ) : (
+                <StyledImage
+                  width="30"
+                  height="30"
+                  alt={`uploaded picture ${activity.photo}`}
+                  src={activity.photo}
+                />
+              )}
+              <LinkStyling to={`/${activity.friend}/${activity.activity}`}>
+                <strong>{activity.activity}</strong>
+              </LinkStyling>
+              <StyledArrow>
+                <img src={nextIcon} alt="next page" />
+              </StyledArrow>
+            </WrapperCard>
+          </li>
+        ))
+        // : (selectedFriendsActivity?.length > 0
+        //     ? selectedFriendsActivity
+        //     : activities
+        //   )
+        //     .filter(
+        //       activity =>
+        //         activity.category.includes(currentFilter) ||
+        //         currentFilter === 'all'
+        //     )
+        //     .map(activity => (
+        //       <li key={activity.id}>
+        //         <ActivityCard
+        //           onDeleteActivity={() => onDeleteActivity(activity.id)}
+        //           activity={activity.activity}
+        //           id={activity.id}
+        //           nameOfSelectedFriend={activity.friend}
+        //           nameOfSelectedActivity={activity.activity}
+        //           nameOfSelectedCategory={activity.category}
+        //           errorMessage={errorMessage}
+        //           photo={activity.photo}
+        //         />
+        //       </li>
+        //     ))
+      }
     </ListStyle>
   );
 }
