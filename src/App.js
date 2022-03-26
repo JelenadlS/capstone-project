@@ -47,9 +47,7 @@ export default function App() {
       return activity.activity.toLowerCase().includes(searchInput);
     }
   });
-  console.log(activities);
-  console.log(pastActivities);
-  console.log(likedActivity);
+
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>

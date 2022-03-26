@@ -253,9 +253,9 @@ export default function ActivityOverviewPage({
     const activityToRemove = activities.find(
       activity => activity.id === thisActivityId
     );
-    console.log(activityToRemove);
+
     const newActivity = { ...activityToRemove, likedActivity };
-    console.log(newActivity);
+
     setPastActivities([...pastActivities, newActivity]);
     setActivities(
       activities.filter(activity => activity.id !== thisActivityId)

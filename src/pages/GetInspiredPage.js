@@ -15,7 +15,6 @@ export default function GetInspiredPage({
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
-  console.log(pastActivities);
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>Get Inspired</Header>
