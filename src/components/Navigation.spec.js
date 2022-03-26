@@ -11,8 +11,8 @@ describe('Navigation', () => {
       </MemoryRouter>
     );
 
-    const homeNavigation = screen.getByRole('link', { name: /home/i });
-    expect(homeNavigation).toBeInTheDocument();
+    const inspireNavigation = screen.getByRole('link', { name: /inspire/i });
+    expect(inspireNavigation).toBeInTheDocument();
     const searchNavigation = screen.getByRole('link', { name: /search/i });
     expect(searchNavigation).toBeInTheDocument();
     const button = screen.getByRole('button');
