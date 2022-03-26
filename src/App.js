@@ -73,10 +73,10 @@ export default function App() {
                 onFilter={onFilter}
                 filteredSearchActivities={filteredSearchActivities}
                 setSearchInput={setSearchInput}
-                setCurrentFilter={setCurrentFilter}
                 showBin={showBin}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+                resetPage={resetPage}
               />
             }
           />
@@ -214,6 +214,12 @@ export default function App() {
     setCurrentFilter('all');
     setSearchInput('');
     setShowBin(false);
+  }
+
+  function resetPage(event) {
+    event.preventDefault();
+    setCurrentFilter('all');
+    setSearchInput('');
   }
 
   function uploadImage(e) {

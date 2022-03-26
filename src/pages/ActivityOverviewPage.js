@@ -54,15 +54,23 @@ export default function ActivityOverviewPage({
         {selectedActivity
           ? selectedActivity.activity
           : selectedPastActivity.activity}
-        <ArrowBackButton
-          onClick={() => {
-            selectedActivity
-              ? navigate(`/${selectedActivity.friend}`)
-              : navigate(-1);
-          }}
-        >
-          <img src={goBackIcon} alt="go back" />
-        </ArrowBackButton>
+        {selectedActivity ? (
+          <ArrowBackButton
+            onClick={() => {
+              navigate(`/${selectedActivity.friend}`);
+            }}
+          >
+            <img src={goBackIcon} alt="go back" />
+          </ArrowBackButton>
+        ) : (
+          <ArrowBackButton
+            onClick={() =>
+              handleResetPageAndShowArrow(navigate('/getinspired'))
+            }
+          >
+            <img src={goBackIcon} alt="go back" />
+          </ArrowBackButton>
+        )}
       </Header>
       <Main>
         <MainGrid>
