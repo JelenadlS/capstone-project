@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -6,6 +7,7 @@ import Header from '../components/Header';
 import Main from '../components/Main';
 import MappedPlaceholderPictures from '../components/MappedPlaceholderPictures.js';
 import Navigation from '../components/Navigation';
+import PastActivityModal from '../components/PastActivityModal';
 import Picture from '../components/Picture';
 
 import cultureIcon from '../images/cultureIcon.svg';
@@ -39,7 +41,7 @@ export default function ActivityOverviewPage({
     sport: sportIcon,
     other: otherIcon,
   };
-
+  const [show, setShow] = useState(false);
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>
@@ -131,10 +133,12 @@ export default function ActivityOverviewPage({
                 type="checkbox"
                 name="check if activity is done"
                 width="40px"
+                onClick={() => setShow(true)}
               />
             </label>
           </StyledCheckbox>
         </MainGrid>
+        <PastActivityModal onClose={() => setShow(false)} show={show} />
       </Main>
       <Navigation
         handleResetPage={handleResetPage}

@@ -5,7 +5,11 @@ import { ModalButton } from './Button.js';
 
 import deletePictureIcon from '../images/deletePictureIcon.svg';
 
-export default function PastActivityModal() {
+export default function PastActivityModal({ show, onClose }) {
+  if (!show) {
+    return null;
+  }
+
   return (
     <WrapperModal>
       <p>Tell us, how was it?</p>
@@ -21,7 +25,14 @@ export default function PastActivityModal() {
           Naahh it was not so good
         </StyledModalButton>
         <QuitButton>
-          <img src={deletePictureIcon} alt="delete" width="20" height="20" />{' '}
+          <img
+            src={deletePictureIcon}
+            alt="delete"
+            width="20"
+            height="20"
+            type="submit"
+            onClick={onClose}
+          />
         </QuitButton>
       </span>
     </WrapperModal>
@@ -40,8 +51,8 @@ const WrapperModal = styled.section`
   top: 50%;
   left: 50%;
   padding-top: 10px;
-  margin-top: -100px;
-  margin-left: -150px;
+  margin-top: -140px;
+  margin-left: -175px;
 
   p {
     text-align: center;
