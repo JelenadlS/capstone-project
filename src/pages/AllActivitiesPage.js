@@ -47,7 +47,10 @@ export default function AllActivitiesPage({
           </EmptyList>
         )}
       </Main>
-      <Navigation setCurrentFilter={setCurrentFilter}>
+      <Navigation
+        setCurrentFilter={setCurrentFilter}
+        setSearchInput={setSearchInput}
+      >
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>

@@ -6,9 +6,14 @@ import { MainNavButton } from './Button';
 import friendIcon from '../images/friendIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 
-export default function Navigation({ children, setCurrentFilter }) {
+export default function Navigation({
+  children,
+  setCurrentFilter,
+  setSearchInput,
+}) {
   function handleResetPage() {
     setCurrentFilter('all');
+    setSearchInput('');
   }
   return (
     <StyledNavigation area-label="StyledNavigation">

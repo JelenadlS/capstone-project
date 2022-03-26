@@ -19,6 +19,7 @@ export default function Form({
   photo,
   setPhoto,
   setCurrentFilter,
+  setSearchInput,
 }) {
   const [preloadedPicture, setPreloadedPicture] = useState(
     preloadedValues?.photo
@@ -325,7 +326,10 @@ export default function Form({
         )}
       </StyledLabels>
 
-      <Navigation setCurrentFilter={setCurrentFilter}>
+      <Navigation
+        setCurrentFilter={setCurrentFilter}
+        setSearchInput={setSearchInput}
+      >
         <img src={saveIcon} alt="save" />
       </Navigation>
     </WrapperForm>

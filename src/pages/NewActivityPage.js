@@ -14,6 +14,7 @@ export default function NewActivityPage({
   photo,
   setPhoto,
   setCurrentFilter,
+  setSearchInput,
 }) {
   const navigate = useNavigate();
 
@@ -38,6 +39,7 @@ export default function NewActivityPage({
           photo={photo}
           setPhoto={setPhoto}
           setCurrentFilter={setCurrentFilter}
+          setSearchInput={setSearchInput}
         />
       </Main>
     </Picture>

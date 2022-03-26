@@ -65,6 +65,7 @@ export default function App() {
               <ActivityOverviewPage
                 activities={activities}
                 setCurrentFilter={setCurrentFilter}
+                setSearchInput={setSearchInput}
               />
             }
           />
@@ -78,6 +79,7 @@ export default function App() {
                 photo={photo}
                 setPhoto={setPhoto}
                 setCurrentFilter={setCurrentFilter}
+                setSearchInput={setSearchInput}
               />
             }
           />
@@ -90,6 +92,7 @@ export default function App() {
                 photo={photo}
                 setPhoto={setPhoto}
                 setCurrentFilter={setCurrentFilter}
+                setSearchInput={setSearchInput}
               />
             }
           />

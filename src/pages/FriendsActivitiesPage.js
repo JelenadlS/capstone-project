@@ -31,6 +31,7 @@ export default function FriendsActivitiesPage({
   function resetPage(event) {
     event.preventDefault();
     setCurrentFilter('all');
+    setSearchInput('');
   }
 
   return (
@@ -57,7 +58,10 @@ export default function FriendsActivitiesPage({
           filteredSearchActivities={filteredSearchActivities}
         />
       </Main>
-      <Navigation setCurrentFilter={setCurrentFilter}>
+      <Navigation
+        setCurrentFilter={setCurrentFilter}
+        setSearchInput={setSearchInput}
+      >
         <NavLink to="/newactivity">
           <img src={newIcon} alt="new" />
         </NavLink>

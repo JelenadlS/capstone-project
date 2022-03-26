@@ -19,7 +19,6 @@ export default function FilterTags({
 
   function handleOnClick(category) {
     onFilter(category);
-
     setSearchInput('');
   }
   return (
