@@ -158,21 +158,12 @@ export default function ActivityOverviewPage({
     </Picture>
   );
 
-  function onSetPastActivity(
-    thisActivityId,
-    id,
-    activity,
-    category,
-    friend,
-    notes,
-    date,
-    location,
-    photo
-  ) {
-    setPastActivities([
-      ...pastActivities,
-      { activity, category, friend, id, notes, date, location, photo },
-    ]);
+  function onSetPastActivity(thisActivityId) {
+    const activityToRemove = activities.find(
+      activity => activity.id === thisActivityId
+    );
+
+    setPastActivities([...pastActivities, activityToRemove]);
     setActivities(
       activities.filter(activity => activity.id !== thisActivityId)
     );

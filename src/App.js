@@ -36,7 +36,8 @@ export default function App() {
 
   useEffect(() => {
     saveToLocal('activities', activities);
-  }, [activities]);
+    saveToLocal('pastActivities', pastActivities);
+  }, [activities, pastActivities]);
 
   const filteredSearchActivities = activities.filter(activity => {
     if (searchInput === '') {
@@ -140,6 +141,8 @@ export default function App() {
             path="/getinspired"
             element={
               <GetInspiredPage
+                pastActivities={pastActivities}
+                showBin={showBin}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
