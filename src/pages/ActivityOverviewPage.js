@@ -30,6 +30,8 @@ export default function ActivityOverviewPage({
   setPastActivities,
   handleResetPage,
   handleResetPageAndShowArrow,
+  setLikedActivity,
+  likedActivity,
 }) {
   const navigate = useNavigate();
   const { activityName } = useParams();
@@ -48,6 +50,7 @@ export default function ActivityOverviewPage({
     other: otherIcon,
   };
   const [show, setShow] = useState(false);
+
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>
@@ -227,6 +230,7 @@ export default function ActivityOverviewPage({
         <PastActivityModal
           onClose={() => setShow(false)}
           show={show}
+          setLikedActivity={setLikedActivity}
           onSetPastActivity={() =>
             onSetPastActivity(
               selectedActivity ? selectedActivity.id : selectedPastActivity.id
@@ -249,8 +253,10 @@ export default function ActivityOverviewPage({
     const activityToRemove = activities.find(
       activity => activity.id === thisActivityId
     );
-
-    setPastActivities([...pastActivities, activityToRemove]);
+    console.log(activityToRemove);
+    const newActivity = { ...activityToRemove, likedActivity };
+    console.log(newActivity);
+    setPastActivities([...pastActivities, newActivity]);
     setActivities(
       activities.filter(activity => activity.id !== thisActivityId)
     );

@@ -20,19 +20,21 @@ export default function GetInspiredPage({
     <Picture>
       <Header handleResetPage={handleResetPage}>Get Inspired</Header>
       <Main>
-        {pastActivities.map(pastActivity => (
-          <li key={pastActivity.id}>
-            <ActivityCard
-              activity={pastActivity.activity}
-              nameOfSelectedCategory={pastActivity.category}
-              nameOfSelectedFriend={pastActivity.friend}
-              nameOfSelectedActivity={pastActivity.activity}
-              photo={pastActivity.photo}
-              showBin={showBin}
-              handleResetPage={handleResetPage}
-            />
-          </li>
-        ))}
+        <ListStyle role="list" title="list of past activities">
+          {pastActivities.map(pastActivity => (
+            <li key={pastActivity.id}>
+              <ActivityCard
+                activity={pastActivity.activity}
+                nameOfSelectedCategory={pastActivity.category}
+                nameOfSelectedFriend={pastActivity.friend}
+                nameOfSelectedActivity={pastActivity.activity}
+                photo={pastActivity.photo}
+                showBin={showBin}
+                handleResetPage={handleResetPage}
+              />
+            </li>
+          ))}
+        </ListStyle>
       </Main>
       <Navigation
         handleResetPage={handleResetPage}
@@ -45,3 +47,11 @@ export default function GetInspiredPage({
     </Picture>
   );
 }
+
+const ListStyle = styled.ul`
+  list-style-type: none;
+
+  li {
+    padding: 5px;
+  }
+`;

@@ -31,6 +31,7 @@ export default function App() {
   const [searchInput, setSearchInput] = useState('');
   const [currentFilter, setCurrentFilter] = useState('all');
   const [showBin, setShowBin] = useState(true);
+  const [likedActivity, setLikedActivity] = useState(true);
 
   const navigate = useNavigate();
 
@@ -48,6 +49,7 @@ export default function App() {
   });
   console.log(activities);
   console.log(pastActivities);
+  console.log(likedActivity);
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>
@@ -90,6 +92,8 @@ export default function App() {
                 setPastActivities={setPastActivities}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+                setLikedActivity={setLikedActivity}
+                likedActivity={likedActivity}
               />
             }
           />
