@@ -1,16 +1,6 @@
 import styled from 'styled-components';
 
 export default function Searchbar({ setSearchInput, setCurrentFilter }) {
-  const searchInputHandler = event => {
-    const lowerCase = event.target.value.toLowerCase();
-    setSearchInput(lowerCase);
-  };
-
-  function handleClickOnSearch(event) {
-    setCurrentFilter('all');
-    event.target.select();
-  }
-
   return (
     <StyledSearchbar>
       <StyledInput
@@ -24,6 +14,16 @@ export default function Searchbar({ setSearchInput, setCurrentFilter }) {
       ></StyledInput>
     </StyledSearchbar>
   );
+
+  function searchInputHandler(event) {
+    const lowerCase = event.target.value.toLowerCase();
+    setSearchInput(lowerCase);
+  }
+
+  function handleClickOnSearch(event) {
+    setCurrentFilter('all');
+    event.target.select();
+  }
 }
 
 const StyledSearchbar = styled.section`

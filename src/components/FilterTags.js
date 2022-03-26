@@ -17,11 +17,6 @@ export default function FilterTags({
 
   const categoryTagsAndAll = ['all', ...eachExistingCategoryOnce].sort();
 
-  function handleOnClick(category) {
-    setSearchInput('');
-    onFilter(category);
-  }
-
   return (
     categoryTagsAndAll.length > 2 && (
       <ScrollCategories title="filter options">
@@ -29,7 +24,7 @@ export default function FilterTags({
           return (
             <CategoryButton
               key={index}
-              onClick={() => handleOnClick(category)}
+              onClick={() => handleClickOnFilter(category)}
               active={category === currentFilter}
             >
               {category}
@@ -39,6 +34,11 @@ export default function FilterTags({
       </ScrollCategories>
     )
   );
+
+  function handleClickOnFilter(category) {
+    onFilter(category);
+    setSearchInput('');
+  }
 }
 
 const ScrollCategories = styled.section`

@@ -31,12 +31,6 @@ export default function FriendsActivitiesPage({
   );
   const navigate = useNavigate();
 
-  function resetPage(event) {
-    event.preventDefault();
-    setCurrentFilter('all');
-    setSearchInput('');
-  }
-
   return (
     <Picture>
       <Header>
@@ -71,6 +65,12 @@ export default function FriendsActivitiesPage({
       </Navigation>
     </Picture>
   );
+
+  function resetPage(event) {
+    event.preventDefault();
+    setCurrentFilter('all');
+    setSearchInput('');
+  }
 
   function onDeleteActivity(thisActivityId) {
     setActivities(
