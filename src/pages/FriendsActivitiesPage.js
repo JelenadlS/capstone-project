@@ -20,6 +20,7 @@ export default function FriendsActivitiesPage({
   onFilter,
   filteredSearchActivities,
   setSearchInput,
+  setCurrentFilter,
 }) {
   const { friendsName } = useParams();
   const selectedFriendsActivities = activities.filter(
@@ -27,11 +28,16 @@ export default function FriendsActivitiesPage({
   );
   const navigate = useNavigate();
 
+  function resetPage(event) {
+    event.preventDefault();
+    setCurrentFilter('all');
+  }
+
   return (
     <Picture>
       <Header>
         {selectedFriendsActivities[0].friend}
-        <ArrowBackButton onClick={() => navigate('/')}>
+        <ArrowBackButton onClick={event => resetPage(event, navigate('/'))}>
           <img src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>

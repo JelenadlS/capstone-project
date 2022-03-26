@@ -55,6 +55,7 @@ export default function App() {
                 onFilter={onFilter}
                 filteredSearchActivities={filteredSearchActivities}
                 setSearchInput={setSearchInput}
+                setCurrentFilter={setCurrentFilter}
               />
             }
           />
