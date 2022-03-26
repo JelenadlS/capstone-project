@@ -4,6 +4,7 @@ import { DeleteButton } from './Button.js';
 import { EditButton } from './Button.js';
 import { MainNavButton } from './Button.js';
 import { ModalButton } from './Button.js';
+import { QuitButton } from './Button.js';
 
 import addPictureIcon from '../images/addPictureIcon.svg';
 import deleteIcon from '../images/binIcon.svg';
@@ -69,4 +70,10 @@ export const DeletePictureButton = args => (
   <DeleteButton {...args}>
     <img src={deletePictureIcon} alt="deletepicture" />
   </DeleteButton>
+);
+
+export const QuitButtonVariante = args => (
+  <QuitButton {...args}>
+    <img src={deletePictureIcon} alt="deletepicture" />
+  </QuitButton>
 );
