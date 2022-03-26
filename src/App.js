@@ -42,9 +42,6 @@ export default function App() {
     }
   });
 
-  console.log(searchInput);
-  console.log(setSearchInput);
-
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>

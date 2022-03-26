@@ -18,7 +18,6 @@ export default function ActivityCard({
   nameOfSelectedActivity,
   nameOfSelectedCategory,
   showBin,
-  handleResetPageAndShowArrow,
   handleResetPage,
 }) {
   const [show, setShow] = useState(false);

@@ -11,7 +11,6 @@ export default function List({
   searchInput,
   filteredSearchActivities,
   showBin,
-  handleResetPageAndShowArrow,
   handleResetPage,
 }) {
   return (
@@ -37,7 +36,6 @@ export default function List({
             errorMessage={errorMessage}
             photo={activity.photo}
             showBin={showBin}
-            handleResetPageAndShowArrow={handleResetPageAndShowArrow}
             handleResetPage={handleResetPage}
           />
         </li>
