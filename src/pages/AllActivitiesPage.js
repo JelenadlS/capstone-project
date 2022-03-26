@@ -15,10 +15,13 @@ export default function AllActivitiesPage({
   activities,
   currentFilter,
   onFilter,
-  filteredSearchActivities,
-  setSearchInput,
-  searchInput,
   setCurrentFilter,
+  filteredSearchActivities,
+  searchInput,
+  setSearchInput,
+  showBin,
+  handleResetPage,
+  handleResetPageAndArrow,
 }) {
   return (
     <Picture>
@@ -40,6 +43,9 @@ export default function AllActivitiesPage({
             currentFilter={currentFilter}
             searchInput={searchInput}
             filteredSearchActivities={filteredSearchActivities}
+            showBin={showBin}
+            handleResetPageAndArrow={handleResetPageAndArrow}
+            handleResetPage={handleResetPage}
           />
         ) : (
           <EmptyList data-testid="emptylist">
@@ -48,8 +54,8 @@ export default function AllActivitiesPage({
         )}
       </Main>
       <Navigation
-        setCurrentFilter={setCurrentFilter}
-        setSearchInput={setSearchInput}
+        handleResetPage={handleResetPage}
+        handleResetPageAndArrow={handleResetPageAndArrow}
       >
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />

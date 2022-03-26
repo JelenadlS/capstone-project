@@ -17,13 +17,11 @@ export default function ActivityCard({
   nameOfSelectedFriend,
   nameOfSelectedActivity,
   nameOfSelectedCategory,
-  setCurrentFilter,
+  showBin,
+  handleResetPageAndArrow,
+  handleResetPage,
 }) {
   const [show, setShow] = useState(false);
-  console.log(nameOfSelectedFriend);
-  console.log(nameOfSelectedActivity);
-  console.log(activity);
-  console.log(onDeleteActivity);
 
   return (
     <>
@@ -43,32 +41,35 @@ export default function ActivityCard({
             src={photo}
           />
         )}
-        {/* {onDeleteActivity ? ( */}
-        <>
-          <LinkStyling
-            to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}
-          >
-            <strong>{activity}</strong>
-          </LinkStyling>
-          <DeleteButton onClick={() => setShow(true)}>
-            <img src={deleteIcon} alt="delete" />
-          </DeleteButton>
-          <DeleteModal
-            onDelete={onDeleteActivity}
-            onClose={() => setShow(false)}
-            show={show}
-          />
-        </>
-        {/* ) : (
-          <>
-            <LinkStyling to={`/${activity.friend}/${activity.activity}`}>
-              <strong>{activity.activity}</strong>
-              <StyledArrow>
-                <img src={nextIcon} alt="next page" />
-              </StyledArrow>
+        {showBin ? (
+          <CardSubGrid>
+            <LinkStyling
+              to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}
+            >
+              <strong>{activity}</strong>
             </LinkStyling>
-          </>
-        )} */}
+            <DeleteButton onClick={() => setShow(true)}>
+              <img src={deleteIcon} alt="delete" />
+            </DeleteButton>
+            <DeleteModal
+              onDelete={onDeleteActivity}
+              onClose={() => setShow(false)}
+              show={show}
+            />
+          </CardSubGrid>
+        ) : (
+          <CardSubGrid>
+            <LinkStyling
+              to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}
+              onClick={handleResetPage}
+            >
+              <strong>{activity}</strong>
+            </LinkStyling>
+            <StyledArrow>
+              <img src={nextIcon} alt="next page" />
+            </StyledArrow>
+          </CardSubGrid>
+        )}
       </WrapperCard>
       <p>
         <strong>
@@ -82,9 +83,14 @@ export default function ActivityCard({
 const WrapperCard = styled.section`
   border-bottom: 1px solid rgba(71, 39, 35, 0.4);
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   align-items: center;
   overflow: hidden;
+`;
+
+const CardSubGrid = styled.span`
+  display: grid;
+  grid-template-columns: 1fr auto;
 `;
 
 const LinkStyling = styled(Link)`
@@ -102,4 +108,5 @@ const StyledImage = styled.img`
 `;
 const StyledArrow = styled.span`
   margin-left: 5px;
+  align-self: center;
 `;

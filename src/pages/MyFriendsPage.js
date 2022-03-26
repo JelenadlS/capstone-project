@@ -10,7 +10,11 @@ import Picture from '../components/Picture';
 import newIcon from '../images/newIcon.svg';
 import nextIcon from '../images/nextIcon.svg';
 
-export default function MyFriendsPage({ activities }) {
+export default function MyFriendsPage({
+  activities,
+  handleResetPage,
+  handleResetPageAndArrow,
+}) {
   const activitiesWithFriendsName = activities.filter(
     activity => activity.friend !== 'I still need to plan...'
   );
@@ -74,7 +78,10 @@ export default function MyFriendsPage({ activities }) {
           </EmptyList>
         )}
       </Main>
-      <Navigation>
+      <Navigation
+        handleResetPage={handleResetPage}
+        handleResetPageAndArrow={handleResetPageAndArrow}
+      >
         <Link to="newactivity">
           <img src={newIcon} alt="new" />
         </Link>

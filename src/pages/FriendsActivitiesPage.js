@@ -21,6 +21,9 @@ export default function FriendsActivitiesPage({
   filteredSearchActivities,
   setSearchInput,
   setCurrentFilter,
+  showBin,
+  handleResetPage,
+  handleResetPageAndArrow,
 }) {
   const { friendsName } = useParams();
   const selectedFriendsActivities = activities.filter(
@@ -54,13 +57,13 @@ export default function FriendsActivitiesPage({
           onDeleteActivity={onDeleteActivity}
           currentFilter={currentFilter}
           selectedFriendsActivity={selectedFriendsActivities}
-          activities={activities}
           filteredSearchActivities={filteredSearchActivities}
+          showBin={showBin}
         />
       </Main>
       <Navigation
-        setCurrentFilter={setCurrentFilter}
-        setSearchInput={setSearchInput}
+        handleResetPage={handleResetPage}
+        handleResetPageAndArrow={handleResetPageAndArrow}
       >
         <NavLink to="/newactivity">
           <img src={newIcon} alt="new" />

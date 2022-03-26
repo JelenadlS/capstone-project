@@ -23,8 +23,8 @@ import sportIcon from '../images/sportIcon.svg';
 
 export default function ActivityOverviewPage({
   activities,
-  setCurrentFilter,
-  setSearchInput,
+  handleResetPage,
+  handleResetPageAndArrow,
 }) {
   const navigate = useNavigate();
   const { activityName } = useParams();
@@ -126,8 +126,8 @@ export default function ActivityOverviewPage({
         </MainGrid>
       </Main>
       <Navigation
-        setCurrentFilter={setCurrentFilter}
-        setSearchInput={setSearchInput}
+        handleResetPage={handleResetPage}
+        handleResetPageAndArrow={handleResetPageAndArrow}
       >
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />

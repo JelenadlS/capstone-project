@@ -8,13 +8,9 @@ import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 
 export default function Navigation({
   children,
-  setCurrentFilter,
-  setSearchInput,
+  handleResetPage,
+  handleResetPageAndArrow,
 }) {
-  function handleResetPage() {
-    setCurrentFilter('all');
-    setSearchInput('');
-  }
   return (
     <StyledNavigation area-label="StyledNavigation">
       <StyledNavLinkFriends to="/" onClick={handleResetPage}>
@@ -22,7 +18,10 @@ export default function Navigation({
         <StyledDescription>friends</StyledDescription>
       </StyledNavLinkFriends>
       <StyledNewButton onClick={handleResetPage}>{children}</StyledNewButton>
-      <StyledNavLinkActivities to="/allactivities" onClick={handleResetPage}>
+      <StyledNavLinkActivities
+        to="/allactivities"
+        onClick={handleResetPageAndArrow}
+      >
         <img width="40" height="30" alt="searchIcon" src={allActivitiesIcon} />
         <StyledDescription>activities</StyledDescription>
       </StyledNavLinkActivities>

@@ -18,8 +18,8 @@ export default function Form({
   uploadImage,
   photo,
   setPhoto,
-  setCurrentFilter,
-  setSearchInput,
+  handleResetPage,
+  handleResetPageAndArrow,
 }) {
   const [preloadedPicture, setPreloadedPicture] = useState(
     preloadedValues?.photo
@@ -327,8 +327,8 @@ export default function Form({
       </StyledLabels>
 
       <Navigation
-        setCurrentFilter={setCurrentFilter}
-        setSearchInput={setSearchInput}
+        handleResetPage={handleResetPage}
+        handleResetPageAndArrow={handleResetPageAndArrow}
       >
         <img src={saveIcon} alt="save" />
       </Navigation>

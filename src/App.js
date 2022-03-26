@@ -26,6 +26,7 @@ export default function App() {
   const [photo, setPhoto] = useState('');
   const [searchInput, setSearchInput] = useState('');
   const [currentFilter, setCurrentFilter] = useState('all');
+  const [showBin, setShowBin] = useState(true);
 
   useEffect(() => {
     saveToLocal('activities', activities);
@@ -39,23 +40,37 @@ export default function App() {
     }
   });
 
+  console.log(showBin);
+
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>
         <Routes>
-          <Route path="/" element={<MyFriendsPage activities={activities} />} />
+          <Route
+            path="/"
+            element={
+              <MyFriendsPage
+                activities={activities}
+                handleResetPage={handleResetPage}
+                handleResetPageAndArrow={handleResetPageAndArrow}
+              />
+            }
+          />
           <Route
             path="/:friendsName"
             element={
               <FriendsActivitiesPage
-                activities={activities}
                 hasError={hasError}
+                activities={activities}
                 setActivities={setActivities}
                 currentFilter={currentFilter}
                 onFilter={onFilter}
                 filteredSearchActivities={filteredSearchActivities}
                 setSearchInput={setSearchInput}
                 setCurrentFilter={setCurrentFilter}
+                showBin={showBin}
+                handleResetPage={handleResetPage}
+                handleResetPageAndArrow={handleResetPageAndArrow}
               />
             }
           />
@@ -64,8 +79,8 @@ export default function App() {
             element={
               <ActivityOverviewPage
                 activities={activities}
-                setCurrentFilter={setCurrentFilter}
-                setSearchInput={setSearchInput}
+                handleResetPage={handleResetPage}
+                handleResetPageAndArrow={handleResetPageAndArrow}
               />
             }
           />
@@ -78,8 +93,8 @@ export default function App() {
                 uploadImage={uploadImage}
                 photo={photo}
                 setPhoto={setPhoto}
-                setCurrentFilter={setCurrentFilter}
-                setSearchInput={setSearchInput}
+                handleResetPage={handleResetPage}
+                handleResetPageAndArrow={handleResetPageAndArrow}
               />
             }
           />
@@ -91,8 +106,8 @@ export default function App() {
                 uploadImage={uploadImage}
                 photo={photo}
                 setPhoto={setPhoto}
-                setCurrentFilter={setCurrentFilter}
-                setSearchInput={setSearchInput}
+                handleResetPage={handleResetPage}
+                handleResetPageAndArrow={handleResetPageAndArrow}
               />
             }
           />
@@ -107,6 +122,9 @@ export default function App() {
                 filteredSearchActivities={filteredSearchActivities}
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}
+                setShowBin={setShowBin}
+                handleResetPage={handleResetPage}
+                handleResetPageAndArrow={handleResetPageAndArrow}
               />
             }
           />
@@ -164,6 +182,18 @@ export default function App() {
 
   function onFilter(category) {
     setCurrentFilter(category);
+  }
+
+  function handleResetPage() {
+    setCurrentFilter('all');
+    setSearchInput('');
+    setShowBin(true);
+  }
+
+  function handleResetPageAndArrow() {
+    setCurrentFilter('all');
+    setSearchInput('');
+    setShowBin(false);
   }
 
   function uploadImage(e) {

@@ -10,6 +10,9 @@ export default function List({
   activities,
   searchInput,
   filteredSearchActivities,
+  showBin,
+  handleResetPageAndArrow,
+  handleResetPage,
 }) {
   return (
     <ListStyle role="list" title="list of activities" searchInput={searchInput}>
@@ -28,12 +31,14 @@ export default function List({
           <ActivityCard
             onDeleteActivity={() => onDeleteActivity(activity.id)}
             activity={activity.activity}
-            id={activity.id}
             nameOfSelectedFriend={activity.friend}
             nameOfSelectedActivity={activity.activity}
             nameOfSelectedCategory={activity.category}
             errorMessage={errorMessage}
             photo={activity.photo}
+            showBin={showBin}
+            handleResetPageAndArrow={handleResetPageAndArrow}
+            handleResetPage={handleResetPage}
           />
         </li>
       ))}
