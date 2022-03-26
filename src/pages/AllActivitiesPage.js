@@ -28,6 +28,7 @@ export default function AllActivitiesPage({
   //-------------------------------
   setSearchInput,
   searchInput,
+  setCurrentFilter,
 }) {
   // const filteredSearchActivities = activities.filter(activity => {
   //   if (searchInput === '') {
@@ -51,6 +52,8 @@ export default function AllActivitiesPage({
       <Main>
         <Searchbar
           setSearchInput={setSearchInput}
+          setActive={setActive}
+          setCurrentFilter={setCurrentFilter}
           // onShowSearch={onShowSearch}
           // setActiveFilter={setActiveFilter}
         ></Searchbar>
@@ -58,6 +61,9 @@ export default function AllActivitiesPage({
           activities={activities}
           currentFilter={currentFilter}
           onFilter={onFilter}
+          setActive={setActive}
+          active={active}
+          setSearchInput={setSearchInput}
           //onShowFilter={onShowFilter}
         />
         {filteredSearchActivities.length > 0 ? (

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { NavLink, useParams, useNavigate } from 'react-router-dom';
 
 import { ArrowBackButton } from '../components/Button';
@@ -21,6 +21,7 @@ export default function FriendsActivitiesPage({
   onFilter,
   setCurrentFilter,
   filteredSearchActivities,
+  setSearchInput,
   //-------------------------------
   // setActiveFilter,
   // activeFilter,
@@ -38,6 +39,7 @@ export default function FriendsActivitiesPage({
   //   setActiveFilter(true);
   // }, [activities]);
   //-------------------------------
+
   return (
     <Picture>
       <Header>
@@ -51,6 +53,7 @@ export default function FriendsActivitiesPage({
           selectedFriendsActivity={selectedFriendsActivities}
           currentFilter={currentFilter}
           onFilter={onFilter}
+          setSearchInput={setSearchInput}
 
           //  onShowFilter={onShowFilter}
         />

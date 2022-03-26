@@ -2,19 +2,25 @@ import styled from 'styled-components';
 
 export default function Searchbar({
   setSearchInput,
+  setActive,
+  setCurrentFilter,
   // setActiveFilter,
   // onShowSearch,
 }) {
   const searchInputHandler = event => {
     const lowerCase = event.target.value.toLowerCase();
     setSearchInput(lowerCase);
-    // setActiveFilter('');
+    // setCurrentFilter('all');
   };
 
   // function working(event) {
   //   searchInputHandler(event);
   //   onShowSearch(true);
   // }
+  function handleClickOnSearch(event) {
+    setCurrentFilter('all');
+    event.target.select();
+  }
 
   return (
     <StyledSearchbar>
@@ -25,6 +31,8 @@ export default function Searchbar({
         type="text"
         placeholder="Search..."
         onChange={searchInputHandler}
+        onClick={handleClickOnSearch}
+
         // onChange={working}
       ></StyledInput>
     </StyledSearchbar>

@@ -17,9 +17,6 @@ export default function List({
   // activeSearch,
   // activeFilter,
 }) {
-  console.log(currentFilter);
-  console.log(searchInput);
-  console.log(filteredSearchActivities);
   return (
     <ListStyle role="list" title="list of activities" searchInput={searchInput}>
       {
@@ -35,29 +32,24 @@ export default function List({
             )
         ).map(activity => (
           <li key={activity.id}>
-            <WrapperCard>
-              {!activity.photo > 0 ? (
-                <StyledImage
-                  width="30"
-                  height="30"
-                  alt={`placeholder picture ${activity.category}`}
-                  src={MappedPlaceholderPictures[activity.category]}
-                />
-              ) : (
-                <StyledImage
-                  width="30"
-                  height="30"
-                  alt={`uploaded picture ${activity.photo}`}
-                  src={activity.photo}
-                />
-              )}
+            <ActivityCard
+              onDeleteActivity={() => onDeleteActivity(activity.id)}
+              activity={activity.activity}
+              id={activity.id}
+              nameOfSelectedFriend={activity.friend}
+              nameOfSelectedActivity={activity.activity}
+              nameOfSelectedCategory={activity.category}
+              errorMessage={errorMessage}
+              photo={activity.photo}
+            />
+            {/* <WrapperCard>
               <LinkStyling to={`/${activity.friend}/${activity.activity}`}>
                 <strong>{activity.activity}</strong>
+                <StyledArrow>
+                  <img src={nextIcon} alt="next page" />
+                </StyledArrow>
               </LinkStyling>
-              <StyledArrow>
-                <img src={nextIcon} alt="next page" />
-              </StyledArrow>
-            </WrapperCard>
+            </WrapperCard> */}
           </li>
         ))
         // : (selectedFriendsActivity?.length > 0

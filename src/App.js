@@ -24,12 +24,13 @@ export default function App() {
   );
   const navigate = useNavigate();
   const [photo, setPhoto] = useState('');
+  const [searchInput, setSearchInput] = useState('');
   const [currentFilter, setCurrentFilter] = useState('all');
   //-------------------------------
   // const [activeSearch, setActiveSearch] = useState(true);
   // const [activeFilter, setActiveFilter] = useState(false);
   //-------------------------------
-  const [searchInput, setSearchInput] = useState('');
+
   useEffect(() => {
     saveToLocal('activities', activities);
   }, [activities]);
@@ -58,6 +59,7 @@ export default function App() {
                 onFilter={onFilter}
                 setCurrentFilter={setCurrentFilter}
                 filteredSearchActivities={filteredSearchActivities}
+                setSearchInput={setSearchInput}
                 //-------------------------------
                 // setActiveFilter={setActiveFilter}
                 // activeFilter={activeFilter}

@@ -5,6 +5,9 @@ export default function FilterTags({
   activities,
   currentFilter,
   onFilter,
+  setActive,
+  active,
+  setSearchInput,
   // onShowFilter,
 }) {
   const eachExistingCategoryOnce = [
@@ -17,6 +20,11 @@ export default function FilterTags({
 
   const categoryTagsAndAll = ['all', ...eachExistingCategoryOnce].sort();
 
+  function handleOnClick(category) {
+    onFilter(category);
+    setActive(category);
+    setSearchInput('');
+  }
   // function working(category) {
   //   onFilter(category);
   //   onShowFilter();
@@ -28,7 +36,8 @@ export default function FilterTags({
           return (
             <CategoryButton
               key={index}
-              onClick={() => onFilter(category)}
+              // onClick={() => onFilter(category)}
+              onClick={() => handleOnClick(category)}
               //    onClick={() => working(category)}
               active={category === currentFilter}
             >

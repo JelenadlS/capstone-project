@@ -7,6 +7,7 @@ import DeleteModal from './DeleteModal.js';
 import MappedPlaceholderPictures from './MappedPlaceholderPictures.js';
 
 import deleteIcon from '../images/binIcon.svg';
+import nextIcon from '../images/nextIcon.svg';
 
 export default function ActivityCard({
   photo,
@@ -18,7 +19,10 @@ export default function ActivityCard({
   nameOfSelectedCategory,
 }) {
   const [show, setShow] = useState(false);
-
+  console.log(nameOfSelectedFriend);
+  console.log(nameOfSelectedActivity);
+  console.log(activity);
+  console.log(onDeleteActivity);
   return (
     <>
       <WrapperCard>
@@ -37,18 +41,32 @@ export default function ActivityCard({
             src={photo}
           />
         )}
-
-        <LinkStyling to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}>
-          <strong>{activity}</strong>
-        </LinkStyling>
-        <DeleteButton onClick={() => setShow(true)}>
-          <img src={deleteIcon} alt="delete" />
-        </DeleteButton>
-        <DeleteModal
-          onDelete={onDeleteActivity}
-          onClose={() => setShow(false)}
-          show={show}
-        />
+        {/* {onDeleteActivity ? ( */}
+        <>
+          <LinkStyling
+            to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}
+          >
+            <strong>{activity}</strong>
+          </LinkStyling>
+          <DeleteButton onClick={() => setShow(true)}>
+            <img src={deleteIcon} alt="delete" />
+          </DeleteButton>
+          <DeleteModal
+            onDelete={onDeleteActivity}
+            onClose={() => setShow(false)}
+            show={show}
+          />
+        </>
+        {/* ) : (
+          <>
+            <LinkStyling to={`/${activity.friend}/${activity.activity}`}>
+              <strong>{activity.activity}</strong>
+              <StyledArrow>
+                <img src={nextIcon} alt="next page" />
+              </StyledArrow>
+            </LinkStyling>
+          </>
+        )} */}
       </WrapperCard>
       <p>
         <strong>
@@ -79,4 +97,7 @@ const LinkStyling = styled(Link)`
 
 const StyledImage = styled.img`
   border-radius: 50px;
+`;
+const StyledArrow = styled.span`
+  margin-left: 5px;
 `;
