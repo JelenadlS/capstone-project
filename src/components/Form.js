@@ -18,6 +18,8 @@ export default function Form({
   uploadImage,
   photo,
   setPhoto,
+  handleResetPage,
+  handleResetPageAndShowArrow,
 }) {
   const [preloadedPicture, setPreloadedPicture] = useState(
     preloadedValues?.photo
@@ -324,7 +326,10 @@ export default function Form({
         )}
       </StyledLabels>
 
-      <Navigation>
+      <Navigation
+        handleResetPage={handleResetPage}
+        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+      >
         <img src={saveIcon} alt="save" />
       </Navigation>
     </WrapperForm>

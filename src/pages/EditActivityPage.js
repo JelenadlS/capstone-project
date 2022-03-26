@@ -14,6 +14,8 @@ export default function EditActivityPage({
   uploadImage,
   photo,
   setPhoto,
+  handleResetPage,
+  handleResetPageAndShowArrow,
 }) {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -39,6 +41,8 @@ export default function EditActivityPage({
           uploadImage={uploadImage}
           photo={photo}
           setPhoto={setPhoto}
+          handleResetPage={handleResetPage}
+          handleResetPageAndShowArrow={handleResetPageAndShowArrow}
         />
       </Main>
     </Picture>

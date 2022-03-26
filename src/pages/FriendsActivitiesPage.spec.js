@@ -14,7 +14,7 @@ jest.mock('react-router-dom', () => ({
 Element.prototype.scrollIntoView = jest.fn();
 
 describe('MyFriendsPage', () => {
-  it('renders a page with headertitle, go back and new button, as well as three filter buttons, a list with two pictures and link and two delete buttons(picture and activity)', () => {
+  it('renders a page with headertitle, go back and new button, as well as three filter buttons and a list', () => {
     const activities = [
       {
         id: '1',
@@ -47,9 +47,6 @@ describe('MyFriendsPage', () => {
       name: 'culture',
     });
     const list = screen.getByRole('list', { name: 'list of activities' });
-    const picture = screen.getAllByRole('img', { name: /uploaded picture/i });
-    const link = screen.getByRole('link', { name: 'new' });
-    const deleteButton = screen.getAllByRole('button', { name: 'delete' });
 
     expect(title).toBeInTheDocument();
     expect(goBackButton).toBeInTheDocument();
@@ -58,9 +55,6 @@ describe('MyFriendsPage', () => {
     expect(categoryButtonSport).toBeInTheDocument();
     expect(categoryButtonCulture).toBeInTheDocument();
     expect(list).toBeInTheDocument();
-    expect(link).toBeInTheDocument();
-    expect(picture).toHaveLength(2);
-    expect(deleteButton).toHaveLength(2);
   });
   it('renders no category, when only one type is given', () => {
     const activities = [
@@ -82,36 +76,5 @@ describe('MyFriendsPage', () => {
     const categoryText = screen.queryByText('sport');
 
     expect(categoryText).not.toBeInTheDocument();
-  });
-
-  it('renders placeholder picture when no picture was uploaded', () => {
-    const activities = [
-      {
-        id: '1',
-        activity: 'Frau Möller',
-        category: 'sport',
-        friend: 'Clara',
-        photo: '',
-      },
-      {
-        id: '2',
-        activity: 'Elbstrand',
-        category: 'sport',
-        friend: 'Clara',
-        photo: 'activity.png',
-      },
-    ];
-
-    render(
-      <MemoryRouter>
-        <FriendsActivitiesPage activities={activities} />
-      </MemoryRouter>
-    );
-
-    const placeholderImage = screen.getByRole('img', {
-      name: /placeholder/i,
-    });
-
-    expect(placeholderImage).toBeInTheDocument();
   });
 });

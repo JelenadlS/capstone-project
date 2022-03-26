@@ -22,31 +22,67 @@ export default function App() {
   const [activities, setActivities] = useState(
     (!hasError && loadFromLocal('activities')) || []
   );
-  const navigate = useNavigate();
+
   const [photo, setPhoto] = useState('');
+  const [searchInput, setSearchInput] = useState('');
+  const [currentFilter, setCurrentFilter] = useState('all');
+  const [showBin, setShowBin] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     saveToLocal('activities', activities);
   }, [activities]);
 
+  const filteredSearchActivities = activities.filter(activity => {
+    if (searchInput === '') {
+      return activity;
+    } else {
+      return activity.activity.toLowerCase().includes(searchInput);
+    }
+  });
+
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>
         <Routes>
-          <Route path="/" element={<MyFriendsPage activities={activities} />} />
+          <Route
+            path="/"
+            element={
+              <MyFriendsPage
+                activities={activities}
+                handleResetPage={handleResetPage}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+              />
+            }
+          />
           <Route
             path="/:friendsName"
             element={
               <FriendsActivitiesPage
-                activities={activities}
                 hasError={hasError}
+                activities={activities}
                 setActivities={setActivities}
+                currentFilter={currentFilter}
+                onFilter={onFilter}
+                filteredSearchActivities={filteredSearchActivities}
+                setSearchInput={setSearchInput}
+                setCurrentFilter={setCurrentFilter}
+                showBin={showBin}
+                handleResetPage={handleResetPage}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
             }
           />
           <Route
             path="/:friendsName/:activityName"
-            element={<ActivityOverviewPage activities={activities} />}
+            element={
+              <ActivityOverviewPage
+                activities={activities}
+                handleResetPage={handleResetPage}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+              />
+            }
           />
           <Route
             path="/:friendsName/:activityName/:id/editactivity"
@@ -57,6 +93,8 @@ export default function App() {
                 uploadImage={uploadImage}
                 photo={photo}
                 setPhoto={setPhoto}
+                handleResetPage={handleResetPage}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
             }
           />
@@ -68,12 +106,27 @@ export default function App() {
                 uploadImage={uploadImage}
                 photo={photo}
                 setPhoto={setPhoto}
+                handleResetPage={handleResetPage}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
             }
           />
           <Route
             path="/allactivities"
-            element={<AllActivitiesPage activities={activities} />}
+            element={
+              <AllActivitiesPage
+                activities={activities}
+                currentFilter={currentFilter}
+                onFilter={onFilter}
+                setCurrentFilter={setCurrentFilter}
+                filteredSearchActivities={filteredSearchActivities}
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}
+                setShowBin={setShowBin}
+                handleResetPage={handleResetPage}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+              />
+            }
           />
         </Routes>
       </WrapperApp>
@@ -125,6 +178,22 @@ export default function App() {
           : act
       )
     );
+  }
+
+  function onFilter(category) {
+    setCurrentFilter(category);
+  }
+
+  function handleResetPage() {
+    setCurrentFilter('all');
+    setSearchInput('');
+    setShowBin(true);
+  }
+
+  function handleResetPageAndShowArrow() {
+    setCurrentFilter('all');
+    setSearchInput('');
+    setShowBin(false);
   }
 
   function uploadImage(e) {
