@@ -9,7 +9,7 @@ import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 export default function Navigation({
   children,
   handleResetPage,
-  handleResetPageAndArrow,
+  handleResetPageAndShowArrow,
 }) {
   return (
     <StyledNavigation area-label="StyledNavigation">
@@ -20,7 +20,7 @@ export default function Navigation({
       <StyledNewButton onClick={handleResetPage}>{children}</StyledNewButton>
       <StyledNavLinkActivities
         to="/allactivities"
-        onClick={handleResetPageAndArrow}
+        onClick={handleResetPageAndShowArrow}
       >
         <img width="40" height="30" alt="searchIcon" src={allActivitiesIcon} />
         <StyledDescription>activities</StyledDescription>

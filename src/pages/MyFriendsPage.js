@@ -13,7 +13,7 @@ import nextIcon from '../images/nextIcon.svg';
 export default function MyFriendsPage({
   activities,
   handleResetPage,
-  handleResetPageAndArrow,
+  handleResetPageAndShowArrow,
 }) {
   const activitiesWithFriendsName = activities.filter(
     activity => activity.friend !== 'I still need to plan...'
@@ -80,7 +80,7 @@ export default function MyFriendsPage({
       </Main>
       <Navigation
         handleResetPage={handleResetPage}
-        handleResetPageAndArrow={handleResetPageAndArrow}
+        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
       >
         <Link to="newactivity">
           <img src={newIcon} alt="new" />

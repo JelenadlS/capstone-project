@@ -18,9 +18,10 @@ export default function FilterTags({
   const categoryTagsAndAll = ['all', ...eachExistingCategoryOnce].sort();
 
   function handleOnClick(category) {
-    onFilter(category);
     setSearchInput('');
+    onFilter(category);
   }
+
   return (
     categoryTagsAndAll.length > 2 && (
       <ScrollCategories title="filter options">

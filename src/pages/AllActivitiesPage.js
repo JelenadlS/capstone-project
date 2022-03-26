@@ -21,7 +21,7 @@ export default function AllActivitiesPage({
   setSearchInput,
   showBin,
   handleResetPage,
-  handleResetPageAndArrow,
+  handleResetPageAndShowArrow,
 }) {
   return (
     <Picture>
@@ -44,7 +44,7 @@ export default function AllActivitiesPage({
             searchInput={searchInput}
             filteredSearchActivities={filteredSearchActivities}
             showBin={showBin}
-            handleResetPageAndArrow={handleResetPageAndArrow}
+            handleResetPageAndShowArrow={handleResetPageAndShowArrow}
             handleResetPage={handleResetPage}
           />
         ) : (
@@ -55,7 +55,7 @@ export default function AllActivitiesPage({
       </Main>
       <Navigation
         handleResetPage={handleResetPage}
-        handleResetPageAndArrow={handleResetPageAndArrow}
+        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
       >
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />

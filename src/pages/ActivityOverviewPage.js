@@ -24,7 +24,7 @@ import sportIcon from '../images/sportIcon.svg';
 export default function ActivityOverviewPage({
   activities,
   handleResetPage,
-  handleResetPageAndArrow,
+  handleResetPageAndShowArrow,
 }) {
   const navigate = useNavigate();
   const { activityName } = useParams();
@@ -127,7 +127,7 @@ export default function ActivityOverviewPage({
       </Main>
       <Navigation
         handleResetPage={handleResetPage}
-        handleResetPageAndArrow={handleResetPageAndArrow}
+        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
       >
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />

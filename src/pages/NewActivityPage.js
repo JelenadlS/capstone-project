@@ -14,7 +14,7 @@ export default function NewActivityPage({
   photo,
   setPhoto,
   handleResetPage,
-  handleResetPageAndArrow,
+  handleResetPageAndShowArrow,
 }) {
   const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ export default function NewActivityPage({
           photo={photo}
           setPhoto={setPhoto}
           handleResetPage={handleResetPage}
-          handleResetPageAndArrow={handleResetPageAndArrow}
+          handleResetPageAndShowArrow={handleResetPageAndShowArrow}
         />
       </Main>
     </Picture>

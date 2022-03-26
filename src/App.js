@@ -40,7 +40,8 @@ export default function App() {
     }
   });
 
-  console.log(showBin);
+  console.log(searchInput);
+  console.log(setSearchInput);
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
@@ -52,7 +53,7 @@ export default function App() {
               <MyFriendsPage
                 activities={activities}
                 handleResetPage={handleResetPage}
-                handleResetPageAndArrow={handleResetPageAndArrow}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
             }
           />
@@ -70,7 +71,7 @@ export default function App() {
                 setCurrentFilter={setCurrentFilter}
                 showBin={showBin}
                 handleResetPage={handleResetPage}
-                handleResetPageAndArrow={handleResetPageAndArrow}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
             }
           />
@@ -80,7 +81,7 @@ export default function App() {
               <ActivityOverviewPage
                 activities={activities}
                 handleResetPage={handleResetPage}
-                handleResetPageAndArrow={handleResetPageAndArrow}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
             }
           />
@@ -94,7 +95,7 @@ export default function App() {
                 photo={photo}
                 setPhoto={setPhoto}
                 handleResetPage={handleResetPage}
-                handleResetPageAndArrow={handleResetPageAndArrow}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
             }
           />
@@ -107,7 +108,7 @@ export default function App() {
                 photo={photo}
                 setPhoto={setPhoto}
                 handleResetPage={handleResetPage}
-                handleResetPageAndArrow={handleResetPageAndArrow}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
             }
           />
@@ -124,7 +125,7 @@ export default function App() {
                 setSearchInput={setSearchInput}
                 setShowBin={setShowBin}
                 handleResetPage={handleResetPage}
-                handleResetPageAndArrow={handleResetPageAndArrow}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
             }
           />
@@ -190,7 +191,7 @@ export default function App() {
     setShowBin(true);
   }
 
-  function handleResetPageAndArrow() {
+  function handleResetPageAndShowArrow() {
     setCurrentFilter('all');
     setSearchInput('');
     setShowBin(false);

@@ -23,7 +23,7 @@ export default function FriendsActivitiesPage({
   setCurrentFilter,
   showBin,
   handleResetPage,
-  handleResetPageAndArrow,
+  handleResetPageAndShowArrow,
 }) {
   const { friendsName } = useParams();
   const selectedFriendsActivities = activities.filter(
@@ -63,7 +63,7 @@ export default function FriendsActivitiesPage({
       </Main>
       <Navigation
         handleResetPage={handleResetPage}
-        handleResetPageAndArrow={handleResetPageAndArrow}
+        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
       >
         <NavLink to="/newactivity">
           <img src={newIcon} alt="new" />
