@@ -123,6 +123,17 @@ export default function ActivityOverviewPage({
           >
             <img src={editIcon} alt="edit" />
           </EditButton>
+          <StyledCheckbox>
+            <p>Did you do this activity already?</p>
+            <label htmlFor="checkIfActivityIsDone">
+              <input
+                id="checkIfActivityIsDone"
+                type="checkbox"
+                name="check if activity is done"
+                width="40px"
+              />
+            </label>
+          </StyledCheckbox>
         </MainGrid>
       </Main>
       <Navigation
@@ -140,7 +151,7 @@ export default function ActivityOverviewPage({
 const MainGrid = styled.div`
   display: grid;
   grid-template-columns: 57px 30px 20px 30px auto;
-  grid-template-rows: repeat(4, auto) 40px;
+  grid-template-rows: repeat(6, auto) 40px;
   margin: 30px;
   align-items: center;
 `;
@@ -195,4 +206,17 @@ const StyledText = styled.span`
 const StyledNoNotes = styled.span`
   grid-column-start: 1;
   grid-column-end: 6;
+`;
+
+const StyledCheckbox = styled.span`
+  grid-column-start: 1;
+  grid-column-end: 6;
+  display: flex;
+  margin-top: 50px;
+
+  input {
+    margin-left: 20px;
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
 `;
