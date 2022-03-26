@@ -17,12 +17,14 @@ export default function ActivityCard({
   nameOfSelectedFriend,
   nameOfSelectedActivity,
   nameOfSelectedCategory,
+  setCurrentFilter,
 }) {
   const [show, setShow] = useState(false);
   console.log(nameOfSelectedFriend);
   console.log(nameOfSelectedActivity);
   console.log(activity);
   console.log(onDeleteActivity);
+
   return (
     <>
       <WrapperCard>

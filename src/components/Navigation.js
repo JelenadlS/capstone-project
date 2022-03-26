@@ -6,15 +6,18 @@ import { MainNavButton } from './Button';
 import friendIcon from '../images/friendIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 
-export default function Navigation({ children }) {
+export default function Navigation({ children, setCurrentFilter }) {
+  function handleResetPage() {
+    setCurrentFilter('all');
+  }
   return (
     <StyledNavigation area-label="StyledNavigation">
-      <StyledNavLinkFriends to="/">
+      <StyledNavLinkFriends to="/" onClick={handleResetPage}>
         <img width="40" height="20" alt="friendsHomeIcon" src={friendIcon} />
         <StyledDescription>friends</StyledDescription>
       </StyledNavLinkFriends>
-      <StyledNewButton>{children}</StyledNewButton>
-      <StyledNavLinkActivities to="/allactivities">
+      <StyledNewButton onClick={handleResetPage}>{children}</StyledNewButton>
+      <StyledNavLinkActivities to="/allactivities" onClick={handleResetPage}>
         <img width="40" height="30" alt="searchIcon" src={allActivitiesIcon} />
         <StyledDescription>activities</StyledDescription>
       </StyledNavLinkActivities>

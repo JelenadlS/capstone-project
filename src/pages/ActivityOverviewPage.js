@@ -21,7 +21,7 @@ import otherIcon from '../images/otherIcon.svg';
 import outdoorIcon from '../images/outdoorIcon.svg';
 import sportIcon from '../images/sportIcon.svg';
 
-export default function ActivityOverviewPage({ activities }) {
+export default function ActivityOverviewPage({ activities, setCurrentFilter }) {
   const navigate = useNavigate();
   const { activityName } = useParams();
   const selectedActivity = activities.find(
@@ -121,7 +121,7 @@ export default function ActivityOverviewPage({ activities }) {
           </EditButton>
         </MainGrid>
       </Main>
-      <Navigation>
+      <Navigation setCurrentFilter={setCurrentFilter}>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>

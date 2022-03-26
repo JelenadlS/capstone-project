@@ -13,6 +13,7 @@ export default function NewActivityPage({
   uploadImage,
   photo,
   setPhoto,
+  setCurrentFilter,
 }) {
   const navigate = useNavigate();
 
@@ -36,6 +37,7 @@ export default function NewActivityPage({
           uploadImage={uploadImage}
           photo={photo}
           setPhoto={setPhoto}
+          setCurrentFilter={setCurrentFilter}
         />
       </Main>
     </Picture>

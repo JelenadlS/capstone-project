@@ -61,7 +61,12 @@ export default function App() {
           />
           <Route
             path="/:friendsName/:activityName"
-            element={<ActivityOverviewPage activities={activities} />}
+            element={
+              <ActivityOverviewPage
+                activities={activities}
+                setCurrentFilter={setCurrentFilter}
+              />
+            }
           />
           <Route
             path="/:friendsName/:activityName/:id/editactivity"
@@ -72,6 +77,7 @@ export default function App() {
                 uploadImage={uploadImage}
                 photo={photo}
                 setPhoto={setPhoto}
+                setCurrentFilter={setCurrentFilter}
               />
             }
           />
@@ -83,6 +89,7 @@ export default function App() {
                 uploadImage={uploadImage}
                 photo={photo}
                 setPhoto={setPhoto}
+                setCurrentFilter={setCurrentFilter}
               />
             }
           />
