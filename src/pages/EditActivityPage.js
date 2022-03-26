@@ -21,11 +21,6 @@ export default function EditActivityPage({
   const { id } = useParams();
   const activityToEdit = activities.find(activity => activity.id === id);
 
-  function resetForm() {
-    navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`);
-    setPhoto('');
-  }
-
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>
@@ -47,4 +42,9 @@ export default function EditActivityPage({
       </Main>
     </Picture>
   );
+
+  function resetForm() {
+    navigate(`/${activityToEdit.friend}/${activityToEdit.activity}`);
+    setPhoto('');
+  }
 }

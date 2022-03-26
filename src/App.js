@@ -129,7 +129,15 @@ export default function App() {
               />
             }
           />
-          <Route path="/getinspired" element={<GetInspiredPage />} />
+          <Route
+            path="/getinspired"
+            element={
+              <GetInspiredPage
+                handleResetPage={handleResetPage}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+              />
+            }
+          />
         </Routes>
       </WrapperApp>
     </ErrorBoundary>
