@@ -41,7 +41,7 @@ describe('ActivityOverviewPage', () => {
     expect(headingAndActivity).toHaveLength(2);
   });
 
-  it('renders page with picture, category, friend, notes, date and location', () => {
+  it('renders page with picture, category, friend, notes, date, location and checkbox', () => {
     const activities = [
       {
         id: '1',
@@ -78,6 +78,9 @@ describe('ActivityOverviewPage', () => {
 
     const picture = screen.getByRole('img', { name: 'upload' });
     expect(picture).toBeInTheDocument();
+
+    const checkbox = screen.getByRole('checkbox');
+    expect(checkbox).toBeInTheDocument();
   });
 
   it('renders page with empty messages for category, friend, date and location, as well as no note, but a picture', () => {
