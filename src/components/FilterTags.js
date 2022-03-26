@@ -24,7 +24,7 @@ export default function FilterTags({
           return (
             <CategoryButton
               key={index}
-              onClick={() => handleClickOnFilter(category)}
+              onClick={() => handleOnClickFilter(category)}
               active={category === currentFilter}
             >
               {category}
@@ -35,9 +35,9 @@ export default function FilterTags({
     )
   );
 
-  function handleClickOnFilter(category) {
-    onFilter(category);
+  function handleOnClickFilter(category) {
     setSearchInput('');
+    onFilter(category);
   }
 }
 

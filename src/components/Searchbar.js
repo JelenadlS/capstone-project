@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export default function Searchbar({ setSearchInput, setCurrentFilter }) {
+export default function Searchbar({
+  setSearchInput,
+  setCurrentFilter,
+  searchInput,
+}) {
   return (
     <StyledSearchbar>
       <StyledInput
@@ -9,8 +13,9 @@ export default function Searchbar({ setSearchInput, setCurrentFilter }) {
         aria-label="searchbar"
         type="text"
         placeholder="Search..."
+        value={searchInput}
         onChange={searchInputHandler}
-        onClick={handleClickOnSearch}
+        onClick={handleOnClickSearch}
       ></StyledInput>
     </StyledSearchbar>
   );
@@ -20,7 +25,7 @@ export default function Searchbar({ setSearchInput, setCurrentFilter }) {
     setSearchInput(lowerCase);
   }
 
-  function handleClickOnSearch(event) {
+  function handleOnClickSearch(event) {
     setCurrentFilter('all');
     event.target.select();
   }

@@ -22,11 +22,13 @@ export default function App() {
   const [activities, setActivities] = useState(
     (!hasError && loadFromLocal('activities')) || []
   );
-  const navigate = useNavigate();
+
   const [photo, setPhoto] = useState('');
   const [searchInput, setSearchInput] = useState('');
   const [currentFilter, setCurrentFilter] = useState('all');
   const [showBin, setShowBin] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     saveToLocal('activities', activities);
