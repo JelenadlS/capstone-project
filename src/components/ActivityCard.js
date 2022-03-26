@@ -11,7 +11,6 @@ import nextIcon from '../images/nextIcon.svg';
 
 export default function ActivityCard({
   photo,
-  activity,
   errorMessage,
   onDeleteActivity,
   nameOfSelectedFriend,
@@ -45,7 +44,7 @@ export default function ActivityCard({
             <LinkStyling
               to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}
             >
-              <strong>{activity}</strong>
+              <strong>{nameOfSelectedActivity}</strong>
             </LinkStyling>
             <DeleteButton onClick={() => setShow(true)}>
               <img src={deleteIcon} alt="delete" />
@@ -62,7 +61,7 @@ export default function ActivityCard({
               to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}
               onClick={handleResetPage}
             >
-              <strong>{activity}</strong>
+              <strong>{nameOfSelectedActivity}</strong>
             </LinkStyling>
             <StyledArrow>
               <img src={nextIcon} alt="next page" />

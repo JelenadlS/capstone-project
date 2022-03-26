@@ -17,7 +17,7 @@ export default function Navigation({
         to="/allactivities"
         onClick={handleResetPageAndShowArrow}
       >
-        <img width="40" height="30" alt="searchIcon" src={allActivitiesIcon} />{' '}
+        <img width="40" height="30" alt="searchIcon" src={allActivitiesIcon} />
         <StyledDescription>activities</StyledDescription>
       </StyledNavLinkActivities>
 

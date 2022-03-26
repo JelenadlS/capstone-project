@@ -33,7 +33,10 @@ export default function ActivityOverviewPage({
 }) {
   const navigate = useNavigate();
   const { activityName } = useParams();
-  const selectedActivity = activities.find(
+  const selectedActivity = activities?.find(
+    activity => activity.activity === activityName
+  );
+  const selectedPastActivity = pastActivities?.find(
     activity => activity.activity === activityName
   );
 
@@ -48,9 +51,15 @@ export default function ActivityOverviewPage({
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>
-        {selectedActivity.activity}
+        {selectedActivity
+          ? selectedActivity.activity
+          : selectedPastActivity.activity}
         <ArrowBackButton
-          onClick={() => navigate(`/${selectedActivity.friend}`)}
+          onClick={() => {
+            selectedActivity
+              ? navigate(`/${selectedActivity.friend}`)
+              : navigate(-1);
+          }}
         >
           <img src={goBackIcon} alt="go back" />
         </ArrowBackButton>
@@ -59,43 +68,89 @@ export default function ActivityOverviewPage({
         <MainGrid>
           <StyledTitle>Activity</StyledTitle>
 
-          <StyledActivity>{selectedActivity.activity}</StyledActivity>
+          <StyledActivity>
+            {selectedActivity
+              ? selectedActivity.activity
+              : selectedPastActivity.activity}
+          </StyledActivity>
 
-          {!selectedActivity.photo > 0 ? (
+          {!(selectedActivity
+            ? selectedActivity.photo
+            : selectedPastActivity.photo) > 0 ? (
             <StyledImage
               width="80"
               height="80"
               alt="upload"
-              src={MappedPlaceholderPictures[selectedActivity.category]}
+              src={
+                MappedPlaceholderPictures[
+                  selectedActivity
+                    ? selectedActivity.category
+                    : selectedPastActivity.category
+                ]
+              }
             />
           ) : (
             <StyledImage
               width="80"
               height="80"
               alt="upload"
-              src={selectedActivity.photo}
+              src={
+                selectedActivity
+                  ? selectedActivity.photo
+                  : selectedPastActivity.photo
+              }
             />
           )}
 
           <StyledCategoryIcon
-            src={mappedCategories[selectedActivity.category]}
-            alt={mappedCategories[selectedActivity.category]}
+            src={
+              mappedCategories[
+                selectedActivity
+                  ? selectedActivity.category
+                  : selectedPastActivity.category
+              ]
+            }
+            alt={
+              mappedCategories[
+                selectedActivity
+                  ? selectedActivity.category
+                  : selectedPastActivity.category
+              ]
+            }
           />
-          <StyledCategoryText>{selectedActivity.category}</StyledCategoryText>
+          <StyledCategoryText>
+            {selectedActivity
+              ? selectedActivity.category
+              : selectedPastActivity.category}
+          </StyledCategoryText>
 
           <StyledOtherInfo>
             <StyledIcon src={friendIcon} alt="friend" />
 
-            {selectedActivity.friend !== 'I still need to plan...' ? (
-              <StyledText>{selectedActivity.friend}</StyledText>
+            {(selectedActivity
+              ? selectedActivity.friend
+              : selectedPastActivity.friend) !== 'I still need to plan...' ? (
+              <StyledText>
+                {selectedActivity
+                  ? selectedActivity.friend
+                  : selectedPastActivity.friend}
+              </StyledText>
             ) : (
               <StyledText>make plans with a friend!</StyledText>
             )}
 
-            {selectedActivity.notes ? (
+            {(
+              selectedActivity
+                ? selectedActivity.notes
+                : selectedPastActivity.notes
+            ) ? (
               <>
                 <StyledIcon src={notesIcon} alt="notes" />
-                <StyledText>{selectedActivity.notes}</StyledText>
+                <StyledText>
+                  {selectedActivity
+                    ? selectedActivity.notes
+                    : selectedPastActivity.notes}
+                </StyledText>
               </>
             ) : (
               <>
@@ -105,46 +160,70 @@ export default function ActivityOverviewPage({
 
             <StyledIcon src={dateIcon} alt="date" />
 
-            {selectedActivity.date ? (
-              <StyledText>{selectedActivity.date}</StyledText>
+            {(
+              selectedActivity
+                ? selectedActivity.date
+                : selectedPastActivity.date
+            ) ? (
+              <StyledText>
+                {selectedActivity
+                  ? selectedActivity.date
+                  : selectedPastActivity.date}
+              </StyledText>
             ) : (
               <StyledText>plan your activity soon!</StyledText>
             )}
 
             <StyledIcon src={locationIcon} alt="location" />
 
-            {selectedActivity.location ? (
-              <StyledText>{selectedActivity.location}</StyledText>
+            {(
+              selectedActivity
+                ? selectedActivity.location
+                : selectedPastActivity.location
+            ) ? (
+              <StyledText>
+                {selectedActivity
+                  ? selectedActivity.location
+                  : selectedPastActivity.location}
+              </StyledText>
             ) : (
               <StyledText>where do you have to go?</StyledText>
             )}
           </StyledOtherInfo>
-          <EditButton
-            onClick={() =>
-              navigate(
-                `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
-              )
-            }
-          >
-            <img src={editIcon} alt="edit" />
-          </EditButton>
-          <StyledCheckbox>
-            <p>Did you do this activity already?</p>
-            <label htmlFor="checkIfActivityIsDone">
-              <input
-                id="checkIfActivityIsDone"
-                type="checkbox"
-                name="check if activity is done"
-                width="40px"
-                onClick={() => setShow(true)}
-              />
-            </label>
-          </StyledCheckbox>
+          {selectedActivity && (
+            <>
+              <EditButton
+                onClick={() =>
+                  navigate(
+                    `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
+                  )
+                }
+              >
+                <img src={editIcon} alt="edit" />
+              </EditButton>
+              <StyledCheckbox>
+                <p>Did you do this activity already?</p>
+                <label htmlFor="checkIfActivityIsDone">
+                  <input
+                    id="checkIfActivityIsDone"
+                    type="checkbox"
+                    name="check if activity is done"
+                    width="40px"
+                    onClick={() => setShow(true)}
+                  />
+                </label>
+              </StyledCheckbox>
+            </>
+          )}
         </MainGrid>
         <PastActivityModal
           onClose={() => setShow(false)}
           show={show}
-          onSetPastActivity={() => onSetPastActivity(selectedActivity.id)}
+          onSetPastActivity={() =>
+            onSetPastActivity(
+              selectedActivity ? selectedActivity.id : selectedPastActivity.id
+            )
+          }
         />
       </Main>
       <Navigation
