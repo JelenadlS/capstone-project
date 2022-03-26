@@ -10,6 +10,7 @@ import ErrorFallback from './components/ErrorFallBack';
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
 import EditActivityPage from './pages/EditActivityPage.js';
 import FriendsActivitiesPage from './pages/FriendsActivitiesPage.js';
+import GetInspiredPage from './pages/GetInspiredPage.js';
 import MyFriendsPage from './pages/MyFriendsPage';
 import NewActivityPage from './pages/NewActivityPage.js';
 import AllActivitiesPage from './pages/AllActivitiesPage.js';
@@ -128,6 +129,7 @@ export default function App() {
               />
             }
           />
+          <Route path="/getinspired" element={<GetInspiredPage />} />
         </Routes>
       </WrapperApp>
     </ErrorBoundary>
