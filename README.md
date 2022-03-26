@@ -24,7 +24,7 @@ You can add an activity to your list either together with a friends name or not.
   - Location (optional)
 - Delete items from the list
 - Filter your activities which you have with a specific friend
-- All activities page where you can search through all activities not depenent on which friend is part of it
+- All activities page where you can search and filter through all activities not depenent on which friend is part of it
 - Storage: localStorage
 
 ## How to use it?
