@@ -52,6 +52,7 @@ export default function ActivityOverviewPage({
     other: otherIcon,
   };
   const [show, setShow] = useState(false);
+  const [check, setCheck] = useState(false);
 
   return (
     <Picture>
@@ -154,6 +155,8 @@ export default function ActivityOverviewPage({
                     name="check if activity is done"
                     width="40px"
                     onClick={() => setShow(true)}
+                    onChange={() => setCheck(true)}
+                    checked={check}
                   />
                 </label>
               </StyledCheckbox>
@@ -165,6 +168,9 @@ export default function ActivityOverviewPage({
           show={show}
           setLikedActivity={setLikedActivity}
           onSetPastActivity={() => onSetPastActivity(data.id)}
+          handlePastAndLiked={() => handlePastAndLiked()}
+          handlePastNotLiked={() => handlePastNotLiked()}
+          handleQuit={handleQuit}
         />
       </Main>
       <Navigation
@@ -178,11 +184,24 @@ export default function ActivityOverviewPage({
     </Picture>
   );
 
+  function handleQuit() {
+    setCheck(false);
+  }
+
+  function handlePastAndLiked() {
+    setLikedActivity(true);
+    onSetPastActivity();
+  }
+
+  function handlePastNotLiked() {
+    setLikedActivity(false);
+    onSetPastActivity();
+  }
   function onSetPastActivity(thisActivityId) {
     const activityToRemove = activities.find(
       activity => activity.id === thisActivityId
     );
-
+    console.log(likedActivity);
     const newActivity = { ...activityToRemove, likedActivity };
 
     setPastActivities([...pastActivities, newActivity]);

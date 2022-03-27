@@ -14,7 +14,7 @@ export default function List({
   handleResetPage,
 }) {
   console.log(activities);
-  console.log(filteredSearchActivities);
+  // console.log(filteredSearchActivities);
   console.log(selectedFriendsActivity);
   // Check ob die zusammengefasst werden können
   return (

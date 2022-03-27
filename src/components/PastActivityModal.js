@@ -10,6 +10,9 @@ export default function PastActivityModal({
   onClose,
   onSetPastActivity,
   setLikedActivity,
+  handlePastAndLiked,
+  handlePastNotLiked,
+  handleQuit,
 }) {
   if (!show) {
     return null;
@@ -29,7 +32,7 @@ export default function PastActivityModal({
         <StyledModalButton type="submit" onClick={handlePastNotLiked}>
           Naahh it was not so good
         </StyledModalButton>
-        <QuitButton>
+        <QuitButton onClick={handleQuit}>
           <img
             src={deletePictureIcon}
             alt="delete"
@@ -42,16 +45,6 @@ export default function PastActivityModal({
       </span>
     </WrapperModal>
   );
-
-  function handlePastAndLiked() {
-    setLikedActivity(true);
-    onSetPastActivity();
-  }
-
-  function handlePastNotLiked() {
-    setLikedActivity(false);
-    onSetPastActivity();
-  }
 }
 const WrapperModal = styled.section`
   border: none;

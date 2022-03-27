@@ -22,9 +22,9 @@ export default function ActivityCard({
   const [show, setShow] = useState(false);
 
   //console.log(activities);
-  console.log(nameOfSelectedFriend);
-  console.log(nameOfSelectedActivity);
-  console.log(nameOfSelectedCategory);
+  // console.log(nameOfSelectedFriend);
+  // console.log(nameOfSelectedActivity);
+  // console.log(nameOfSelectedCategory);
   // Check ob die zusammengefasst werden können in activities
   return (
     <>
