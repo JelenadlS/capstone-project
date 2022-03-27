@@ -47,13 +47,13 @@ export default function ActivityOverviewPage({
   const [show, setShow] = useState(false);
   const [check, setCheck] = useState(false);
 
-  console.log(activities);
+  console.log(selectedActivity);
 
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>
         {selectedActivity.activity}
-        {selectedActivity ? (
+        {selectedActivity.isArchived === false ? (
           <ArrowBackButton
             onClick={() => {
               navigate(`/${selectedActivity.friend}`);
@@ -135,7 +135,7 @@ export default function ActivityOverviewPage({
               <StyledText>where do you have to go?</StyledText>
             )}
           </StyledOtherInfo>
-          {selectedActivity && (
+          {selectedActivity.isArchived === false && (
             <>
               <EditButton
                 onClick={() =>
