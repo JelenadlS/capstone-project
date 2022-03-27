@@ -42,6 +42,8 @@ export default function ActivityOverviewPage({
     activity => activity.activity === activityName
   );
 
+  const data = selectedActivity ? selectedActivity : selectedPastActivity;
+
   const mappedCategories = {
     culture: cultureIcon,
     'food and beverages': fAndBIcon,
@@ -54,9 +56,7 @@ export default function ActivityOverviewPage({
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>
-        {selectedActivity
-          ? selectedActivity.activity
-          : selectedPastActivity.activity}
+        {data.activity}
         {selectedActivity ? (
           <ArrowBackButton
             onClick={() => {
@@ -79,89 +79,38 @@ export default function ActivityOverviewPage({
         <MainGrid>
           <StyledTitle>Activity</StyledTitle>
 
-          <StyledActivity>
-            {selectedActivity
-              ? selectedActivity.activity
-              : selectedPastActivity.activity}
-          </StyledActivity>
+          <StyledActivity>{data.activity}</StyledActivity>
 
-          {!(selectedActivity
-            ? selectedActivity.photo
-            : selectedPastActivity.photo) > 0 ? (
+          {!data.photo > 0 ? (
             <StyledImage
               width="80"
               height="80"
               alt="upload"
-              src={
-                MappedPlaceholderPictures[
-                  selectedActivity
-                    ? selectedActivity.category
-                    : selectedPastActivity.category
-                ]
-              }
+              src={MappedPlaceholderPictures[data.category]}
             />
           ) : (
-            <StyledImage
-              width="80"
-              height="80"
-              alt="upload"
-              src={
-                selectedActivity
-                  ? selectedActivity.photo
-                  : selectedPastActivity.photo
-              }
-            />
+            <StyledImage width="80" height="80" alt="upload" src={data.photo} />
           )}
 
           <StyledCategoryIcon
-            src={
-              mappedCategories[
-                selectedActivity
-                  ? selectedActivity.category
-                  : selectedPastActivity.category
-              ]
-            }
-            alt={
-              mappedCategories[
-                selectedActivity
-                  ? selectedActivity.category
-                  : selectedPastActivity.category
-              ]
-            }
+            src={mappedCategories[data.category]}
+            alt={mappedCategories[data.category]}
           />
-          <StyledCategoryText>
-            {selectedActivity
-              ? selectedActivity.category
-              : selectedPastActivity.category}
-          </StyledCategoryText>
+          <StyledCategoryText>{data.category}</StyledCategoryText>
 
           <StyledOtherInfo>
             <StyledIcon src={friendIcon} alt="friend" />
 
-            {(selectedActivity
-              ? selectedActivity.friend
-              : selectedPastActivity.friend) !== 'I still need to plan...' ? (
-              <StyledText>
-                {selectedActivity
-                  ? selectedActivity.friend
-                  : selectedPastActivity.friend}
-              </StyledText>
+            {data.friend !== 'I still need to plan...' ? (
+              <StyledText>{data.friend}</StyledText>
             ) : (
               <StyledText>make plans with a friend!</StyledText>
             )}
 
-            {(
-              selectedActivity
-                ? selectedActivity.notes
-                : selectedPastActivity.notes
-            ) ? (
+            {data.notes ? (
               <>
                 <StyledIcon src={notesIcon} alt="notes" />
-                <StyledText>
-                  {selectedActivity
-                    ? selectedActivity.notes
-                    : selectedPastActivity.notes}
-                </StyledText>
+                <StyledText>{data.notes}</StyledText>
               </>
             ) : (
               <>
@@ -171,32 +120,16 @@ export default function ActivityOverviewPage({
 
             <StyledIcon src={dateIcon} alt="date" />
 
-            {(
-              selectedActivity
-                ? selectedActivity.date
-                : selectedPastActivity.date
-            ) ? (
-              <StyledText>
-                {selectedActivity
-                  ? selectedActivity.date
-                  : selectedPastActivity.date}
-              </StyledText>
+            {data.date ? (
+              <StyledText>{data.date}</StyledText>
             ) : (
               <StyledText>plan your activity soon!</StyledText>
             )}
 
             <StyledIcon src={locationIcon} alt="location" />
 
-            {(
-              selectedActivity
-                ? selectedActivity.location
-                : selectedPastActivity.location
-            ) ? (
-              <StyledText>
-                {selectedActivity
-                  ? selectedActivity.location
-                  : selectedPastActivity.location}
-              </StyledText>
+            {data.location ? (
+              <StyledText>{data.location}</StyledText>
             ) : (
               <StyledText>where do you have to go?</StyledText>
             )}
@@ -231,11 +164,7 @@ export default function ActivityOverviewPage({
           onClose={() => setShow(false)}
           show={show}
           setLikedActivity={setLikedActivity}
-          onSetPastActivity={() =>
-            onSetPastActivity(
-              selectedActivity ? selectedActivity.id : selectedPastActivity.id
-            )
-          }
+          onSetPastActivity={() => onSetPastActivity(data.id)}
         />
       </Main>
       <Navigation
