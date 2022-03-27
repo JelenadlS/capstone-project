@@ -30,6 +30,8 @@ export default function ActivityOverviewPage({
   setPastActivities,
   handleResetPage,
   handleResetPageAndShowArrow,
+  setLikedActivity,
+  likedActivity,
 }) {
   const navigate = useNavigate();
   const { activityName } = useParams();
@@ -51,10 +53,11 @@ export default function ActivityOverviewPage({
   };
   const [show, setShow] = useState(false);
   const [check, setCheck] = useState(false);
-  const [likedActivity, setLikedActivity] = useState(true);
+
   console.log(likedActivity);
   console.log(activities);
   console.log(pastActivities);
+
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>
@@ -157,6 +160,7 @@ export default function ActivityOverviewPage({
                     width="40px"
                     onClick={() => setShow(true)}
                     onChange={() => setCheck(true)}
+                    value={check}
                     checked={check}
                   />
                 </label>
@@ -167,10 +171,10 @@ export default function ActivityOverviewPage({
         <PastActivityModal
           onClose={() => setShow(false)}
           show={show}
+          likedActivity={likedActivity}
           setLikedActivity={setLikedActivity}
-          onSetPastActivity={onSetPastActivity}
+          onSetPastActivity={() => onSetPastActivity(data.id)}
           handleQuit={handleQuit}
-          id={data.id}
         />
       </Main>
       <Navigation
