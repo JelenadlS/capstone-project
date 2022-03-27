@@ -11,49 +11,44 @@ import Picture from '../components/Picture';
 import newIcon from '../images/newIcon.svg';
 
 export default function GetInspiredPage({
-  pastActivities,
+  activitiesArchived,
   showBin,
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
   const [currentLikeFilter, setCurrentLikeFilter] = useState(true);
-
-  const eachSortOfLikeOnce = [
-    ...new Set(pastActivities.map(status => status.likedActivity)),
-  ];
-
-  const likedTags = [...eachSortOfLikeOnce];
-
+  console.log(activitiesArchived);
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>Get Inspired</Header>
       <Main>
         <StyledCategoryButton>
-          {likedTags.map((type, index) => {
-            return (
-              <CategoryButton
-                key={index}
-                onClick={() => handleOnClickFilter(type)}
-                active={type === currentLikeFilter}
-              >
-                {type === true ? 'Liked' : 'Not Liked'}
-              </CategoryButton>
-            );
-          })}
+          {/* {activitiesArchived.filter(activity => activity.isLiked === false)
+            .length < 0 && 'no activites'} */}
+          <CategoryButton
+            onClick={() => setCurrentLikeFilter(true)}
+            active={true === currentLikeFilter}
+          >
+            Liked
+          </CategoryButton>
+          <CategoryButton
+            onClick={() => setCurrentLikeFilter(false)}
+            active={false === currentLikeFilter}
+          >
+            Not Liked
+          </CategoryButton>
         </StyledCategoryButton>
         <ListStyle role="list" title="list of past activities">
-          {pastActivities
-            .filter(
-              pastActivity => pastActivity.likedActivity === currentLikeFilter
-            )
-            .map(pastActivity => (
-              <li key={pastActivity.id}>
+          {activitiesArchived
+            .filter(activity => activity.isLiked === currentLikeFilter)
+            .map(activity => (
+              <li key={activity.id}>
                 <ActivityCard
-                  activity={pastActivity.activity}
-                  nameOfSelectedCategory={pastActivity.category}
-                  nameOfSelectedFriend={pastActivity.friend}
-                  nameOfSelectedActivity={pastActivity.activity}
-                  photo={pastActivity.photo}
+                  activity={activity.activity}
+                  nameOfSelectedCategory={activity.category}
+                  nameOfSelectedFriend={activity.friend}
+                  nameOfSelectedActivity={activity.activity}
+                  photo={activity.photo}
                   showBin={showBin}
                   handleResetPage={handleResetPage}
                 />
@@ -71,10 +66,6 @@ export default function GetInspiredPage({
       </Navigation>
     </Picture>
   );
-
-  function handleOnClickFilter(type) {
-    setCurrentLikeFilter(type);
-  }
 }
 
 const StyledCategoryButton = styled.section`

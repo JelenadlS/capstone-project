@@ -23,24 +23,29 @@ export default function App() {
   const [activities, setActivities] = useState(
     (!hasError && loadFromLocal('activities')) || []
   );
-  const [pastActivities, setPastActivities] = useState(
-    loadFromLocal('pastActivities') || []
-  );
 
   const [photo, setPhoto] = useState('');
   const [searchInput, setSearchInput] = useState('');
   const [currentFilter, setCurrentFilter] = useState('all');
   const [showBin, setShowBin] = useState(true);
-  const [likedActivity, setLikedActivity] = useState(true);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     saveToLocal('activities', activities);
-    saveToLocal('pastActivities', pastActivities);
-  }, [activities, pastActivities]);
+  }, [activities]);
 
-  const filteredSearchActivities = activities.filter(activity => {
+  const activitiesNotArchived = activities.filter(
+    activity => activity.isArchived === false
+  );
+
+  const activitiesArchived = activities.filter(
+    activity => activity.isArchived === true
+  );
+  console.log(activitiesNotArchived);
+  console.log(activitiesArchived);
+
+  const filteredSearchActivities = activitiesNotArchived.filter(activity => {
     if (searchInput === '') {
       return activity;
     } else {
@@ -56,7 +61,7 @@ export default function App() {
             path="/"
             element={
               <MyFriendsPage
-                activities={activities}
+                activities={activitiesNotArchived}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
@@ -67,7 +72,7 @@ export default function App() {
             element={
               <FriendsActivitiesPage
                 hasError={hasError}
-                activities={activities}
+                activities={activitiesNotArchived}
                 setActivities={setActivities}
                 currentFilter={currentFilter}
                 onFilter={onFilter}
@@ -85,13 +90,10 @@ export default function App() {
             element={
               <ActivityOverviewPage
                 activities={activities}
-                setActivities={setActivities}
-                pastActivities={pastActivities}
-                setPastActivities={setPastActivities}
+                activitiesNotArchived={activitiesNotArchived}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-                setLikedActivity={setLikedActivity}
-                likedActivity={likedActivity}
+                onSetPastActivity={onSetPastActivity}
               />
             }
           />
@@ -99,7 +101,7 @@ export default function App() {
             path="/:friendsName/:activityName/:id/editactivity"
             element={
               <EditActivityPage
-                activities={activities}
+                activities={activitiesNotArchived}
                 onEditActivity={onEditActivity}
                 uploadImage={uploadImage}
                 photo={photo}
@@ -126,7 +128,7 @@ export default function App() {
             path="/allactivities"
             element={
               <AllActivitiesPage
-                activities={activities}
+                activities={activitiesNotArchived}
                 currentFilter={currentFilter}
                 onFilter={onFilter}
                 setCurrentFilter={setCurrentFilter}
@@ -143,7 +145,7 @@ export default function App() {
             path="/getinspired"
             element={
               <GetInspiredPage
-                pastActivities={pastActivities}
+                activitiesArchived={activitiesArchived}
                 showBin={showBin}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
@@ -168,7 +170,17 @@ export default function App() {
     setHasError(false);
     setActivities([
       ...activities,
-      { activity, category, friend, id, notes, date, location, photo },
+      {
+        activity,
+        category,
+        friend,
+        id,
+        notes,
+        date,
+        location,
+        photo,
+        isArchived: false,
+      },
     ]);
     navigate('/');
   }
@@ -200,6 +212,31 @@ export default function App() {
           : act
       )
     );
+  }
+
+  function onSetPastActivity(thisActivityId, isLiked) {
+    if (isLiked === 'true') {
+      setActivities(
+        activities.map(activity => {
+          if (activity.id === thisActivityId) {
+            return { ...activity, isArchived: true, isLiked: true };
+          } else {
+            return activity;
+          }
+        })
+      );
+    } else {
+      setActivities(
+        activities.map(activity => {
+          if (activity.id === thisActivityId) {
+            return { ...activity, isArchived: true, isLiked: false };
+          } else {
+            return activity;
+          }
+        })
+      );
+    }
+    navigate('/');
   }
 
   function onFilter(category) {
