@@ -13,9 +13,9 @@ export default function List({
   showBin,
   handleResetPage,
 }) {
-  console.log(activities);
+  //console.log(activities);
   // console.log(filteredSearchActivities);
-  console.log(selectedFriendsActivity);
+  //console.log(selectedFriendsActivity);
   // Check ob die zusammengefasst werden können
   return (
     <ListStyle role="list" title="list of activities" searchInput={searchInput}>

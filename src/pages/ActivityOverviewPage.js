@@ -168,8 +168,6 @@ export default function ActivityOverviewPage({
           show={show}
           setLikedActivity={setLikedActivity}
           onSetPastActivity={() => onSetPastActivity(data.id)}
-          handlePastAndLiked={() => handlePastAndLiked()}
-          handlePastNotLiked={() => handlePastNotLiked()}
           handleQuit={handleQuit}
         />
       </Main>
@@ -188,15 +186,6 @@ export default function ActivityOverviewPage({
     setCheck(false);
   }
 
-  function handlePastAndLiked() {
-    setLikedActivity(true);
-    onSetPastActivity();
-  }
-
-  function handlePastNotLiked() {
-    setLikedActivity(false);
-    onSetPastActivity();
-  }
   function onSetPastActivity(thisActivityId) {
     const activityToRemove = activities.find(
       activity => activity.id === thisActivityId

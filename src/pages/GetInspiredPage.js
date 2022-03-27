@@ -30,7 +30,6 @@ export default function GetInspiredPage({
       <Main>
         <StyledCategoryButton>
           {likedTags.map((type, index) => {
-            console.log(type);
             return (
               <CategoryButton
                 key={index}
