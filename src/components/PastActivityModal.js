@@ -10,7 +10,7 @@ export default function PastActivityModal({
   onClose,
   onSetPastActivity,
   setLikedActivity,
-
+  id,
   handleQuit,
 }) {
   if (!show) {
@@ -25,10 +25,10 @@ export default function PastActivityModal({
         transfered to a past activiy list.
       </i>
       <span>
-        <StyledModalButton type="submit" onClick={() => handlePastAndLiked()}>
+        <StyledModalButton type="submit" onClick={() => handlePastAndLiked(id)}>
           It was great, I wanna do it again!
         </StyledModalButton>
-        <StyledModalButton type="submit" onClick={() => handlePastNotLiked()}>
+        <StyledModalButton type="submit" onClick={() => handlePastNotLiked(id)}>
           Naahh it was not so good
         </StyledModalButton>
         <QuitButton onClick={handleQuit}>
@@ -44,14 +44,14 @@ export default function PastActivityModal({
       </span>
     </WrapperModal>
   );
-  function handlePastAndLiked() {
+  function handlePastAndLiked(id) {
     setLikedActivity(true);
-    onSetPastActivity();
+    onSetPastActivity(id);
   }
 
-  function handlePastNotLiked() {
+  function handlePastNotLiked(id) {
     setLikedActivity(false);
-    onSetPastActivity();
+    onSetPastActivity(id);
   }
 }
 const WrapperModal = styled.section`

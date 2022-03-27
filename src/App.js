@@ -31,7 +31,6 @@ export default function App() {
   const [searchInput, setSearchInput] = useState('');
   const [currentFilter, setCurrentFilter] = useState('all');
   const [showBin, setShowBin] = useState(true);
-  const [likedActivity, setLikedActivity] = useState(true);
 
   const navigate = useNavigate();
 
@@ -90,8 +89,6 @@ export default function App() {
                 setPastActivities={setPastActivities}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-                setLikedActivity={setLikedActivity}
-                likedActivity={likedActivity}
               />
             }
           />
