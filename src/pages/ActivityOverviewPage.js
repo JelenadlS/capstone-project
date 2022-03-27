@@ -146,9 +146,10 @@ export default function ActivityOverviewPage({
                 <p>Did you do this activity already?</p>
                 <label htmlFor="checkIfActivityIsDone">
                   <input
+                    data-testid="checkIfActivityIsDone"
                     id="checkIfActivityIsDone"
                     type="checkbox"
-                    name="check if activity is done"
+                    name="checkIfActivityIsDone"
                     width="40px"
                     onClick={() => setShow(true)}
                     onChange={() => setCheck(true)}

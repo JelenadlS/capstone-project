@@ -5,7 +5,6 @@ import userEvent from '@testing-library/user-event';
 import ActivityCard from './ActivityCard.js';
 
 describe('ActivityCard', () => {
-  const activity = 'Elbstrand';
   const photo = 'sport';
   const errorMessage = 'error';
   const nameOfSelectedFriend = 'Clara';
@@ -16,7 +15,6 @@ describe('ActivityCard', () => {
     render(
       <MemoryRouter>
         <ActivityCard
-          activity={activity}
           showBin={true}
           photo={photo}
           errorMessage={errorMessage}
@@ -28,7 +26,7 @@ describe('ActivityCard', () => {
     );
 
     const picture = screen.getByRole('img', { name: 'uploaded picture sport' });
-    const link = screen.getByRole('link', { name: 'Elbstrand' });
+    const link = screen.getByRole('link', { name: 'Tanzen' });
     const button = screen.getByRole('button', { name: 'delete' });
 
     expect(picture).toBeInTheDocument();
@@ -36,11 +34,10 @@ describe('ActivityCard', () => {
     expect(button).toBeInTheDocument();
   });
 
-  it('renders card with next image ', () => {
+  it('renders card with next image', () => {
     render(
       <MemoryRouter>
         <ActivityCard
-          activity={activity}
           showBin={false}
           photo={photo}
           errorMessage={errorMessage}
@@ -60,7 +57,6 @@ describe('ActivityCard', () => {
     render(
       <MemoryRouter>
         <ActivityCard
-          activity={activity}
           showBin={false}
           photo=""
           errorMessage={errorMessage}
@@ -84,7 +80,6 @@ describe('ActivityCard', () => {
       <MemoryRouter>
         <ActivityCard
           onClick={showCallback}
-          activity={activity}
           showBin={true}
           photo={photo}
           errorMessage={errorMessage}
@@ -107,7 +102,6 @@ describe('ActivityCard', () => {
       <MemoryRouter>
         <ActivityCard
           onDeleteActivity={deleteCallback}
-          activity={activity}
           showBin={true}
           photo={photo}
           errorMessage={errorMessage}
@@ -133,7 +127,6 @@ describe('ActivityCard', () => {
     render(
       <MemoryRouter>
         <ActivityCard
-          activity={activity}
           showBin={true}
           photo={photo}
           errorMessage={errorMessage}

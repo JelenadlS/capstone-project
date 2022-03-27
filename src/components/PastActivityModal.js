@@ -24,10 +24,10 @@ export default function PastActivityModal({
         transfered to a past activiy list.
       </i>
       <span>
-        <StyledModalButton type="button" onClick={() => handlePastAndLiked(id)}>
+        <StyledModalButton type="submit" onClick={() => handlePastAndLiked(id)}>
           It was great, I wanna do it again!
         </StyledModalButton>
-        <StyledModalButton type="button" onClick={() => handlePastNotLiked(id)}>
+        <StyledModalButton type="submit" onClick={() => handlePastNotLiked(id)}>
           Naahh it was not so good
         </StyledModalButton>
         <QuitButton onClick={handleQuit}>
