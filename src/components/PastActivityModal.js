@@ -9,8 +9,6 @@ export default function PastActivityModal({
   show,
   onClose,
   onSetPastActivity,
-  setLikedActivity,
-  likedActivity,
   id,
   handleQuit,
 }) {
