@@ -17,14 +17,20 @@ export default function GetInspiredPage({
   handleResetPageAndShowArrow,
 }) {
   const [currentLikeFilter, setCurrentLikeFilter] = useState(true);
-  console.log(activitiesArchived);
+
+  const likedActivities = activitiesArchived.filter(
+    activity => activity.isLiked === true
+  );
+
+  const notLikedActivities = activitiesArchived.filter(
+    activity => activity.isLiked === false
+  );
+
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>Get Inspired</Header>
       <Main>
         <StyledCategoryButton>
-          {/* {activitiesArchived.filter(activity => activity.isLiked === false)
-            .length < 0 && 'no activites'} */}
           <CategoryButton
             onClick={() => setCurrentLikeFilter(true)}
             active={true === currentLikeFilter}
@@ -39,20 +45,45 @@ export default function GetInspiredPage({
           </CategoryButton>
         </StyledCategoryButton>
         <ListStyle role="list" title="list of past activities">
-          {activitiesArchived
-            .filter(activity => activity.isLiked === currentLikeFilter)
-            .map(activity => (
-              <li key={activity.id}>
-                <ActivityCard
-                  activity={activity.activity}
-                  nameOfSelectedCategory={activity.category}
-                  nameOfSelectedFriend={activity.friend}
-                  nameOfSelectedActivity={activity.activity}
-                  photo={activity.photo}
-                  showBin={showBin}
-                  handleResetPage={handleResetPage}
-                />
-              </li>
+          {currentLikeFilter === true &&
+            (likedActivities.length > 0 ? (
+              likedActivities.map(activity => (
+                <li key={activity.id}>
+                  <ActivityCard
+                    activity={activity.activity}
+                    nameOfSelectedCategory={activity.category}
+                    nameOfSelectedFriend={activity.friend}
+                    nameOfSelectedActivity={activity.activity}
+                    photo={activity.photo}
+                    showBin={showBin}
+                    handleResetPage={handleResetPage}
+                  />
+                </li>
+              ))
+            ) : (
+              <EmptyList>
+                You did not enter any activity yet which you liked.
+              </EmptyList>
+            ))}
+          {currentLikeFilter === false &&
+            (notLikedActivities.length > 0 ? (
+              notLikedActivities.map(activity => (
+                <li key={activity.id}>
+                  <ActivityCard
+                    activity={activity.activity}
+                    nameOfSelectedCategory={activity.category}
+                    nameOfSelectedFriend={activity.friend}
+                    nameOfSelectedActivity={activity.activity}
+                    photo={activity.photo}
+                    showBin={showBin}
+                    handleResetPage={handleResetPage}
+                  />
+                </li>
+              ))
+            ) : (
+              <EmptyList>
+                You did not enter any activity yet which you did not like.
+              </EmptyList>
             ))}
         </ListStyle>
       </Main>
@@ -91,4 +122,9 @@ const ListStyle = styled.ul`
   li {
     padding: 5px;
   }
+`;
+
+const EmptyList = styled.p`
+  padding: 10px;
+  text-align: center;
 `;
