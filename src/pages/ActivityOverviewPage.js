@@ -25,9 +25,7 @@ import sportIcon from '../images/sportIcon.svg';
 
 export default function ActivityOverviewPage({
   activities,
-
   onSetPastActivity,
-  activitiesNotArchived,
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
@@ -46,8 +44,6 @@ export default function ActivityOverviewPage({
   };
   const [show, setShow] = useState(false);
   const [check, setCheck] = useState(false);
-
-  console.log(selectedActivity);
 
   return (
     <Picture>

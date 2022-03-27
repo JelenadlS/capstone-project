@@ -42,8 +42,6 @@ export default function App() {
   const activitiesArchived = activities.filter(
     activity => activity.isArchived === true
   );
-  console.log(activitiesNotArchived);
-  console.log(activitiesArchived);
 
   const filteredSearchActivities = activitiesNotArchived.filter(activity => {
     if (searchInput === '') {
@@ -90,7 +88,6 @@ export default function App() {
             element={
               <ActivityOverviewPage
                 activities={activities}
-                activitiesNotArchived={activitiesNotArchived}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
                 onSetPastActivity={onSetPastActivity}

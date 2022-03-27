@@ -46,8 +46,7 @@ const ScrollCategories = styled.section`
   overflow-x: auto;
 `;
 const CategoryButton = styled.button`
-  gap: 5px;
-  margin: 10px;
+  margin: 5px 10px;
   width: fit-content;
   background: ${props =>
     props.active ? 'rgba(71, 39, 35, 0.72)' : 'transparent'};

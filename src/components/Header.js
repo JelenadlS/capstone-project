@@ -41,12 +41,13 @@ const StyledNavLinkFriends = styled(NavLink)`
   right: 2px;
   align-self: center;
   padding-top: 8px;
+  padding-right: 8px;
   text-decoration: none;
   display: flex;
   flex-direction: column;
 
   &:active {
-    transform: translateY(-8px);
+    transform: translateY(+8px);
   }
 `;
 
