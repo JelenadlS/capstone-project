@@ -15,6 +15,7 @@ import newIcon from '../images/newIcon.svg';
 export default function FriendsActivitiesPage({
   hasError,
   activities,
+  activitiesNotArchived,
   setActivities,
   currentFilter,
   onFilter,
@@ -26,11 +27,13 @@ export default function FriendsActivitiesPage({
   resetPage,
 }) {
   const { friendsName } = useParams();
-  const selectedFriendsActivities = activities.filter(
+  const selectedFriendsActivities = activitiesNotArchived.filter(
     activity => activity.friend === friendsName
   );
   const navigate = useNavigate();
 
+  console.log(activities);
+  console.log(selectedFriendsActivities);
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>
@@ -70,10 +73,7 @@ export default function FriendsActivitiesPage({
     setActivities(
       activities.filter(activity => activity.id !== thisActivityId)
     );
-    if (
-      !selectedFriendsActivities.activity ||
-      selectedFriendsActivities.length === 0
-    ) {
+    if (!activities.activity || activities.length === 0) {
       navigate('/');
     } else {
       navigate(`/${selectedFriendsActivities.friend}`);
