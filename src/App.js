@@ -47,7 +47,9 @@ export default function App() {
     if (searchInput === '') {
       return activity;
     } else {
-      return activity.activity.toLowerCase().includes(searchInput);
+      return activity.activity
+        .toLowerCase()
+        .includes(searchInput.toLowerCase().trim());
     }
   });
 
@@ -56,7 +58,9 @@ export default function App() {
       if (searchInput === '') {
         return activity;
       } else {
-        return activity.activity.toLowerCase().includes(searchInput);
+        return activity.activity
+          .toLowerCase()
+          .includes(searchInput.toLowerCase().trim());
       }
     }
   );
