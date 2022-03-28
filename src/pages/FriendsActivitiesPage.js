@@ -37,7 +37,7 @@ export default function FriendsActivitiesPage({
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>
-        {selectedFriendsActivities[0].friend}
+        {selectedFriendsActivities[0]?.friend}
         <ArrowBackButton onClick={event => resetPage(event, navigate('/'))}>
           <img src={goBackIcon} alt="go back" />
         </ArrowBackButton>
@@ -73,10 +73,10 @@ export default function FriendsActivitiesPage({
     setActivities(
       activities.filter(activity => activity.id !== thisActivityId)
     );
-    if (!activities.activity || activities.length === 0) {
+    if (selectedFriendsActivities.length <= 1) {
       navigate('/');
     } else {
-      navigate(`/${selectedFriendsActivities.friend}`);
+      navigate(`/${selectedFriendsActivities[0].friend}`);
     }
   }
 }

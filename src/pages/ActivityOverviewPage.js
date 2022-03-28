@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ArrowBackButton, EditButton } from '../components/Button';
+import {
+  ArrowBackButton,
+  EditButton,
+  DeleteButton,
+} from '../components/Button';
+import DeleteModal from '../components/DeleteModal.js';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import MappedPlaceholderPictures from '../components/MappedPlaceholderPictures.js';
@@ -10,6 +15,7 @@ import Navigation from '../components/Navigation';
 import PastActivityModal from '../components/PastActivityModal';
 import Picture from '../components/Picture';
 
+import deleteIcon from '../images/binIcon.svg';
 import cultureIcon from '../images/cultureIcon.svg';
 import dateIcon from '../images/dateIcon.svg';
 import editIcon from '../images/editIcon.svg';
@@ -28,6 +34,7 @@ export default function ActivityOverviewPage({
   onSetPastActivity,
   handleResetPage,
   handleResetPageAndShowArrow,
+  setActivities,
 }) {
   const navigate = useNavigate();
   const { activityName } = useParams();
@@ -42,7 +49,7 @@ export default function ActivityOverviewPage({
     sport: sportIcon,
     other: otherIcon,
   };
-  const [show, setShow] = useState(false);
+  const [showPastModal, setShowPastModal] = useState(false);
   const [check, setCheck] = useState(false);
 
   return (
@@ -131,7 +138,7 @@ export default function ActivityOverviewPage({
               <StyledText>where do you have to go?</StyledText>
             )}
           </StyledOtherInfo>
-          {selectedActivity.isArchived === false && (
+          {selectedActivity.isArchived === false ? (
             <>
               <EditButton
                 onClick={() =>
@@ -151,7 +158,7 @@ export default function ActivityOverviewPage({
                     type="checkbox"
                     name="checkIfActivityIsDone"
                     width="40px"
-                    onClick={() => setShow(true)}
+                    onClick={() => setShowPastModal(true)}
                     onChange={() => setCheck(true)}
                     value={check}
                     checked={check}
@@ -159,11 +166,20 @@ export default function ActivityOverviewPage({
                 </label>
               </StyledCheckbox>
             </>
+          ) : (
+            <>
+              <DeleteButton
+                onClick={() => onDeleteActivity(selectedActivity.id)}
+              >
+                <img src={deleteIcon} alt="delete" />
+              </DeleteButton>
+              <DeleteModal onDelete={onDeleteActivity} />
+            </>
           )}
         </MainGrid>
         <PastActivityModal
-          onClose={() => setShow(false)}
-          show={show}
+          onClose={() => setShowPastModal(false)}
+          showPastModal={showPastModal}
           onSetPastActivity={onSetPastActivity}
           handleQuit={handleQuit}
           id={selectedActivity.id}
@@ -182,6 +198,13 @@ export default function ActivityOverviewPage({
 
   function handleQuit() {
     setCheck(false);
+  }
+
+  function onDeleteActivity(thisActivityId) {
+    setActivities(
+      activities.filter(activity => activity.id !== thisActivityId)
+    );
+    navigate('/getinspired');
   }
 }
 

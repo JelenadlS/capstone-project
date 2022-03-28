@@ -24,12 +24,12 @@ export default function List({
         : (selectedFriendsActivity?.length > 0
             ? selectedFriendsActivity
             : activities
-          ).filter(
+          )?.filter(
             activity =>
               activity.category.includes(currentFilter) ||
               currentFilter === 'all'
           )
-      ).map(activity => (
+      )?.map(activity => (
         <li key={activity.id}>
           <ActivityCard
             onDeleteActivity={() => onDeleteActivity(activity.id)}

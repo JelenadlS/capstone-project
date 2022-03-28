@@ -106,6 +106,7 @@ export default function App() {
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
                 onSetPastActivity={onSetPastActivity}
+                setActivities={setActivities}
               />
             }
           />
