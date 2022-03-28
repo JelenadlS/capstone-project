@@ -16,7 +16,6 @@ import saveIcon from '../images/saveIcon.svg';
 
 export default function AddFriendPage({
   addedFriend,
-
   onAddedFriend,
   handleResetPage,
   handleResetPageAndShowArrow,
@@ -44,32 +43,37 @@ export default function AddFriendPage({
         </ArrowBackButton>
       </Header>
       <Main>
-        <WrapperForm autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-          <StyledLabels htmlFor="friend">
-            Who is your friend?
-            <StyledInputs
-              id="friend"
-              type="text"
-              name="friend"
-              placeholder="Lasse, Andrea, Michael,..."
-              {...register('newFriend', {
-                maxLength: {
-                  value: 10,
-                  message:
-                    'I can not believe that someone has such a long name',
-                },
+        <Grid>
+          <WrapperForm autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+            <StyledLabels htmlFor="friend">
+              Who is your friend?
+              <StyledInputs
+                id="friend"
+                type="text"
+                name="friend"
+                placeholder="Lasse, Andrea, Michael,..."
+                {...register('newFriend', {
+                  maxLength: {
+                    value: 10,
+                    message:
+                      'I can not believe that someone has such a long name',
+                  },
+                })}
+              />
+            </StyledLabels>
+            <AddButton type="submit" role="button">
+              <img width="25" height="25" src={saveIcon} alt="save" />
+            </AddButton>
+          </WrapperForm>
+          <section>
+            <p>Here are your already added friends:</p>
+            <StyledList role="list" title="list of added friends">
+              {addedFriend.map(friend => {
+                return <li key={friend.id}>{friend.newFriend}</li>;
               })}
-            />
-          </StyledLabels>
-          <AddButton type="submit" role="button">
-            <img width="25" height="25" src={saveIcon} alt="save" />
-          </AddButton>
-        </WrapperForm>
-        <ul>
-          {/* {addedFriend.map(friend => {
-            return <li key={friend.id}>{friend.newFriend}</li>;
-          })} */}
-        </ul>
+            </StyledList>
+          </section>
+        </Grid>
       </Main>
       <Navigation
         handleResetPage={handleResetPage}
@@ -83,28 +87,18 @@ export default function AddFriendPage({
   );
 }
 
-const WrapperForm = styled.form`
+const Grid = styled.span`
   height: 85vh;
-  display: grid;
-  grid-template-rows: repeat(7, auto) 50px;
   margin-top: 20px;
-
-  textarea {
-    background: transparent;
-    border: 1px solid rgba(71, 39, 35, 0.42);
-    border-radius: 5px;
-    height: 90px;
-    width: 100%;
-    color: rgba(71, 39, 35, 0.72);
-    font-size: 16px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    outline: none;
-  }
-
-  i {
-    font-size: 12px;
-  }
+  display: grid;
+  grid-template-rows: 180px 1fr 50px;
+`;
+const WrapperForm = styled.form`
+  display: grid;
+  grid-template-rows: repeat(2, 60px);
+  justify-items: center;
+  align-items: center;
+  margin-top: 30px;
 `;
 
 const StyledLabels = styled.label`
@@ -119,4 +113,11 @@ const StyledInputs = styled.input`
   width: 100%;
   color: rgba(71, 39, 35, 0.72);
   outline: none;
+`;
+const StyledList = styled.ul`
+  color: rgba(71, 39, 35, 0.72);
+
+  li {
+    padding: 5px;
+  }
 `;
