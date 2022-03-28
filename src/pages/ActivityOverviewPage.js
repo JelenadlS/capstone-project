@@ -50,6 +50,7 @@ export default function ActivityOverviewPage({
     other: otherIcon,
   };
   const [showPastModal, setShowPastModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [check, setCheck] = useState(false);
 
   return (
@@ -168,12 +169,14 @@ export default function ActivityOverviewPage({
             </>
           ) : (
             <>
-              <DeleteButton
-                onClick={() => onDeleteActivity(selectedActivity.id)}
-              >
+              <DeleteButton onClick={() => setShowDeleteModal(true)}>
                 <img src={deleteIcon} alt="delete" />
               </DeleteButton>
-              <DeleteModal onDelete={onDeleteActivity} />
+              <DeleteModal
+                onDelete={() => onDeleteActivity(selectedActivity.id)}
+                onClose={() => setShowDeleteModal(false)}
+                show={showDeleteModal}
+              />
             </>
           )}
         </MainGrid>
