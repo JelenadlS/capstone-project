@@ -47,7 +47,7 @@ export default function ActivityCard({
               <strong>{nameOfSelectedActivity}</strong>
             </LinkStyling>
             <DeleteButton onClick={() => setShow(true)}>
-              <img src={deleteIcon} alt="delete" />
+              <img width="20" height="20" src={deleteIcon} alt="delete" />
             </DeleteButton>
             <DeleteModal
               onDelete={onDeleteActivity}

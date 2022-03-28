@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {
   ArrowBackButton,
   EditButton,
-  DeleteButton,
+  PastDeleteButton,
 } from '../components/Button';
 import DeleteModal from '../components/DeleteModal.js';
 import Header from '../components/Header';
@@ -169,9 +169,9 @@ export default function ActivityOverviewPage({
             </>
           ) : (
             <>
-              <DeleteButton onClick={() => setShowDeleteModal(true)}>
-                <img src={deleteIcon} alt="delete" />
-              </DeleteButton>
+              <PastDeleteButton onClick={() => setShowDeleteModal(true)}>
+                <img width="30" height="30" src={deleteIcon} alt="delete" />
+              </PastDeleteButton>
               <DeleteModal
                 onDelete={() => onDeleteActivity(selectedActivity.id)}
                 onClose={() => setShowDeleteModal(false)}
