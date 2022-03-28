@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
+import Searchbar from '../components/Searchbar';
 
 import newIcon from '../images/newIcon.svg';
 
@@ -44,6 +45,8 @@ export default function GetInspiredPage({
             Not Liked
           </CategoryButton>
         </StyledCategoryButton>
+        <Searchbar></Searchbar>
+
         <ListStyle role="list" title="list of past activities">
           {currentLikeFilter === true &&
             (likedActivities.length > 0 ? (
