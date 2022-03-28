@@ -23,6 +23,7 @@ export default function GetInspiredPage({
   setCurrentFilter,
   currentFilter,
   filteredSearchActivitiesArchived,
+  resetPage,
 }) {
   const [currentLikeFilter, setCurrentLikeFilter] = useState(true);
 
@@ -49,13 +50,13 @@ export default function GetInspiredPage({
       <Main>
         <StyledCategoryButton>
           <CategoryButton
-            onClick={() => setCurrentLikeFilter(true)}
+            onClick={event => resetPage(event, setCurrentLikeFilter(true))}
             active={true === currentLikeFilter}
           >
             Liked
           </CategoryButton>
           <CategoryButton
-            onClick={() => setCurrentLikeFilter(false)}
+            onClick={event => resetPage(event, setCurrentLikeFilter(false))}
             active={false === currentLikeFilter}
           >
             Not Liked

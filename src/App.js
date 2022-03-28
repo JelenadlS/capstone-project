@@ -164,6 +164,7 @@ export default function App() {
                 filteredSearchActivitiesArchived={
                   filteredSearchActivitiesArchived
                 }
+                resetPage={resetPage}
               />
             }
           />
