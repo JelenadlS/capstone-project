@@ -15,7 +15,7 @@ Element.prototype.scrollIntoView = jest.fn();
 
 describe('MyFriendsPage', () => {
   it('renders a page with headertitle, go back and new button, as well as three filter buttons and a list', () => {
-    const activities = [
+    const activitiesNotArchived = [
       {
         id: '1',
         activity: 'Frau Möller',
@@ -34,7 +34,7 @@ describe('MyFriendsPage', () => {
 
     render(
       <MemoryRouter>
-        <FriendsActivitiesPage activities={activities} />
+        <FriendsActivitiesPage activitiesNotArchived={activitiesNotArchived} />
       </MemoryRouter>
     );
 
@@ -57,7 +57,7 @@ describe('MyFriendsPage', () => {
     expect(list).toBeInTheDocument();
   });
   it('renders no category, when only one type is given', () => {
-    const activities = [
+    const activitiesNotArchived = [
       { id: '1', activity: 'Frau Möller', category: 'sport', friend: 'Clara' },
       {
         id: '2',
@@ -69,7 +69,7 @@ describe('MyFriendsPage', () => {
 
     render(
       <MemoryRouter>
-        <FriendsActivitiesPage activities={activities} />
+        <FriendsActivitiesPage activitiesNotArchived={activitiesNotArchived} />
       </MemoryRouter>
     );
 

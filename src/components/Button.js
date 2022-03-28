@@ -68,6 +68,14 @@ const DeleteButton = styled(Button)`
 `;
 export { DeleteButton };
 
+const PastDeleteButton = styled(Button)`
+  background: transparent;
+  position: fixed;
+  right: 20px;
+  top: 80px;
+`;
+export { PastDeleteButton };
+
 const QuitButton = styled(Button)`
   background: none;
   position: absolute;

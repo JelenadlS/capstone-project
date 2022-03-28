@@ -10,8 +10,8 @@ export default function FilterTags({
   const eachExistingCategoryOnce = [
     ...new Set(
       selectedFriendsActivity?.length > 0
-        ? selectedFriendsActivity.map(activity => activity.category)
-        : activities.map(activity => activity.category)
+        ? selectedFriendsActivity?.map(activity => activity.category)
+        : activities?.map(activity => activity.category)
     ),
   ];
 

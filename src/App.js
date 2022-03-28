@@ -84,7 +84,8 @@ export default function App() {
             element={
               <FriendsActivitiesPage
                 hasError={hasError}
-                activities={activitiesNotArchived}
+                activities={activities}
+                activitiesNotArchived={activitiesNotArchived}
                 setActivities={setActivities}
                 currentFilter={currentFilter}
                 onFilter={onFilter}
@@ -105,6 +106,7 @@ export default function App() {
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
                 onSetPastActivity={onSetPastActivity}
+                setActivities={setActivities}
               />
             }
           />

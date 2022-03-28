@@ -14,6 +14,29 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('ActivityOverviewPage', () => {
+  const selectedActivity = {
+    id: '1',
+    friend: 'Clara',
+    activity: 'Frau Möller',
+    category: 'culture',
+    notes: 'notes',
+    date: '13/02/21',
+    location: 'HH',
+    isArchived: true,
+  };
+
+  const setActivities = [
+    {
+      id: '1',
+      friend: 'Clara',
+      activity: 'Frau Möller',
+      category: 'culture',
+      notes: 'notes',
+      date: '13/02/21',
+      location: 'HH',
+    },
+  ];
+
   it('renders page with a back and new button as well as heading and activity name', () => {
     const activities = [
       {
@@ -115,5 +138,37 @@ describe('ActivityOverviewPage', () => {
 
     const picture = screen.getByRole('img', { name: 'upload' });
     expect(picture).toBeInTheDocument();
+  });
+
+  it('when clicking the bin, the DeleteModal is renderd with the delete button', () => {
+    const activities = [
+      {
+        id: '1',
+        friend: 'Clara',
+        activity: 'Frau Möller',
+        category: 'culture',
+        notes: 'notes',
+        date: '13/02/21',
+        location: 'HH',
+        photo: 'activity.png',
+      },
+    ];
+
+    const showCallback = jest.fn();
+    render(
+      <MemoryRouter>
+        <ActivityOverviewPage
+          setActivities={setActivities}
+          activities={activities}
+          selectedActivity={selectedActivity}
+          onClick={showCallback}
+        />
+      </MemoryRouter>
+    );
+
+    const binButton = screen.getByRole('button', { name: /delete/i });
+
+    userEvent.click(binButton);
+    expect(showCallback).toBeTruthy();
   });
 });

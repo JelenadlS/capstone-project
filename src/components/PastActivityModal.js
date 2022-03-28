@@ -5,13 +5,13 @@ import { ModalButton, QuitButton } from './Button.js';
 import deletePictureIcon from '../images/deletePictureIcon.svg';
 
 export default function PastActivityModal({
-  show,
+  showPastModal,
   onClose,
   onSetPastActivity,
   id,
   handleQuit,
 }) {
-  if (!show) {
+  if (!showPastModal) {
     return null;
   }
 

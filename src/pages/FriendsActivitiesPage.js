@@ -15,6 +15,7 @@ import newIcon from '../images/newIcon.svg';
 export default function FriendsActivitiesPage({
   hasError,
   activities,
+  activitiesNotArchived,
   setActivities,
   currentFilter,
   onFilter,
@@ -26,7 +27,7 @@ export default function FriendsActivitiesPage({
   resetPage,
 }) {
   const { friendsName } = useParams();
-  const selectedFriendsActivities = activities.filter(
+  const selectedFriendsActivities = activitiesNotArchived.filter(
     activity => activity.friend === friendsName
   );
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function FriendsActivitiesPage({
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>
-        {selectedFriendsActivities[0].friend}
+        {selectedFriendsActivities[0]?.friend}
         <ArrowBackButton onClick={event => resetPage(event, navigate('/'))}>
           <img src={goBackIcon} alt="go back" />
         </ArrowBackButton>
@@ -70,13 +71,10 @@ export default function FriendsActivitiesPage({
     setActivities(
       activities.filter(activity => activity.id !== thisActivityId)
     );
-    if (
-      !selectedFriendsActivities.activity ||
-      selectedFriendsActivities.length === 0
-    ) {
+    if (selectedFriendsActivities.length <= 1) {
       navigate('/');
     } else {
-      navigate(`/${selectedFriendsActivities.friend}`);
+      navigate(`/${selectedFriendsActivities[0].friend}`);
     }
   }
 }
