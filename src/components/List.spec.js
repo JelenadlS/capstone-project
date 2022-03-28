@@ -47,13 +47,13 @@ describe('List', () => {
     expect(button).toBeInTheDocument();
   });
 
-  it('renders a next page image when show bin is false', () => {
+  it('renders a next page image when show bin is undefined', () => {
     render(
       <MemoryRouter>
         <List
           currentFilter={currentFilter}
           selectedFriendsActivity={selectedFriendsActivity}
-          showBin={false}
+          showBin={undefined}
         />
       </MemoryRouter>
     );

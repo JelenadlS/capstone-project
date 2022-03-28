@@ -38,7 +38,7 @@ describe('ActivityCard', () => {
     render(
       <MemoryRouter>
         <ActivityCard
-          showBin={false}
+          showBin={undefined}
           photo={photo}
           errorMessage={errorMessage}
           nameOfSelectedActivity={nameOfSelectedActivity}

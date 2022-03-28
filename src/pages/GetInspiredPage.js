@@ -14,7 +14,6 @@ import newIcon from '../images/newIcon.svg';
 
 export default function GetInspiredPage({
   activitiesArchived,
-
   handleResetPage,
   handleResetPageAndShowArrow,
   onFilter,
