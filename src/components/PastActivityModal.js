@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import { QuitButton } from '../components/Button';
-import { ModalButton } from './Button.js';
+import { ModalButton, QuitButton } from './Button.js';
 
 import deletePictureIcon from '../images/deletePictureIcon.svg';
 
