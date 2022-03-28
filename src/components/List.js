@@ -14,7 +14,11 @@ export default function List({
   handleResetPage,
 }) {
   return (
-    <ListStyle role="list" title="list of activities" searchInput={searchInput}>
+    <StyledList
+      role="list"
+      title="list of activities"
+      searchInput={searchInput}
+    >
       {(searchInput?.length > 0
         ? filteredSearchActivities
         : (selectedFriendsActivity?.length > 0
@@ -39,11 +43,11 @@ export default function List({
           />
         </li>
       ))}
-    </ListStyle>
+    </StyledList>
   );
 }
 
-const ListStyle = styled.ul`
+const StyledList = styled.ul`
   list-style-type: none;
 
   li {

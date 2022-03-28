@@ -47,9 +47,9 @@ export default function AllActivitiesPage({
             handleResetPage={handleResetPage}
           />
         ) : (
-          <EmptyList data-testid="emptylist">
+          <StyledEmptyMessage data-testid="StyledEmptyMessage">
             There is no activity with this name.
-          </EmptyList>
+          </StyledEmptyMessage>
         )}
       </Main>
       <Navigation
@@ -64,7 +64,7 @@ export default function AllActivitiesPage({
   );
 }
 
-const EmptyList = styled.p`
+const StyledEmptyMessage = styled.p`
   color: rgba(71, 39, 35, 0.72);
   padding: 10px;
   text-align: center;

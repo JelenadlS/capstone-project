@@ -55,7 +55,7 @@ export default function MyFriendsPage({
                 </NumStyling>
               </StyledLink>
             )}
-            <ListStyle role="list" title="list of friends">
+            <StyledList role="list" title="list of friends">
               {sortedFriendsList.map((friend, index) => {
                 const sumOfActivitiesEachFriend = activities.filter(
                   activity => activity.friend === friend
@@ -69,13 +69,13 @@ export default function MyFriendsPage({
                   </li>
                 );
               })}
-            </ListStyle>
+            </StyledList>
           </>
         ) : (
-          <EmptyList data-testid="emptylist">
+          <StyledEmptyMessage data-testid="emptylist">
             Unfortunately you did not enter any activity yet. Start now and fill
             your list with amazing activities!
-          </EmptyList>
+          </StyledEmptyMessage>
         )}
       </Main>
       <Navigation
@@ -110,7 +110,7 @@ const NumStyling = styled.span`
   align-self: center;
 `;
 
-const ListStyle = styled.ul`
+const StyledList = styled.ul`
   list-style-type: none;
   color: rgba(71, 39, 35, 0.72);
 
@@ -119,7 +119,7 @@ const ListStyle = styled.ul`
   }
 `;
 
-const EmptyList = styled.p`
+const StyledEmptyMessage = styled.p`
   color: rgba(71, 39, 35, 0.72);
   padding: 10px;
   text-align: center;

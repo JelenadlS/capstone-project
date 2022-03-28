@@ -77,7 +77,7 @@ export default function GetInspiredPage({
                 setSearchInput={setSearchInput}
               />
               {filteredLikedSearchActivitiesArchived.length > 0 ? (
-                <ListStyle
+                <StyledList
                   role="list"
                   title="list of past activities"
                   searchInput={searchInput}
@@ -100,15 +100,17 @@ export default function GetInspiredPage({
                       />
                     </li>
                   ))}
-                </ListStyle>
+                </StyledList>
               ) : (
-                <EmptyList>There is no activity with this name.</EmptyList>
+                <StyledEmptyMessage>
+                  There is no activity with this name.
+                </StyledEmptyMessage>
               )}
             </>
           ) : (
-            <EmptyList data-testid="emptylist">
+            <StyledEmptyMessage data-testid="emptylist">
               You did not enter any activity yet which you liked.
-            </EmptyList>
+            </StyledEmptyMessage>
           ))}
 
         {currentLikeFilter === false &&
@@ -126,7 +128,7 @@ export default function GetInspiredPage({
                 setSearchInput={setSearchInput}
               />
               {filteredNotLikedSearchActivitiesArchived.length > 0 ? (
-                <ListStyle
+                <StyledList
                   role="list"
                   title="list of past activities"
                   searchInput={searchInput}
@@ -149,15 +151,17 @@ export default function GetInspiredPage({
                       />
                     </li>
                   ))}
-                </ListStyle>
+                </StyledList>
               ) : (
-                <EmptyList>There is no activity with this name.</EmptyList>
+                <StyledEmptyMessage>
+                  There is no activity with this name.
+                </StyledEmptyMessage>
               )}
             </>
           ) : (
-            <EmptyList data-testid="emptylist">
+            <StyledEmptyMessage data-testid="emptylist">
               You did not enter any activity yet which you did not like.
-            </EmptyList>
+            </StyledEmptyMessage>
           ))}
       </Main>
       <Navigation
@@ -188,7 +192,7 @@ const CategoryButton = styled.button`
   white-space: nowrap;
 `;
 
-const ListStyle = styled.ul`
+const StyledList = styled.ul`
   list-style-type: none;
 
   li {
@@ -196,7 +200,7 @@ const ListStyle = styled.ul`
   }
 `;
 
-const EmptyList = styled.p`
+const StyledEmptyMessage = styled.p`
   padding: 10px;
   text-align: center;
 `;
