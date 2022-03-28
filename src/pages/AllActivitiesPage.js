@@ -31,7 +31,7 @@ export default function AllActivitiesPage({
           setSearchInput={setSearchInput}
           setCurrentFilter={setCurrentFilter}
           searchInput={searchInput}
-        ></Searchbar>
+        />
         <FilterTags
           activities={activities}
           currentFilter={currentFilter}

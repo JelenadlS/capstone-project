@@ -51,6 +51,16 @@ export default function App() {
     }
   });
 
+  const filteredSearchActivitiesArchived = activitiesArchived.filter(
+    activity => {
+      if (searchInput === '') {
+        return activity;
+      } else {
+        return activity.activity.toLowerCase().includes(searchInput);
+      }
+    }
+  );
+
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>
@@ -146,6 +156,14 @@ export default function App() {
                 showBin={showBin}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+                onFilter={onFilter}
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}
+                setCurrentFilter={setCurrentFilter}
+                currentFilter={currentFilter}
+                filteredSearchActivitiesArchived={
+                  filteredSearchActivitiesArchived
+                }
               />
             }
           />
