@@ -183,6 +183,7 @@ export default function App() {
             element={
               <AddFriendPage
                 addedFriend={addedFriend}
+                setAddedFriend={setAddedFriend}
                 onAddedFriend={onAddedFriend}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}

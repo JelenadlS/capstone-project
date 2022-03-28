@@ -4,18 +4,20 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { AddButton, ArrowBackButton } from '../components/Button';
+import { AddButton, ArrowBackButton, DeleteButton } from '../components/Button';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
+import deleteIcon from '../images/binIcon.svg';
 import goBackIcon from '../images/goBackIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
 export default function AddFriendPage({
   addedFriend,
+  setAddedFriend,
   onAddedFriend,
   handleResetPage,
   handleResetPageAndShowArrow,
@@ -69,7 +71,19 @@ export default function AddFriendPage({
             <p>Here are your already added friends:</p>
             <StyledList role="list" title="list of added friends">
               {addedFriend.map(friend => {
-                return <li key={friend.id}>{friend.newFriend}</li>;
+                return (
+                  <li key={friend.id}>
+                    {friend.newFriend}
+                    <DeleteButton onClick={() => onDeleteActivity(friend.id)}>
+                      <StyledImage
+                        width="18"
+                        height="18"
+                        src={deleteIcon}
+                        alt="delete"
+                      />
+                    </DeleteButton>
+                  </li>
+                );
               })}
             </StyledList>
           </section>
@@ -85,6 +99,9 @@ export default function AddFriendPage({
       </Navigation>
     </Picture>
   );
+  function onDeleteActivity(thisFriendId) {
+    setAddedFriend(addedFriend.filter(friend => friend.id !== thisFriendId));
+  }
 }
 
 const Grid = styled.span`
@@ -114,10 +131,16 @@ const StyledInputs = styled.input`
   color: rgba(71, 39, 35, 0.72);
   outline: none;
 `;
+
 const StyledList = styled.ul`
   color: rgba(71, 39, 35, 0.72);
 
   li {
     padding: 5px;
   }
+`;
+
+const StyledImage = styled.img`
+  padding-top: 3px;
+  margin-left: 20px;
 `;
