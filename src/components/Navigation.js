@@ -20,12 +20,7 @@ export default function Navigation({
         <StyledDescription>friends</StyledDescription>
       </StyledNavLinkFriends>
       <StyledNavLinkAddFriend to="/" onClick={handleResetPage}>
-        <img
-          width="40"
-          height="20"
-          alt="friendsHomeIcon"
-          src={addAFriendIcon}
-        />
+        <img width="40" height="20" alt="addAFriendIcon" src={addAFriendIcon} />
         <StyledDescription>add</StyledDescription>
       </StyledNavLinkAddFriend>
       <StyledNewButton onClick={handleResetPage}>{children}</StyledNewButton>
@@ -33,7 +28,12 @@ export default function Navigation({
         to="/allactivities"
         onClick={handleResetPageAndShowArrow}
       >
-        <img width="40" height="30" alt="searchIcon" src={allActivitiesIcon} />
+        <img
+          width="40"
+          height="30"
+          alt="allActivitiesIcon"
+          src={allActivitiesIcon}
+        />
         <StyledDescription>activities</StyledDescription>
       </StyledNavLinkActivities>
       <StyledNavLinkInspire
