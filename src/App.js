@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router-dom';
@@ -29,12 +30,15 @@ export default function App() {
   const [searchInput, setSearchInput] = useState('');
   const [currentFilter, setCurrentFilter] = useState('all');
   const [showBin, setShowBin] = useState(true);
-
+  const [addedFriend, setAddedFriend] = useState(
+    (!hasError && loadFromLocal('addedFriend')) || []
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
     saveToLocal('activities', activities);
-  }, [activities]);
+    saveToLocal('addedFriend', addedFriend);
+  }, [activities, addedFriend]);
 
   const activitiesNotArchived = activities.filter(
     activity => activity.isArchived === false
@@ -65,7 +69,7 @@ export default function App() {
       }
     }
   );
-
+  console.log(addedFriend);
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>
@@ -174,11 +178,27 @@ export default function App() {
               />
             }
           />
-          <Route path="/addfriend" element={<AddFriendPage />} />
+          <Route
+            path="/addfriend"
+            element={
+              <AddFriendPage
+                addedFriend={addedFriend}
+                onAddedFriend={onAddedFriend}
+                handleResetPage={handleResetPage}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+              />
+            }
+          />
         </Routes>
       </WrapperApp>
     </ErrorBoundary>
   );
+
+  function onAddedFriend({ id, newFriend }) {
+    setHasError(false);
+    setAddedFriend([...addedFriend, { id, newFriend }]);
+    navigate('/addedfriend');
+  }
 
   function onAddActivity({
     id,

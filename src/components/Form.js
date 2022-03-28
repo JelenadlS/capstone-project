@@ -330,7 +330,7 @@ export default function Form({
         handleResetPage={handleResetPage}
         handleResetPageAndShowArrow={handleResetPageAndShowArrow}
       >
-        <img src={saveIcon} alt="save" />
+        <img width="45" height="45" src={saveIcon} alt="save" />
       </Navigation>
     </WrapperForm>
   );
