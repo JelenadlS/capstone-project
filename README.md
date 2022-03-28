@@ -24,8 +24,9 @@ You can add an activity to your list either linked with a friends name or just f
   - Location (optional)
 - Delete items from the list
 - Filter your activities which you have with a specific friend
-- All activities page where you can search and filter through all activities not dependent on which friend is part of it
-- inspiration page where you can toggle between liked and not liked (check on the overview page of the activity)
+- Pages
+  - All activities page where you can search and filter through all activities not dependent on which friend is part of it
+  - Inspiration page where you can toggle between liked and not liked activities (check on the overview page of the activity to set the activity past), also individually search and filter them
 - Storage: localStorage
 
 ## How to use it?

@@ -47,9 +47,23 @@ export default function App() {
     if (searchInput === '') {
       return activity;
     } else {
-      return activity.activity.toLowerCase().includes(searchInput);
+      return activity.activity
+        .toLowerCase()
+        .includes(searchInput.toLowerCase().trim());
     }
   });
+
+  const filteredSearchActivitiesArchived = activitiesArchived.filter(
+    activity => {
+      if (searchInput === '') {
+        return activity;
+      } else {
+        return activity.activity
+          .toLowerCase()
+          .includes(searchInput.toLowerCase().trim());
+      }
+    }
+  );
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
@@ -143,9 +157,17 @@ export default function App() {
             element={
               <GetInspiredPage
                 activitiesArchived={activitiesArchived}
-                showBin={showBin}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+                onFilter={onFilter}
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}
+                setCurrentFilter={setCurrentFilter}
+                currentFilter={currentFilter}
+                filteredSearchActivitiesArchived={
+                  filteredSearchActivitiesArchived
+                }
+                resetPage={resetPage}
               />
             }
           />

@@ -19,7 +19,7 @@ export default function AllActivitiesPage({
   filteredSearchActivities,
   searchInput,
   setSearchInput,
-  showBin,
+
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
@@ -31,7 +31,7 @@ export default function AllActivitiesPage({
           setSearchInput={setSearchInput}
           setCurrentFilter={setCurrentFilter}
           searchInput={searchInput}
-        ></Searchbar>
+        />
         <FilterTags
           activities={activities}
           currentFilter={currentFilter}
@@ -44,13 +44,12 @@ export default function AllActivitiesPage({
             currentFilter={currentFilter}
             searchInput={searchInput}
             filteredSearchActivities={filteredSearchActivities}
-            showBin={showBin}
             handleResetPage={handleResetPage}
           />
         ) : (
-          <EmptyList data-testid="emptylist">
+          <StyledEmptyMessage data-testid="StyledEmptyMessage">
             There is no activity with this name.
-          </EmptyList>
+          </StyledEmptyMessage>
         )}
       </Main>
       <Navigation
@@ -65,7 +64,7 @@ export default function AllActivitiesPage({
   );
 }
 
-const EmptyList = styled.p`
+const StyledEmptyMessage = styled.p`
   color: rgba(71, 39, 35, 0.72);
   padding: 10px;
   text-align: center;
