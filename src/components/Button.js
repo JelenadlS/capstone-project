@@ -67,3 +67,12 @@ const DeleteButton = styled(Button)`
   height: auto;
 `;
 export { DeleteButton };
+
+const QuitButton = styled(Button)`
+  background: none;
+  position: absolute;
+  z-index: 1;
+  right: -7px;
+  top: -5px;
+`;
+export { QuitButton };

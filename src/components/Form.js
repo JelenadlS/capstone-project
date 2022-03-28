@@ -144,7 +144,7 @@ export default function Form({
       <StyledLabels htmlFor="friend">
         Who should join you?
         <div>
-          <i>*Seperate by comma when more than one friend*</i>
+          <i>*Separate by comma when more than one friend*</i>
         </div>
         <StyledInputs
           id="friend"

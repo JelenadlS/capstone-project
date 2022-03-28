@@ -20,10 +20,10 @@ export default function FriendsActivitiesPage({
   onFilter,
   filteredSearchActivities,
   setSearchInput,
-  setCurrentFilter,
   showBin,
   handleResetPage,
   handleResetPageAndShowArrow,
+  resetPage,
 }) {
   const { friendsName } = useParams();
   const selectedFriendsActivities = activities.filter(
@@ -33,7 +33,7 @@ export default function FriendsActivitiesPage({
 
   return (
     <Picture>
-      <Header>
+      <Header handleResetPage={handleResetPage}>
         {selectedFriendsActivities[0].friend}
         <ArrowBackButton onClick={event => resetPage(event, navigate('/'))}>
           <img src={goBackIcon} alt="go back" />
@@ -65,12 +65,6 @@ export default function FriendsActivitiesPage({
       </Navigation>
     </Picture>
   );
-
-  function resetPage(event) {
-    event.preventDefault();
-    setCurrentFilter('all');
-    setSearchInput('');
-  }
 
   function onDeleteActivity(thisActivityId) {
     setActivities(

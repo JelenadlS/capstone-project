@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import FilterTags from './FilterTags.js';
 
 describe('FilterTags', () => {
-  it('renders six tages when available category is there', () => {
+  it('renders six tags when available category is there', () => {
     const selectedFriendsActivity = [
       {
         id: '1',
@@ -63,7 +63,7 @@ describe('FilterTags', () => {
     expect(FAndB).toBeInTheDocument();
   });
 
-  it('renders three tages when two available categories are there', () => {
+  it('renders three tags when two available categories are there', () => {
     const selectedFriendsActivity = [
       {
         id: '1',
@@ -102,7 +102,7 @@ describe('FilterTags', () => {
     expect(FAndB).not.toBeInTheDocument();
   });
 
-  it('renders no tages when only one available category is there', () => {
+  it('renders no tags when only one available category is there', () => {
     const selectedFriendsActivity = [
       {
         id: '1',

@@ -10,6 +10,7 @@ import ErrorFallback from './components/ErrorFallBack';
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
 import EditActivityPage from './pages/EditActivityPage.js';
 import FriendsActivitiesPage from './pages/FriendsActivitiesPage.js';
+import GetInspiredPage from './pages/GetInspiredPage.js';
 import MyFriendsPage from './pages/MyFriendsPage';
 import NewActivityPage from './pages/NewActivityPage.js';
 import AllActivitiesPage from './pages/AllActivitiesPage.js';
@@ -34,7 +35,15 @@ export default function App() {
     saveToLocal('activities', activities);
   }, [activities]);
 
-  const filteredSearchActivities = activities.filter(activity => {
+  const activitiesNotArchived = activities.filter(
+    activity => activity.isArchived === false
+  );
+
+  const activitiesArchived = activities.filter(
+    activity => activity.isArchived === true
+  );
+
+  const filteredSearchActivities = activitiesNotArchived.filter(activity => {
     if (searchInput === '') {
       return activity;
     } else {
@@ -50,7 +59,7 @@ export default function App() {
             path="/"
             element={
               <MyFriendsPage
-                activities={activities}
+                activities={activitiesNotArchived}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
@@ -61,16 +70,16 @@ export default function App() {
             element={
               <FriendsActivitiesPage
                 hasError={hasError}
-                activities={activities}
+                activities={activitiesNotArchived}
                 setActivities={setActivities}
                 currentFilter={currentFilter}
                 onFilter={onFilter}
                 filteredSearchActivities={filteredSearchActivities}
                 setSearchInput={setSearchInput}
-                setCurrentFilter={setCurrentFilter}
                 showBin={showBin}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+                resetPage={resetPage}
               />
             }
           />
@@ -81,6 +90,7 @@ export default function App() {
                 activities={activities}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+                onSetPastActivity={onSetPastActivity}
               />
             }
           />
@@ -88,7 +98,7 @@ export default function App() {
             path="/:friendsName/:activityName/:id/editactivity"
             element={
               <EditActivityPage
-                activities={activities}
+                activities={activitiesNotArchived}
                 onEditActivity={onEditActivity}
                 uploadImage={uploadImage}
                 photo={photo}
@@ -115,7 +125,7 @@ export default function App() {
             path="/allactivities"
             element={
               <AllActivitiesPage
-                activities={activities}
+                activities={activitiesNotArchived}
                 currentFilter={currentFilter}
                 onFilter={onFilter}
                 setCurrentFilter={setCurrentFilter}
@@ -123,6 +133,17 @@ export default function App() {
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}
                 setShowBin={setShowBin}
+                handleResetPage={handleResetPage}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+              />
+            }
+          />
+          <Route
+            path="/getinspired"
+            element={
+              <GetInspiredPage
+                activitiesArchived={activitiesArchived}
+                showBin={showBin}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
@@ -146,7 +167,17 @@ export default function App() {
     setHasError(false);
     setActivities([
       ...activities,
-      { activity, category, friend, id, notes, date, location, photo },
+      {
+        activity,
+        category,
+        friend,
+        id,
+        notes,
+        date,
+        location,
+        photo,
+        isArchived: false,
+      },
     ]);
     navigate('/');
   }
@@ -180,6 +211,31 @@ export default function App() {
     );
   }
 
+  function onSetPastActivity(thisActivityId, isLiked) {
+    if (isLiked === 'true') {
+      setActivities(
+        activities.map(activity => {
+          if (activity.id === thisActivityId) {
+            return { ...activity, isArchived: true, isLiked: true };
+          } else {
+            return activity;
+          }
+        })
+      );
+    } else {
+      setActivities(
+        activities.map(activity => {
+          if (activity.id === thisActivityId) {
+            return { ...activity, isArchived: true, isLiked: false };
+          } else {
+            return activity;
+          }
+        })
+      );
+    }
+    navigate('/');
+  }
+
   function onFilter(category) {
     setCurrentFilter(category);
   }
@@ -194,6 +250,12 @@ export default function App() {
     setCurrentFilter('all');
     setSearchInput('');
     setShowBin(false);
+  }
+
+  function resetPage(event) {
+    event.preventDefault();
+    setCurrentFilter('all');
+    setSearchInput('');
   }
 
   function uploadImage(e) {

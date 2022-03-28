@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -6,6 +7,7 @@ import Header from '../components/Header';
 import Main from '../components/Main';
 import MappedPlaceholderPictures from '../components/MappedPlaceholderPictures.js';
 import Navigation from '../components/Navigation';
+import PastActivityModal from '../components/PastActivityModal';
 import Picture from '../components/Picture';
 
 import cultureIcon from '../images/cultureIcon.svg';
@@ -23,12 +25,13 @@ import sportIcon from '../images/sportIcon.svg';
 
 export default function ActivityOverviewPage({
   activities,
+  onSetPastActivity,
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
   const navigate = useNavigate();
   const { activityName } = useParams();
-  const selectedActivity = activities.find(
+  const selectedActivity = activities?.find(
     activity => activity.activity === activityName
   );
 
@@ -39,16 +42,30 @@ export default function ActivityOverviewPage({
     sport: sportIcon,
     other: otherIcon,
   };
+  const [show, setShow] = useState(false);
+  const [check, setCheck] = useState(false);
 
   return (
     <Picture>
-      <Header>
+      <Header handleResetPage={handleResetPage}>
         {selectedActivity.activity}
-        <ArrowBackButton
-          onClick={() => navigate(`/${selectedActivity.friend}`)}
-        >
-          <img src={goBackIcon} alt="go back" />
-        </ArrowBackButton>
+        {selectedActivity.isArchived === false ? (
+          <ArrowBackButton
+            onClick={() => {
+              navigate(`/${selectedActivity.friend}`);
+            }}
+          >
+            <img src={goBackIcon} alt="go back" />
+          </ArrowBackButton>
+        ) : (
+          <ArrowBackButton
+            onClick={() =>
+              handleResetPageAndShowArrow(navigate('/getinspired'))
+            }
+          >
+            <img src={goBackIcon} alt="go back" />
+          </ArrowBackButton>
+        )}
       </Header>
       <Main>
         <MainGrid>
@@ -114,16 +131,43 @@ export default function ActivityOverviewPage({
               <StyledText>where do you have to go?</StyledText>
             )}
           </StyledOtherInfo>
-          <EditButton
-            onClick={() =>
-              navigate(
-                `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
-              )
-            }
-          >
-            <img src={editIcon} alt="edit" />
-          </EditButton>
+          {selectedActivity.isArchived === false && (
+            <>
+              <EditButton
+                onClick={() =>
+                  navigate(
+                    `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
+                  )
+                }
+              >
+                <img src={editIcon} alt="edit" />
+              </EditButton>
+              <StyledCheckbox>
+                <p>Did you do this activity already?</p>
+                <label htmlFor="checkIfActivityIsDone">
+                  <input
+                    data-testid="checkIfActivityIsDone"
+                    id="checkIfActivityIsDone"
+                    type="checkbox"
+                    name="checkIfActivityIsDone"
+                    width="40px"
+                    onClick={() => setShow(true)}
+                    onChange={() => setCheck(true)}
+                    value={check}
+                    checked={check}
+                  />
+                </label>
+              </StyledCheckbox>
+            </>
+          )}
         </MainGrid>
+        <PastActivityModal
+          onClose={() => setShow(false)}
+          show={show}
+          onSetPastActivity={onSetPastActivity}
+          handleQuit={handleQuit}
+          id={selectedActivity.id}
+        />
       </Main>
       <Navigation
         handleResetPage={handleResetPage}
@@ -135,12 +179,16 @@ export default function ActivityOverviewPage({
       </Navigation>
     </Picture>
   );
+
+  function handleQuit() {
+    setCheck(false);
+  }
 }
 
 const MainGrid = styled.div`
   display: grid;
   grid-template-columns: 57px 30px 20px 30px auto;
-  grid-template-rows: repeat(4, auto) 40px;
+  grid-template-rows: repeat(6, auto) 40px;
   margin: 30px;
   align-items: center;
 `;
@@ -195,4 +243,17 @@ const StyledText = styled.span`
 const StyledNoNotes = styled.span`
   grid-column-start: 1;
   grid-column-end: 6;
+`;
+
+const StyledCheckbox = styled.span`
+  grid-column-start: 1;
+  grid-column-end: 6;
+  display: flex;
+  margin-top: 50px;
+
+  input {
+    margin-left: 20px;
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
 `;

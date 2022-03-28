@@ -29,7 +29,6 @@ export default function List({
         <li key={activity.id}>
           <ActivityCard
             onDeleteActivity={() => onDeleteActivity(activity.id)}
-            activity={activity.activity}
             nameOfSelectedFriend={activity.friend}
             nameOfSelectedActivity={activity.activity}
             nameOfSelectedCategory={activity.category}

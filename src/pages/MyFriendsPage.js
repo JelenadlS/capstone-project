@@ -38,7 +38,7 @@ export default function MyFriendsPage({
 
   return (
     <Picture>
-      <Header>my friends</Header>
+      <Header handleResetPage={handleResetPage}>my friends</Header>
       <Main>
         {activities.length > 0 ? (
           <>
