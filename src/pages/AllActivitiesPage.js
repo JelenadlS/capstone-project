@@ -19,7 +19,7 @@ export default function AllActivitiesPage({
   filteredSearchActivities,
   searchInput,
   setSearchInput,
-  showBin,
+
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
@@ -44,7 +44,6 @@ export default function AllActivitiesPage({
             currentFilter={currentFilter}
             searchInput={searchInput}
             filteredSearchActivities={filteredSearchActivities}
-            showBin={showBin}
             handleResetPage={handleResetPage}
           />
         ) : (

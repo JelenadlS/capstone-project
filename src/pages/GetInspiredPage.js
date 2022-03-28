@@ -14,7 +14,7 @@ import newIcon from '../images/newIcon.svg';
 
 export default function GetInspiredPage({
   activitiesArchived,
-  showBin,
+
   handleResetPage,
   handleResetPageAndShowArrow,
   onFilter,
@@ -97,7 +97,6 @@ export default function GetInspiredPage({
                         nameOfSelectedFriend={activity.friend}
                         nameOfSelectedActivity={activity.activity}
                         photo={activity.photo}
-                        showBin={showBin}
                         handleResetPage={handleResetPage}
                       />
                     </li>
@@ -147,7 +146,6 @@ export default function GetInspiredPage({
                         nameOfSelectedFriend={activity.friend}
                         nameOfSelectedActivity={activity.activity}
                         photo={activity.photo}
-                        showBin={showBin}
                         handleResetPage={handleResetPage}
                       />
                     </li>

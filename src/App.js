@@ -153,7 +153,6 @@ export default function App() {
             element={
               <GetInspiredPage
                 activitiesArchived={activitiesArchived}
-                showBin={showBin}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
                 onFilter={onFilter}
