@@ -42,7 +42,7 @@ export default function GetInspiredPage({
     filteredSearchActivitiesArchived.filter(
       activity => activity.isLiked === false
     );
-  console.log(activitiesArchived);
+
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>Get Inspired</Header>

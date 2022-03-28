@@ -169,7 +169,10 @@ export default function ActivityOverviewPage({
             </>
           ) : (
             <>
-              <PastDeleteButton onClick={() => setShowDeleteModal(true)}>
+              <PastDeleteButton
+                role="button"
+                onClick={() => setShowDeleteModal(true)}
+              >
                 <img width="30" height="30" src={deleteIcon} alt="delete" />
               </PastDeleteButton>
               <DeleteModal

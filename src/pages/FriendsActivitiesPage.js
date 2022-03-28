@@ -32,8 +32,6 @@ export default function FriendsActivitiesPage({
   );
   const navigate = useNavigate();
 
-  console.log(activities);
-  console.log(selectedFriendsActivities);
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>
