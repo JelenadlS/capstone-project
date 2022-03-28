@@ -19,7 +19,7 @@ export default function Navigation({
         <img width="40" height="20" alt="friendsHomeIcon" src={friendIcon} />
         <StyledDescription>friends</StyledDescription>
       </StyledNavLinkFriends>
-      <StyledNavLinkAddFriend to="/" onClick={handleResetPage}>
+      <StyledNavLinkAddFriend to="/addfriend" onClick={handleResetPage}>
         <img width="40" height="20" alt="addAFriendIcon" src={addAFriendIcon} />
         <StyledDescription>add</StyledDescription>
       </StyledNavLinkAddFriend>

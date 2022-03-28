@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import ErrorFallback from './components/ErrorFallBack';
 
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
+import AddFriendPage from './pages/AddFriendPage.js';
 import EditActivityPage from './pages/EditActivityPage.js';
 import FriendsActivitiesPage from './pages/FriendsActivitiesPage.js';
 import GetInspiredPage from './pages/GetInspiredPage.js';
@@ -173,6 +174,7 @@ export default function App() {
               />
             }
           />
+          <Route path="/addfriend" element={<AddFriendPage />} />
         </Routes>
       </WrapperApp>
     </ErrorBoundary>
