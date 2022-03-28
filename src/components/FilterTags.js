@@ -51,9 +51,9 @@ const CategoryButton = styled.button`
   background: ${props =>
     props.active ? 'rgba(71, 39, 35, 0.72)' : 'transparent'};
   color: ${props => (props.active ? '#f0e7da' : 'rgba(71, 39, 35, 0.72)')};
-  border: 2px solid rgba(71, 39, 35, 0.42);
+  border: 1px solid rgba(71, 39, 35, 0.42);
   border-radius: 20px;
   padding: 3px 10px;
-  font-size: 16px;
+  font-size: 14px;
   white-space: nowrap;
 `;
