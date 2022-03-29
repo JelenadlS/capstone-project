@@ -126,6 +126,7 @@ export default function App() {
                 setPhoto={setPhoto}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+                addedFriend={addedFriend}
               />
             }
           />
@@ -139,6 +140,7 @@ export default function App() {
                 setPhoto={setPhoto}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+                addedFriend={addedFriend}
               />
             }
           />

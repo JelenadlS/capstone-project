@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
@@ -20,6 +20,7 @@ export default function Form({
   setPhoto,
   handleResetPage,
   handleResetPageAndShowArrow,
+  addedFriend,
 }) {
   const [preloadedPicture, setPreloadedPicture] = useState(
     preloadedValues?.photo
@@ -78,7 +79,7 @@ export default function Form({
       handleActivity({
         id: id,
         activity: data.activity,
-        category: data.category === '' ? 'other' : data.category,
+        category: data.category === '' ? '' : data.category,
         friend:
           data.friend === '' ? 'I still need to plan...' : sortedFriendNames,
         notes: data.notes,
@@ -130,7 +131,7 @@ export default function Form({
         )}
       </StyledLabels>
 
-      <StyledCategory>
+      <StyledSelection>
         Category:
         <select name="select category" {...register('category')}>
           <option value="culture">culture</option>
@@ -139,32 +140,20 @@ export default function Form({
           <option value="sport">sport</option>
           <option value="other">other</option>
         </select>
-      </StyledCategory>
+      </StyledSelection>
 
-      <StyledLabels htmlFor="friend">
+      <StyledSelection>
         Who should join you?
-        <div>
-          <i>*Separate by comma when more than one friend*</i>
-        </div>
-        <StyledInputs
-          id="friend"
-          type="text"
-          name="friend"
-          placeholder="Lasse, Andrea, Michael,..."
-          {...register('friend', {
-            maxLength: {
-              value: 100,
-              message: 'I can not believe that someone has so many friends',
-            },
+        <select name="friend" {...register('friend')}>
+          {addedFriend.map(friend => {
+            return (
+              <option value={friend.newFriend} key={friend.id}>
+                {friend.newFriend}
+              </option>
+            );
           })}
-          onKeyUp={() => trigger('friend')}
-        />
-        {errors.friend && (
-          <ErrorMessage name="error-message">
-            {errors.friend.message}
-          </ErrorMessage>
-        )}
-      </StyledLabels>
+        </select>
+      </StyledSelection>
 
       <StyledLabels htmlFor="notes">
         Space for some additional notes...
@@ -370,7 +359,7 @@ const WrapperForm = styled.form`
   }
 `;
 
-const StyledCategory = styled.section`
+const StyledSelection = styled.section`
   margin: 0 30px 8px;
   display: flex;
   align-items: center;

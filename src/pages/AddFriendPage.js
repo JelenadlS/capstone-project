@@ -1,6 +1,5 @@
 import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -25,23 +24,14 @@ export default function AddFriendPage({
 }) {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
-  //const [enteredName, setEnteredName] = useState('');
-  const { register, handleSubmit, setFocus } = useForm({});
+  const [enteredName, setEnteredName] = useState('');
 
-  // function handleNameInput(event) {
-  //   setEnteredName(event.target.value);
-  // }
-  // console.log(enteredName);
-
-  const onSubmit = data => {
+  function onSubmit(event) {
+    event.preventDefault();
     const id = nanoid();
-    onAddedFriend({ id: id, newFriend: data.newFriend });
-    //setEnteredName('');
-  };
-
-  useEffect(() => {
-    setFocus('newFriend');
-  }, [setFocus]);
+    onAddedFriend({ id: id, newFriend: enteredName });
+    setEnteredName('');
+  }
 
   return (
     <Picture>
@@ -53,26 +43,19 @@ export default function AddFriendPage({
       </Header>
       <Main>
         <Grid>
-          <WrapperForm autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+          <WrapperForm autoComplete="off">
             <StyledLabels htmlFor="friend">
               Who is your friend?
               <StyledInputs
                 id="friend"
                 type="text"
                 name="friend"
-                // value={enteredName}
-                // onChange={handleNameInput}
+                value={enteredName}
+                onChange={handleNameInput}
                 placeholder="Lasse, Andrea, Michael,..."
-                {...register('newFriend', {
-                  maxLength: {
-                    value: 15,
-                    message:
-                      'I can not believe that someone has such a long name',
-                  },
-                })}
               />
             </StyledLabels>
-            <AddButton type="submit" role="button">
+            <AddButton type="submit" role="button" onClick={onSubmit}>
               <img width="25" height="25" src={saveIcon} alt="save" />
             </AddButton>
           </WrapperForm>
@@ -113,6 +96,13 @@ export default function AddFriendPage({
       </Navigation>
     </Picture>
   );
+
+  function handleNameInput(event) {
+    console.log(event.target.value);
+    const lowerCase = event.target.value.toLowerCase();
+    setEnteredName(lowerCase);
+  }
+
   function onDeleteActivity(thisFriendId) {
     setAddedFriend(addedFriend.filter(friend => friend.id !== thisFriendId));
     setShow(false);
