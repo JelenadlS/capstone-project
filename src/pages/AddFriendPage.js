@@ -29,7 +29,6 @@ export default function AddFriendPage({
   const onSubmit = data => {
     const id = nanoid();
     onAddedFriend({ id: id, newFriend: data.newFriend });
-    navigate('/addedfriend');
   };
 
   useEffect(() => {
@@ -68,7 +67,7 @@ export default function AddFriendPage({
             </AddButton>
           </WrapperForm>
           <section>
-            <p>Here are your already added friends:</p>
+            <p>Find below your already added friends:</p>
             <StyledList role="list" title="list of added friends">
               {addedFriend.map(friend => {
                 return (
@@ -109,6 +108,7 @@ const Grid = styled.span`
   margin-top: 20px;
   display: grid;
   grid-template-rows: 180px 1fr 50px;
+  justify-items: center;
 `;
 const WrapperForm = styled.form`
   display: grid;

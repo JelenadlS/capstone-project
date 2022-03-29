@@ -198,7 +198,6 @@ export default function App() {
   function onAddedFriend({ id, newFriend }) {
     setHasError(false);
     setAddedFriend([...addedFriend, { id, newFriend }]);
-    navigate('/addedfriend');
   }
 
   function onAddActivity({
