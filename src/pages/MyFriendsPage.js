@@ -20,7 +20,8 @@ export default function MyFriendsPage({
   );
 
   const activitiesWithoutFriend = activities.filter(
-    activity => activity.friend === 'I still need to plan...'
+    activity =>
+      activity.friend === 'I still need to plan...' && activity.group === ''
   );
 
   const friendsOnlyOnceWithoutDetails = [
