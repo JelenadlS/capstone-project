@@ -25,13 +25,20 @@ export default function AddFriendPage({
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const [enteredName, setEnteredName] = useState('');
+  const [tooLong, setTooLong] = useState(false);
+  const [tooShort, setTooShort] = useState(true);
 
   function onSubmit(event) {
     event.preventDefault();
+
     const id = nanoid();
     onAddedFriend({ id: id, newFriend: enteredName });
     setEnteredName('');
+    setTooShort(true);
+    setTooLong(false);
   }
+
+  const disabledButton = tooShort === true || tooLong === true;
 
   return (
     <Picture>
@@ -43,10 +50,10 @@ export default function AddFriendPage({
       </Header>
       <Main>
         <Grid>
-          <WrapperForm autoComplete="off">
+          <WrapperForm autoComplete="off" onSubmit={onSubmit}>
             <StyledLabels htmlFor="friend">
               Who is your friend?
-              <StyledInputs
+              <StyledInput
                 id="friend"
                 type="text"
                 name="friend"
@@ -55,10 +62,23 @@ export default function AddFriendPage({
                 placeholder="Lasse, Andrea, Michael,..."
               />
             </StyledLabels>
-            <AddButton type="submit" role="button" onClick={onSubmit}>
+
+            <AddButton type="submit" role="button" disabled={disabledButton}>
               <img width="25" height="25" src={saveIcon} alt="save" />
             </AddButton>
+            {tooLong === true && (
+              <StyledNotification>
+                <i>This is quite a long name for a friend, make it shorter</i>
+              </StyledNotification>
+            )}
+
+            {tooShort === true && (
+              <StyledNotification>
+                <i>Please enter a name with at least 2 characters</i>
+              </StyledNotification>
+            )}
           </WrapperForm>
+
           <section>
             <p>Find below your already added friends:</p>
             <StyledList role="list" title="list of added friends">
@@ -98,7 +118,9 @@ export default function AddFriendPage({
   );
 
   function handleNameInput(event) {
-    console.log(event.target.value);
+    event.preventDefault();
+    event.target.value.length <= 1 ? setTooShort(true) : setTooShort(false);
+    event.target.value.length >= 15 ? setTooLong(true) : setTooLong(false);
     setEnteredName(event.target.value);
   }
 
@@ -112,7 +134,7 @@ const Grid = styled.span`
   height: 85vh;
   margin-top: 20px;
   display: grid;
-  grid-template-rows: 180px 1fr 50px;
+  grid-template-rows: 190px 1fr 50px;
   justify-items: center;
 `;
 const WrapperForm = styled.form`
@@ -127,7 +149,7 @@ const StyledLabels = styled.label`
   padding: 0 30px;
 `;
 
-const StyledInputs = styled.input`
+const StyledInput = styled.input`
   background: transparent;
   border: 1px solid rgba(71, 39, 35, 0.42);
   border-radius: 5px;
@@ -142,11 +164,17 @@ const StyledList = styled.ul`
 
   li {
     margin-left: 40px;
-    padding: 5px;
+    padding: 2px;
   }
 `;
 
 const StyledImage = styled.img`
   padding-top: 3px;
   margin-left: 20px;
+`;
+
+const StyledNotification = styled.p`
+  font-size: 12px;
+  color: rgba(210, 129, 53, 1);
+  margin-bottom: 20px;
 `;

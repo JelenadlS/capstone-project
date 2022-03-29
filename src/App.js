@@ -69,7 +69,7 @@ export default function App() {
       }
     }
   );
-  console.log(addedFriend);
+
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <WrapperApp>
