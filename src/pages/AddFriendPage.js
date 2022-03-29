@@ -50,7 +50,11 @@ export default function AddFriendPage({
       </Header>
       <Main>
         <Grid>
-          <WrapperForm autoComplete="off" onSubmit={onSubmit}>
+          <WrapperForm
+            title="addAFriend"
+            autoComplete="off"
+            onSubmit={onSubmit}
+          >
             <StyledLabels htmlFor="addFriend">
               Who is your friend?
               <StyledInput
