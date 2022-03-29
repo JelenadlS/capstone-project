@@ -1,10 +1,11 @@
 import { nanoid } from 'nanoid';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { AddButton, ArrowBackButton, DeleteButton } from '../components/Button';
+import DeleteModal from '../components/DeleteModal.js';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
@@ -22,13 +23,20 @@ export default function AddFriendPage({
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
-
+  //const [enteredName, setEnteredName] = useState('');
   const { register, handleSubmit, setFocus } = useForm({});
+
+  // function handleNameInput(event) {
+  //   setEnteredName(event.target.value);
+  // }
+  // console.log(enteredName);
 
   const onSubmit = data => {
     const id = nanoid();
     onAddedFriend({ id: id, newFriend: data.newFriend });
+    //setEnteredName('');
   };
 
   useEffect(() => {
@@ -52,10 +60,12 @@ export default function AddFriendPage({
                 id="friend"
                 type="text"
                 name="friend"
+                // value={enteredName}
+                // onChange={handleNameInput}
                 placeholder="Lasse, Andrea, Michael,..."
                 {...register('newFriend', {
                   maxLength: {
-                    value: 10,
+                    value: 15,
                     message:
                       'I can not believe that someone has such a long name',
                   },
@@ -73,7 +83,7 @@ export default function AddFriendPage({
                 return (
                   <li key={friend.id}>
                     {friend.newFriend}
-                    <DeleteButton onClick={() => onDeleteActivity(friend.id)}>
+                    <DeleteButton onClick={() => setShow(true)}>
                       <StyledImage
                         width="18"
                         height="18"
@@ -81,6 +91,11 @@ export default function AddFriendPage({
                         alt="delete"
                       />
                     </DeleteButton>
+                    <DeleteModal
+                      onDelete={() => onDeleteActivity(friend.id)}
+                      onClose={() => setShow(false)}
+                      show={show}
+                    />
                   </li>
                 );
               })}
@@ -100,6 +115,7 @@ export default function AddFriendPage({
   );
   function onDeleteActivity(thisFriendId) {
     setAddedFriend(addedFriend.filter(friend => friend.id !== thisFriendId));
+    setShow(false);
   }
 }
 
@@ -136,6 +152,7 @@ const StyledList = styled.ul`
   color: rgba(71, 39, 35, 0.72);
 
   li {
+    margin-left: 40px;
     padding: 5px;
   }
 `;

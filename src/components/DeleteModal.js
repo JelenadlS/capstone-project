@@ -6,6 +6,7 @@ export default function DeleteModal({ show, onClose, onDelete }) {
   if (!show) {
     return null;
   }
+
   return (
     <WrapperModal>
       <p>Are you sure you want to delete?</p>
