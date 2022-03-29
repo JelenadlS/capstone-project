@@ -8,26 +8,23 @@ import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
 import newIcon from '../images/newIcon.svg';
-import nextIcon from '../images/nextIcon.svg';
 
 export default function MyGroupsPage({
   activities,
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
-  const activitiesWithFriendsName = activities.filter(
-    activity => activity.friend !== 'I still need to plan...'
+  console.log(activities);
+
+  const activitiesWithGroup = activities.filter(
+    activity => activity.group !== ''
   );
 
-  const activitiesWithoutFriend = activities.filter(
-    activity => activity.friend === 'I still need to plan...'
-  );
-
-  const friendsOnlyOnceWithoutDetails = [
-    ...new Set(activitiesWithFriendsName.map(activity => activity.friend)),
+  const groupsOnlyOnceWithoutDetails = [
+    ...new Set(activitiesWithGroup.map(activity => activity?.group)),
   ];
 
-  const sortedFriendsList = friendsOnlyOnceWithoutDetails.sort(function (a, b) {
+  const sortedGroupList = groupsOnlyOnceWithoutDetails.sort(function (a, b) {
     const firstFriend = a.toLowerCase();
     const secondFriend = b.toLowerCase();
 
@@ -35,48 +32,28 @@ export default function MyGroupsPage({
     if (firstFriend > secondFriend) return 1;
     return 0;
   });
-
+  console.log(sortedGroupList);
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>my groups</Header>
       <Main>
-        {activities.length > 0 ? (
-          <>
-            {activitiesWithoutFriend.length > 0 && (
-              <StyledLink to="/I still need to plan...">
-                <NameStyling>
-                  Things I still need to plan with someone:
-                </NameStyling>
-                <NumStyling>
-                  #{activitiesWithoutFriend.length}
-                  <StyledArrow>
-                    <img src={nextIcon} alt="next page" />
-                  </StyledArrow>
-                </NumStyling>
-              </StyledLink>
-            )}
-            <StyledList role="list" title="list of friends">
-              {sortedFriendsList.map((friend, index) => {
-                const sumOfActivitiesEachFriend = activities.filter(
-                  activity => activity.friend === friend
-                ).length;
-                return (
-                  <li key={index}>
-                    <FriendCard
-                      friend={friend}
-                      sumOfActivitiesEachFriend={sumOfActivitiesEachFriend}
-                    />
-                  </li>
-                );
-              })}
-            </StyledList>
-          </>
-        ) : (
-          <StyledEmptyMessage data-testid="emptylist">
-            Unfortunately you did not enter any activity yet. Start now and fill
-            your list with amazing activities!
-          </StyledEmptyMessage>
-        )}
+        <StyledList role="list" title="list of groups">
+          {sortedGroupList.map((group, index) => {
+            const sumOfActivitiesEachGroup = activities.filter(
+              activity => activity.group === group
+            ).length;
+            console.log(sumOfActivitiesEachGroup);
+            console.log(group);
+            return (
+              <li key={index}>
+                <FriendCard
+                  group={group}
+                  sumOfActivitiesEachGroup={sumOfActivitiesEachGroup}
+                />
+              </li>
+            );
+          })}
+        </StyledList>
       </Main>
       <Navigation
         handleResetPage={handleResetPage}
@@ -90,26 +67,6 @@ export default function MyGroupsPage({
   );
 }
 
-const StyledLink = styled(Link)`
-  color: rgba(71, 39, 35, 0.72);
-  text-decoration: none;
-  padding: 20px 18px 10px 10px;
-  display: grid;
-  grid-template-columns: auto auto;
-  border-bottom: 2px solid rgba(71, 39, 35, 0.3);
-`;
-
-const NameStyling = styled.p`
-  font-weight: bold;
-  display: grid;
-  grid-template-columns: auto auto;
-`;
-
-const NumStyling = styled.span`
-  justify-self: end;
-  align-self: center;
-`;
-
 const StyledList = styled.ul`
   list-style-type: none;
   color: rgba(71, 39, 35, 0.72);
@@ -117,14 +74,4 @@ const StyledList = styled.ul`
   li {
     padding: 5px;
   }
-`;
-
-const StyledEmptyMessage = styled.p`
-  color: rgba(71, 39, 35, 0.72);
-  padding: 10px;
-  text-align: center;
-`;
-
-const StyledArrow = styled.span`
-  margin-left: 5px;
 `;

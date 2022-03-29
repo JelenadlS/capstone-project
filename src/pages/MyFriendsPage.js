@@ -35,7 +35,7 @@ export default function MyFriendsPage({
     if (firstFriend > secondFriend) return 1;
     return 0;
   });
-
+  console.log(sortedFriendsList);
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>my friends</Header>

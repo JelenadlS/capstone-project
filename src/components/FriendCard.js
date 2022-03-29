@@ -3,20 +3,42 @@ import styled from 'styled-components';
 
 import nextIcon from '../images/nextIcon.svg';
 
-export default function FriendCard({ friend, sumOfActivitiesEachFriend }) {
+export default function FriendCard({
+  friend,
+  sumOfActivitiesEachFriend,
+  group,
+  sumOfActivitiesEachGroup,
+}) {
+  console.log(friend);
+  console.log(group);
   return (
     <WrapperCard>
-      <LinkStyling to={`/${friend}`}>
-        <NameStyling>
-          <strong>{friend}</strong>
-        </NameStyling>
-        <NumStyling>
-          #{sumOfActivitiesEachFriend}{' '}
-          <StyledArrow>
-            <img src={nextIcon} alt="next page" />
-          </StyledArrow>
-        </NumStyling>
-      </LinkStyling>
+      {friend !== undefined && (
+        <LinkStyling to={`/${friend}`}>
+          <NameStyling>
+            <strong>{friend}</strong>
+          </NameStyling>
+          <NumStyling>
+            #{sumOfActivitiesEachFriend}
+            <StyledArrow>
+              <img src={nextIcon} alt="next page" />
+            </StyledArrow>
+          </NumStyling>
+        </LinkStyling>
+      )}
+      {group !== undefined && (
+        <LinkStyling to={`/${group}`}>
+          <NameStyling>
+            <strong>{group}</strong>
+          </NameStyling>
+          <NumStyling>
+            #{sumOfActivitiesEachGroup}
+            <StyledArrow>
+              <img src={nextIcon} alt="next page" />
+            </StyledArrow>
+          </NumStyling>
+        </LinkStyling>
+      )}
     </WrapperCard>
   );
 }
