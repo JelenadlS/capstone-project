@@ -16,6 +16,7 @@ export default function NewActivityPage({
   handleResetPage,
   handleResetPageAndShowArrow,
   addedFriend,
+  addedGroup,
 }) {
   const navigate = useNavigate();
 
@@ -42,6 +43,7 @@ export default function NewActivityPage({
           handleResetPage={handleResetPage}
           handleResetPageAndShowArrow={handleResetPageAndShowArrow}
           addedFriend={addedFriend}
+          addedGroup={addedGroup}
         />
       </Main>
     </Picture>

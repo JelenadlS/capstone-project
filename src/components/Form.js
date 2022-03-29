@@ -23,6 +23,7 @@ export default function Form({
   handleResetPage,
   handleResetPageAndShowArrow,
   addedFriend,
+  addedGroup,
 }) {
   const [preloadedPicture, setPreloadedPicture] = useState(
     preloadedValues?.photo
@@ -154,6 +155,15 @@ export default function Form({
             return (
               <option value={friend.newFriend} key={friend.id}>
                 {friend.newFriend}
+              </option>
+            );
+          })}
+        </select>
+        <select name="group" {...register('group')}>
+          {addedGroup.map(group => {
+            return (
+              <option value={group.enteredGroup} key={group.id}>
+                {group.enteredGroup}
               </option>
             );
           })}

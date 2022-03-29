@@ -17,6 +17,7 @@ export default function EditActivityPage({
   handleResetPage,
   handleResetPageAndShowArrow,
   addedFriend,
+  addedGroup,
 }) {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -40,6 +41,7 @@ export default function EditActivityPage({
           handleResetPage={handleResetPage}
           handleResetPageAndShowArrow={handleResetPageAndShowArrow}
           addedFriend={addedFriend}
+          addedGroup={addedGroup}
         />
       </Main>
     </Picture>

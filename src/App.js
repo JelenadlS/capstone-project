@@ -142,6 +142,7 @@ export default function App() {
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
                 addedFriend={addedFriend}
+                addedGroup={addedGroup}
               />
             }
           />
@@ -156,6 +157,7 @@ export default function App() {
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
                 addedFriend={addedFriend}
+                addedGroup={addedGroup}
               />
             }
           />
