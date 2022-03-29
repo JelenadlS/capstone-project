@@ -22,6 +22,7 @@ import editIcon from '../images/editIcon.svg';
 import fAndBIcon from '../images/fAndBIcon.svg';
 import friendIcon from '../images/friendIcon.svg';
 import goBackIcon from '../images/goBackIcon.svg';
+import groupIcon from '../images/groupIcon.svg';
 import locationIcon from '../images/locationIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import notesIcon from '../images/notesIcon.svg';
@@ -106,10 +107,16 @@ export default function ActivityOverviewPage({
           <StyledOtherInfo>
             <StyledIcon width="35" height="35" src={friendIcon} alt="friend" />
 
-            {selectedActivity.friend !== 'I still need to plan...' ? (
+            {selectedActivity.friend !== 'I still need to plan...' ||
+            selectedActivity.group !== '' ? (
               <StyledText>{selectedActivity.friend}</StyledText>
             ) : (
               <StyledText>make plans with a friend!</StyledText>
+            )}
+            {selectedActivity.friend === 'I still need to plan...' ? (
+              <StyledText>{selectedActivity.group}</StyledText>
+            ) : (
+              <StyledText>make plans with a friend or group!</StyledText>
             )}
 
             {selectedActivity.notes ? (

@@ -28,10 +28,11 @@ export default function FriendsActivitiesPage({
 }) {
   const { friendsName } = useParams();
   const selectedFriendsActivities = activitiesNotArchived.filter(
-    activity => activity.friend === friendsName
+    activity =>
+      (activity.group === '' ? activity.friend : activity.group) === friendsName
   );
   const navigate = useNavigate();
-
+  console.log(selectedFriendsActivities);
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>
