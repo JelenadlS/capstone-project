@@ -1,12 +1,14 @@
 import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { DeletePictureButton } from '../components/Button';
 import Navigation from './Navigation';
 
+import addAFriendIcon from '../images/addAFriendIcon.svg';
 import addPictureIcon from '../images/addPictureIcon.svg';
 import deletePictureIcon from '../images/deletePictureIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
@@ -153,6 +155,14 @@ export default function Form({
             );
           })}
         </select>
+        <StyledFriendLink to="/addfriend" onClick={handleResetPage}>
+          <img
+            width="40"
+            height="20"
+            alt="addAFriendIcon"
+            src={addAFriendIcon}
+          />
+        </StyledFriendLink>
       </StyledSelection>
 
       <StyledLabels htmlFor="notes">
@@ -363,7 +373,7 @@ const StyledSelection = styled.section`
   margin: 0 30px 8px;
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 15px;
 
   select {
     color: rgba(71, 39, 35, 0.72);
@@ -387,6 +397,10 @@ const StyledInputs = styled.input`
   width: 100%;
   color: rgba(71, 39, 35, 0.72);
   outline: none;
+`;
+
+const StyledFriendLink = styled(Link)`
+  margin-top: 8px;
 `;
 
 const StyledDate = styled(StyledInputs)`

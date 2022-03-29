@@ -99,8 +99,7 @@ export default function AddFriendPage({
 
   function handleNameInput(event) {
     console.log(event.target.value);
-    const lowerCase = event.target.value.toLowerCase();
-    setEnteredName(lowerCase);
+    setEnteredName(event.target.value);
   }
 
   function onDeleteActivity(thisFriendId) {
