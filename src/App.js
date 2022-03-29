@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router-dom';
@@ -8,6 +9,7 @@ import styled from 'styled-components';
 import ErrorFallback from './components/ErrorFallBack';
 
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
+import AddFriendPage from './pages/AddFriendPage.js';
 import EditActivityPage from './pages/EditActivityPage.js';
 import FriendsActivitiesPage from './pages/FriendsActivitiesPage.js';
 import GetInspiredPage from './pages/GetInspiredPage.js';
@@ -28,12 +30,15 @@ export default function App() {
   const [searchInput, setSearchInput] = useState('');
   const [currentFilter, setCurrentFilter] = useState('all');
   const [showBin, setShowBin] = useState(true);
-
+  const [addedFriend, setAddedFriend] = useState(
+    (!hasError && loadFromLocal('addedFriend')) || []
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
     saveToLocal('activities', activities);
-  }, [activities]);
+    saveToLocal('addedFriend', addedFriend);
+  }, [activities, addedFriend]);
 
   const activitiesNotArchived = activities.filter(
     activity => activity.isArchived === false
@@ -121,6 +126,7 @@ export default function App() {
                 setPhoto={setPhoto}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+                addedFriend={addedFriend}
               />
             }
           />
@@ -134,6 +140,7 @@ export default function App() {
                 setPhoto={setPhoto}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+                addedFriend={addedFriend}
               />
             }
           />
@@ -173,10 +180,27 @@ export default function App() {
               />
             }
           />
+          <Route
+            path="/addfriend"
+            element={
+              <AddFriendPage
+                addedFriend={addedFriend}
+                setAddedFriend={setAddedFriend}
+                onAddedFriend={onAddedFriend}
+                handleResetPage={handleResetPage}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+              />
+            }
+          />
         </Routes>
       </WrapperApp>
     </ErrorBoundary>
   );
+
+  function onAddedFriend({ id, newFriend }) {
+    setHasError(false);
+    setAddedFriend([...addedFriend, { id, newFriend }]);
+  }
 
   function onAddActivity({
     id,

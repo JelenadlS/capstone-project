@@ -12,9 +12,7 @@ describe('Header', () => {
     );
 
     const heading = screen.getByRole('heading');
-    const image = screen.getByRole('img', { name: 'friendsHomeIcon' });
 
     expect(heading).toBeInTheDocument();
-    expect(image).toBeInTheDocument();
   });
 });

@@ -11,11 +11,19 @@ describe('Navigation', () => {
       </MemoryRouter>
     );
 
-    const inspireNavigation = screen.getByRole('link', { name: /inspire/i });
-    expect(inspireNavigation).toBeInTheDocument();
-    const searchNavigation = screen.getByRole('link', { name: /search/i });
-    expect(searchNavigation).toBeInTheDocument();
+    const friendIcon = screen.getByRole('link', { name: /friendIcon/i });
+    expect(friendIcon).toBeInTheDocument();
+    const addAFriendIcon = screen.getByRole('link', {
+      name: /addAFriendIcon/i,
+    });
+    expect(addAFriendIcon).toBeInTheDocument();
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
+    const allActivitiesIcon = screen.getByRole('link', {
+      name: /allActivitiesIcon/i,
+    });
+    expect(allActivitiesIcon).toBeInTheDocument();
+    const inspireNavigation = screen.getByRole('link', { name: /inspire/i });
+    expect(inspireNavigation).toBeInTheDocument();
   });
 });

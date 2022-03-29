@@ -2,11 +2,13 @@ import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { DeletePictureButton } from '../components/Button';
 import Navigation from './Navigation';
 
+import addAFriendIcon from '../images/addAFriendIcon.svg';
 import addPictureIcon from '../images/addPictureIcon.svg';
 import deletePictureIcon from '../images/deletePictureIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
@@ -20,6 +22,7 @@ export default function Form({
   setPhoto,
   handleResetPage,
   handleResetPageAndShowArrow,
+  addedFriend,
 }) {
   const [preloadedPicture, setPreloadedPicture] = useState(
     preloadedValues?.photo
@@ -78,7 +81,7 @@ export default function Form({
       handleActivity({
         id: id,
         activity: data.activity,
-        category: data.category === '' ? 'other' : data.category,
+        category: data.category === '' ? '' : data.category,
         friend:
           data.friend === '' ? 'I still need to plan...' : sortedFriendNames,
         notes: data.notes,
@@ -130,7 +133,7 @@ export default function Form({
         )}
       </StyledLabels>
 
-      <StyledCategory>
+      <StyledSelection>
         Category:
         <select name="select category" {...register('category')}>
           <option value="culture">culture</option>
@@ -139,32 +142,28 @@ export default function Form({
           <option value="sport">sport</option>
           <option value="other">other</option>
         </select>
-      </StyledCategory>
+      </StyledSelection>
 
-      <StyledLabels htmlFor="friend">
+      <StyledSelection>
         Who should join you?
-        <div>
-          <i>*Separate by comma when more than one friend*</i>
-        </div>
-        <StyledInputs
-          id="friend"
-          type="text"
-          name="friend"
-          placeholder="Lasse, Andrea, Michael,..."
-          {...register('friend', {
-            maxLength: {
-              value: 100,
-              message: 'I can not believe that someone has so many friends',
-            },
+        <select name="friend" {...register('friend')}>
+          {addedFriend.map(friend => {
+            return (
+              <option value={friend.newFriend} key={friend.id}>
+                {friend.newFriend}
+              </option>
+            );
           })}
-          onKeyUp={() => trigger('friend')}
-        />
-        {errors.friend && (
-          <ErrorMessage name="error-message">
-            {errors.friend.message}
-          </ErrorMessage>
-        )}
-      </StyledLabels>
+        </select>
+        <StyledFriendLink to="/addfriend" onClick={handleResetPage}>
+          <img
+            width="40"
+            height="20"
+            alt="addAFriendIcon"
+            src={addAFriendIcon}
+          />
+        </StyledFriendLink>
+      </StyledSelection>
 
       <StyledLabels htmlFor="notes">
         Space for some additional notes...
@@ -204,6 +203,7 @@ export default function Form({
               type="file"
               onChange={uploadImage}
               hidden
+              accept="image/gif,image/jpeg,image/png"
             />
           </label>
 
@@ -266,6 +266,7 @@ export default function Form({
               type="file"
               onChange={uploadImage}
               hidden
+              accept="image/gif,image/jpeg,image/png"
             />
           </label>
           {photo ? (
@@ -330,7 +331,7 @@ export default function Form({
         handleResetPage={handleResetPage}
         handleResetPageAndShowArrow={handleResetPageAndShowArrow}
       >
-        <img src={saveIcon} alt="save" />
+        <img width="45" height="45" src={saveIcon} alt="save" />
       </Navigation>
     </WrapperForm>
   );
@@ -356,6 +357,7 @@ const WrapperForm = styled.form`
     background: transparent;
     border: 1px solid rgba(71, 39, 35, 0.42);
     border-radius: 5px;
+    padding: 5px;
     height: 90px;
     width: 100%;
     color: rgba(71, 39, 35, 0.72);
@@ -370,11 +372,11 @@ const WrapperForm = styled.form`
   }
 `;
 
-const StyledCategory = styled.section`
+const StyledSelection = styled.section`
   margin: 0 30px 8px;
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 15px;
 
   select {
     color: rgba(71, 39, 35, 0.72);
@@ -394,10 +396,14 @@ const StyledInputs = styled.input`
   background: transparent;
   border: 1px solid rgba(71, 39, 35, 0.42);
   border-radius: 5px;
-  padding: 1px;
+  padding: 5px;
   width: 100%;
   color: rgba(71, 39, 35, 0.72);
   outline: none;
+`;
+
+const StyledFriendLink = styled(Link)`
+  margin-top: 8px;
 `;
 
 const StyledDate = styled(StyledInputs)`

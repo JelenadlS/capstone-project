@@ -16,6 +16,7 @@ export default function EditActivityPage({
   setPhoto,
   handleResetPage,
   handleResetPageAndShowArrow,
+  addedFriend,
 }) {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -38,6 +39,7 @@ export default function EditActivityPage({
           setPhoto={setPhoto}
           handleResetPage={handleResetPage}
           handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+          addedFriend={addedFriend}
         />
       </Main>
     </Picture>

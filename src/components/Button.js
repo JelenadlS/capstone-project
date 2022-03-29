@@ -6,6 +6,17 @@ const Button = styled.button`
 
 export default Button;
 
+const AddButton = styled(Button)`
+  background: #92dec5;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 40px;
+  padding: 5px;
+  width: 75px;
+  height: 40px;
+`;
+
+export { AddButton };
+
 const MainNavButton = styled(Button)`
   background: #92dec5;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
