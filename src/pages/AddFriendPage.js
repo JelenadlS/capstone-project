@@ -79,31 +79,33 @@ export default function AddFriendPage({
             )}
           </WrapperForm>
 
-          <section>
-            <p>Find below your already added friends:</p>
-            <StyledList role="list" title="list of added friends">
-              {addedFriend.map(friend => {
-                return (
-                  <li key={friend.id}>
-                    {friend.newFriend}
-                    <DeleteButton onClick={() => setShow(true)}>
-                      <StyledImage
-                        width="18"
-                        height="18"
-                        src={deleteIcon}
-                        alt="delete"
+          {addedFriend.length > 0 && (
+            <section>
+              <p>Find below your already added friends:</p>
+              <StyledList role="list" title="list of added friends">
+                {addedFriend.map(friend => {
+                  return (
+                    <li key={friend.id}>
+                      {friend.newFriend}
+                      <DeleteButton onClick={() => setShow(true)}>
+                        <StyledImage
+                          width="18"
+                          height="18"
+                          src={deleteIcon}
+                          alt="delete"
+                        />
+                      </DeleteButton>
+                      <DeleteModal
+                        onDelete={() => onDeleteActivity(friend.id)}
+                        onClose={() => setShow(false)}
+                        show={show}
                       />
-                    </DeleteButton>
-                    <DeleteModal
-                      onDelete={() => onDeleteActivity(friend.id)}
-                      onClose={() => setShow(false)}
-                      show={show}
-                    />
-                  </li>
-                );
-              })}
-            </StyledList>
-          </section>
+                    </li>
+                  );
+                })}
+              </StyledList>
+            </section>
+          )}
         </Grid>
       </Main>
       <Navigation
