@@ -33,13 +33,17 @@ export default function App() {
   const [addedFriend, setAddedFriend] = useState(
     (!hasError && loadFromLocal('addedFriend')) || []
   );
+  const [addedGroup, setAddedGroup] = useState(
+    (!hasError && loadFromLocal('addedGroup')) || []
+  );
 
   const navigate = useNavigate();
 
   useEffect(() => {
     saveToLocal('activities', activities);
     saveToLocal('addedFriend', addedFriend);
-  }, [activities, addedFriend]);
+    saveToLocal('addedGroup', addedGroup);
+  }, [activities, addedFriend, addedGroup]);
 
   const activitiesNotArchived = activities.filter(
     activity => activity.isArchived === false
@@ -197,7 +201,8 @@ export default function App() {
               <AddFriendPage
                 addedFriend={addedFriend}
                 setAddedFriend={setAddedFriend}
-                // onAddedFriend={onAddedFriend}
+                addedGroup={addedGroup}
+                setAddedGroup={setAddedGroup}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
@@ -208,15 +213,11 @@ export default function App() {
     </ErrorBoundary>
   );
 
-  // function onAddedFriend({ id, newFriend }) {
-  //   setHasError(false);
-  //   setAddedFriend([...addedFriend, { id, newFriend }]);
-  // }
-
   function onAddActivity({
     id,
     activity,
     category,
+    group,
     friend,
     notes,
     date,
@@ -229,6 +230,7 @@ export default function App() {
       {
         activity,
         category,
+        group,
         friend,
         id,
         notes,
@@ -245,6 +247,7 @@ export default function App() {
     id,
     activity,
     category,
+    group,
     friend,
     notes,
     date,
@@ -259,6 +262,7 @@ export default function App() {
               id,
               activity,
               category,
+              group,
               friend,
               notes,
               date,

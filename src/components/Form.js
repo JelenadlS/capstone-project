@@ -40,6 +40,7 @@ export default function Form({
       : {
           activities: '',
           category: 'other',
+          group: '',
           friend: '',
           notes: '',
           date: '',
@@ -67,6 +68,7 @@ export default function Form({
         id: preloadedValues.id,
         activity: data.activity,
         category: data.category === '' ? 'other' : data.category,
+        group: data.group,
         friend:
           data.friend === '' ? 'I still need to plan...' : sortedFriendNames,
         notes: data.notes,
@@ -82,6 +84,7 @@ export default function Form({
         id: id,
         activity: data.activity,
         category: data.category === '' ? '' : data.category,
+        group: data.group,
         friend:
           data.friend === '' ? 'I still need to plan...' : sortedFriendNames,
         notes: data.notes,
