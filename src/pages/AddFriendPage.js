@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { AddButton, ArrowBackButton, DeleteButton } from '../components/Button';
-import DeleteModal from '../components/DeleteModal.js';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
@@ -18,11 +17,9 @@ import saveIcon from '../images/saveIcon.svg';
 export default function AddFriendPage({
   addedFriend,
   setAddedFriend,
-  onAddedFriend,
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
-  const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const [enteredName, setEnteredName] = useState('');
   const [tooLong, setTooLong] = useState(false);
@@ -31,8 +28,22 @@ export default function AddFriendPage({
   function onSubmit(event) {
     event.preventDefault();
 
-    const id = nanoid();
-    onAddedFriend({ id: id, newFriend: enteredName });
+    const separatedFriends = enteredName
+      .split(',')
+      .map(function (name) {
+        return name.trim();
+      })
+      .filter(name => {
+        return name !== '';
+      });
+
+    const arrayWithIds = separatedFriends.map(friend => {
+      const id = nanoid();
+      return { id: id.toString(), newFriend: friend };
+    });
+
+    separatedFriends.length > 0 &&
+      setAddedFriend(friends => [...friends, ...arrayWithIds]);
     setEnteredName('');
     setTooShort(true);
     setTooLong(false);
@@ -87,23 +98,20 @@ export default function AddFriendPage({
             <section>
               <p>Find below your already added friends:</p>
               <StyledList role="list" title="list of added friends">
-                {addedFriend.map(friend => {
+                {addedFriend?.map(friend => {
                   return (
                     <li key={friend.id}>
-                      {friend.newFriend}
-                      <DeleteButton onClick={() => setShow(true)}>
-                        <StyledImage
-                          width="18"
-                          height="18"
-                          src={deleteIcon}
-                          alt="delete"
-                        />
-                      </DeleteButton>
-                      <DeleteModal
-                        onDelete={() => onDeleteActivity(friend.id)}
-                        onClose={() => setShow(false)}
-                        show={show}
-                      />
+                      <div>
+                        {friend.newFriend}
+                        <DeleteButton onClick={() => onDeleteFriend(friend.id)}>
+                          <StyledImage
+                            width="18"
+                            height="18"
+                            src={deleteIcon}
+                            alt="delete"
+                          />
+                        </DeleteButton>
+                      </div>
                     </li>
                   );
                 })}
@@ -126,13 +134,13 @@ export default function AddFriendPage({
   function handleNameInput(event) {
     event.preventDefault();
     event.target.value.length <= 1 ? setTooShort(true) : setTooShort(false);
-    event.target.value.length >= 15 ? setTooLong(true) : setTooLong(false);
+    event.target.value.length >= 25 ? setTooLong(true) : setTooLong(false);
     setEnteredName(event.target.value);
   }
 
-  function onDeleteActivity(thisFriendId) {
-    setAddedFriend(addedFriend.filter(friend => friend.id !== thisFriendId));
-    setShow(false);
+  function onDeleteFriend(thisActivityId) {
+    console.log(thisActivityId);
+    setAddedFriend(addedFriend.filter(friend => friend.id !== thisActivityId));
   }
 }
 

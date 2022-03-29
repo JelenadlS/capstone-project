@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router-dom';
@@ -186,7 +185,7 @@ export default function App() {
               <AddFriendPage
                 addedFriend={addedFriend}
                 setAddedFriend={setAddedFriend}
-                onAddedFriend={onAddedFriend}
+                // onAddedFriend={onAddedFriend}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
@@ -197,10 +196,10 @@ export default function App() {
     </ErrorBoundary>
   );
 
-  function onAddedFriend({ id, newFriend }) {
-    setHasError(false);
-    setAddedFriend([...addedFriend, { id, newFriend }]);
-  }
+  // function onAddedFriend({ id, newFriend }) {
+  //   setHasError(false);
+  //   setAddedFriend([...addedFriend, { id, newFriend }]);
+  // }
 
   function onAddActivity({
     id,

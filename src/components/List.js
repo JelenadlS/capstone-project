@@ -40,6 +40,7 @@ export default function List({
             photo={activity.photo}
             showBin={showBin}
             handleResetPage={handleResetPage}
+            id={activity.id}
           />
         </li>
       ))}

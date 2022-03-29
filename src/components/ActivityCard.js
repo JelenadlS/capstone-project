@@ -18,6 +18,7 @@ export default function ActivityCard({
   nameOfSelectedCategory,
   showBin,
   handleResetPage,
+  id,
 }) {
   const [show, setShow] = useState(false);
 
@@ -53,6 +54,7 @@ export default function ActivityCard({
               onDelete={onDeleteActivity}
               onClose={() => setShow(false)}
               show={show}
+              id={id}
             />
           </CardSubGrid>
         ) : (

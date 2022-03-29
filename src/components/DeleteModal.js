@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 import { ModalButton } from './Button.js';
 
-export default function DeleteModal({ show, onClose, onDelete }) {
+export default function DeleteModal({ show, onClose, onDelete, id }) {
   if (!show) {
     return null;
   }
-
+  console.log(id);
   return (
     <WrapperModal>
       <p>Are you sure you want to delete?</p>
