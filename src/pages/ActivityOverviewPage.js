@@ -105,18 +105,35 @@ export default function ActivityOverviewPage({
           <StyledCategoryText>{selectedActivity.category}</StyledCategoryText>
 
           <StyledOtherInfo>
-            <StyledIcon width="35" height="35" src={friendIcon} alt="friend" />
-
-            {selectedActivity.friend !== 'I still need to plan...' ||
-            selectedActivity.group !== '' ? (
-              <StyledText>{selectedActivity.friend}</StyledText>
-            ) : (
-              <StyledText>make plans with a friend!</StyledText>
+            {selectedActivity.friend !== 'I still need to plan...' && (
+              <StyledIcon
+                width="35"
+                height="35"
+                src={friendIcon}
+                alt="friend"
+              />
             )}
-            {selectedActivity.friend === 'I still need to plan...' ? (
+            {selectedActivity.friend !== 'I still need to plan...' && (
+              <StyledText>{selectedActivity.friend}</StyledText>
+            )}
+
+            {selectedActivity.group !== '' &&
+            selectedActivity.friend === 'I still need to plan...' ? (
+              <StyledIcon width="55" height="55" src={groupIcon} alt="friend" />
+            ) : (
+              <StyledIcon
+                width="35"
+                height="35"
+                src={friendIcon}
+                alt="friend"
+              />
+            )}
+
+            {selectedActivity.group !== '' &&
+            selectedActivity.friend === 'I still need to plan...' ? (
               <StyledText>{selectedActivity.group}</StyledText>
             ) : (
-              <StyledText>make plans with a friend or group!</StyledText>
+              <StyledText>make plans with a friend!</StyledText>
             )}
 
             {selectedActivity.notes ? (
@@ -275,6 +292,7 @@ const StyledText = styled.span`
   grid-column-end: 6;
   word-break: break-word;
   margin: 3px;
+  align-self: center;
 `;
 const StyledNoNotes = styled.span`
   grid-column-start: 1;

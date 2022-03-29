@@ -51,27 +51,13 @@ export default function Form({
   });
 
   const onSubmit = data => {
-    const sortedFriendNames = data.friend
-      .split(',')
-      .map(tag => tag.trim())
-      .sort(function (a, b) {
-        const firstFriend = a.toLowerCase();
-        const secondFriend = b.toLowerCase();
-
-        if (firstFriend < secondFriend) return -1;
-        if (firstFriend > secondFriend) return 1;
-        return 0;
-      })
-      .join(', ');
-
     if (preloadedValues) {
       handleActivity({
         id: preloadedValues.id,
         activity: data.activity,
         category: data.category === '' ? 'other' : data.category,
         group: data.group,
-        friend:
-          data.friend === '' ? 'I still need to plan...' : sortedFriendNames,
+        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -86,8 +72,7 @@ export default function Form({
         activity: data.activity,
         category: data.category === '' ? '' : data.category,
         group: data.group,
-        friend:
-          data.friend === '' ? 'I still need to plan...' : sortedFriendNames,
+        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
