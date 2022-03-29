@@ -104,7 +104,7 @@ export default function ActivityOverviewPage({
           <StyledCategoryText>{selectedActivity.category}</StyledCategoryText>
 
           <StyledOtherInfo>
-            <StyledIcon src={friendIcon} alt="friend" />
+            <StyledIcon width="35" height="35" src={friendIcon} alt="friend" />
 
             {selectedActivity.friend !== 'I still need to plan...' ? (
               <StyledText>{selectedActivity.friend}</StyledText>
