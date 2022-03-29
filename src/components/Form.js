@@ -203,6 +203,7 @@ export default function Form({
               type="file"
               onChange={uploadImage}
               hidden
+              accept="image/gif,image/jpeg,image/png"
             />
           </label>
 
@@ -265,6 +266,7 @@ export default function Form({
               type="file"
               onChange={uploadImage}
               hidden
+              accept="image/gif,image/jpeg,image/png"
             />
           </label>
           {photo ? (
@@ -355,6 +357,7 @@ const WrapperForm = styled.form`
     background: transparent;
     border: 1px solid rgba(71, 39, 35, 0.42);
     border-radius: 5px;
+    padding: 5px;
     height: 90px;
     width: 100%;
     color: rgba(71, 39, 35, 0.72);
@@ -393,7 +396,7 @@ const StyledInputs = styled.input`
   background: transparent;
   border: 1px solid rgba(71, 39, 35, 0.42);
   border-radius: 5px;
-  padding: 1px;
+  padding: 5px;
   width: 100%;
   color: rgba(71, 39, 35, 0.72);
   outline: none;

@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -51,12 +51,12 @@ export default function AddFriendPage({
       <Main>
         <Grid>
           <WrapperForm autoComplete="off" onSubmit={onSubmit}>
-            <StyledLabels htmlFor="friend">
+            <StyledLabels htmlFor="addFriend">
               Who is your friend?
               <StyledInput
-                id="friend"
+                id="addFriend"
                 type="text"
-                name="friend"
+                name="addFriend"
                 value={enteredName}
                 onChange={handleNameInput}
                 placeholder="Lasse, Andrea, Michael,..."
@@ -155,7 +155,7 @@ const StyledInput = styled.input`
   background: transparent;
   border: 1px solid rgba(71, 39, 35, 0.42);
   border-radius: 5px;
-  padding: 1px;
+  padding: 5px;
   width: 100%;
   color: rgba(71, 39, 35, 0.72);
   outline: none;
@@ -171,7 +171,7 @@ const StyledList = styled.ul`
 `;
 
 const StyledImage = styled.img`
-  padding-top: 3px;
+  padding-top: 2px;
   margin-left: 20px;
 `;
 
