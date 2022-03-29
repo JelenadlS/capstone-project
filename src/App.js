@@ -319,7 +319,7 @@ export default function App() {
         },
       })
       .then(response => {
-        setPhoto(response.data.url);
+        setPhoto(response.data.url.replace('http://', 'https://'));
       })
       .catch(error => console.log(error));
   }
