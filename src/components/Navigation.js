@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { MainNavButton } from './Button';
 
-import addAFriendIcon from '../images/addAFriendIcon.svg';
+import groupIcon from '../images/groupIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 import friendIcon from '../images/friendIcon.svg';
 import inspireIcon from '../images/inspireIcon.svg';
@@ -19,10 +19,10 @@ export default function Navigation({
         <img width="40" height="20" alt="friendsHomeIcon" src={friendIcon} />
         <StyledDescription>friends</StyledDescription>
       </StyledNavLinkFriends>
-      <StyledNavLinkAddFriend to="/addfriend" onClick={handleResetPage}>
-        <img width="40" height="20" alt="addAFriendIcon" src={addAFriendIcon} />
-        <StyledDescription>add</StyledDescription>
-      </StyledNavLinkAddFriend>
+      <StyledNavLinkGroup to="/" onClick={handleResetPage}>
+        <img width="40" height="20" alt="addAFriendIcon" src={groupIcon} />
+        <StyledDescription>groups</StyledDescription>
+      </StyledNavLinkGroup>
       <StyledNewButton onClick={handleResetPage}>{children}</StyledNewButton>
       <StyledNavLinkActivities
         to="/allactivities"
@@ -101,11 +101,11 @@ const StyledNavLinkFriends = styled(NavLink)`
   flex-direction: column;
 
   &:active {
-    transform: translateY(+8px);
+    transform: translateY(-8px);
   }
 `;
 
-const StyledNavLinkAddFriend = styled(NavLink)`
+const StyledNavLinkGroup = styled(NavLink)`
   grid-column-start: 4;
   align-self: center;
   padding-top: 8px;
@@ -115,7 +115,7 @@ const StyledNavLinkAddFriend = styled(NavLink)`
   flex-direction: column;
 
   &:active {
-    transform: translateY(+8px);
+    transform: translateY(-8px);
   }
 `;
 const StyledDescription = styled.p`
