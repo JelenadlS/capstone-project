@@ -19,7 +19,7 @@ export default function Navigation({
         <img width="40" height="20" alt="friendsHomeIcon" src={friendIcon} />
         <StyledDescription>friends</StyledDescription>
       </StyledNavLinkFriends>
-      <StyledNavLinkGroup to="/" onClick={handleResetPage}>
+      <StyledNavLinkGroup to="/mygroups" onClick={handleResetPage}>
         <img width="40" height="20" alt="addAFriendIcon" src={groupIcon} />
         <StyledDescription>groups</StyledDescription>
       </StyledNavLinkGroup>

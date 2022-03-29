@@ -13,6 +13,7 @@ import EditActivityPage from './pages/EditActivityPage.js';
 import FriendsActivitiesPage from './pages/FriendsActivitiesPage.js';
 import GetInspiredPage from './pages/GetInspiredPage.js';
 import MyFriendsPage from './pages/MyFriendsPage';
+import MyGroupsPage from './pages/MyGroupsPage';
 import NewActivityPage from './pages/NewActivityPage.js';
 import AllActivitiesPage from './pages/AllActivitiesPage.js';
 
@@ -32,6 +33,7 @@ export default function App() {
   const [addedFriend, setAddedFriend] = useState(
     (!hasError && loadFromLocal('addedFriend')) || []
   );
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -77,6 +79,16 @@ export default function App() {
             path="/"
             element={
               <MyFriendsPage
+                activities={activitiesNotArchived}
+                handleResetPage={handleResetPage}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+              />
+            }
+          />
+          <Route
+            path="/mygroups"
+            element={
+              <MyGroupsPage
                 activities={activitiesNotArchived}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
