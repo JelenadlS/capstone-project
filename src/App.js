@@ -9,6 +9,7 @@ import ErrorFallback from './components/ErrorFallBack';
 
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
 import AddFriendPage from './pages/AddFriendPage.js';
+import AddGroupPage from './pages/AddGroupPage.js';
 import EditActivityPage from './pages/EditActivityPage.js';
 import FriendsActivitiesPage from './pages/FriendsActivitiesPage.js';
 import GetInspiredPage from './pages/GetInspiredPage.js';
@@ -200,6 +201,19 @@ export default function App() {
             path="/addfriend"
             element={
               <AddFriendPage
+                addedFriend={addedFriend}
+                setAddedFriend={setAddedFriend}
+                addedGroup={addedGroup}
+                setAddedGroup={setAddedGroup}
+                handleResetPage={handleResetPage}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+              />
+            }
+          />
+          <Route
+            path="/addgroup"
+            element={
+              <AddGroupPage
                 addedFriend={addedFriend}
                 setAddedFriend={setAddedFriend}
                 addedGroup={addedGroup}

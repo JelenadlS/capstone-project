@@ -69,8 +69,8 @@ export default function AddGroupPage({
 
   return (
     <Picture>
-      <Header>
-        Add a friend
+      <Header hiddenGroup="hidden">
+        Add a group
         <ArrowBackButton onClick={() => navigate(-1)}>
           <img src={goBackIcon} alt="go back" />
         </ArrowBackButton>

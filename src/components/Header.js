@@ -16,6 +16,10 @@ export default function Header({ children, hiddenFriend, hiddenGroup }) {
           src={addAFriendIcon}
           hidden={hiddenFriend}
         />
+
+        <StyledDescription hidden={hiddenFriend}>add</StyledDescription>
+      </StyledNavLinkAddFriend>
+      <StyledNavLinkAddFriend to="/addgroup">
         <img
           width="40"
           height="20"
@@ -23,7 +27,7 @@ export default function Header({ children, hiddenFriend, hiddenGroup }) {
           src={addAGroupIcon}
           hidden={hiddenGroup}
         />
-        <StyledDescription>add</StyledDescription>
+        <StyledDescription hidden={hiddenGroup}>add</StyledDescription>
       </StyledNavLinkAddFriend>
     </StyledHeader>
   );
