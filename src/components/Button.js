@@ -29,7 +29,7 @@ const MainNavButton = styled(Button)`
 export { MainNavButton };
 
 const AddSaveButton = styled(MainNavButton)`
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 50%;
   left: 50%;
