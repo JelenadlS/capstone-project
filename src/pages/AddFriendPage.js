@@ -24,11 +24,8 @@ export default function AddFriendPage({
 }) {
   const navigate = useNavigate();
   const [enteredName, setEnteredName] = useState('');
-  const [enteredGroup, setEnteredGroup] = useState('');
   const [tooLong, setTooLong] = useState(false);
   const [tooShort, setTooShort] = useState(true);
-  const [tooLongGroup, setTooLongGroup] = useState(false);
-  const [tooShortGroup, setTooShortGroup] = useState(true);
 
   function onAddFriend(event) {
     event.preventDefault();
@@ -54,18 +51,7 @@ export default function AddFriendPage({
     setTooLong(false);
   }
 
-  function onAddGroup(event) {
-    event.preventDefault();
-    const id = nanoid();
-    console.log(enteredGroup);
-    setAddedGroup([...addedGroup, { id, enteredGroup }]);
-    setEnteredGroup('');
-    setTooShort(true);
-    setTooLong(false);
-  }
-
   const disabledButton = tooShort === true || tooLong === true;
-  const disabledButtonGroup = tooShortGroup === true || tooLongGroup === true;
 
   return (
     <Picture>
@@ -77,68 +63,6 @@ export default function AddFriendPage({
       </Header>
       <Main>
         <Grid>
-          <WrapperForm
-            title="addAGroup"
-            autoComplete="off"
-            onSubmit={onAddGroup}
-          >
-            <StyledLabels htmlFor="addGroup">
-              What is the name of your group?
-              <StyledInput
-                id="addGroup"
-                type="text"
-                name="addGroup"
-                value={enteredGroup}
-                onChange={handleGroupInput}
-                placeholder="Workpeps or Girlsgroup or ..."
-              />
-            </StyledLabels>
-
-            <AddButton
-              type="submit"
-              role="button"
-              disabled={disabledButtonGroup}
-            >
-              <img width="25" height="25" src={saveIcon} alt="save" />
-            </AddButton>
-            {tooLongGroup === true && (
-              <StyledNotification>
-                <i>This is quite a long name for a group, make it shorter</i>
-              </StyledNotification>
-            )}
-
-            {tooShortGroup === true && (
-              <StyledNotification>
-                <i>Please enter a name with at least 2 characters</i>
-              </StyledNotification>
-            )}
-          </WrapperForm>
-
-          {addedGroup.length > 0 && (
-            <section>
-              <p>Find below your already added groups:</p>
-              <StyledList role="list" title="list of added groups">
-                {addedGroup?.map(group => {
-                  return (
-                    <li key={group.id}>
-                      <div>
-                        {group.enteredGroup}
-                        <DeleteButton onClick={() => onDeleteGroup(group.id)}>
-                          <StyledImage
-                            width="18"
-                            height="18"
-                            src={deleteIcon}
-                            alt="delete"
-                          />
-                        </DeleteButton>
-                      </div>
-                    </li>
-                  );
-                })}
-              </StyledList>
-            </section>
-          )}
-
           <WrapperForm
             title="addAFriend"
             autoComplete="off"
@@ -221,21 +145,6 @@ export default function AddFriendPage({
 
   function onDeleteFriend(thisNameId) {
     setAddedFriend(addedFriend.filter(friend => friend.id !== thisNameId));
-  }
-
-  function handleGroupInput(event) {
-    event.preventDefault();
-    event.target.value.length <= 1
-      ? setTooShortGroup(true)
-      : setTooShortGroup(false);
-    event.target.value.length >= 25
-      ? setTooLongGroup(true)
-      : setTooLongGroup(false);
-    setEnteredGroup(event.target.value);
-  }
-
-  function onDeleteGroup(thisGroupId) {
-    setAddedGroup(addedGroup.filter(group => group.id !== thisGroupId));
   }
 }
 

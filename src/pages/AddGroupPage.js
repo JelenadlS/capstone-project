@@ -23,36 +23,10 @@ export default function AddGroupPage({
   handleResetPageAndShowArrow,
 }) {
   const navigate = useNavigate();
-  const [enteredName, setEnteredName] = useState('');
+
   const [enteredGroup, setEnteredGroup] = useState('');
-  const [tooLong, setTooLong] = useState(false);
-  const [tooShort, setTooShort] = useState(true);
   const [tooLongGroup, setTooLongGroup] = useState(false);
   const [tooShortGroup, setTooShortGroup] = useState(true);
-
-  function onAddFriend(event) {
-    event.preventDefault();
-
-    const separatedFriends = enteredName
-      .split(',')
-      .map(function (name) {
-        return name.trim();
-      })
-      .filter(name => {
-        return name !== '';
-      });
-
-    const arrayWithIds = separatedFriends.map(friend => {
-      const id = nanoid();
-      return { id: id.toString(), newFriend: friend };
-    });
-
-    separatedFriends.length > 0 &&
-      setAddedFriend(friends => [...friends, ...arrayWithIds]);
-    setEnteredName('');
-    setTooShort(true);
-    setTooLong(false);
-  }
 
   function onAddGroup(event) {
     event.preventDefault();
@@ -60,11 +34,10 @@ export default function AddGroupPage({
     console.log(enteredGroup);
     setAddedGroup([...addedGroup, { id, enteredGroup }]);
     setEnteredGroup('');
-    setTooShort(true);
-    setTooLong(false);
+    setTooShortGroup(true);
+    setTooLongGroup(false);
   }
 
-  const disabledButton = tooShort === true || tooLong === true;
   const disabledButtonGroup = tooShortGroup === true || tooLongGroup === true;
 
   return (
@@ -138,67 +111,6 @@ export default function AddGroupPage({
               </StyledList>
             </section>
           )}
-
-          <WrapperForm
-            title="addAFriend"
-            autoComplete="off"
-            onSubmit={onAddFriend}
-          >
-            <StyledLabels htmlFor="addFriend">
-              Who is your friend?
-              <StyledInput
-                id="addFriend"
-                type="text"
-                name="addFriend"
-                value={enteredName}
-                onChange={handleNameInput}
-                placeholder="Lasse, Andrea, Michael,..."
-              />
-            </StyledLabels>
-
-            <AddButton type="submit" role="button" disabled={disabledButton}>
-              <img width="25" height="25" src={saveIcon} alt="save" />
-            </AddButton>
-            {tooLong === true && (
-              <StyledNotification>
-                <i>
-                  This are quite a lot friends keep the overview and make it
-                  shorter
-                </i>
-              </StyledNotification>
-            )}
-
-            {tooShort === true && (
-              <StyledNotification>
-                <i>Please enter a name with at least 2 characters</i>
-              </StyledNotification>
-            )}
-          </WrapperForm>
-
-          {addedFriend.length > 0 && (
-            <section>
-              <p>Find below your already added friends:</p>
-              <StyledList role="list" title="list of added friends">
-                {addedFriend?.map(friend => {
-                  return (
-                    <li key={friend.id}>
-                      <div>
-                        {friend.newFriend}
-                        <DeleteButton onClick={() => onDeleteFriend(friend.id)}>
-                          <StyledImage
-                            width="18"
-                            height="18"
-                            src={deleteIcon}
-                            alt="delete"
-                          />
-                        </DeleteButton>
-                      </div>
-                    </li>
-                  );
-                })}
-              </StyledList>
-            </section>
-          )}
         </Grid>
       </Main>
       <Navigation
@@ -211,17 +123,6 @@ export default function AddGroupPage({
       </Navigation>
     </Picture>
   );
-
-  function handleNameInput(event) {
-    event.preventDefault();
-    event.target.value.length <= 1 ? setTooShort(true) : setTooShort(false);
-    event.target.value.length >= 25 ? setTooLong(true) : setTooLong(false);
-    setEnteredName(event.target.value);
-  }
-
-  function onDeleteFriend(thisNameId) {
-    setAddedFriend(addedFriend.filter(friend => friend.id !== thisNameId));
-  }
 
   function handleGroupInput(event) {
     event.preventDefault();
