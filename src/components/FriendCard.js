@@ -9,8 +9,6 @@ export default function FriendCard({
   group,
   sumOfActivitiesEachGroup,
 }) {
-  console.log(friend);
-  console.log(group);
   return (
     <WrapperCard>
       {friend !== undefined && (

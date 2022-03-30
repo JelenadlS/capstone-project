@@ -15,8 +15,6 @@ import newIcon from '../images/newIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
 export default function AddGroupPage({
-  addedFriend,
-  setAddedFriend,
   addedGroup,
   setAddedGroup,
   handleResetPage,
@@ -31,7 +29,6 @@ export default function AddGroupPage({
   function onAddGroup(event) {
     event.preventDefault();
     const id = nanoid();
-    console.log(enteredGroup);
     setAddedGroup([...addedGroup, { id, enteredGroup }]);
     setEnteredGroup('');
     setTooShortGroup(true);

@@ -14,8 +14,6 @@ export default function MyGroupsPage({
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
-  console.log(activities);
-
   const activitiesWithGroup = activities.filter(
     activity => activity.group !== ''
   );
@@ -32,7 +30,7 @@ export default function MyGroupsPage({
     if (firstFriend > secondFriend) return 1;
     return 0;
   });
-  console.log(sortedGroupList);
+
   return (
     <Picture>
       <Header hiddenFriend="hidden" handleResetPage={handleResetPage}>
@@ -44,8 +42,6 @@ export default function MyGroupsPage({
             const sumOfActivitiesEachGroup = activities.filter(
               activity => activity.group === group
             ).length;
-            console.log(sumOfActivitiesEachGroup);
-            console.log(group);
             return (
               <li key={index}>
                 <FriendCard

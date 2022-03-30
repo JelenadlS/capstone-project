@@ -53,7 +53,7 @@ export default function ActivityOverviewPage({
   const [showPastModal, setShowPastModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [check, setCheck] = useState(false);
-  console.log('selectedActivity', selectedActivity);
+
   return (
     <Picture>
       <Header hiddenGroup="hidden">

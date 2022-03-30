@@ -42,7 +42,6 @@ export default function NewActivityPage({
           photo={photo}
           setPhoto={setPhoto}
           handleResetPage={handleResetPage}
-          handleResetPageAndShowArrow={handleResetPageAndShowArrow}
           addedFriend={addedFriend}
           addedGroup={addedGroup}
         />

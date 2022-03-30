@@ -20,7 +20,6 @@ export default function Form({
   photo,
   setPhoto,
   handleResetPage,
-  handleResetPageAndShowArrow,
   addedFriend,
   addedGroup,
 }) {
@@ -58,9 +57,8 @@ export default function Form({
         id: preloadedValues.id,
         activity: data.activity,
         category: data.category === '' ? 'other' : data.category,
-        group: data.group === 'group' ? '' : data.group,
-        friend:
-          data.friend === 'friend' ? 'I still need to plan...' : data.friend,
+        group: data.group === '' ? '' : data.group,
+        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -74,9 +72,8 @@ export default function Form({
         id: id,
         activity: data.activity,
         category: data.category === '' ? '' : data.category,
-        group: data.group === 'group' ? '' : data.group,
-        friend:
-          data.friend === 'friend' ? 'I still need to plan...' : data.friend,
+        group: data.group === '' ? '' : data.group,
+        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -90,8 +87,9 @@ export default function Form({
   useEffect(() => {
     setFocus('activity');
   }, [setFocus]);
-  console.log(friendSelection);
-  console.log(groupSelection);
+
+  const dateToday = new Date().toISOString().substring(0, 10);
+
   return (
     <WrapperForm
       title={title}
@@ -344,6 +342,7 @@ export default function Form({
           id="date"
           type="date"
           name="date"
+          min={dateToday}
           {...register('date')}
         />
       </StyledLabels>

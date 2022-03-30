@@ -54,7 +54,6 @@ export default function ActivityCard({
               onDelete={onDeleteActivity}
               onClose={() => setShow(false)}
               show={show}
-              id={id}
             />
           </CardSubGrid>
         ) : (

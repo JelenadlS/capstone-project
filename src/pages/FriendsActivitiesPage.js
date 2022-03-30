@@ -32,7 +32,7 @@ export default function FriendsActivitiesPage({
       (activity?.group ? activity.group : activity.friend) === friendsName
   );
   const navigate = useNavigate();
-  console.log(selectedFriendsActivities);
+
   return (
     <Picture>
       <Header hiddenGroup="hidden">
@@ -45,7 +45,7 @@ export default function FriendsActivitiesPage({
       </Header>
       <Main>
         <FilterTags
-          selectedFriendsActivity={selectedFriendsActivities}
+          activities={selectedFriendsActivities}
           currentFilter={currentFilter}
           onFilter={onFilter}
           setSearchInput={setSearchInput}

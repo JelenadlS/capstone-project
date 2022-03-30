@@ -36,7 +36,7 @@ export default function MyFriendsPage({
     if (firstFriend > secondFriend) return 1;
     return 0;
   });
-  console.log(sortedFriendsList);
+
   return (
     <Picture>
       <Header hiddenGroup="hidden">my friends</Header>

@@ -203,8 +203,6 @@ export default function App() {
               <AddFriendPage
                 addedFriend={addedFriend}
                 setAddedFriend={setAddedFriend}
-                addedGroup={addedGroup}
-                setAddedGroup={setAddedGroup}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
@@ -214,8 +212,6 @@ export default function App() {
             path="/addgroup"
             element={
               <AddGroupPage
-                addedFriend={addedFriend}
-                setAddedFriend={setAddedFriend}
                 addedGroup={addedGroup}
                 setAddedGroup={setAddedGroup}
                 handleResetPage={handleResetPage}

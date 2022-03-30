@@ -17,8 +17,6 @@ import saveIcon from '../images/saveIcon.svg';
 export default function AddFriendPage({
   addedFriend,
   setAddedFriend,
-  addedGroup,
-  setAddedGroup,
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
