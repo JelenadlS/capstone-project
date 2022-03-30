@@ -14,7 +14,7 @@ import goBackIcon from '../images/goBackIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
-export default function AddFriendPage({
+export default function AddGroupPage({
   addedFriend,
   setAddedFriend,
   addedGroup,
