@@ -8,11 +8,20 @@ describe('EditActivityPage', () => {
     { id: '1', newFriend: 'Clara' },
     { id: '2', newFriend: 'Lasse' },
   ];
-  it('renders page with header, a back and save button and the three textboxes, category selction with five options and friends selection with two options and the select photo option of the form', () => {
+  const addedGroup = [
+    { id: '1', enteredGroup: 'Segelclub' },
+    { id: '2', enteredGroup: 'Girlsgroup' },
+  ];
+
+  it('renders page with header, a back and save button and the three textboxes, category selction with five options, three buttons for friend or group selection and the select photo option of the form', () => {
     const activities = [{ id: '1' }, { id: '2' }];
     render(
       <MemoryRouter>
-        <EditActivityPage activities={activities} addedFriend={addedFriend} />
+        <EditActivityPage
+          activities={activities}
+          addedFriend={addedFriend}
+          addedGroup={addedGroup}
+        />
       </MemoryRouter>
     );
     const header = screen.getByRole('heading', { name: /edit activity/i });
@@ -23,9 +32,9 @@ describe('EditActivityPage', () => {
     const selectPhoto = screen.getByRole('img', { name: 'selectPhoto' });
 
     expect(header).toBeInTheDocument();
-    expect(buttons).toHaveLength(2);
-    expect(selectCategory).toHaveLength(2);
-    expect(categoryOptions).toHaveLength(7);
+    expect(buttons).toHaveLength(5);
+    expect(selectCategory).toHaveLength(1);
+    expect(categoryOptions).toHaveLength(5);
     expect(textboxes).toHaveLength(3);
     expect(selectPhoto).toBeInTheDocument();
   });

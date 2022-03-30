@@ -4,7 +4,7 @@ import FilterTags from './FilterTags.js';
 
 describe('FilterTags', () => {
   it('renders six tags when available category is there', () => {
-    const selectedFriendsActivity = [
+    const activities = [
       {
         id: '1',
         activity: 'Eislaufen',
@@ -44,7 +44,7 @@ describe('FilterTags', () => {
 
     render(
       <MemoryRouter>
-        <FilterTags selectedFriendsActivity={selectedFriendsActivity} />
+        <FilterTags activities={activities} />
       </MemoryRouter>
     );
 
@@ -64,7 +64,7 @@ describe('FilterTags', () => {
   });
 
   it('renders three tags when two available categories are there', () => {
-    const selectedFriendsActivity = [
+    const activities = [
       {
         id: '1',
         activity: 'Eislaufen',
@@ -83,7 +83,7 @@ describe('FilterTags', () => {
 
     render(
       <MemoryRouter>
-        <FilterTags selectedFriendsActivity={selectedFriendsActivity} />
+        <FilterTags activities={activities} />
       </MemoryRouter>
     );
 
@@ -103,7 +103,7 @@ describe('FilterTags', () => {
   });
 
   it('renders no tags when only one available category is there', () => {
-    const selectedFriendsActivity = [
+    const activities = [
       {
         id: '1',
         activity: 'Eislaufen',
@@ -122,7 +122,7 @@ describe('FilterTags', () => {
 
     render(
       <MemoryRouter>
-        <FilterTags selectedFriendsActivity={selectedFriendsActivity} />
+        <FilterTags activities={activities} />
       </MemoryRouter>
     );
 
