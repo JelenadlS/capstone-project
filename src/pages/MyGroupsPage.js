@@ -8,7 +8,6 @@ import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
-import addAFriendIcon from '../images/addAFriendIcon.svg';
 import addAGroupIcon from '../images/addAGroupIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 import friendIcon from '../images/friendIcon.svg';
@@ -64,7 +63,7 @@ export default function MyGroupsPage({
           <StyledEmptyMessage data-testid="emptylist">
             <StyledIntro>
               Hi there! 👋 <br />
-              There are no activities entered yet.
+              There are no group activities entered yet.
               <br />
               <strong>Get Started!</strong>
             </StyledIntro>
@@ -77,23 +76,16 @@ export default function MyGroupsPage({
             <p>
               <strong>Activities planned with and without friends</strong>
               <br />
-              This is the home screen. As soon as you add activities, a list
-              with an overview of your friends you planned activities with will
-              appear.
+              As soon as you add activities, a list with an overview of your
+              friends you planned activities with will appear.
             </p>
             <img width="40" height="20" alt="friendsHomeIcon" src={groupIcon} />
             <p>
               <strong>Activities planned with a group</strong> <br />
-              This page is similar to the home screen with the only difference
-              that it will display all of your groups.
+              Here you can find a list of all groups with their individual
+              activities you entered.
             </p>
             <StyledAdd>
-              <img
-                width="40"
-                height="20"
-                alt="friendsHomeIcon"
-                src={addAFriendIcon}
-              />
               <img
                 width="40"
                 height="20"
@@ -102,9 +94,8 @@ export default function MyGroupsPage({
               />
             </StyledAdd>
             <p>
-              <strong>Add a friend or group!</strong> <br />
-              Before you can add a friend or group to an activity, you need to
-              add them.
+              <strong>Add a group!</strong> <br />
+              Before you can add groups to an activity, you need to add them.
             </p>
 
             <MainNavButtonSmall>
@@ -135,9 +126,9 @@ export default function MyGroupsPage({
             <p>
               <strong>Get inspired!</strong>
               <br />
-              When you did an activity, you can mark it as liked or not liked in
-              the overview. Whenever you are looking for an amazing activity you
-              can be inspred by your old ones you liked.
+              As soon as you did an activity, you can mark it as liked or not
+              liked in the overview. Whenever you are looking for an amazing
+              activity you can be inspred by your old ones you liked.
             </p>
           </StyledEmptyMessage>
         )}

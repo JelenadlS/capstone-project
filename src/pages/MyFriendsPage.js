@@ -9,7 +9,6 @@ import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
 import addAFriendIcon from '../images/addAFriendIcon.svg';
-import addAGroupIcon from '../images/addAGroupIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 import friendIcon from '../images/friendIcon.svg';
 import groupIcon from '../images/groupIcon.svg';
@@ -54,7 +53,7 @@ export default function MyFriendsPage({
             {activitiesWithoutFriend.length > 0 && (
               <StyledLink to="/I still need to plan...">
                 <NameStyling>
-                  Things I still need to plan with someone:
+                  Aktivities I still need to plan with someone:
                 </NameStyling>
                 <NumStyling>
                   #{activitiesWithoutFriend.length}
@@ -97,15 +96,14 @@ export default function MyFriendsPage({
             <p>
               <strong>Activities planned with and without friends</strong>
               <br />
-              This is the home screen. As soon as you add activities, a list
-              with an overview of your friends you planned activities with will
-              appear.
+              As soon as you add activities, a list with an overview of your
+              friends you planned activities with will appear.
             </p>
             <img width="40" height="20" alt="friendsHomeIcon" src={groupIcon} />
             <p>
               <strong>Activities planned with a group</strong> <br />
-              This page is similar to the home screen with the only difference
-              that it will display all of your groups.
+              Here you can find a list of all groups with their individual
+              activities you entered.
             </p>
             <StyledAdd>
               <img
@@ -114,17 +112,10 @@ export default function MyFriendsPage({
                 alt="friendsHomeIcon"
                 src={addAFriendIcon}
               />
-              <img
-                width="40"
-                height="20"
-                alt="friendsHomeIcon"
-                src={addAGroupIcon}
-              />
             </StyledAdd>
             <p>
-              <strong>Add a friend or group!</strong> <br />
-              Before you can add a friend or group to an activity, you need to
-              add them.
+              <strong>Add a friend!</strong> <br />
+              Before you can add friends to an activity, you need to add them.
             </p>
 
             <MainNavButtonSmall>
@@ -132,7 +123,7 @@ export default function MyFriendsPage({
             </MainNavButtonSmall>
             <p>
               <strong>Add an activity!</strong> <br />
-              Are you done and added a friend and or a group? <br />
+              Are you done and added a friend? <br />
               Click on this button in the navigation and add an acticity!
             </p>
             <img
@@ -155,9 +146,9 @@ export default function MyFriendsPage({
             <p>
               <strong>Get inspired!</strong>
               <br />
-              When you did an activity, you can mark it as liked or not liked in
-              the overview. Whenever you are looking for an amazing activity you
-              can be inspred by your old ones you liked.
+              As soon as you did an activity, you can mark it as liked or not
+              liked in the overview. Whenever you are looking for an amazing
+              activity you can be inspred by your old ones you liked.
             </p>
           </StyledEmptyMessage>
         )}
