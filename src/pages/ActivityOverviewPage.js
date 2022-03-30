@@ -127,7 +127,7 @@ export default function ActivityOverviewPage({
                 alt="friend"
               />
             )}
-            {selectedActivity.group !== '' &&
+            {selectedActivity.group === '' &&
               selectedActivity.friend === 'I still need to plan...' && (
                 <StyledText>make plans with a friend!</StyledText>
               )}

@@ -19,7 +19,6 @@ export default function AllActivitiesPage({
   filteredSearchActivities,
   searchInput,
   setSearchInput,
-
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {

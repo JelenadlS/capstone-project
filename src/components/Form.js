@@ -28,6 +28,8 @@ export default function Form({
   const [preloadedPicture, setPreloadedPicture] = useState(
     preloadedValues?.photo
   );
+  const [friendSelection, setFriendSelection] = useState(true);
+  const [groupSelection, setGroupSelection] = useState(true);
   const navigate = useNavigate();
   const {
     register,
@@ -56,8 +58,9 @@ export default function Form({
         id: preloadedValues.id,
         activity: data.activity,
         category: data.category === '' ? 'other' : data.category,
-        group: data.group,
-        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
+        group: data.group === 'group' ? '' : data.group,
+        friend:
+          data.friend === 'friend' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -71,8 +74,9 @@ export default function Form({
         id: id,
         activity: data.activity,
         category: data.category === '' ? '' : data.category,
-        group: data.group,
-        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
+        group: data.group === 'group' ? '' : data.group,
+        friend:
+          data.friend === 'friend' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -87,6 +91,16 @@ export default function Form({
     setFocus('activity');
   }, [setFocus]);
 
+  useEffect(() => {
+    if (!friendSelection) {
+      return null;
+    } else if (!groupSelection) {
+      return null;
+    }
+  }, [friendSelection, groupSelection]);
+
+  console.log('friend', friendSelection);
+  console.log('group', groupSelection);
   return (
     <WrapperForm
       title={title}
@@ -133,26 +147,30 @@ export default function Form({
         </select>
       </StyledSelection>
 
-      <StyledSelection>
+      <StyledSelectionFriend>
         Who will join you?
-        <select name="friend" {...register('friend')}>
-          {addedFriend.map(friend => {
-            return (
-              <option value={friend.newFriend} key={friend.id}>
-                {friend.newFriend}
-              </option>
-            );
-          })}
-        </select>
-        <select name="group" {...register('group')}>
-          {addedGroup.map(group => {
-            return (
-              <option value={group.enteredGroup} key={group.id}>
-                {group.enteredGroup}
-              </option>
-            );
-          })}
-        </select>
+        <p>
+          If you already know add a friend <strong>or</strong> a group or keep
+          it empty and add later.
+        </p>
+        <StyledFriendSelection>
+          <label htmlFor="friend" />
+          <select
+            id="friend"
+            name="friend"
+            {...register('friend')}
+            onChange={handleOnClickFriend}
+          >
+            {friendSelection === false && <option value="">friend</option>}
+            {addedFriend.map(friend => {
+              return (
+                <option value={friend.newFriend} key={friend.id}>
+                  {friend.newFriend}
+                </option>
+              );
+            })}
+          </select>
+        </StyledFriendSelection>
         <StyledFriendLink to="/addfriend" onClick={handleResetPage}>
           <img
             width="40"
@@ -161,7 +179,33 @@ export default function Form({
             src={addAFriendIcon}
           />
         </StyledFriendLink>
-      </StyledSelection>
+        <StyledGroupSelection>
+          <label htmlFor="group" />
+          <select
+            id="group"
+            name="group"
+            {...register('group')}
+            onChange={handleOnClickGroup}
+          >
+            {groupSelection === false && <option value="">group</option>}
+            {addedGroup.map(group => {
+              return (
+                <option value={group.enteredGroup} key={group.id}>
+                  {group.enteredGroup}
+                </option>
+              );
+            })}
+          </select>
+        </StyledGroupSelection>
+        <StyledGroupLink to="/addfriend" onClick={handleResetPage}>
+          <img
+            width="40"
+            height="20"
+            alt="addAFriendIcon"
+            src={addAFriendIcon}
+          />
+        </StyledGroupLink>
+      </StyledSelectionFriend>
 
       <StyledLabels htmlFor="notes">
         Space for some additional notes...
@@ -343,6 +387,15 @@ export default function Form({
     event.preventDefault();
     setPreloadedPicture('');
   }
+
+  function handleOnClickFriend() {
+    setGroupSelection(false);
+    setFriendSelection(true);
+  }
+  function handleOnClickGroup() {
+    setFriendSelection(false);
+    setGroupSelection(true);
+  }
 }
 
 const WrapperForm = styled.form`
@@ -386,6 +439,38 @@ const StyledSelection = styled.section`
   }
 `;
 
+const StyledSelectionFriend = styled.section`
+  margin: 0 30px 8px;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(4, auto);
+  align-items: center;
+
+  p {
+    grid-row-start: 2;
+    grid-column-start: span 2;
+    font-size: 12px;
+    margin-left: 8px;
+  }
+
+  select {
+    color: rgba(71, 39, 35, 0.72);
+    font-size: 14px;
+    padding: 3px;
+    margin-left: 15px;
+    background: transparent;
+    border: 1px solid rgba(71, 39, 35, 0.42);
+    border-radius: 5px;
+  }
+`;
+const StyledFriendSelection = styled.span`
+  grid-row-start: 3;
+`;
+
+const StyledGroupSelection = styled.span`
+  grid-row-start: 4;
+`;
+
 const StyledLabels = styled.label`
   padding: 0 30px;
 `;
@@ -401,6 +486,13 @@ const StyledInputs = styled.input`
 `;
 
 const StyledFriendLink = styled(Link)`
+  grid-row-start: 3;
+  justify-self: end;
+  margin-top: 8px;
+`;
+const StyledGroupLink = styled(Link)`
+  grid-row-start: 4;
+  justify-self: end;
   margin-top: 8px;
 `;
 
