@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { DeletePictureButton, AddSaveButton } from '../components/Button';
 
 import addAFriendIcon from '../images/addAFriendIcon.svg';
+import addAGroupIcon from '../images/addAGroupIcon.svg';
 import addPictureIcon from '../images/addPictureIcon.svg';
 import deletePictureIcon from '../images/deletePictureIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
@@ -195,14 +196,14 @@ export default function Form({
               );
             })}
           </StyledSelectionFG>
-          <StyledGroupLink to="/addfriend" onClick={handleResetPage}>
+          <StyledFriendLink to="/addgroup" onClick={handleResetPage}>
             <img
               width="40"
               height="20"
-              alt="addAFriendIcon"
-              src={addAFriendIcon}
+              alt="addAGroupIcon"
+              src={addAGroupIcon}
             />
-          </StyledGroupLink>
+          </StyledFriendLink>
         </StyledGroupSelection>
       </StyledSelectionFriend>
 
@@ -507,11 +508,6 @@ const StyledFriendLink = styled(Link)`
   img {
     margin-left: 20px;
   }
-`;
-const StyledGroupLink = styled(Link)`
-  grid-row-start: 4;
-  justify-self: end;
-  margin-top: 8px;
 `;
 
 const StyledDate = styled(StyledInputs)`
