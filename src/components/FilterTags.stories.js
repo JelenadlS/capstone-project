@@ -9,7 +9,8 @@ const Template = args => <FilterTags {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  selectedFriendsActivity: [
+  active: true,
+  categoryTagsAndAll: [
     {
       id: '1',
       activity: 'Eislaufen',
@@ -24,6 +25,9 @@ Default.args = {
       friend: 'Clara',
       photo: 'activity.png',
     },
+  ],
+
+  activities: [
     {
       id: '3',
       activity: 'Frau Möller',

@@ -42,8 +42,7 @@ export default function ActivityOverviewPage({
   const selectedActivity = activities.find(
     activity => activity.activity === activityName
   );
-  console.log(activities);
-  console.log(selectedActivity);
+
   const mappedCategories = {
     culture: cultureIcon,
     'food and beverages': fAndBIcon,
