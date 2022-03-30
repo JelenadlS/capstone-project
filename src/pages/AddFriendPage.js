@@ -137,7 +137,7 @@ export default function AddFriendPage({
   function handleNameInput(event) {
     event.preventDefault();
     event.target.value.length <= 1 ? setTooShort(true) : setTooShort(false);
-    event.target.value.length >= 25 ? setTooLong(true) : setTooLong(false);
+    event.target.value.length >= 50 ? setTooLong(true) : setTooLong(false);
     setEnteredName(event.target.value);
   }
 

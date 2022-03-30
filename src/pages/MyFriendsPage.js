@@ -83,7 +83,7 @@ export default function MyFriendsPage({
         handleResetPage={handleResetPage}
         handleResetPageAndShowArrow={handleResetPageAndShowArrow}
       >
-        <Link to="newactivity">
+        <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>
       </Navigation>

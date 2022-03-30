@@ -90,7 +90,7 @@ export default function App() {
             }
           />
           <Route
-            path="/mygroups"
+            path="/:mygroups"
             element={
               <MyGroupsPage
                 activities={activitiesNotArchived}
