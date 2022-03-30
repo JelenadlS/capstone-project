@@ -53,7 +53,7 @@ export default function ActivityOverviewPage({
   const [showPastModal, setShowPastModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [check, setCheck] = useState(false);
-
+  console.log('selectedActivity', selectedActivity);
   return (
     <Picture>
       <Header handleResetPage={handleResetPage}>
@@ -61,7 +61,13 @@ export default function ActivityOverviewPage({
         {selectedActivity.isArchived === false ? (
           <ArrowBackButton
             onClick={() => {
-              navigate(`/${selectedActivity.friend}`);
+              navigate(
+                `/${
+                  selectedActivity?.group
+                    ? selectedActivity.group
+                    : selectedActivity.friend
+                }`
+              );
             }}
           >
             <img src={goBackIcon} alt="go back" />
