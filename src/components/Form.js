@@ -56,9 +56,8 @@ export default function Form({
         id: preloadedValues.id,
         activity: data.activity,
         category: data.category === '' ? 'other' : data.category,
-        group: data.group === 'group' ? '' : data.group,
-        friend:
-          data.friend === 'friend' ? 'I still need to plan...' : data.friend,
+        group: data.group,
+        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -72,9 +71,8 @@ export default function Form({
         id: id,
         activity: data.activity,
         category: data.category === '' ? '' : data.category,
-        group: data.group === 'group' ? '' : data.group,
-        friend:
-          data.friend === 'friend' ? 'I still need to plan...' : data.friend,
+        group: data.group,
+        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -136,9 +134,8 @@ export default function Form({
       </StyledSelection>
 
       <StyledSelection>
-        Who should join you?
+        Who will join you?
         <select name="friend" {...register('friend')}>
-          <option value="friend">friend</option>
           {addedFriend.map(friend => {
             return (
               <option value={friend.newFriend} key={friend.id}>
@@ -148,7 +145,6 @@ export default function Form({
           })}
         </select>
         <select name="group" {...register('group')}>
-          <option value="group">group</option>
           {addedGroup.map(group => {
             return (
               <option value={group.enteredGroup} key={group.id}>
