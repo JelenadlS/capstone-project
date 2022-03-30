@@ -4,6 +4,7 @@ import { ArrowBackButton } from '../components/Button';
 import Form from '../components/Form';
 import Header from '../components/Header';
 import Main from '../components/Main';
+import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
 import goBackIcon from '../images/goBackIcon.svg';
@@ -45,6 +46,11 @@ export default function EditActivityPage({
           addedGroup={addedGroup}
         />
       </Main>
+      <Navigation
+        hidden="hidden"
+        handleResetPage={handleResetPage}
+        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+      ></Navigation>
     </Picture>
   );
 

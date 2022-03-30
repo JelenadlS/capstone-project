@@ -12,6 +12,7 @@ export default function Navigation({
   children,
   handleResetPage,
   handleResetPageAndShowArrow,
+  hidden,
 }) {
   return (
     <StyledNavigation area-label="StyledNavigation">
@@ -23,7 +24,9 @@ export default function Navigation({
         <img width="40" height="20" alt="addAFriendIcon" src={groupIcon} />
         <StyledDescription>groups</StyledDescription>
       </StyledNavLinkGroup>
-      <StyledNewButton onClick={handleResetPage}>{children}</StyledNewButton>
+      <StyledNewButton hidden={hidden} onClick={handleResetPage}>
+        {children}
+      </StyledNewButton>
       <StyledNavLinkActivities
         to="/allactivities"
         onClick={handleResetPageAndShowArrow}

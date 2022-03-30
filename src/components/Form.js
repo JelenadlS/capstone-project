@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { DeletePictureButton } from '../components/Button';
-import Navigation from './Navigation';
+import { DeletePictureButton, AddSaveButton } from '../components/Button';
 
 import addAFriendIcon from '../images/addAFriendIcon.svg';
 import addPictureIcon from '../images/addPictureIcon.svg';
@@ -28,8 +27,9 @@ export default function Form({
   const [preloadedPicture, setPreloadedPicture] = useState(
     preloadedValues?.photo
   );
-  const [friendSelection, setFriendSelection] = useState(true);
-  const [groupSelection, setGroupSelection] = useState(true);
+  const [friendSelection, setFriendSelection] = useState(false);
+  const [groupSelection, setGroupSelection] = useState(false);
+
   const navigate = useNavigate();
   const {
     register,
@@ -90,17 +90,8 @@ export default function Form({
   useEffect(() => {
     setFocus('activity');
   }, [setFocus]);
-
-  useEffect(() => {
-    if (!friendSelection) {
-      return null;
-    } else if (!groupSelection) {
-      return null;
-    }
-  }, [friendSelection, groupSelection]);
-
-  console.log('friend', friendSelection);
-  console.log('group', groupSelection);
+  console.log(friendSelection);
+  console.log(groupSelection);
   return (
     <WrapperForm
       title={title}
@@ -137,8 +128,9 @@ export default function Form({
       </StyledLabels>
 
       <StyledSelection>
-        Category:
-        <select name="select category" {...register('category')}>
+        <label htmlFor="category">Category:</label>
+
+        <select id="category" name="select category" {...register('category')}>
           <option value="culture">culture</option>
           <option value="food and beverages">food and beverages</option>
           <option value="outdoor">outdoor</option>
@@ -149,19 +141,33 @@ export default function Form({
 
       <StyledSelectionFriend>
         Who will join you?
-        <p>
-          If you already know add a friend <strong>or</strong> a group or keep
-          it empty and add later.
-        </p>
-        <StyledFriendSelection>
-          <label htmlFor="friend" />
-          <select
-            id="friend"
-            name="friend"
-            {...register('friend')}
-            onChange={handleOnClickFriend}
+        <StyledButtonArea>
+          <StyledButtonChoice
+            type="button"
+            onClick={handleOnClickLater}
+            active={groupSelection === false && friendSelection === false}
           >
-            {friendSelection === false && <option value="">friend</option>}
+            choose later
+          </StyledButtonChoice>
+          <StyledButtonChoice
+            type="button"
+            onClick={handleOnClickFriend}
+            active={friendSelection === true}
+          >
+            friend
+          </StyledButtonChoice>
+          <StyledButtonChoice
+            type="button"
+            onClick={handleOnClickGroup}
+            active={groupSelection === true}
+          >
+            group
+          </StyledButtonChoice>
+        </StyledButtonArea>
+        <StyledFriendSelection hidden={friendSelection === false}>
+          <label htmlFor="friend" />
+          <StyledSelectionFG id="friend" name="friend" {...register('friend')}>
+            <option value="">friend</option>
             {addedFriend.map(friend => {
               return (
                 <option value={friend.newFriend} key={friend.id}>
@@ -169,25 +175,20 @@ export default function Form({
                 </option>
               );
             })}
-          </select>
+          </StyledSelectionFG>
+          <StyledFriendLink to="/addfriend" onClick={handleResetPage}>
+            <img
+              width="40"
+              height="20"
+              alt="addAFriendIcon"
+              src={addAFriendIcon}
+            />
+          </StyledFriendLink>
         </StyledFriendSelection>
-        <StyledFriendLink to="/addfriend" onClick={handleResetPage}>
-          <img
-            width="40"
-            height="20"
-            alt="addAFriendIcon"
-            src={addAFriendIcon}
-          />
-        </StyledFriendLink>
-        <StyledGroupSelection>
+        <StyledGroupSelection hidden={groupSelection === false}>
           <label htmlFor="group" />
-          <select
-            id="group"
-            name="group"
-            {...register('group')}
-            onChange={handleOnClickGroup}
-          >
-            {groupSelection === false && <option value="">group</option>}
+          <StyledSelectionFG id="group" name="group" {...register('group')}>
+            <option value="">group</option>
             {addedGroup.map(group => {
               return (
                 <option value={group.enteredGroup} key={group.id}>
@@ -195,16 +196,16 @@ export default function Form({
                 </option>
               );
             })}
-          </select>
+          </StyledSelectionFG>
+          <StyledGroupLink to="/addfriend" onClick={handleResetPage}>
+            <img
+              width="40"
+              height="20"
+              alt="addAFriendIcon"
+              src={addAFriendIcon}
+            />
+          </StyledGroupLink>
         </StyledGroupSelection>
-        <StyledGroupLink to="/addfriend" onClick={handleResetPage}>
-          <img
-            width="40"
-            height="20"
-            alt="addAFriendIcon"
-            src={addAFriendIcon}
-          />
-        </StyledGroupLink>
       </StyledSelectionFriend>
 
       <StyledLabels htmlFor="notes">
@@ -369,14 +370,25 @@ export default function Form({
         )}
       </StyledLabels>
 
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <AddSaveButton onClick={handleResetPage}>
         <img width="45" height="45" src={saveIcon} alt="save" />
-      </Navigation>
+      </AddSaveButton>
     </WrapperForm>
   );
+  function handleOnClickLater() {
+    setFriendSelection(false);
+    setGroupSelection(false);
+  }
+
+  function handleOnClickFriend() {
+    setFriendSelection(true);
+    setGroupSelection(false);
+  }
+
+  function handleOnClickGroup() {
+    setGroupSelection(true);
+    setFriendSelection(false);
+  }
 
   function onDeletePicture(event) {
     event.preventDefault();
@@ -387,22 +399,14 @@ export default function Form({
     event.preventDefault();
     setPreloadedPicture('');
   }
-
-  function handleOnClickFriend() {
-    setGroupSelection(false);
-    setFriendSelection(true);
-  }
-  function handleOnClickGroup() {
-    setFriendSelection(false);
-    setGroupSelection(true);
-  }
 }
 
 const WrapperForm = styled.form`
   height: 85vh;
   display: grid;
-  grid-template-rows: repeat(7, auto) 50px;
+  grid-template-rows: repeat(7, auto);
   margin-top: 20px;
+  margin-bottom: 60px;
 
   textarea {
     background: transparent;
@@ -416,6 +420,7 @@ const WrapperForm = styled.form`
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     outline: none;
+    margin: 5px 0 8px;
   }
 
   i {
@@ -426,8 +431,8 @@ const WrapperForm = styled.form`
 const StyledSelection = styled.section`
   margin: 0 30px 8px;
   display: flex;
-  align-items: center;
-  gap: 15px;
+  flex-direction: column;
+  gap: 5px;
 
   select {
     color: rgba(71, 39, 35, 0.72);
@@ -436,39 +441,52 @@ const StyledSelection = styled.section`
     background: transparent;
     border: 1px solid rgba(71, 39, 35, 0.42);
     border-radius: 5px;
+    width: 50%;
+    margin-left: 15px;
   }
 `;
 
 const StyledSelectionFriend = styled.section`
-  margin: 0 30px 8px;
+  margin: 5px 30px 20px;
   display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-template-rows: repeat(4, auto);
-  align-items: center;
-
-  p {
-    grid-row-start: 2;
-    grid-column-start: span 2;
-    font-size: 12px;
-    margin-left: 8px;
-  }
-
-  select {
-    color: rgba(71, 39, 35, 0.72);
-    font-size: 14px;
-    padding: 3px;
-    margin-left: 15px;
-    background: transparent;
-    border: 1px solid rgba(71, 39, 35, 0.42);
-    border-radius: 5px;
-  }
+  grid-template-rows: repeat(2, auto) 25px;
+  gap: 5px;
 `;
-const StyledFriendSelection = styled.span`
+
+const StyledButtonArea = styled.span`
+  grid-row-start: 2;
+  margin-left: 8px;
+`;
+
+const StyledButtonChoice = styled.button`
+  margin: 3px;
+  width: fit-content;
+  background: ${props => (props.active ? '#92dec5' : 'transparent')};
+  color: ${props => (props.active ? 'rgba(71, 39, 35, 0.72)' : '#92dec5')};
+  border: 1px solid #92dec5;
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 14px;
+  white-space: nowrap;
+`;
+const StyledFriendSelection = styled.section`
   grid-row-start: 3;
 `;
 
 const StyledGroupSelection = styled.span`
-  grid-row-start: 4;
+  grid-row-start: 3;
+  grid-template-columns: repeat(2, auto);
+`;
+
+const StyledSelectionFG = styled.select`
+  color: rgba(71, 39, 35, 0.72);
+  font-size: 14px;
+  padding: 3px;
+  width: 50%;
+  margin-left: 15px;
+  background: transparent;
+  border: 1px solid rgba(71, 39, 35, 0.42);
+  border-radius: 5px;
 `;
 
 const StyledLabels = styled.label`
@@ -480,15 +498,16 @@ const StyledInputs = styled.input`
   border: 1px solid rgba(71, 39, 35, 0.42);
   border-radius: 5px;
   padding: 5px;
+  margin: 5px 0 8px;
   width: 100%;
   color: rgba(71, 39, 35, 0.72);
   outline: none;
 `;
 
 const StyledFriendLink = styled(Link)`
-  grid-row-start: 3;
-  justify-self: end;
-  margin-top: 8px;
+  img {
+    margin-left: 20px;
+  }
 `;
 const StyledGroupLink = styled(Link)`
   grid-row-start: 4;

@@ -28,6 +28,17 @@ const MainNavButton = styled(Button)`
 
 export { MainNavButton };
 
+const AddSaveButton = styled(MainNavButton)`
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 2;
+`;
+
+export { AddSaveButton };
+
 const ModalButton = styled(Button)`
   background: #92dec5;
   color: rgba(71, 39, 35, 0.72);
