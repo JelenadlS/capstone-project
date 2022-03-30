@@ -1,12 +1,19 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { MainNavButtonSmall } from '../components/Button';
 import FriendCard from '../components/FriendCard';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
+import addAFriendIcon from '../images/addAFriendIcon.svg';
+import addAGroupIcon from '../images/addAGroupIcon.svg';
+import allActivitiesIcon from '../images/allActivitiesIcon.svg';
+import friendIcon from '../images/friendIcon.svg';
+import groupIcon from '../images/groupIcon.svg';
+import inspireIcon from '../images/inspireIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import nextIcon from '../images/nextIcon.svg';
 
@@ -36,12 +43,13 @@ export default function MyFriendsPage({
     if (firstFriend > secondFriend) return 1;
     return 0;
   });
-
+  console.log(friendsOnlyOnceWithoutDetails);
   return (
     <Picture>
       <Header hiddenGroup="hidden">my friends</Header>
       <Main>
-        {activities.length > 0 ? (
+        {activitiesWithoutFriend.length > 0 ||
+        friendsOnlyOnceWithoutDetails.length > 0 ? (
           <>
             {activitiesWithoutFriend.length > 0 && (
               <StyledLink to="/I still need to plan...">
@@ -74,8 +82,83 @@ export default function MyFriendsPage({
           </>
         ) : (
           <StyledEmptyMessage data-testid="emptylist">
-            Unfortunately you did not enter any activity yet. Start now and fill
-            your list with amazing activities!
+            <StyledIntro>
+              Hi there! 👋 <br />
+              There are no activities entered yet.
+              <br />
+              <strong>Get Started!</strong>
+            </StyledIntro>
+            <img
+              width="40"
+              height="20"
+              alt="friendsHomeIcon"
+              src={friendIcon}
+            />
+            <p>
+              <strong>Activities planned with and without friends</strong>
+              <br />
+              This is the home screen. As soon as you add activities, a list
+              with an overview of your friends you planned activities with will
+              appear.
+            </p>
+            <img width="40" height="20" alt="friendsHomeIcon" src={groupIcon} />
+            <p>
+              <strong>Activities planned with a group</strong> <br />
+              This page is similar to the home screen with the only difference
+              that it will display all of your groups.
+            </p>
+            <StyledAdd>
+              <img
+                width="40"
+                height="20"
+                alt="friendsHomeIcon"
+                src={addAFriendIcon}
+              />
+              <img
+                width="40"
+                height="20"
+                alt="friendsHomeIcon"
+                src={addAGroupIcon}
+              />
+            </StyledAdd>
+            <p>
+              <strong>Add a friend or group!</strong> <br />
+              Before you can add a friend or group to an activity, you need to
+              add them.
+            </p>
+
+            <MainNavButtonSmall>
+              <img width="40" height="27" src={newIcon} alt="new" />
+            </MainNavButtonSmall>
+            <p>
+              <strong>Add an activity!</strong> <br />
+              Are you done and added a friend and or a group? <br />
+              Click on this button in the navigation and add an acticity!
+            </p>
+            <img
+              width="40"
+              height="30"
+              alt="friendsHomeIcon"
+              src={allActivitiesIcon}
+            />
+            <p>
+              <strong>Looking for an activity?</strong> <br />
+              Here you can search and filter all activities indpendent of
+              friends or groups.
+            </p>
+            <img
+              width="40"
+              height="30"
+              alt="friendsHomeIcon"
+              src={inspireIcon}
+            />
+            <p>
+              <strong>Get inspired!</strong>
+              <br />
+              When you did an activity, you can mark it as liked or not liked in
+              the overview. Whenever you are looking for an amazing activity you
+              can be inspred by your old ones you liked.
+            </p>
           </StyledEmptyMessage>
         )}
       </Main>
@@ -120,12 +203,27 @@ const StyledList = styled.ul`
   }
 `;
 
-const StyledEmptyMessage = styled.p`
-  color: rgba(71, 39, 35, 0.72);
-  padding: 10px;
-  text-align: center;
-`;
-
 const StyledArrow = styled.span`
   margin-left: 5px;
+`;
+
+const StyledEmptyMessage = styled.section`
+  display: grid;
+  grid-template-rows: repeat(7, auto);
+  grid-template-columns: repeat(2, auto);
+  padding: 10px;
+  gap: 10px;
+  font-size: 14px;
+  align-items: center;
+`;
+
+const StyledIntro = styled.p`
+  grid-column: 1 / span 2;
+  text-align: center;
+  font-size: 16px;
+`;
+
+const StyledAdd = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

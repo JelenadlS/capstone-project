@@ -28,6 +28,16 @@ const MainNavButton = styled(Button)`
 
 export { MainNavButton };
 
+const MainNavButtonSmall = styled(Button)`
+  background: #92dec5;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 40px;
+  width: 45px;
+  height: 35px;
+`;
+
+export { MainNavButtonSmall };
+
 const AddSaveButton = styled(MainNavButton)`
   position: fixed;
   bottom: 0;
