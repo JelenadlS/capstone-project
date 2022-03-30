@@ -4,16 +4,11 @@ import styled from 'styled-components';
 import addAFriendIcon from '../images/addAFriendIcon.svg';
 import addAGroupIcon from '../images/addAGroupIcon.svg';
 
-export default function Header({
-  children,
-  handleResetPage,
-  hiddenFriend,
-  hiddenGroup,
-}) {
+export default function Header({ children, hiddenFriend, hiddenGroup }) {
   return (
     <StyledHeader>
       <StyledTitle>{children}</StyledTitle>
-      <StyledNavLinkAddFriend to="/addfriend" onClick={handleResetPage}>
+      <StyledNavLinkAddFriend to="/addfriend">
         <img
           width="40"
           height="20"

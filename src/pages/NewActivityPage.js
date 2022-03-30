@@ -28,7 +28,7 @@ export default function NewActivityPage({
 
   return (
     <Picture>
-      <Header handleResetPage={handleResetPage} hiddenGroup="hidden">
+      <Header hiddenGroup="hidden">
         new activity
         <ArrowBackButton onClick={resetForm}>
           <img src={goBackIcon} alt="go back" />

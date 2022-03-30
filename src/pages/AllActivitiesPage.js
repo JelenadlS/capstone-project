@@ -24,9 +24,7 @@ export default function AllActivitiesPage({
 }) {
   return (
     <Picture>
-      <Header handleResetPage={handleResetPage} hiddenGroup="hidden">
-        all activities
-      </Header>
+      <Header hiddenGroup="hidden">all activities</Header>
       <Main>
         <Searchbar
           setSearchInput={setSearchInput}

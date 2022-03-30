@@ -35,7 +35,7 @@ export default function FriendsActivitiesPage({
   console.log(selectedFriendsActivities);
   return (
     <Picture>
-      <Header handleResetPage={handleResetPage} hiddenGroup="hidden">
+      <Header hiddenGroup="hidden">
         {selectedFriendsActivities[0]?.group
           ? selectedFriendsActivities[0]?.group
           : selectedFriendsActivities[0]?.friend}

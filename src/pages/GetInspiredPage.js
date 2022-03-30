@@ -45,9 +45,7 @@ export default function GetInspiredPage({
 
   return (
     <Picture>
-      <Header handleResetPage={handleResetPage} hiddenGroup="hidden">
-        Get Inspired
-      </Header>
+      <Header hiddenGroup="hidden">Get Inspired</Header>
       <Main>
         <StyledCategoryButton>
           <CategoryButton

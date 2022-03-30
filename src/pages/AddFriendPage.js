@@ -70,7 +70,7 @@ export default function AddFriendPage({
 
   return (
     <Picture>
-      <Header handleResetPage={handleResetPage}>
+      <Header>
         Add a friend
         <ArrowBackButton onClick={() => navigate(-1)}>
           <img src={goBackIcon} alt="go back" />

@@ -36,7 +36,6 @@ export default function App() {
   const [addedGroup, setAddedGroup] = useState(
     (!hasError && loadFromLocal('addedGroup')) || []
   );
-
   const navigate = useNavigate();
 
   useEffect(() => {

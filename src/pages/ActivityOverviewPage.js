@@ -56,7 +56,7 @@ export default function ActivityOverviewPage({
   console.log('selectedActivity', selectedActivity);
   return (
     <Picture>
-      <Header handleResetPage={handleResetPage} hiddenGroup="hidden">
+      <Header hiddenGroup="hidden">
         {selectedActivity.activity}
         {selectedActivity.isArchived === false ? (
           <ArrowBackButton
