@@ -2,13 +2,32 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import addAFriendIcon from '../images/addAFriendIcon.svg';
+import addAGroupIcon from '../images/addAGroupIcon.svg';
 
-export default function Header({ children, handleResetPage }) {
+export default function Header({
+  children,
+  handleResetPage,
+  hiddenFriend,
+  hiddenGroup,
+}) {
   return (
     <StyledHeader>
       <StyledTitle>{children}</StyledTitle>
       <StyledNavLinkAddFriend to="/addfriend" onClick={handleResetPage}>
-        <img width="40" height="20" alt="addAFriendIcon" src={addAFriendIcon} />
+        <img
+          width="40"
+          height="20"
+          alt="addAFriendIcon"
+          src={addAFriendIcon}
+          hidden={hiddenFriend}
+        />
+        <img
+          width="40"
+          height="20"
+          alt="addAFriendIcon"
+          src={addAGroupIcon}
+          hidden={hiddenGroup}
+        />
         <StyledDescription>add</StyledDescription>
       </StyledNavLinkAddFriend>
     </StyledHeader>

@@ -39,7 +39,9 @@ export default function MyFriendsPage({
   console.log(sortedFriendsList);
   return (
     <Picture>
-      <Header handleResetPage={handleResetPage}>my friends</Header>
+      <Header handleResetPage={handleResetPage} hiddenGroup="hidden">
+        my friends
+      </Header>
       <Main>
         {activities.length > 0 ? (
           <>

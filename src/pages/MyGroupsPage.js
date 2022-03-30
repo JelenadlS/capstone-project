@@ -35,7 +35,9 @@ export default function MyGroupsPage({
   console.log(sortedGroupList);
   return (
     <Picture>
-      <Header handleResetPage={handleResetPage}>my groups</Header>
+      <Header hiddenFriend="hidden" handleResetPage={handleResetPage}>
+        my groups
+      </Header>
       <Main>
         <StyledList role="list" title="list of groups">
           {sortedGroupList.map((group, index) => {

@@ -27,7 +27,7 @@ export default function EditActivityPage({
   console.log('activityToEdit', activityToEdit);
   return (
     <Picture>
-      <Header handleResetPage={handleResetPage}>
+      <Header handleResetPage={handleResetPage} hiddenGroup="hidden">
         Edit activity
         <ArrowBackButton onClick={resetForm}>
           <img src={goBackIcon} alt="go back" />
