@@ -83,7 +83,7 @@ export default function MyGroupsPage({
             <p>
               <strong>Activities planned with a group</strong> <br />
               Here you can find a list of all groups with their individual
-              activities you entered.
+              activities you added.
             </p>
             <StyledAdd>
               <img
@@ -104,7 +104,7 @@ export default function MyGroupsPage({
             <p>
               <strong>Add an activity!</strong> <br />
               Are you done and added a friend and or a group? <br />
-              Click on this button in the navigation and add an acticity!
+              Click on this button in the navigation and add an activity!
             </p>
             <img
               width="40"
@@ -128,7 +128,7 @@ export default function MyGroupsPage({
               <br />
               As soon as you did an activity, you can mark it as liked or not
               liked in the overview. Whenever you are looking for an amazing
-              activity you can be inspred by your old ones you liked.
+              activity you can be inspired by your old ones you liked.
             </p>
           </StyledEmptyMessage>
         )}
