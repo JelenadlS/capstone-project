@@ -32,8 +32,8 @@ export default function App() {
   const [photo, setPhoto] = useState('');
   const searchInput = useStore(state => state.searchInput);
   const setSearchInput = useStore(state => state.setSearchInput);
+  const setCurrentFilter = useStore(state => state.setCurrentFilter);
 
-  const [currentFilter, setCurrentFilter] = useState('all');
   const [showBin, setShowBin] = useState(true);
   const [addedFriend, setAddedFriend] = useState(
     (!hasError && loadFromLocal('addedFriend')) || []
@@ -111,7 +111,6 @@ export default function App() {
                 activities={activities}
                 activitiesNotArchived={activitiesNotArchived}
                 setActivities={setActivities}
-                currentFilter={currentFilter}
                 onFilter={onFilter}
                 filteredSearchActivities={filteredSearchActivities}
                 showBin={showBin}
@@ -169,9 +168,7 @@ export default function App() {
             element={
               <AllActivitiesPage
                 activities={activitiesNotArchived}
-                currentFilter={currentFilter}
                 onFilter={onFilter}
-                setCurrentFilter={setCurrentFilter}
                 filteredSearchActivities={filteredSearchActivities}
                 setShowBin={setShowBin}
                 handleResetPage={handleResetPage}
@@ -187,8 +184,6 @@ export default function App() {
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
                 onFilter={onFilter}
-                setCurrentFilter={setCurrentFilter}
-                currentFilter={currentFilter}
                 filteredSearchActivitiesArchived={
                   filteredSearchActivitiesArchived
                 }

@@ -7,7 +7,7 @@ export default function List({
   selectedFriendsActivity,
   errorMessage,
   onDeleteActivity,
-  currentFilter,
+
   activities,
 
   filteredSearchActivities,
@@ -15,6 +15,7 @@ export default function List({
   handleResetPage,
 }) {
   const searchInput = useStore(state => state.searchInput);
+  const currentFilter = useStore(state => state.currentFilter);
 
   return (
     <StyledList

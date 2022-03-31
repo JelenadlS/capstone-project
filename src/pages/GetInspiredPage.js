@@ -19,12 +19,11 @@ export default function GetInspiredPage({
   handleResetPage,
   handleResetPageAndShowArrow,
   onFilter,
-  setCurrentFilter,
-  currentFilter,
   filteredSearchActivitiesArchived,
   resetPage,
 }) {
   const searchInput = useStore(state => state.searchInput);
+  const currentFilter = useStore(state => state.currentFilter);
   const [currentLikeFilter, setCurrentLikeFilter] = useState(true);
 
   const likedActivities = activitiesArchived.filter(
@@ -66,12 +65,8 @@ export default function GetInspiredPage({
         {currentLikeFilter === true &&
           (likedActivities.length > 0 ? (
             <>
-              <Searchbar setCurrentFilter={setCurrentFilter} />
-              <FilterTags
-                activities={likedActivities}
-                currentFilter={currentFilter}
-                onFilter={onFilter}
-              />
+              <Searchbar />
+              <FilterTags activities={likedActivities} onFilter={onFilter} />
               {filteredLikedSearchActivitiesArchived.length > 0 ? (
                 <StyledList
                   role="list"
@@ -112,15 +107,8 @@ export default function GetInspiredPage({
         {currentLikeFilter === false &&
           (notLikedActivities.length > 0 ? (
             <>
-              <Searchbar
-                setCurrentFilter={setCurrentFilter}
-                searchInput={searchInput}
-              />
-              <FilterTags
-                activities={notLikedActivities}
-                currentFilter={currentFilter}
-                onFilter={onFilter}
-              />
+              <Searchbar searchInput={searchInput} />
+              <FilterTags activities={notLikedActivities} onFilter={onFilter} />
               {filteredNotLikedSearchActivitiesArchived.length > 0 ? (
                 <StyledList
                   role="list"

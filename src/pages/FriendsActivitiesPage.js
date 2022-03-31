@@ -17,7 +17,7 @@ export default function FriendsActivitiesPage({
   activities,
   activitiesNotArchived,
   setActivities,
-  currentFilter,
+
   onFilter,
   filteredSearchActivities,
 
@@ -46,13 +46,11 @@ export default function FriendsActivitiesPage({
       <Main>
         <FilterTags
           activities={selectedFriendsActivities}
-          currentFilter={currentFilter}
           onFilter={onFilter}
         />
         <List
           errorMessage={hasError}
           onDeleteActivity={onDeleteActivity}
-          currentFilter={currentFilter}
           selectedFriendsActivity={selectedFriendsActivities}
           filteredSearchActivities={filteredSearchActivities}
           showBin={showBin}

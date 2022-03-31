@@ -13,9 +13,7 @@ import newIcon from '../images/newIcon.svg';
 
 export default function AllActivitiesPage({
   activities,
-  currentFilter,
   onFilter,
-  setCurrentFilter,
   filteredSearchActivities,
   handleResetPage,
   handleResetPageAndShowArrow,
@@ -24,16 +22,11 @@ export default function AllActivitiesPage({
     <Picture>
       <Header hiddenGroup="hidden">all activities</Header>
       <Main>
-        <Searchbar setCurrentFilter={setCurrentFilter} />
-        <FilterTags
-          activities={activities}
-          currentFilter={currentFilter}
-          onFilter={onFilter}
-        />
+        <Searchbar />
+        <FilterTags activities={activities} onFilter={onFilter} />
         {filteredSearchActivities.length > 0 ? (
           <List
             activities={activities}
-            currentFilter={currentFilter}
             filteredSearchActivities={filteredSearchActivities}
             handleResetPage={handleResetPage}
           />
