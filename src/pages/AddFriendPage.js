@@ -84,7 +84,7 @@ export default function AddFriendPage({
             {tooLong === true && (
               <StyledNotification>
                 <i>
-                  This are quite a lot friends keep the overview and make it
+                  These are quite a lot friends keep the overview and make it
                   shorter
                 </i>
               </StyledNotification>

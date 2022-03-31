@@ -15,19 +15,32 @@ export default function Navigation({
   hidden,
 }) {
   return (
-    <StyledNavigation area-label="StyledNavigation">
-      <StyledNavLinkFriends to="/" onClick={handleResetPage}>
+    <StyledNavigation aria-label="navigation">
+      <StyledNavLinkFriends
+        aria-label="all non friend and friend related activities"
+        to="/"
+        onClick={handleResetPage}
+      >
         <img width="40" height="20" alt="friendsHomeIcon" src={friendIcon} />
         <StyledDescription>friends</StyledDescription>
       </StyledNavLinkFriends>
-      <StyledNavLinkGroup to="/mygroups" onClick={handleResetPage}>
+      <StyledNavLinkGroup
+        aria-label="all group related activities"
+        to="/mygroups"
+        onClick={handleResetPage}
+      >
         <img width="40" height="20" alt="addAFriendIcon" src={groupIcon} />
         <StyledDescription>groups</StyledDescription>
       </StyledNavLinkGroup>
-      <StyledNewButton hidden={hidden} onClick={handleResetPage}>
+      <StyledNewButton
+        aria-label="create a new activity"
+        hidden={hidden}
+        onClick={handleResetPage}
+      >
         {children}
       </StyledNewButton>
       <StyledNavLinkActivities
+        aria-label="all activities"
         to="/allactivities"
         onClick={handleResetPageAndShowArrow}
       >
@@ -40,6 +53,7 @@ export default function Navigation({
         <StyledDescription>activities</StyledDescription>
       </StyledNavLinkActivities>
       <StyledNavLinkInspire
+        aria-label="all activities you already did"
         to="/getinspired"
         onClick={handleResetPageAndShowArrow}
       >

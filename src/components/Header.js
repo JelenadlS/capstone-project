@@ -6,9 +6,9 @@ import addAGroupIcon from '../images/addAGroupIcon.svg';
 
 export default function Header({ children, hiddenFriend, hiddenGroup }) {
   return (
-    <StyledHeader>
+    <StyledHeader aria-label="header">
       <StyledTitle>{children}</StyledTitle>
-      <StyledNavLinkAddFriend to="/addfriend">
+      <StyledNavLinkAddFriend aria-label="add a friend" to="/addfriend">
         <img
           width="40"
           height="20"
@@ -16,10 +16,9 @@ export default function Header({ children, hiddenFriend, hiddenGroup }) {
           src={addAFriendIcon}
           hidden={hiddenFriend}
         />
-
         <StyledDescription hidden={hiddenFriend}>add</StyledDescription>
       </StyledNavLinkAddFriend>
-      <StyledNavLinkAddFriend to="/addgroup">
+      <StyledNavLinkAddFriend aria-label="add a group" to="/addgroup">
         <img
           width="40"
           height="20"

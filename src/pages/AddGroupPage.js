@@ -137,7 +137,7 @@ export default function AddGroupPage({
   }
 }
 
-const Grid = styled.span`
+const Grid = styled.section`
   height: 85vh;
   margin-top: 20px;
   display: grid;
