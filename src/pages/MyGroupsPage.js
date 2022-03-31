@@ -8,33 +8,27 @@ import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
-import addAFriendIcon from '../images/addAFriendIcon.svg';
+import addAGroupIcon from '../images/addAGroupIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 import friendIcon from '../images/friendIcon.svg';
 import groupIcon from '../images/groupIcon.svg';
 import inspireIcon from '../images/inspireIcon.svg';
 import newIcon from '../images/newIcon.svg';
-import nextIcon from '../images/nextIcon.svg';
 
-export default function MyFriendsPage({
+export default function MyGroupsPage({
   activities,
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
-  const activitiesWithFriendsName = activities.filter(
-    activity => activity.friend !== 'I still need to plan...'
+  const activitiesWithGroup = activities.filter(
+    activity => activity.group !== ''
   );
 
-  const activitiesWithoutFriend = activities.filter(
-    activity =>
-      activity.friend === 'I still need to plan...' && activity.group === ''
-  );
-
-  const friendsOnlyOnceWithoutDetails = [
-    ...new Set(activitiesWithFriendsName.map(activity => activity.friend)),
+  const groupsOnlyOnceWithoutDetails = [
+    ...new Set(activitiesWithGroup.map(activity => activity?.group)),
   ];
 
-  const sortedFriendsList = friendsOnlyOnceWithoutDetails.sort(function (a, b) {
+  const sortedGroupList = groupsOnlyOnceWithoutDetails.sort(function (a, b) {
     const firstFriend = a.toLowerCase();
     const secondFriend = b.toLowerCase();
 
@@ -45,45 +39,31 @@ export default function MyFriendsPage({
 
   return (
     <Picture>
-      <Header hiddenGroup="hidden">my friends</Header>
+      <Header hiddenFriend="hidden" handleResetPage={handleResetPage}>
+        my groups
+      </Header>
       <Main>
-        {activitiesWithoutFriend.length > 0 ||
-        friendsOnlyOnceWithoutDetails.length > 0 ? (
-          <>
-            {activitiesWithoutFriend.length > 0 && (
-              <StyledLink to="/I still need to plan...">
-                <NameStyling>
-                  Activities I still need to plan with someone:
-                </NameStyling>
-                <NumStyling>
-                  #{activitiesWithoutFriend.length}
-                  <StyledArrow>
-                    <img src={nextIcon} alt="next page" />
-                  </StyledArrow>
-                </NumStyling>
-              </StyledLink>
-            )}
-            <StyledList role="list" title="list of friends">
-              {sortedFriendsList.map((friend, index) => {
-                const sumOfActivitiesEachFriend = activities.filter(
-                  activity => activity.friend === friend
-                ).length;
-                return (
-                  <li key={index}>
-                    <FriendCard
-                      friend={friend}
-                      sumOfActivitiesEachFriend={sumOfActivitiesEachFriend}
-                    />
-                  </li>
-                );
-              })}
-            </StyledList>
-          </>
+        {activitiesWithGroup.length > 0 ? (
+          <StyledList role="list" title="list of groups">
+            {sortedGroupList.map((group, index) => {
+              const sumOfActivitiesEachGroup = activities.filter(
+                activity => activity.group === group
+              ).length;
+              return (
+                <li key={index}>
+                  <FriendCard
+                    group={group}
+                    sumOfActivitiesEachGroup={sumOfActivitiesEachGroup}
+                  />
+                </li>
+              );
+            })}
+          </StyledList>
         ) : (
           <StyledEmptyMessage data-testid="emptylist">
             <StyledIntro>
               Hi there! 👋 <br />
-              There are no activities entered yet.
+              There are no group activities entered yet.
               <br />
               <strong>Get Started!</strong>
             </StyledIntro>
@@ -110,12 +90,12 @@ export default function MyFriendsPage({
                 width="40"
                 height="20"
                 alt="friendsHomeIcon"
-                src={addAFriendIcon}
+                src={addAGroupIcon}
               />
             </StyledAdd>
             <p>
-              <strong>Add a friend!</strong> <br />
-              Before you can add friends to an activity, you need to add them.
+              <strong>Add a group!</strong> <br />
+              Before you can add groups to an activity, you need to add them.
             </p>
 
             <MainNavButtonSmall>
@@ -123,7 +103,7 @@ export default function MyFriendsPage({
             </MainNavButtonSmall>
             <p>
               <strong>Add an activity!</strong> <br />
-              Are you done and added a friend? <br />
+              Are you done and added a friend and or a group? <br />
               Click on this button in the navigation and add an activity!
             </p>
             <img
@@ -153,6 +133,7 @@ export default function MyFriendsPage({
           </StyledEmptyMessage>
         )}
       </Main>
+
       <Navigation
         handleResetPage={handleResetPage}
         handleResetPageAndShowArrow={handleResetPageAndShowArrow}
@@ -165,26 +146,6 @@ export default function MyFriendsPage({
   );
 }
 
-const StyledLink = styled(Link)`
-  color: rgba(71, 39, 35, 0.72);
-  text-decoration: none;
-  padding: 20px 18px 10px 10px;
-  display: grid;
-  grid-template-columns: auto auto;
-  border-bottom: 2px solid rgba(71, 39, 35, 0.3);
-`;
-
-const NameStyling = styled.p`
-  font-weight: bold;
-  display: grid;
-  grid-template-columns: auto auto;
-`;
-
-const NumStyling = styled.span`
-  justify-self: end;
-  align-self: center;
-`;
-
 const StyledList = styled.ul`
   list-style-type: none;
   color: rgba(71, 39, 35, 0.72);
@@ -192,10 +153,6 @@ const StyledList = styled.ul`
   li {
     padding: 5px;
   }
-`;
-
-const StyledArrow = styled.span`
-  margin-left: 5px;
 `;
 
 const StyledEmptyMessage = styled.section`

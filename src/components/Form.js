@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { DeletePictureButton } from '../components/Button';
-import Navigation from './Navigation';
+import { DeletePictureButton, AddSaveButton } from '../components/Button';
 
 import addAFriendIcon from '../images/addAFriendIcon.svg';
+import addAGroupIcon from '../images/addAGroupIcon.svg';
 import addPictureIcon from '../images/addPictureIcon.svg';
 import deletePictureIcon from '../images/deletePictureIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
@@ -21,12 +21,15 @@ export default function Form({
   photo,
   setPhoto,
   handleResetPage,
-  handleResetPageAndShowArrow,
   addedFriend,
+  addedGroup,
 }) {
   const [preloadedPicture, setPreloadedPicture] = useState(
     preloadedValues?.photo
   );
+  const [friendSelection, setFriendSelection] = useState(false);
+  const [groupSelection, setGroupSelection] = useState(false);
+
   const navigate = useNavigate();
   const {
     register,
@@ -40,6 +43,7 @@ export default function Form({
       : {
           activities: '',
           category: 'other',
+          group: '',
           friend: '',
           notes: '',
           date: '',
@@ -49,26 +53,13 @@ export default function Form({
   });
 
   const onSubmit = data => {
-    const sortedFriendNames = data.friend
-      .split(',')
-      .map(tag => tag.trim())
-      .sort(function (a, b) {
-        const firstFriend = a.toLowerCase();
-        const secondFriend = b.toLowerCase();
-
-        if (firstFriend < secondFriend) return -1;
-        if (firstFriend > secondFriend) return 1;
-        return 0;
-      })
-      .join(', ');
-
     if (preloadedValues) {
       handleActivity({
         id: preloadedValues.id,
         activity: data.activity,
         category: data.category === '' ? 'other' : data.category,
-        friend:
-          data.friend === '' ? 'I still need to plan...' : sortedFriendNames,
+        group: data.group === '' ? '' : data.group,
+        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -82,8 +73,8 @@ export default function Form({
         id: id,
         activity: data.activity,
         category: data.category === '' ? '' : data.category,
-        friend:
-          data.friend === '' ? 'I still need to plan...' : sortedFriendNames,
+        group: data.group === '' ? '' : data.group,
+        friend: data.friend === '' ? 'I still need to plan...' : data.friend,
         notes: data.notes,
         date: data.date,
         location: data.location,
@@ -97,6 +88,8 @@ export default function Form({
   useEffect(() => {
     setFocus('activity');
   }, [setFocus]);
+
+  const dateToday = new Date().toISOString().substring(0, 10);
 
   return (
     <WrapperForm
@@ -134,8 +127,9 @@ export default function Form({
       </StyledLabels>
 
       <StyledSelection>
-        Category:
-        <select name="select category" {...register('category')}>
+        <label htmlFor="category">Category:</label>
+
+        <select id="category" name="select category" {...register('category')}>
           <option value="culture">culture</option>
           <option value="food and beverages">food and beverages</option>
           <option value="outdoor">outdoor</option>
@@ -144,26 +138,74 @@ export default function Form({
         </select>
       </StyledSelection>
 
-      <StyledSelection>
-        Who should join you?
-        <select name="friend" {...register('friend')}>
-          {addedFriend.map(friend => {
-            return (
-              <option value={friend.newFriend} key={friend.id}>
-                {friend.newFriend}
-              </option>
-            );
-          })}
-        </select>
-        <StyledFriendLink to="/addfriend" onClick={handleResetPage}>
-          <img
-            width="40"
-            height="20"
-            alt="addAFriendIcon"
-            src={addAFriendIcon}
-          />
-        </StyledFriendLink>
-      </StyledSelection>
+      <StyledSelectionFriend>
+        Who will join you?
+        <StyledButtonArea>
+          <StyledButtonChoice
+            type="button"
+            onClick={handleOnClickLater}
+            active={groupSelection === false && friendSelection === false}
+          >
+            choose later
+          </StyledButtonChoice>
+          <StyledButtonChoice
+            type="button"
+            onClick={handleOnClickFriend}
+            active={friendSelection === true}
+          >
+            friend
+          </StyledButtonChoice>
+          <StyledButtonChoice
+            type="button"
+            onClick={handleOnClickGroup}
+            active={groupSelection === true}
+          >
+            group
+          </StyledButtonChoice>
+        </StyledButtonArea>
+        <StyledFriendSelection hidden={friendSelection === false}>
+          <label htmlFor="friend" />
+          <StyledSelectionFG id="friend" name="friend" {...register('friend')}>
+            <option value="">friend</option>
+            {addedFriend.map(friend => {
+              return (
+                <option value={friend.newFriend} key={friend.id}>
+                  {friend.newFriend}
+                </option>
+              );
+            })}
+          </StyledSelectionFG>
+          <StyledFriendLink to="/addfriend" onClick={handleResetPage}>
+            <img
+              width="40"
+              height="20"
+              alt="addAFriendIcon"
+              src={addAFriendIcon}
+            />
+          </StyledFriendLink>
+        </StyledFriendSelection>
+        <StyledGroupSelection hidden={groupSelection === false}>
+          <label htmlFor="group" />
+          <StyledSelectionFG id="group" name="group" {...register('group')}>
+            <option value="">group</option>
+            {addedGroup.map(group => {
+              return (
+                <option value={group.enteredGroup} key={group.id}>
+                  {group.enteredGroup}
+                </option>
+              );
+            })}
+          </StyledSelectionFG>
+          <StyledFriendLink to="/addgroup" onClick={handleResetPage}>
+            <img
+              width="40"
+              height="20"
+              alt="addAGroupIcon"
+              src={addAGroupIcon}
+            />
+          </StyledFriendLink>
+        </StyledGroupSelection>
+      </StyledSelectionFriend>
 
       <StyledLabels htmlFor="notes">
         Space for some additional notes...
@@ -301,6 +343,7 @@ export default function Form({
           id="date"
           type="date"
           name="date"
+          min={dateToday}
           {...register('date')}
         />
       </StyledLabels>
@@ -327,14 +370,25 @@ export default function Form({
         )}
       </StyledLabels>
 
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <AddSaveButton onClick={handleResetPage}>
         <img width="45" height="45" src={saveIcon} alt="save" />
-      </Navigation>
+      </AddSaveButton>
     </WrapperForm>
   );
+  function handleOnClickLater() {
+    setFriendSelection(false);
+    setGroupSelection(false);
+  }
+
+  function handleOnClickFriend() {
+    setFriendSelection(true);
+    setGroupSelection(false);
+  }
+
+  function handleOnClickGroup() {
+    setGroupSelection(true);
+    setFriendSelection(false);
+  }
 
   function onDeletePicture(event) {
     event.preventDefault();
@@ -350,8 +404,9 @@ export default function Form({
 const WrapperForm = styled.form`
   height: 85vh;
   display: grid;
-  grid-template-rows: repeat(7, auto) 50px;
+  grid-template-rows: repeat(7, auto);
   margin-top: 20px;
+  margin-bottom: 60px;
 
   textarea {
     background: transparent;
@@ -365,6 +420,7 @@ const WrapperForm = styled.form`
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     outline: none;
+    margin: 5px 0 8px;
   }
 
   i {
@@ -375,8 +431,8 @@ const WrapperForm = styled.form`
 const StyledSelection = styled.section`
   margin: 0 30px 8px;
   display: flex;
-  align-items: center;
-  gap: 15px;
+  flex-direction: column;
+  gap: 5px;
 
   select {
     color: rgba(71, 39, 35, 0.72);
@@ -385,7 +441,52 @@ const StyledSelection = styled.section`
     background: transparent;
     border: 1px solid rgba(71, 39, 35, 0.42);
     border-radius: 5px;
+    width: 50%;
+    margin-left: 15px;
   }
+`;
+
+const StyledSelectionFriend = styled.section`
+  margin: 5px 30px 20px;
+  display: grid;
+  grid-template-rows: repeat(2, auto) 25px;
+  gap: 5px;
+`;
+
+const StyledButtonArea = styled.span`
+  grid-row-start: 2;
+  margin-left: 8px;
+`;
+
+const StyledButtonChoice = styled.button`
+  margin: 3px;
+  width: fit-content;
+  background: ${props => (props.active ? '#92dec5' : 'transparent')};
+  color: ${props => (props.active ? 'rgba(71, 39, 35, 0.72)' : '#92dec5')};
+  border: 1px solid #92dec5;
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 14px;
+  white-space: nowrap;
+`;
+const StyledFriendSelection = styled.section`
+  grid-row-start: 3;
+`;
+
+const StyledGroupSelection = styled.span`
+  grid-row-start: 3;
+  grid-template-columns: repeat(2, auto);
+`;
+
+const StyledSelectionFG = styled.select`
+  color: rgba(71, 39, 35, 0.72);
+  font-size: 14px;
+  padding: 3px;
+  width: 50%;
+  margin-left: 15px;
+  background: transparent;
+  border: 1px solid rgba(71, 39, 35, 0.42);
+  border-radius: 5px;
 `;
 
 const StyledLabels = styled.label`
@@ -397,13 +498,16 @@ const StyledInputs = styled.input`
   border: 1px solid rgba(71, 39, 35, 0.42);
   border-radius: 5px;
   padding: 5px;
+  margin: 5px 0 8px;
   width: 100%;
   color: rgba(71, 39, 35, 0.72);
   outline: none;
 `;
 
 const StyledFriendLink = styled(Link)`
-  margin-top: 8px;
+  img {
+    margin-left: 20px;
+  }
 `;
 
 const StyledDate = styled(StyledInputs)`

@@ -33,13 +33,16 @@ export default function List({
         <li key={activity.id}>
           <ActivityCard
             onDeleteActivity={() => onDeleteActivity(activity.id)}
-            nameOfSelectedFriend={activity.friend}
+            nameOfSelectedFriend={
+              activity?.group ? activity.group : activity.friend
+            }
             nameOfSelectedActivity={activity.activity}
             nameOfSelectedCategory={activity.category}
             errorMessage={errorMessage}
             photo={activity.photo}
             showBin={showBin}
             handleResetPage={handleResetPage}
+            id={activity.id}
           />
         </li>
       ))}

@@ -14,47 +14,33 @@ import goBackIcon from '../images/goBackIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
-export default function AddFriendPage({
-  addedFriend,
-  setAddedFriend,
+export default function AddGroupPage({
+  addedGroup,
+  setAddedGroup,
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
   const navigate = useNavigate();
-  const [enteredName, setEnteredName] = useState('');
-  const [tooLong, setTooLong] = useState(false);
-  const [tooShort, setTooShort] = useState(true);
 
-  function onAddFriend(event) {
+  const [enteredGroup, setEnteredGroup] = useState('');
+  const [tooLongGroup, setTooLongGroup] = useState(false);
+  const [tooShortGroup, setTooShortGroup] = useState(true);
+
+  function onAddGroup(event) {
     event.preventDefault();
-
-    const separatedFriends = enteredName
-      .split(',')
-      .map(function (name) {
-        return name.trim();
-      })
-      .filter(name => {
-        return name !== '';
-      });
-
-    const arrayWithIds = separatedFriends.map(friend => {
-      const id = nanoid();
-      return { id: id.toString(), newFriend: friend };
-    });
-
-    separatedFriends.length > 0 &&
-      setAddedFriend(friends => [...friends, ...arrayWithIds]);
-    setEnteredName('');
-    setTooShort(true);
-    setTooLong(false);
+    const id = nanoid();
+    setAddedGroup([...addedGroup, { id, enteredGroup }]);
+    setEnteredGroup('');
+    setTooShortGroup(true);
+    setTooLongGroup(false);
   }
 
-  const disabledButton = tooShort === true || tooLong === true;
+  const disabledButtonGroup = tooShortGroup === true || tooLongGroup === true;
 
   return (
     <Picture>
-      <Header hiddenFriend="hidden">
-        Add a friend
+      <Header hiddenGroup="hidden">
+        Add a group
         <ArrowBackButton onClick={() => navigate(-1)}>
           <img src={goBackIcon} alt="go back" />
         </ArrowBackButton>
@@ -62,51 +48,52 @@ export default function AddFriendPage({
       <Main>
         <Grid>
           <WrapperForm
-            title="addAFriend"
+            title="addAGroup"
             autoComplete="off"
-            onSubmit={onAddFriend}
+            onSubmit={onAddGroup}
           >
-            <StyledLabels htmlFor="addFriend">
-              Who is your friend?
+            <StyledLabels htmlFor="addGroup">
+              What is the name of your group?
               <StyledInput
-                id="addFriend"
+                id="addGroup"
                 type="text"
-                name="addFriend"
-                value={enteredName}
-                onChange={handleNameInput}
-                placeholder="Lasse, Andrea, Michael,..."
+                name="addGroup"
+                value={enteredGroup}
+                onChange={handleGroupInput}
+                placeholder="Workpeps or Girlsgroup or ..."
               />
             </StyledLabels>
 
-            <AddButton type="submit" role="button" disabled={disabledButton}>
+            <AddButton
+              type="submit"
+              role="button"
+              disabled={disabledButtonGroup}
+            >
               <img width="25" height="25" src={saveIcon} alt="save" />
             </AddButton>
-            {tooLong === true && (
+            {tooLongGroup === true && (
               <StyledNotification>
-                <i>
-                  These are quite a lot friends keep the overview and make it
-                  shorter
-                </i>
+                <i>This is quite a long name for a group, make it shorter</i>
               </StyledNotification>
             )}
 
-            {tooShort === true && (
+            {tooShortGroup === true && (
               <StyledNotification>
                 <i>Please enter a name with at least 2 characters</i>
               </StyledNotification>
             )}
           </WrapperForm>
 
-          {addedFriend.length > 0 && (
+          {addedGroup.length > 0 && (
             <section>
-              <p>Find below your already added friends:</p>
-              <StyledList role="list" title="list of added friends">
-                {addedFriend?.map(friend => {
+              <p>Find below your already added groups:</p>
+              <StyledList role="list" title="list of added groups">
+                {addedGroup?.map(group => {
                   return (
-                    <li key={friend.id}>
+                    <li key={group.id}>
                       <div>
-                        {friend.newFriend}
-                        <DeleteButton onClick={() => onDeleteFriend(friend.id)}>
+                        {group.enteredGroup}
+                        <DeleteButton onClick={() => onDeleteGroup(group.id)}>
                           <StyledImage
                             width="18"
                             height="18"
@@ -134,19 +121,23 @@ export default function AddFriendPage({
     </Picture>
   );
 
-  function handleNameInput(event) {
+  function handleGroupInput(event) {
     event.preventDefault();
-    event.target.value.length <= 1 ? setTooShort(true) : setTooShort(false);
-    event.target.value.length >= 50 ? setTooLong(true) : setTooLong(false);
-    setEnteredName(event.target.value);
+    event.target.value.length <= 1
+      ? setTooShortGroup(true)
+      : setTooShortGroup(false);
+    event.target.value.length >= 25
+      ? setTooLongGroup(true)
+      : setTooLongGroup(false);
+    setEnteredGroup(event.target.value);
   }
 
-  function onDeleteFriend(thisNameId) {
-    setAddedFriend(addedFriend.filter(friend => friend.id !== thisNameId));
+  function onDeleteGroup(thisGroupId) {
+    setAddedGroup(addedGroup.filter(group => group.id !== thisGroupId));
   }
 }
 
-const Grid = styled.span`
+const Grid = styled.section`
   height: 85vh;
   margin-top: 20px;
   display: grid;

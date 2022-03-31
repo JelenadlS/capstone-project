@@ -23,8 +23,8 @@ describe('MyFriendsPage', () => {
       </MemoryRouter>
     );
 
-    const title = screen.getByText('Clara');
-    const list = screen.getByRole('list');
+    const title = screen.getByRole('heading', { name: /my friends/i });
+    const list = screen.getByRole('list', { name: /list of friends/i });
     const button = screen.getByRole('button');
 
     expect(title).toBeInTheDocument();

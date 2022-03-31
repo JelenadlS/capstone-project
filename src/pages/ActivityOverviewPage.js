@@ -22,6 +22,7 @@ import editIcon from '../images/editIcon.svg';
 import fAndBIcon from '../images/fAndBIcon.svg';
 import friendIcon from '../images/friendIcon.svg';
 import goBackIcon from '../images/goBackIcon.svg';
+import groupIcon from '../images/groupIcon.svg';
 import locationIcon from '../images/locationIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import notesIcon from '../images/notesIcon.svg';
@@ -38,7 +39,7 @@ export default function ActivityOverviewPage({
 }) {
   const navigate = useNavigate();
   const { activityName } = useParams();
-  const selectedActivity = activities?.find(
+  const selectedActivity = activities.find(
     activity => activity.activity === activityName
   );
 
@@ -55,12 +56,18 @@ export default function ActivityOverviewPage({
 
   return (
     <Picture>
-      <Header handleResetPage={handleResetPage}>
+      <Header hiddenGroup="hidden">
         {selectedActivity.activity}
         {selectedActivity.isArchived === false ? (
           <ArrowBackButton
             onClick={() => {
-              navigate(`/${selectedActivity.friend}`);
+              navigate(
+                `/${
+                  selectedActivity?.group
+                    ? selectedActivity.group
+                    : selectedActivity.friend
+                }`
+              );
             }}
           >
             <img src={goBackIcon} alt="go back" />
@@ -104,13 +111,34 @@ export default function ActivityOverviewPage({
           <StyledCategoryText>{selectedActivity.category}</StyledCategoryText>
 
           <StyledOtherInfo>
-            <StyledIcon width="35" height="35" src={friendIcon} alt="friend" />
-
-            {selectedActivity.friend !== 'I still need to plan...' ? (
-              <StyledText>{selectedActivity.friend}</StyledText>
-            ) : (
-              <StyledText>make plans with a friend!</StyledText>
+            {selectedActivity.group === '' && (
+              <StyledIcon
+                width="35"
+                height="35"
+                src={friendIcon}
+                alt="friend"
+              />
             )}
+            {selectedActivity.group !== '' && (
+              <StyledIconGroup
+                width="55"
+                height="55"
+                src={groupIcon}
+                alt="friend"
+              />
+            )}
+            {selectedActivity.group === '' &&
+              selectedActivity.friend === 'I still need to plan...' && (
+                <StyledText>make plans with a friend!</StyledText>
+              )}
+
+            {selectedActivity.group !== '' && (
+              <StyledText>{selectedActivity.group}</StyledText>
+            )}
+            {selectedActivity.friend !== 'I still need to plan...' &&
+              selectedActivity.group === '' && (
+                <StyledText>{selectedActivity.friend}</StyledText>
+              )}
 
             {selectedActivity.notes ? (
               <>
@@ -122,17 +150,13 @@ export default function ActivityOverviewPage({
                 <StyledNoNotes data-testid="noNotes" />
               </>
             )}
-
             <StyledIcon src={dateIcon} alt="date" />
-
             {selectedActivity.date ? (
               <StyledText>{selectedActivity.date}</StyledText>
             ) : (
               <StyledText>plan your activity soon!</StyledText>
             )}
-
             <StyledIcon src={locationIcon} alt="location" />
-
             {selectedActivity.location ? (
               <StyledText>{selectedActivity.location}</StyledText>
             ) : (
@@ -216,7 +240,7 @@ export default function ActivityOverviewPage({
 
 const MainGrid = styled.div`
   display: grid;
-  grid-template-columns: 57px 30px 20px 30px auto;
+  grid-template-columns: 90px 30px 20px 30px auto;
   grid-template-rows: repeat(6, auto) 40px;
   margin: 30px;
   align-items: center;
@@ -258,7 +282,10 @@ const StyledOtherInfo = styled.span`
   margin-top: 20px;
   display: grid;
 `;
-const StyledIcon = styled.img`
+const StyledIconGroup = styled.img`
+  justify-self: center;
+`;
+const StyledIcon = styled(StyledIconGroup)`
   justify-self: center;
   padding: 5px;
 `;
@@ -268,6 +295,7 @@ const StyledText = styled.span`
   grid-column-end: 6;
   word-break: break-word;
   margin: 3px;
+  align-self: center;
 `;
 const StyledNoNotes = styled.span`
   grid-column-start: 1;

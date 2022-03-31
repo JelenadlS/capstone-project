@@ -14,16 +14,19 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('ActivityOverviewPage', () => {
-  const selectedActivity = {
-    id: '1',
-    friend: 'Clara',
-    activity: 'Frau Möller',
-    category: 'culture',
-    notes: 'notes',
-    date: '13/02/21',
-    location: 'HH',
-    isArchived: true,
-  };
+  const activities = [
+    {
+      id: '1',
+      friend: 'Clara',
+      activity: 'Frau Möller',
+      group: '',
+      category: 'culture',
+      notes: 'notes',
+      date: '13/02/21',
+      location: 'HH',
+      isArchived: true,
+    },
+  ];
 
   const setActivities = [
     {
@@ -38,18 +41,6 @@ describe('ActivityOverviewPage', () => {
   ];
 
   it('renders page with a back and new button as well as heading and activity name', () => {
-    const activities = [
-      {
-        id: '1',
-        friend: 'Clara',
-        activity: 'Frau Möller',
-        category: 'culture',
-        notes: 'notes',
-        date: '13/02/21',
-        location: 'HH',
-      },
-    ];
-
     render(
       <MemoryRouter>
         <ActivityOverviewPage activities={activities} />
@@ -66,19 +57,6 @@ describe('ActivityOverviewPage', () => {
   });
 
   it('renders page with picture, category, friend, notes, date and location', () => {
-    const activities = [
-      {
-        id: '1',
-        friend: 'Clara',
-        activity: 'Frau Möller',
-        category: 'culture',
-        notes: 'notes',
-        date: '13/02/21',
-        location: 'HH',
-        photo: 'activity.png',
-      },
-    ];
-
     render(
       <MemoryRouter>
         <ActivityOverviewPage activities={activities} />
@@ -105,11 +83,12 @@ describe('ActivityOverviewPage', () => {
   });
 
   it('renders page with empty messages for category, friend, date and location, as well as no note, but a picture', () => {
-    const activities = [
+    const emptyActivities = [
       {
         id: '1',
         friend: 'I still need to plan...',
         activity: 'Frau Möller',
+        group: '',
         category: 'culture',
         notes: '',
         date: '',
@@ -120,7 +99,7 @@ describe('ActivityOverviewPage', () => {
 
     render(
       <MemoryRouter>
-        <ActivityOverviewPage activities={activities} />
+        <ActivityOverviewPage activities={emptyActivities} />
       </MemoryRouter>
     );
 
@@ -141,26 +120,12 @@ describe('ActivityOverviewPage', () => {
   });
 
   it('when clicking the bin, the DeleteModal is renderd with the delete button', () => {
-    const activities = [
-      {
-        id: '1',
-        friend: 'Clara',
-        activity: 'Frau Möller',
-        category: 'culture',
-        notes: 'notes',
-        date: '13/02/21',
-        location: 'HH',
-        photo: 'activity.png',
-      },
-    ];
-
     const showCallback = jest.fn();
     render(
       <MemoryRouter>
         <ActivityOverviewPage
           setActivities={setActivities}
           activities={activities}
-          selectedActivity={selectedActivity}
           onClick={showCallback}
         />
       </MemoryRouter>
@@ -170,5 +135,44 @@ describe('ActivityOverviewPage', () => {
 
     userEvent.click(binButton);
     expect(showCallback).toBeTruthy();
+  });
+
+  it('renders page with picture, category, group, notes, date and location', () => {
+    const activitiesWGroup = [
+      {
+        id: '1',
+        friend: 'I still need to plan...',
+        activity: 'Frau Möller',
+        group: 'Mädels',
+        category: 'culture',
+        notes: 'notes',
+        date: '13/02/21',
+        location: 'HH',
+        isArchived: true,
+      },
+    ];
+    render(
+      <MemoryRouter>
+        <ActivityOverviewPage activities={activitiesWGroup} />
+      </MemoryRouter>
+    );
+
+    const category = screen.getByText('culture');
+    expect(category).toBeInTheDocument();
+
+    const group = screen.getByText('Mädels');
+    expect(group).toBeInTheDocument();
+
+    const notes = screen.getByText('notes');
+    expect(notes).toBeInTheDocument();
+
+    const date = screen.getByText('13/02/21');
+    expect(date).toBeInTheDocument();
+
+    const location = screen.getByText('HH');
+    expect(location).toBeInTheDocument();
+
+    const picture = screen.getByRole('img', { name: 'upload' });
+    expect(picture).toBeInTheDocument();
   });
 });

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { MainNavButton } from './Button';
 
-import addAFriendIcon from '../images/addAFriendIcon.svg';
+import groupIcon from '../images/groupIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 import friendIcon from '../images/friendIcon.svg';
 import inspireIcon from '../images/inspireIcon.svg';
@@ -12,19 +12,35 @@ export default function Navigation({
   children,
   handleResetPage,
   handleResetPageAndShowArrow,
+  hidden,
 }) {
   return (
-    <StyledNavigation area-label="StyledNavigation">
-      <StyledNavLinkFriends to="/" onClick={handleResetPage}>
+    <StyledNavigation aria-label="navigation">
+      <StyledNavLinkFriends
+        aria-label="all non friend and friend related activities"
+        to="/"
+        onClick={handleResetPage}
+      >
         <img width="40" height="20" alt="friendsHomeIcon" src={friendIcon} />
         <StyledDescription>friends</StyledDescription>
       </StyledNavLinkFriends>
-      <StyledNavLinkAddFriend to="/addfriend" onClick={handleResetPage}>
-        <img width="40" height="20" alt="addAFriendIcon" src={addAFriendIcon} />
-        <StyledDescription>add</StyledDescription>
-      </StyledNavLinkAddFriend>
-      <StyledNewButton onClick={handleResetPage}>{children}</StyledNewButton>
+      <StyledNavLinkGroup
+        aria-label="all group related activities"
+        to="/mygroups"
+        onClick={handleResetPage}
+      >
+        <img width="40" height="20" alt="addAFriendIcon" src={groupIcon} />
+        <StyledDescription>groups</StyledDescription>
+      </StyledNavLinkGroup>
+      <StyledNewButton
+        aria-label="create a new activity"
+        hidden={hidden}
+        onClick={handleResetPage}
+      >
+        {children}
+      </StyledNewButton>
       <StyledNavLinkActivities
+        aria-label="all activities"
         to="/allactivities"
         onClick={handleResetPageAndShowArrow}
       >
@@ -37,6 +53,7 @@ export default function Navigation({
         <StyledDescription>activities</StyledDescription>
       </StyledNavLinkActivities>
       <StyledNavLinkInspire
+        aria-label="all activities you already did"
         to="/getinspired"
         onClick={handleResetPageAndShowArrow}
       >
@@ -101,11 +118,11 @@ const StyledNavLinkFriends = styled(NavLink)`
   flex-direction: column;
 
   &:active {
-    transform: translateY(+8px);
+    transform: translateY(-8px);
   }
 `;
 
-const StyledNavLinkAddFriend = styled(NavLink)`
+const StyledNavLinkGroup = styled(NavLink)`
   grid-column-start: 4;
   align-self: center;
   padding-top: 8px;
@@ -115,7 +132,7 @@ const StyledNavLinkAddFriend = styled(NavLink)`
   flex-direction: column;
 
   &:active {
-    transform: translateY(+8px);
+    transform: translateY(-8px);
   }
 `;
 const StyledDescription = styled.p`

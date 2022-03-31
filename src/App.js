@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router-dom';
@@ -10,10 +9,12 @@ import ErrorFallback from './components/ErrorFallBack';
 
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
 import AddFriendPage from './pages/AddFriendPage.js';
+import AddGroupPage from './pages/AddGroupPage.js';
 import EditActivityPage from './pages/EditActivityPage.js';
 import FriendsActivitiesPage from './pages/FriendsActivitiesPage.js';
 import GetInspiredPage from './pages/GetInspiredPage.js';
 import MyFriendsPage from './pages/MyFriendsPage';
+import MyGroupsPage from './pages/MyGroupsPage';
 import NewActivityPage from './pages/NewActivityPage.js';
 import AllActivitiesPage from './pages/AllActivitiesPage.js';
 
@@ -33,12 +34,16 @@ export default function App() {
   const [addedFriend, setAddedFriend] = useState(
     (!hasError && loadFromLocal('addedFriend')) || []
   );
+  const [addedGroup, setAddedGroup] = useState(
+    (!hasError && loadFromLocal('addedGroup')) || []
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
     saveToLocal('activities', activities);
     saveToLocal('addedFriend', addedFriend);
-  }, [activities, addedFriend]);
+    saveToLocal('addedGroup', addedGroup);
+  }, [activities, addedFriend, addedGroup]);
 
   const activitiesNotArchived = activities.filter(
     activity => activity.isArchived === false
@@ -78,6 +83,16 @@ export default function App() {
             path="/"
             element={
               <MyFriendsPage
+                activities={activitiesNotArchived}
+                handleResetPage={handleResetPage}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+              />
+            }
+          />
+          <Route
+            path="/mygroups"
+            element={
+              <MyGroupsPage
                 activities={activitiesNotArchived}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
@@ -127,6 +142,7 @@ export default function App() {
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
                 addedFriend={addedFriend}
+                addedGroup={addedGroup}
               />
             }
           />
@@ -141,6 +157,7 @@ export default function App() {
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
                 addedFriend={addedFriend}
+                addedGroup={addedGroup}
               />
             }
           />
@@ -186,7 +203,17 @@ export default function App() {
               <AddFriendPage
                 addedFriend={addedFriend}
                 setAddedFriend={setAddedFriend}
-                onAddedFriend={onAddedFriend}
+                handleResetPage={handleResetPage}
+                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+              />
+            }
+          />
+          <Route
+            path="/addgroup"
+            element={
+              <AddGroupPage
+                addedGroup={addedGroup}
+                setAddedGroup={setAddedGroup}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
@@ -197,15 +224,11 @@ export default function App() {
     </ErrorBoundary>
   );
 
-  function onAddedFriend({ id, newFriend }) {
-    setHasError(false);
-    setAddedFriend([...addedFriend, { id, newFriend }]);
-  }
-
   function onAddActivity({
     id,
     activity,
     category,
+    group,
     friend,
     notes,
     date,
@@ -218,6 +241,7 @@ export default function App() {
       {
         activity,
         category,
+        group,
         friend,
         id,
         notes,
@@ -234,6 +258,7 @@ export default function App() {
     id,
     activity,
     category,
+    group,
     friend,
     notes,
     date,
@@ -248,6 +273,7 @@ export default function App() {
               id,
               activity,
               category,
+              group,
               friend,
               notes,
               date,
@@ -319,7 +345,7 @@ export default function App() {
         },
       })
       .then(response => {
-        setPhoto(response.data.url);
+        setPhoto(response.data.url.replace('http://', 'https://'));
       })
       .catch(error => console.log(error));
   }

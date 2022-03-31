@@ -8,4 +8,14 @@ export default {
 const Template = args => <Form {...args} />;
 
 export const FormFields = Template.bind({});
-FormFields.args = {};
+FormFields.args = {
+  addedFriend: [
+    { id: '1', newFriend: 'Andrea' },
+    { id: '2', newFriend: 'Clara' },
+  ],
+  addedGroup: [
+    { id: '1', enteredGroup: 'Sportclub' },
+    { id: '2', enteredGroup: 'Segeln' },
+  ],
+  preloadedValues: null,
+};

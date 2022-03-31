@@ -28,21 +28,24 @@ export default function FriendsActivitiesPage({
 }) {
   const { friendsName } = useParams();
   const selectedFriendsActivities = activitiesNotArchived.filter(
-    activity => activity.friend === friendsName
+    activity =>
+      (activity?.group ? activity.group : activity.friend) === friendsName
   );
   const navigate = useNavigate();
 
   return (
     <Picture>
-      <Header handleResetPage={handleResetPage}>
-        {selectedFriendsActivities[0]?.friend}
+      <Header hiddenGroup="hidden">
+        {selectedFriendsActivities[0]?.group
+          ? selectedFriendsActivities[0]?.group
+          : selectedFriendsActivities[0]?.friend}
         <ArrowBackButton onClick={event => resetPage(event, navigate('/'))}>
           <img src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
       <Main>
         <FilterTags
-          selectedFriendsActivity={selectedFriendsActivities}
+          activities={selectedFriendsActivities}
           currentFilter={currentFilter}
           onFilter={onFilter}
           setSearchInput={setSearchInput}

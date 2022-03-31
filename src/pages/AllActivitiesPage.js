@@ -19,13 +19,12 @@ export default function AllActivitiesPage({
   filteredSearchActivities,
   searchInput,
   setSearchInput,
-
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
   return (
     <Picture>
-      <Header handleResetPage={handleResetPage}>all activities</Header>
+      <Header hiddenGroup="hidden">all activities</Header>
       <Main>
         <Searchbar
           setSearchInput={setSearchInput}

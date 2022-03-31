@@ -8,4 +8,6 @@ export default {
 const Template = args => <PastActivityModal {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  showPastModal: true,
+};

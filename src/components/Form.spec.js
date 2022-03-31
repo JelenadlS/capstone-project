@@ -8,25 +8,29 @@ describe('Form', () => {
     { id: '1', newFriend: 'Clara' },
     { id: '2', newFriend: 'Lasse' },
   ];
-  it('renders a form with three textboxes, the two select boxes with once 5 options for category and 2 for friends, the date, select photo and a button', () => {
+  const addedGroup = [
+    { id: '1', enteredGroup: 'Segelclub' },
+    { id: '2', enteredGroup: 'Girlsgroup' },
+  ];
+  it('renders a form with three textboxes, a select boxes with once 5 options for category, the date, select photo and a button', () => {
     render(
       <MemoryRouter>
-        <Form addedFriend={addedFriend} />
+        <Form addedFriend={addedFriend} addedGroup={addedGroup} />
       </MemoryRouter>
     );
 
     const textBoxes = screen.getAllByRole('textbox');
-    const selectBox = screen.getAllByRole('combobox');
+    const selectBox = screen.getByRole('combobox');
     const categoryOptions = screen.getAllByRole('option');
     const selectPhoto = screen.getByRole('img', { name: 'selectPhoto' });
     const date = screen.getByTestId('date');
-    const submitButton = screen.getByRole('button');
+    const submitAndFriendsButton = screen.getAllByRole('button');
 
     expect(textBoxes).toHaveLength(3);
-    expect(selectBox).toHaveLength(2);
-    expect(categoryOptions).toHaveLength(7);
+    expect(selectBox).toHaveLength(5);
+    expect(categoryOptions).toHaveLength(5);
     expect(selectPhoto).toBeInTheDocument();
     expect(date).toBeInTheDocument();
-    expect(submitButton).toBeInTheDocument();
+    expect(submitAndFriendsButton).toHaveLength(4);
   });
 });

@@ -13,12 +13,12 @@ You can add an activity to your list either linked with a friends name or just f
 - Overview
   - Start screen shows a list of friends with a #no. When clicking on this friend a list with activities is displayed (#no of activities = #no in start screen)
   - At the very top "Things I still need to plan with someone:" will be displayed for all activities which did not get a friends information
-  - It is possible to click on each activity to receive further information which was entered.
-- Add/ delete a friend in order to secure typos, when friend is once entered.
+  - It is possible to click on each friend to receive all saved activities. With a click on them further information which were entered will be displayed.
+- Add/ delete a friend or a group in order to prevent typos, when friend /group is once entered.
 - Add/ edit an activity with the following information:
   - Activity (required)
   - Category (optional, other by default)
-  - Friends (optional, list of previous entered friends will be displayed)
+  - Friend or group (optional, list of previous entered friends/groups will be displayed)
   - Notes (optional)
   - Picture (optional - if not uploaded placeholder picture is available)
   - Date (optional)
@@ -28,6 +28,7 @@ You can add an activity to your list either linked with a friends name or just f
 - Pages
   - All activities page where you can search and filter through all activities not dependent on which friend is part of it
   - Inspiration page where you can toggle between liked and not liked activities (check on the overview page of the activity to set the activity past), also individually search and filter them
+  - Groups overview page
 - Storage: localStorage
 
 ## How to use it?

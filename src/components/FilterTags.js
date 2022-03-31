@@ -1,18 +1,13 @@
 import styled from 'styled-components';
 
 export default function FilterTags({
-  selectedFriendsActivity,
   activities,
   currentFilter,
   onFilter,
   setSearchInput,
 }) {
   const eachExistingCategoryOnce = [
-    ...new Set(
-      selectedFriendsActivity?.length > 0
-        ? selectedFriendsActivity?.map(activity => activity.category)
-        : activities?.map(activity => activity.category)
-    ),
+    ...new Set(activities.map(activity => activity.category)),
   ];
 
   const categoryTagsAndAll = ['all', ...eachExistingCategoryOnce].sort();
