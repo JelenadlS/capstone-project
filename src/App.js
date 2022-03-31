@@ -34,13 +34,13 @@ export default function App() {
   const [activities, setActivities] = useState(
     (!hasError && loadFromLocal('activities')) || []
   );
-
   const [addedFriend, setAddedFriend] = useState(
     (!hasError && loadFromLocal('addedFriend')) || []
   );
   const [addedGroup, setAddedGroup] = useState(
     (!hasError && loadFromLocal('addedGroup')) || []
   );
+
   const [showBin, setShowBin] = useState(true);
   const navigate = useNavigate();
 
@@ -116,7 +116,6 @@ export default function App() {
                 showBin={showBin}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-                resetPage={resetPage}
               />
             }
           />
@@ -182,7 +181,6 @@ export default function App() {
                 filteredSearchActivitiesArchived={
                   filteredSearchActivitiesArchived
                 }
-                resetPage={resetPage}
               />
             }
           />
@@ -313,12 +311,6 @@ export default function App() {
     setCurrentFilter('all');
     setSearchInput('');
     setShowBin(false);
-  }
-
-  function resetPage(event) {
-    event.preventDefault();
-    setCurrentFilter('all');
-    setSearchInput('');
   }
 
   function uploadImage(e) {

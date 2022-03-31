@@ -5,6 +5,7 @@ const useStore = create(set => ({
   currentFilter: 'all',
   photo: '',
   hasError: false,
+
   setSearchInput: searchInput => {
     set({ searchInput: searchInput });
   },
@@ -16,6 +17,14 @@ const useStore = create(set => ({
   },
   setHasError: hasError => {
     set({ hasError: hasError });
+  },
+
+  resetPage: event => {
+    event.preventDefault();
+    const setCurrentFilter = useStore.getState().currentFilter;
+    const setSearchInput = useStore.getState().searchInput;
+    setCurrentFilter('all');
+    setSearchInput('');
   },
 }));
 

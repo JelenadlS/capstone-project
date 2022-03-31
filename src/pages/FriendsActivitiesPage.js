@@ -9,6 +9,8 @@ import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
+import useStore from '../hooks/useStore.js';
+
 import goBackIcon from '../images/goBackIcon.svg';
 import newIcon from '../images/newIcon.svg';
 
@@ -16,16 +18,14 @@ export default function FriendsActivitiesPage({
   activities,
   activitiesNotArchived,
   setActivities,
-
   onFilter,
   filteredSearchActivities,
-
   showBin,
   handleResetPage,
   handleResetPageAndShowArrow,
-  resetPage,
 }) {
   const { friendsName } = useParams();
+  const resetPage = useStore(state => state.resetPage);
   const selectedFriendsActivities = activitiesNotArchived.filter(
     activity =>
       (activity?.group ? activity.group : activity.friend) === friendsName

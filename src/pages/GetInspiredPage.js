@@ -20,11 +20,11 @@ export default function GetInspiredPage({
   handleResetPageAndShowArrow,
   onFilter,
   filteredSearchActivitiesArchived,
-  resetPage,
 }) {
   const searchInput = useStore(state => state.searchInput);
   const currentFilter = useStore(state => state.currentFilter);
   const [currentLikeFilter, setCurrentLikeFilter] = useState(true);
+  const resetPage = useStore(state => state.resetPage);
 
   const likedActivities = activitiesArchived.filter(
     activity => activity.isLiked === true
