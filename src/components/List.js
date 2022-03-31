@@ -5,7 +5,7 @@ import useStore from '../hooks/useStore.js';
 
 export default function List({
   selectedFriendsActivity,
-  errorMessage,
+
   onDeleteActivity,
 
   activities,
@@ -42,7 +42,6 @@ export default function List({
             }
             nameOfSelectedActivity={activity.activity}
             nameOfSelectedCategory={activity.category}
-            errorMessage={errorMessage}
             photo={activity.photo}
             showBin={showBin}
             handleResetPage={handleResetPage}

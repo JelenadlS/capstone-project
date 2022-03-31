@@ -4,6 +4,7 @@ const useStore = create(set => ({
   searchInput: '',
   currentFilter: 'all',
   photo: '',
+  hasError: false,
   setSearchInput: searchInput => {
     set({ searchInput: searchInput });
   },
@@ -12,6 +13,9 @@ const useStore = create(set => ({
   },
   setPhoto: photo => {
     set({ photo: photo });
+  },
+  setHasError: hasError => {
+    set({ hasError: hasError });
   },
 }));
 

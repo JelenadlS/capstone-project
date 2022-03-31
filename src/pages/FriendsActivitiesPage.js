@@ -13,7 +13,6 @@ import goBackIcon from '../images/goBackIcon.svg';
 import newIcon from '../images/newIcon.svg';
 
 export default function FriendsActivitiesPage({
-  hasError,
   activities,
   activitiesNotArchived,
   setActivities,
@@ -49,7 +48,6 @@ export default function FriendsActivitiesPage({
           onFilter={onFilter}
         />
         <List
-          errorMessage={hasError}
           onDeleteActivity={onDeleteActivity}
           selectedFriendsActivity={selectedFriendsActivities}
           filteredSearchActivities={filteredSearchActivities}

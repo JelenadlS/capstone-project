@@ -24,23 +24,24 @@ const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function App() {
-  const [hasError, setHasError] = useState(false);
-  const [activities, setActivities] = useState(
-    (!hasError && loadFromLocal('activities')) || []
-  );
-
+  const hasError = useStore(state => state.hasError);
+  const setHasError = useStore(state => state.setHasError);
   const searchInput = useStore(state => state.searchInput);
   const setSearchInput = useStore(state => state.setSearchInput);
   const setCurrentFilter = useStore(state => state.setCurrentFilter);
   const setPhoto = useStore(state => state.setPhoto);
 
-  const [showBin, setShowBin] = useState(true);
+  const [activities, setActivities] = useState(
+    (!hasError && loadFromLocal('activities')) || []
+  );
+
   const [addedFriend, setAddedFriend] = useState(
     (!hasError && loadFromLocal('addedFriend')) || []
   );
   const [addedGroup, setAddedGroup] = useState(
     (!hasError && loadFromLocal('addedGroup')) || []
   );
+  const [showBin, setShowBin] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -107,7 +108,6 @@ export default function App() {
             path="/:friendsName"
             element={
               <FriendsActivitiesPage
-                hasError={hasError}
                 activities={activities}
                 activitiesNotArchived={activitiesNotArchived}
                 setActivities={setActivities}
