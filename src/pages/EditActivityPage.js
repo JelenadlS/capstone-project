@@ -7,19 +7,21 @@ import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
+import useStore from '../hooks/useStore.js';
+
 import goBackIcon from '../images/goBackIcon.svg';
 
 export default function EditActivityPage({
   activities,
   onEditActivity,
   uploadImage,
-  photo,
-  setPhoto,
+
   handleResetPage,
   handleResetPageAndShowArrow,
   addedFriend,
   addedGroup,
 }) {
+  const setPhoto = useStore(state => state.setPhoto);
   const navigate = useNavigate();
   const { id } = useParams();
   const activityToEdit = activities.find(activity => activity.id === id);
@@ -37,8 +39,6 @@ export default function EditActivityPage({
           preloadedValues={activityToEdit}
           handleActivity={onEditActivity}
           uploadImage={uploadImage}
-          photo={photo}
-          setPhoto={setPhoto}
           handleResetPage={handleResetPage}
           addedFriend={addedFriend}
           addedGroup={addedGroup}

@@ -29,10 +29,10 @@ export default function App() {
     (!hasError && loadFromLocal('activities')) || []
   );
 
-  const [photo, setPhoto] = useState('');
   const searchInput = useStore(state => state.searchInput);
   const setSearchInput = useStore(state => state.setSearchInput);
   const setCurrentFilter = useStore(state => state.setCurrentFilter);
+  const setPhoto = useStore(state => state.setPhoto);
 
   const [showBin, setShowBin] = useState(true);
   const [addedFriend, setAddedFriend] = useState(
@@ -139,8 +139,6 @@ export default function App() {
                 activities={activitiesNotArchived}
                 onEditActivity={onEditActivity}
                 uploadImage={uploadImage}
-                photo={photo}
-                setPhoto={setPhoto}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
                 addedFriend={addedFriend}
@@ -154,8 +152,6 @@ export default function App() {
               <NewActivityPage
                 onAddActivity={onAddActivity}
                 uploadImage={uploadImage}
-                photo={photo}
-                setPhoto={setPhoto}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
                 addedFriend={addedFriend}

@@ -7,19 +7,21 @@ import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
+import useStore from '../hooks/useStore.js';
+
 import goBackIcon from '../images/goBackIcon.svg';
 
 export default function NewActivityPage({
   onAddActivity,
   uploadImage,
-  photo,
-  setPhoto,
+
   handleResetPage,
   handleResetPageAndShowArrow,
   addedFriend,
   addedGroup,
 }) {
   const navigate = useNavigate();
+  const setPhoto = useStore(state => state.setPhoto);
 
   function resetForm() {
     navigate(-1);
@@ -39,8 +41,6 @@ export default function NewActivityPage({
           preloadedValues={null}
           handleActivity={onAddActivity}
           uploadImage={uploadImage}
-          photo={photo}
-          setPhoto={setPhoto}
           handleResetPage={handleResetPage}
           addedFriend={addedFriend}
           addedGroup={addedGroup}

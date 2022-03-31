@@ -7,6 +7,8 @@ import styled from 'styled-components';
 
 import { DeletePictureButton, AddSaveButton } from '../components/Button';
 
+import useStore from '../hooks/useStore.js';
+
 import addAFriendIcon from '../images/addAFriendIcon.svg';
 import addAGroupIcon from '../images/addAGroupIcon.svg';
 import addPictureIcon from '../images/addPictureIcon.svg';
@@ -18,7 +20,7 @@ export default function Form({
   preloadedValues,
   title,
   uploadImage,
-  photo,
+
   setPhoto,
   handleResetPage,
   addedFriend,
@@ -29,6 +31,8 @@ export default function Form({
   );
   const [friendSelection, setFriendSelection] = useState(false);
   const [groupSelection, setGroupSelection] = useState(false);
+
+  const photo = useStore(state => state.photo);
 
   const navigate = useNavigate();
   const {
