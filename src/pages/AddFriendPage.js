@@ -9,14 +9,14 @@ import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
+import useStore from '../hooks/useStore.js';
+
 import deleteIcon from '../images/binIcon.svg';
 import goBackIcon from '../images/goBackIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
 export default function AddFriendPage({
-  addedFriend,
-  setAddedFriend,
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
@@ -24,6 +24,10 @@ export default function AddFriendPage({
   const [enteredName, setEnteredName] = useState('');
   const [tooLong, setTooLong] = useState(false);
   const [tooShort, setTooShort] = useState(true);
+  const addedFriend = useStore(state => state.addedFriend);
+  const setAddedFriend = useStore(state => state.setAddedFriend);
+
+  console.log(addedFriend);
 
   function onAddFriend(event) {
     event.preventDefault();
@@ -36,19 +40,20 @@ export default function AddFriendPage({
       .filter(name => {
         return name !== '';
       });
-
+    console.log(separatedFriends);
     const arrayWithIds = separatedFriends.map(friend => {
       const id = nanoid();
       return { id: id.toString(), newFriend: friend };
     });
+    console.log(arrayWithIds);
 
-    separatedFriends.length > 0 &&
-      setAddedFriend(friends => [...friends, ...arrayWithIds]);
+    separatedFriends.length > 0 && setAddedFriend([...arrayWithIds]);
+    console.log(addedFriend);
     setEnteredName('');
     setTooShort(true);
     setTooLong(false);
   }
-
+  console.log(addedFriend);
   const disabledButton = tooShort === true || tooLong === true;
 
   return (
@@ -97,7 +102,7 @@ export default function AddFriendPage({
             )}
           </WrapperForm>
 
-          {addedFriend.length > 0 && (
+          {addedFriend?.length > 0 && (
             <section>
               <p>Find below your already added friends:</p>
               <StyledList role="list" title="list of added friends">

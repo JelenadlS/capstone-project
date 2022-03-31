@@ -15,9 +15,8 @@ import goBackIcon from '../images/goBackIcon.svg';
 import newIcon from '../images/newIcon.svg';
 
 export default function FriendsActivitiesPage({
-  activities,
   activitiesNotArchived,
-  setActivities,
+
   onFilter,
   filteredSearchActivities,
   showBin,
@@ -26,6 +25,8 @@ export default function FriendsActivitiesPage({
 }) {
   const { friendsName } = useParams();
   const resetPage = useStore(state => state.resetPage);
+  const activities = useStore(state => state.activities);
+  const setActivities = useStore(state => state.setActivities);
   const selectedFriendsActivities = activitiesNotArchived.filter(
     activity =>
       (activity?.group ? activity.group : activity.friend) === friendsName

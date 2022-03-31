@@ -9,14 +9,14 @@ import Main from '../components/Main';
 import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 
+import useStore from '../hooks/useStore.js';
+
 import deleteIcon from '../images/binIcon.svg';
 import goBackIcon from '../images/goBackIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
 export default function AddGroupPage({
-  addedGroup,
-  setAddedGroup,
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
@@ -25,6 +25,9 @@ export default function AddGroupPage({
   const [enteredGroup, setEnteredGroup] = useState('');
   const [tooLongGroup, setTooLongGroup] = useState(false);
   const [tooShortGroup, setTooShortGroup] = useState(true);
+
+  const addedGroup = useStore(state => state.addedGroup);
+  const setAddedGroup = useStore(state => state.setAddedGroup);
 
   function onAddGroup(event) {
     event.preventDefault();

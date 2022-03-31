@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -24,31 +24,33 @@ const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function App() {
-  const hasError = useStore(state => state.hasError);
-  const setHasError = useStore(state => state.setHasError);
+  //const setHasError = useStore(state => state.setHasError);
   const searchInput = useStore(state => state.searchInput);
   const setSearchInput = useStore(state => state.setSearchInput);
   const setCurrentFilter = useStore(state => state.setCurrentFilter);
   const setPhoto = useStore(state => state.setPhoto);
+  const activities = useStore(state => state.activities);
+  const setActivities = useStore(state => state.setActivities);
 
-  const [activities, setActivities] = useState(
-    (!hasError && loadFromLocal('activities')) || []
-  );
-  const [addedFriend, setAddedFriend] = useState(
-    (!hasError && loadFromLocal('addedFriend')) || []
-  );
-  const [addedGroup, setAddedGroup] = useState(
-    (!hasError && loadFromLocal('addedGroup')) || []
-  );
+  // const [activities, setActivities] = useState(
+  //   (!hasError && loadFromLocal('activities')) || []
+  // );
+
+  // const [addedFriend, setAddedFriend] = useState(
+  //   (!hasError && loadFromLocal('addedFriend')) || []
+  // );
+  // const [addedGroup, setAddedGroup] = useState(
+  //   (!hasError && loadFromLocal('addedGroup')) || []
+  // );
 
   const [showBin, setShowBin] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    saveToLocal('activities', activities);
-    saveToLocal('addedFriend', addedFriend);
-    saveToLocal('addedGroup', addedGroup);
-  }, [activities, addedFriend, addedGroup]);
+  // useEffect(() => {
+  //   saveToLocal('activities', activities);
+  //   saveToLocal('addedFriend', addedFriend);
+  //   saveToLocal('addedGroup', addedGroup);
+  // }, [activities, addedFriend, addedGroup]);
 
   const activitiesNotArchived = activities.filter(
     activity => activity.isArchived === false
@@ -108,9 +110,7 @@ export default function App() {
             path="/:friendsName"
             element={
               <FriendsActivitiesPage
-                activities={activities}
                 activitiesNotArchived={activitiesNotArchived}
-                setActivities={setActivities}
                 onFilter={onFilter}
                 filteredSearchActivities={filteredSearchActivities}
                 showBin={showBin}
@@ -123,11 +123,9 @@ export default function App() {
             path="/:friendsName/:activityName"
             element={
               <ActivityOverviewPage
-                activities={activities}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
                 onSetPastActivity={onSetPastActivity}
-                setActivities={setActivities}
               />
             }
           />
@@ -140,8 +138,6 @@ export default function App() {
                 uploadImage={uploadImage}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-                addedFriend={addedFriend}
-                addedGroup={addedGroup}
               />
             }
           />
@@ -153,8 +149,6 @@ export default function App() {
                 uploadImage={uploadImage}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-                addedFriend={addedFriend}
-                addedGroup={addedGroup}
               />
             }
           />
@@ -188,8 +182,6 @@ export default function App() {
             path="/addfriend"
             element={
               <AddFriendPage
-                addedFriend={addedFriend}
-                setAddedFriend={setAddedFriend}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
@@ -199,8 +191,6 @@ export default function App() {
             path="/addgroup"
             element={
               <AddGroupPage
-                addedGroup={addedGroup}
-                setAddedGroup={setAddedGroup}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
@@ -222,7 +212,7 @@ export default function App() {
     location,
     photo,
   }) {
-    setHasError(false);
+    // setHasError(false);
     setActivities([
       ...activities,
       {
@@ -331,17 +321,17 @@ export default function App() {
       .catch(error => console.log(error));
   }
 
-  function loadFromLocal(key) {
-    try {
-      return JSON.parse(localStorage.getItem(key));
-    } catch (error) {
-      setHasError(true);
-    }
-  }
+  //   function loadFromLocal(key) {
+  //     try {
+  //       return JSON.parse(localStorage.getItem(key));
+  //     } catch (error) {
+  //       setHasError(true);
+  //     }
+  //   }
 
-  function saveToLocal(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
-  }
+  //   function saveToLocal(key, data) {
+  //     localStorage.setItem(key, JSON.stringify(data));
+  //   }
 }
 
 const WrapperApp = styled.div`

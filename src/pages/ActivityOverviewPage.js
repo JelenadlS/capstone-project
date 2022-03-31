@@ -15,6 +15,8 @@ import Navigation from '../components/Navigation';
 import PastActivityModal from '../components/PastActivityModal';
 import Picture from '../components/Picture';
 
+import useStore from '../hooks/useStore.js';
+
 import deleteIcon from '../images/binIcon.svg';
 import cultureIcon from '../images/cultureIcon.svg';
 import dateIcon from '../images/dateIcon.svg';
@@ -31,12 +33,12 @@ import outdoorIcon from '../images/outdoorIcon.svg';
 import sportIcon from '../images/sportIcon.svg';
 
 export default function ActivityOverviewPage({
-  activities,
   onSetPastActivity,
   handleResetPage,
   handleResetPageAndShowArrow,
-  setActivities,
 }) {
+  const activities = useStore(state => state.activities);
+  const setActivities = useStore(state => state.setActivities);
   const navigate = useNavigate();
   const { activityName } = useParams();
   const selectedActivity = activities.find(

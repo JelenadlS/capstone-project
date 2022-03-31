@@ -15,11 +15,8 @@ export default function EditActivityPage({
   activities,
   onEditActivity,
   uploadImage,
-
   handleResetPage,
   handleResetPageAndShowArrow,
-  addedFriend,
-  addedGroup,
 }) {
   const setPhoto = useStore(state => state.setPhoto);
   const navigate = useNavigate();
@@ -40,8 +37,6 @@ export default function EditActivityPage({
           handleActivity={onEditActivity}
           uploadImage={uploadImage}
           handleResetPage={handleResetPage}
-          addedFriend={addedFriend}
-          addedGroup={addedGroup}
         />
       </Main>
       <Navigation

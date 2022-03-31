@@ -14,11 +14,8 @@ import goBackIcon from '../images/goBackIcon.svg';
 export default function NewActivityPage({
   onAddActivity,
   uploadImage,
-
   handleResetPage,
   handleResetPageAndShowArrow,
-  addedFriend,
-  addedGroup,
 }) {
   const navigate = useNavigate();
   const setPhoto = useStore(state => state.setPhoto);
@@ -42,8 +39,6 @@ export default function NewActivityPage({
           handleActivity={onAddActivity}
           uploadImage={uploadImage}
           handleResetPage={handleResetPage}
-          addedFriend={addedFriend}
-          addedGroup={addedGroup}
         />
       </Main>
       <Navigation

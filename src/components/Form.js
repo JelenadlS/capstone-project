@@ -20,11 +20,8 @@ export default function Form({
   preloadedValues,
   title,
   uploadImage,
-
   setPhoto,
   handleResetPage,
-  addedFriend,
-  addedGroup,
 }) {
   const [preloadedPicture, setPreloadedPicture] = useState(
     preloadedValues?.photo
@@ -33,6 +30,8 @@ export default function Form({
   const [groupSelection, setGroupSelection] = useState(false);
 
   const photo = useStore(state => state.photo);
+  const addedFriend = useStore(state => state.addedFriend);
+  const addedGroup = useStore(state => state.addedGroup);
 
   const navigate = useNavigate();
   const {

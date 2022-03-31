@@ -6,7 +6,7 @@ import { DeleteButton } from './Button.js';
 import DeleteModal from './DeleteModal.js';
 import MappedPlaceholderPictures from './MappedPlaceholderPictures.js';
 
-import useStore from '../hooks/useStore.js';
+//import useStore from '../hooks/useStore.js';
 
 import deleteIcon from '../images/binIcon.svg';
 import nextIcon from '../images/nextIcon.svg';
@@ -23,7 +23,7 @@ export default function ActivityCard({
   id,
 }) {
   const [show, setShow] = useState(false);
-  const hasError = useStore(state => state.hasError);
+  //const hasError = useStore(state => state.hasError);
   return (
     <>
       <WrapperCard>
@@ -72,11 +72,11 @@ export default function ActivityCard({
           </CardSubGrid>
         )}
       </WrapperCard>
-      <p>
+      {/* <p>
         <strong>
           {hasError && `unfortunately something went wrong with your data.`}
         </strong>
-      </p>
+      </p> */}
     </>
   );
 }
