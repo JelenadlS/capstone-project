@@ -17,8 +17,6 @@ export default function AllActivitiesPage({
   onFilter,
   setCurrentFilter,
   filteredSearchActivities,
-  searchInput,
-  setSearchInput,
   handleResetPage,
   handleResetPageAndShowArrow,
 }) {
@@ -26,22 +24,16 @@ export default function AllActivitiesPage({
     <Picture>
       <Header hiddenGroup="hidden">all activities</Header>
       <Main>
-        <Searchbar
-          setSearchInput={setSearchInput}
-          setCurrentFilter={setCurrentFilter}
-          searchInput={searchInput}
-        />
+        <Searchbar setCurrentFilter={setCurrentFilter} />
         <FilterTags
           activities={activities}
           currentFilter={currentFilter}
           onFilter={onFilter}
-          setSearchInput={setSearchInput}
         />
         {filteredSearchActivities.length > 0 ? (
           <List
             activities={activities}
             currentFilter={currentFilter}
-            searchInput={searchInput}
             filteredSearchActivities={filteredSearchActivities}
             handleResetPage={handleResetPage}
           />

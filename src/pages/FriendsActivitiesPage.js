@@ -20,7 +20,7 @@ export default function FriendsActivitiesPage({
   currentFilter,
   onFilter,
   filteredSearchActivities,
-  setSearchInput,
+
   showBin,
   handleResetPage,
   handleResetPageAndShowArrow,
@@ -48,7 +48,6 @@ export default function FriendsActivitiesPage({
           activities={selectedFriendsActivities}
           currentFilter={currentFilter}
           onFilter={onFilter}
-          setSearchInput={setSearchInput}
         />
         <List
           errorMessage={hasError}

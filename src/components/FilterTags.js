@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
-export default function FilterTags({
-  activities,
-  currentFilter,
-  onFilter,
-  setSearchInput,
-}) {
+import useStore from '../hooks/useStore.js';
+
+export default function FilterTags({ activities, currentFilter, onFilter }) {
+  const setSearchInput = useStore(state => state.setSearchInput);
   const eachExistingCategoryOnce = [
     ...new Set(activities.map(activity => activity.category)),
   ];

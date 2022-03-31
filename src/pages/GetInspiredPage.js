@@ -10,6 +10,8 @@ import Navigation from '../components/Navigation';
 import Picture from '../components/Picture';
 import Searchbar from '../components/Searchbar';
 
+import useStore from '../hooks/useStore.js';
+
 import newIcon from '../images/newIcon.svg';
 
 export default function GetInspiredPage({
@@ -17,13 +19,12 @@ export default function GetInspiredPage({
   handleResetPage,
   handleResetPageAndShowArrow,
   onFilter,
-  searchInput,
-  setSearchInput,
   setCurrentFilter,
   currentFilter,
   filteredSearchActivitiesArchived,
   resetPage,
 }) {
+  const searchInput = useStore(state => state.searchInput);
   const [currentLikeFilter, setCurrentLikeFilter] = useState(true);
 
   const likedActivities = activitiesArchived.filter(
@@ -65,16 +66,11 @@ export default function GetInspiredPage({
         {currentLikeFilter === true &&
           (likedActivities.length > 0 ? (
             <>
-              <Searchbar
-                setSearchInput={setSearchInput}
-                setCurrentFilter={setCurrentFilter}
-                searchInput={searchInput}
-              />
+              <Searchbar setCurrentFilter={setCurrentFilter} />
               <FilterTags
                 activities={likedActivities}
                 currentFilter={currentFilter}
                 onFilter={onFilter}
-                setSearchInput={setSearchInput}
               />
               {filteredLikedSearchActivitiesArchived.length > 0 ? (
                 <StyledList
@@ -117,7 +113,6 @@ export default function GetInspiredPage({
           (notLikedActivities.length > 0 ? (
             <>
               <Searchbar
-                setSearchInput={setSearchInput}
                 setCurrentFilter={setCurrentFilter}
                 searchInput={searchInput}
               />
@@ -125,7 +120,6 @@ export default function GetInspiredPage({
                 activities={notLikedActivities}
                 currentFilter={currentFilter}
                 onFilter={onFilter}
-                setSearchInput={setSearchInput}
               />
               {filteredNotLikedSearchActivitiesArchived.length > 0 ? (
                 <StyledList

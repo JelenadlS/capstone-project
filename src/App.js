@@ -7,6 +7,8 @@ import styled from 'styled-components';
 
 import ErrorFallback from './components/ErrorFallBack';
 
+import useStore from './hooks/useStore.js';
+
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
 import AddFriendPage from './pages/AddFriendPage.js';
 import AddGroupPage from './pages/AddGroupPage.js';
@@ -28,7 +30,9 @@ export default function App() {
   );
 
   const [photo, setPhoto] = useState('');
-  const [searchInput, setSearchInput] = useState('');
+  const searchInput = useStore(state => state.searchInput);
+  const setSearchInput = useStore(state => state.setSearchInput);
+
   const [currentFilter, setCurrentFilter] = useState('all');
   const [showBin, setShowBin] = useState(true);
   const [addedFriend, setAddedFriend] = useState(
@@ -110,7 +114,6 @@ export default function App() {
                 currentFilter={currentFilter}
                 onFilter={onFilter}
                 filteredSearchActivities={filteredSearchActivities}
-                setSearchInput={setSearchInput}
                 showBin={showBin}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
@@ -170,8 +173,6 @@ export default function App() {
                 onFilter={onFilter}
                 setCurrentFilter={setCurrentFilter}
                 filteredSearchActivities={filteredSearchActivities}
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}
                 setShowBin={setShowBin}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
@@ -186,8 +187,6 @@ export default function App() {
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
                 onFilter={onFilter}
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}
                 setCurrentFilter={setCurrentFilter}
                 currentFilter={currentFilter}
                 filteredSearchActivitiesArchived={
