@@ -170,7 +170,6 @@ export default function App() {
                 activities={activitiesNotArchived}
                 onFilter={onFilter}
                 filteredSearchActivities={filteredSearchActivities}
-                setShowBin={setShowBin}
                 handleResetPage={handleResetPage}
                 handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
