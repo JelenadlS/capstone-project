@@ -41,6 +41,7 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
   const resetPage = useStore(state => state.resetPage);
 
   const navigate = useNavigate();
+
   const { activityName } = useParams();
   const selectedActivity = activities.find(
     activity => activity.activity === activityName
@@ -57,12 +58,14 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [check, setCheck] = useState(false);
 
+  console.log(selectedActivity);
   return (
     <Picture>
       <Header hiddenGroup="hidden">
         {selectedActivity.activity}
         {selectedActivity.isArchived === false ? (
           <ArrowBackButton
+            type="button"
             onClick={event =>
               resetPage(
                 event,
@@ -174,7 +177,13 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
               <EditButton
                 onClick={() =>
                   navigate(
-                    `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
+                    `/${
+                      selectedActivity?.group
+                        ? selectedActivity.group
+                        : selectedActivity.friend
+                    }/${selectedActivity.activity}/${
+                      selectedActivity.id
+                    }/editactivity`
                   )
                 }
               >
