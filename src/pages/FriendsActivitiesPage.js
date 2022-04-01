@@ -7,7 +7,6 @@ import Header from '../components/Header';
 import List from '../components/List';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
 
 import useStore from '../hooks/useStore.js';
 
@@ -32,7 +31,7 @@ export default function FriendsActivitiesPage({
   );
 
   return (
-    <Picture>
+    <>
       <Header hiddenGroup="hidden">
         {selectedFriendsActivities[0]?.group
           ? selectedFriendsActivities[0]?.group
@@ -54,7 +53,7 @@ export default function FriendsActivitiesPage({
           <img src={newIcon} alt="new" />
         </NavLink>
       </Navigation>
-    </Picture>
+    </>
   );
 
   function onDeleteActivity(thisActivityId) {

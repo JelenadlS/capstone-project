@@ -7,7 +7,6 @@ import { AddButton, ArrowBackButton, DeleteButton } from '../components/Button';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
 
 import useStore from '../hooks/useStore.js';
 
@@ -29,7 +28,7 @@ export default function AddFriendPage() {
   const disabledButton = tooShort === true || tooLong === true;
 
   return (
-    <Picture>
+    <>
       <Header hiddenFriend="hidden">
         Add a friend
         <ArrowBackButton onClick={() => navigate(-1)}>
@@ -105,7 +104,7 @@ export default function AddFriendPage() {
           <img src={newIcon} alt="new" />
         </Link>
       </Navigation>
-    </Picture>
+    </>
   );
 
   function handleNameInput(event) {

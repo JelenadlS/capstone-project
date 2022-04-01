@@ -7,7 +7,6 @@ import { AddButton, ArrowBackButton, DeleteButton } from '../components/Button';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
 
 import useStore from '../hooks/useStore.js';
 
@@ -29,7 +28,7 @@ export default function AddGroupPage() {
   const disabledButtonGroup = tooShortGroup === true || tooLongGroup === true;
 
   return (
-    <Picture>
+    <>
       <Header hiddenGroup="hidden">
         Add a group
         <ArrowBackButton onClick={() => navigate(-1)}>
@@ -106,7 +105,7 @@ export default function AddGroupPage() {
           <img src={newIcon} alt="new" />
         </Link>
       </Navigation>
-    </Picture>
+    </>
   );
 
   function handleGroupInput(event) {

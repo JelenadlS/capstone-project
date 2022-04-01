@@ -207,8 +207,10 @@ export default function App() {
 }
 
 const WrapperApp = styled.div`
+  max-width: 500px;
   height: 100vh;
-  /* display: grid;
+  margin: 0 auto;
+  display: grid;
   grid-template-rows: auto 1fr auto;
-  justify-items: center; */
+  justify-items: center;
 `;

@@ -13,7 +13,6 @@ import Main from '../components/Main';
 import MappedPlaceholderPictures from '../components/MappedPlaceholderPictures.js';
 import Navigation from '../components/Navigation';
 import PastActivityModal from '../components/PastActivityModal';
-import Picture from '../components/Picture';
 
 import useStore from '../hooks/useStore.js';
 
@@ -61,7 +60,7 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
   };
 
   return (
-    <Picture>
+    <>
       <Header hiddenGroup="hidden">
         {selectedActivity.activity}
         {selectedActivity.isArchived === false ? (
@@ -236,7 +235,7 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
           <img src={newIcon} alt="new" />
         </Link>
       </Navigation>
-    </Picture>
+    </>
   );
 
   function handleQuit() {
@@ -257,6 +256,7 @@ const MainGrid = styled.div`
   grid-template-rows: repeat(6, auto) 40px;
   margin: 30px;
   align-items: center;
+  position: relative;
 `;
 
 const StyledTitle = styled.h2`

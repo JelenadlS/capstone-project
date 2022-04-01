@@ -6,7 +6,6 @@ import Header from '../components/Header';
 import List from '../components/List';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
 import Searchbar from '../components/Searchbar';
 
 import newIcon from '../images/newIcon.svg';
@@ -16,7 +15,7 @@ export default function AllActivitiesPage({
   filteredSearchActivities,
 }) {
   return (
-    <Picture>
+    <>
       <Header hiddenGroup="hidden">all activities</Header>
       <Main>
         <Searchbar />
@@ -37,7 +36,7 @@ export default function AllActivitiesPage({
           <img src={newIcon} alt="new" />
         </Link>
       </Navigation>
-    </Picture>
+    </>
   );
 }
 

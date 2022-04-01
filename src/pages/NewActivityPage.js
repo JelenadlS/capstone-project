@@ -5,7 +5,6 @@ import Form from '../components/Form';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
 
 import useStore from '../hooks/useStore.js';
 
@@ -17,7 +16,7 @@ export default function NewActivityPage({ onAddActivity, uploadImage }) {
   const setPhoto = useStore(state => state.setPhoto);
 
   return (
-    <Picture>
+    <>
       <Header hiddenGroup="hidden">
         new activity
         <ArrowBackButton onClick={resetForm}>
@@ -32,7 +31,7 @@ export default function NewActivityPage({ onAddActivity, uploadImage }) {
         />
       </Main>
       <Navigation hidden="hidden"></Navigation>
-    </Picture>
+    </>
   );
 
   function resetForm() {

@@ -7,7 +7,6 @@ import FilterTags from '../components/FilterTags';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
 import Searchbar from '../components/Searchbar';
 
 import useStore from '../hooks/useStore.js';
@@ -42,7 +41,7 @@ export default function GetInspiredPage({
     );
 
   return (
-    <Picture>
+    <>
       <Header hiddenGroup="hidden">Get Inspired</Header>
       <Main>
         <StyledCategoryButton>
@@ -147,7 +146,7 @@ export default function GetInspiredPage({
           <img src={newIcon} alt="new" />
         </Link>
       </Navigation>
-    </Picture>
+    </>
   );
 }
 

@@ -6,7 +6,6 @@ import FriendCard from '../components/FriendCard';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
 
 import addAGroupIcon from '../images/addAGroupIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
@@ -34,7 +33,7 @@ export default function MyGroupsPage({ activities }) {
   });
 
   return (
-    <Picture>
+    <>
       <Header hiddenFriend="hidden">my groups</Header>
       <Main>
         {activitiesWithGroup.length > 0 ? (
@@ -127,13 +126,12 @@ export default function MyGroupsPage({ activities }) {
           </StyledEmptyMessage>
         )}
       </Main>
-
       <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>
       </Navigation>
-    </Picture>
+    </>
   );
 }
 

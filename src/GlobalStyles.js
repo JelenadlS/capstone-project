@@ -7,12 +7,11 @@ export default createGlobalStyle`
   box-sizing: border-box;
 };
 
-
 body {
   font-family:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: rgba(71, 39, 35, 0.72);
   font-size: 16px;
-  //background: rgba(254, 174, 0, 0.09);;
+  background: rgba(254, 174, 0, 0.05);
 }
 
 input{

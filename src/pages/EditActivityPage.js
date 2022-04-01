@@ -5,7 +5,6 @@ import Form from '../components/Form';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
 
 import useStore from '../hooks/useStore.js';
 
@@ -22,7 +21,7 @@ export default function EditActivityPage({ activities, uploadImage }) {
   const activityToEdit = activities.find(activity => activity.id === id);
 
   return (
-    <Picture>
+    <>
       <Header hiddenGroup="hidden">
         Edit activity
         <ArrowBackButton onClick={resetForm}>
@@ -37,7 +36,7 @@ export default function EditActivityPage({ activities, uploadImage }) {
         />
       </Main>
       <Navigation hidden="hidden"></Navigation>
-    </Picture>
+    </>
   );
 
   function resetForm() {

@@ -33,7 +33,7 @@ export default function Header({ children, hiddenFriend, hiddenGroup }) {
 }
 
 const StyledHeader = styled.header`
-  //max-width: 500px;
+  width: 100%;
   background: #f0e7da;
   padding: 10px;
   position: sticky;
@@ -54,7 +54,7 @@ const StyledTitle = styled.h1`
 `;
 
 const StyledNavLinkAddFriend = styled(NavLink)`
-  position: fixed;
+  position: absolute;
   top: 2px;
   right: 2px;
   align-self: center;
