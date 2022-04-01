@@ -6,26 +6,27 @@ import { DeleteButton } from './Button.js';
 import DeleteModal from './DeleteModal.js';
 import MappedPlaceholderPictures from './MappedPlaceholderPictures.js';
 
+import useStore from '../hooks/useStore.js';
+
 import deleteIcon from '../images/binIcon.svg';
 import nextIcon from '../images/nextIcon.svg';
 
 export default function ActivityCard({
-  photo,
-  errorMessage,
   onDeleteActivity,
   nameOfSelectedFriend,
   nameOfSelectedActivity,
   nameOfSelectedCategory,
-  showBin,
-  handleResetPage,
-  id,
+  photo,
 }) {
   const [show, setShow] = useState(false);
+
+  const showBin = useStore(state => state.showBin);
+  const handleResetPage = useStore(state => state.handleResetPage);
 
   return (
     <>
       <WrapperCard>
-        {!photo > 0 ? (
+        {!photo ? (
           <StyledImage
             width="30"
             height="30"
@@ -40,7 +41,7 @@ export default function ActivityCard({
             src={photo}
           />
         )}
-        {showBin !== undefined ? (
+        {showBin ? (
           <CardSubGrid>
             <LinkStyling
               to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}
@@ -70,11 +71,6 @@ export default function ActivityCard({
           </CardSubGrid>
         )}
       </WrapperCard>
-      <p>
-        <strong>
-          {errorMessage && `unfortunately something went wrong with your data.`}
-        </strong>
-      </p>
     </>
   );
 }

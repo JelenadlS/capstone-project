@@ -7,24 +7,21 @@ import FilterTags from '../components/FilterTags';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
 import Searchbar from '../components/Searchbar';
+
+import useStore from '../hooks/useStore.js';
 
 import newIcon from '../images/newIcon.svg';
 
 export default function GetInspiredPage({
   activitiesArchived,
-  handleResetPage,
-  handleResetPageAndShowArrow,
-  onFilter,
-  searchInput,
-  setSearchInput,
-  setCurrentFilter,
-  currentFilter,
   filteredSearchActivitiesArchived,
-  resetPage,
 }) {
   const [currentLikeFilter, setCurrentLikeFilter] = useState(true);
+
+  const searchInput = useStore(state => state.searchInput);
+  const currentFilter = useStore(state => state.currentFilter);
+  const resetPage = useStore(state => state.resetPage);
 
   const likedActivities = activitiesArchived.filter(
     activity => activity.isLiked === true
@@ -44,7 +41,7 @@ export default function GetInspiredPage({
     );
 
   return (
-    <Picture>
+    <>
       <Header hiddenGroup="hidden">Get Inspired</Header>
       <Main>
         <StyledCategoryButton>
@@ -65,17 +62,8 @@ export default function GetInspiredPage({
         {currentLikeFilter === true &&
           (likedActivities.length > 0 ? (
             <>
-              <Searchbar
-                setSearchInput={setSearchInput}
-                setCurrentFilter={setCurrentFilter}
-                searchInput={searchInput}
-              />
-              <FilterTags
-                activities={likedActivities}
-                currentFilter={currentFilter}
-                onFilter={onFilter}
-                setSearchInput={setSearchInput}
-              />
+              <Searchbar />
+              <FilterTags activities={likedActivities} />
               {filteredLikedSearchActivitiesArchived.length > 0 ? (
                 <StyledList
                   role="list"
@@ -96,7 +84,6 @@ export default function GetInspiredPage({
                         nameOfSelectedFriend={activity.friend}
                         nameOfSelectedActivity={activity.activity}
                         photo={activity.photo}
-                        handleResetPage={handleResetPage}
                       />
                     </li>
                   ))}
@@ -116,17 +103,8 @@ export default function GetInspiredPage({
         {currentLikeFilter === false &&
           (notLikedActivities.length > 0 ? (
             <>
-              <Searchbar
-                setSearchInput={setSearchInput}
-                setCurrentFilter={setCurrentFilter}
-                searchInput={searchInput}
-              />
-              <FilterTags
-                activities={notLikedActivities}
-                currentFilter={currentFilter}
-                onFilter={onFilter}
-                setSearchInput={setSearchInput}
-              />
+              <Searchbar searchInput={searchInput} />
+              <FilterTags activities={notLikedActivities} />
               {filteredNotLikedSearchActivitiesArchived.length > 0 ? (
                 <StyledList
                   role="list"
@@ -147,7 +125,6 @@ export default function GetInspiredPage({
                         nameOfSelectedFriend={activity.friend}
                         nameOfSelectedActivity={activity.activity}
                         photo={activity.photo}
-                        handleResetPage={handleResetPage}
                       />
                     </li>
                   ))}
@@ -164,15 +141,12 @@ export default function GetInspiredPage({
             </StyledEmptyMessage>
           ))}
       </Main>
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>
       </Navigation>
-    </Picture>
+    </>
   );
 }
 

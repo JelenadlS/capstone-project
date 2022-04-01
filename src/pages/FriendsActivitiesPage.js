@@ -7,34 +7,31 @@ import Header from '../components/Header';
 import List from '../components/List';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
+
+import useStore from '../hooks/useStore.js';
 
 import goBackIcon from '../images/goBackIcon.svg';
 import newIcon from '../images/newIcon.svg';
 
 export default function FriendsActivitiesPage({
-  hasError,
-  activities,
   activitiesNotArchived,
-  setActivities,
-  currentFilter,
-  onFilter,
   filteredSearchActivities,
-  setSearchInput,
-  showBin,
-  handleResetPage,
-  handleResetPageAndShowArrow,
-  resetPage,
 }) {
+  const navigate = useNavigate();
+
   const { friendsName } = useParams();
+
+  const activities = useStore(state => state.activities);
+  const setActivities = useStore(state => state.setActivities);
+  const resetPage = useStore(state => state.resetPage);
+
   const selectedFriendsActivities = activitiesNotArchived.filter(
     activity =>
       (activity?.group ? activity.group : activity.friend) === friendsName
   );
-  const navigate = useNavigate();
 
   return (
-    <Picture>
+    <>
       <Header hiddenGroup="hidden">
         {selectedFriendsActivities[0]?.group
           ? selectedFriendsActivities[0]?.group
@@ -44,30 +41,19 @@ export default function FriendsActivitiesPage({
         </ArrowBackButton>
       </Header>
       <Main>
-        <FilterTags
-          activities={selectedFriendsActivities}
-          currentFilter={currentFilter}
-          onFilter={onFilter}
-          setSearchInput={setSearchInput}
-        />
+        <FilterTags activities={selectedFriendsActivities} />
         <List
-          errorMessage={hasError}
           onDeleteActivity={onDeleteActivity}
-          currentFilter={currentFilter}
           selectedFriendsActivity={selectedFriendsActivities}
           filteredSearchActivities={filteredSearchActivities}
-          showBin={showBin}
         />
       </Main>
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <NavLink to="/newactivity">
           <img src={newIcon} alt="new" />
         </NavLink>
       </Navigation>
-    </Picture>
+    </>
   );
 
   function onDeleteActivity(thisActivityId) {

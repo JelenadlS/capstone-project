@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-export default function Searchbar({
-  setSearchInput,
-  setCurrentFilter,
-  searchInput,
-}) {
+import useStore from '../hooks/useStore.js';
+
+export default function Searchbar() {
+  const searchInput = useStore(state => state.searchInput);
+  const setCurrentFilter = useStore(state => state.setCurrentFilter);
+  const setSearchInput = useStore(state => state.setSearchInput);
   return (
     <StyledSearchbar>
       <StyledInput

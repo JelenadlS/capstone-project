@@ -7,38 +7,28 @@ import { AddButton, ArrowBackButton, DeleteButton } from '../components/Button';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
+
+import useStore from '../hooks/useStore.js';
 
 import deleteIcon from '../images/binIcon.svg';
 import goBackIcon from '../images/goBackIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
-export default function AddGroupPage({
-  addedGroup,
-  setAddedGroup,
-  handleResetPage,
-  handleResetPageAndShowArrow,
-}) {
+export default function AddGroupPage() {
   const navigate = useNavigate();
 
   const [enteredGroup, setEnteredGroup] = useState('');
   const [tooLongGroup, setTooLongGroup] = useState(false);
   const [tooShortGroup, setTooShortGroup] = useState(true);
 
-  function onAddGroup(event) {
-    event.preventDefault();
-    const id = nanoid();
-    setAddedGroup([...addedGroup, { id, enteredGroup }]);
-    setEnteredGroup('');
-    setTooShortGroup(true);
-    setTooLongGroup(false);
-  }
+  const addedGroup = useStore(state => state.addedGroup);
+  const setAddedGroup = useStore(state => state.setAddedGroup);
 
   const disabledButtonGroup = tooShortGroup === true || tooLongGroup === true;
 
   return (
-    <Picture>
+    <>
       <Header hiddenGroup="hidden">
         Add a group
         <ArrowBackButton onClick={() => navigate(-1)}>
@@ -110,15 +100,12 @@ export default function AddGroupPage({
           )}
         </Grid>
       </Main>
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>
       </Navigation>
-    </Picture>
+    </>
   );
 
   function handleGroupInput(event) {
@@ -130,6 +117,15 @@ export default function AddGroupPage({
       ? setTooLongGroup(true)
       : setTooLongGroup(false);
     setEnteredGroup(event.target.value);
+  }
+
+  function onAddGroup(event) {
+    event.preventDefault();
+    const id = nanoid();
+    setAddedGroup([...addedGroup, { id, enteredGroup }]);
+    setEnteredGroup('');
+    setTooShortGroup(true);
+    setTooLongGroup(false);
   }
 
   function onDeleteGroup(thisGroupId) {

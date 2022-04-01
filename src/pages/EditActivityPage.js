@@ -5,27 +5,23 @@ import Form from '../components/Form';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
+
+import useStore from '../hooks/useStore.js';
 
 import goBackIcon from '../images/goBackIcon.svg';
 
-export default function EditActivityPage({
-  activities,
-  onEditActivity,
-  uploadImage,
-  photo,
-  setPhoto,
-  handleResetPage,
-  handleResetPageAndShowArrow,
-  addedFriend,
-  addedGroup,
-}) {
+export default function EditActivityPage({ activities, uploadImage }) {
   const navigate = useNavigate();
+
   const { id } = useParams();
+
+  const setPhoto = useStore(state => state.setPhoto);
+  const onEditActivity = useStore(state => state.onEditActivity);
+
   const activityToEdit = activities.find(activity => activity.id === id);
 
   return (
-    <Picture>
+    <>
       <Header hiddenGroup="hidden">
         Edit activity
         <ArrowBackButton onClick={resetForm}>
@@ -37,19 +33,10 @@ export default function EditActivityPage({
           preloadedValues={activityToEdit}
           handleActivity={onEditActivity}
           uploadImage={uploadImage}
-          photo={photo}
-          setPhoto={setPhoto}
-          handleResetPage={handleResetPage}
-          addedFriend={addedFriend}
-          addedGroup={addedGroup}
         />
       </Main>
-      <Navigation
-        hidden="hidden"
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      ></Navigation>
-    </Picture>
+      <Navigation hidden="hidden"></Navigation>
+    </>
   );
 
   function resetForm() {

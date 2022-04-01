@@ -7,6 +7,8 @@ import styled from 'styled-components';
 
 import { DeletePictureButton, AddSaveButton } from '../components/Button';
 
+import useStore from '../hooks/useStore.js';
+
 import addAFriendIcon from '../images/addAFriendIcon.svg';
 import addAGroupIcon from '../images/addAGroupIcon.svg';
 import addPictureIcon from '../images/addPictureIcon.svg';
@@ -18,19 +20,22 @@ export default function Form({
   preloadedValues,
   title,
   uploadImage,
-  photo,
-  setPhoto,
-  handleResetPage,
-  addedFriend,
-  addedGroup,
 }) {
+  const navigate = useNavigate();
+
   const [preloadedPicture, setPreloadedPicture] = useState(
     preloadedValues?.photo
   );
   const [friendSelection, setFriendSelection] = useState(false);
   const [groupSelection, setGroupSelection] = useState(false);
 
-  const navigate = useNavigate();
+  const addedFriend = useStore(state => state.addedFriend);
+  const addedGroup = useStore(state => state.addedGroup);
+  const photo = useStore(state => state.photo);
+  const setPhoto = useStore(state => state.setPhoto);
+  const handleResetPage = useStore(state => state.handleResetPage);
+
+  const dateToday = new Date().toISOString().substring(0, 10);
   const {
     register,
     handleSubmit,
@@ -88,8 +93,6 @@ export default function Form({
   useEffect(() => {
     setFocus('activity');
   }, [setFocus]);
-
-  const dateToday = new Date().toISOString().substring(0, 10);
 
   return (
     <WrapperForm

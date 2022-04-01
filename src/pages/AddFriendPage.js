@@ -7,52 +7,28 @@ import { AddButton, ArrowBackButton, DeleteButton } from '../components/Button';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
+
+import useStore from '../hooks/useStore.js';
 
 import deleteIcon from '../images/binIcon.svg';
 import goBackIcon from '../images/goBackIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
-export default function AddFriendPage({
-  addedFriend,
-  setAddedFriend,
-  handleResetPage,
-  handleResetPageAndShowArrow,
-}) {
+export default function AddFriendPage() {
   const navigate = useNavigate();
+
   const [enteredName, setEnteredName] = useState('');
   const [tooLong, setTooLong] = useState(false);
   const [tooShort, setTooShort] = useState(true);
 
-  function onAddFriend(event) {
-    event.preventDefault();
-
-    const separatedFriends = enteredName
-      .split(',')
-      .map(function (name) {
-        return name.trim();
-      })
-      .filter(name => {
-        return name !== '';
-      });
-
-    const arrayWithIds = separatedFriends.map(friend => {
-      const id = nanoid();
-      return { id: id.toString(), newFriend: friend };
-    });
-
-    separatedFriends.length > 0 &&
-      setAddedFriend(friends => [...friends, ...arrayWithIds]);
-    setEnteredName('');
-    setTooShort(true);
-    setTooLong(false);
-  }
+  const addedFriend = useStore(state => state.addedFriend);
+  const setAddedFriend = useStore(state => state.setAddedFriend);
 
   const disabledButton = tooShort === true || tooLong === true;
 
   return (
-    <Picture>
+    <>
       <Header hiddenFriend="hidden">
         Add a friend
         <ArrowBackButton onClick={() => navigate(-1)}>
@@ -97,7 +73,7 @@ export default function AddFriendPage({
             )}
           </WrapperForm>
 
-          {addedFriend.length > 0 && (
+          {addedFriend?.length > 0 && (
             <section>
               <p>Find below your already added friends:</p>
               <StyledList role="list" title="list of added friends">
@@ -123,15 +99,12 @@ export default function AddFriendPage({
           )}
         </Grid>
       </Main>
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>
       </Navigation>
-    </Picture>
+    </>
   );
 
   function handleNameInput(event) {
@@ -139,6 +112,30 @@ export default function AddFriendPage({
     event.target.value.length <= 1 ? setTooShort(true) : setTooShort(false);
     event.target.value.length >= 50 ? setTooLong(true) : setTooLong(false);
     setEnteredName(event.target.value);
+  }
+
+  function onAddFriend(event) {
+    event.preventDefault();
+
+    const separatedFriends = enteredName
+      .split(',')
+      .map(function (name) {
+        return name.trim();
+      })
+      .filter(name => {
+        return name !== '';
+      });
+
+    const arrayWithIds = separatedFriends.map(friend => {
+      const id = nanoid();
+      return { id: id.toString(), newFriend: friend };
+    });
+
+    separatedFriends.length > 0 &&
+      setAddedFriend([...addedFriend, ...arrayWithIds]);
+    setEnteredName('');
+    setTooShort(true);
+    setTooLong(false);
   }
 
   function onDeleteFriend(thisNameId) {

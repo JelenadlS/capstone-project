@@ -1,11 +1,13 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import ErrorFallback from './components/ErrorFallBack';
+
+import useStore from './hooks/useStore.js';
 
 import ActivityOverviewPage from './pages/ActivityOverviewPage.js';
 import AddFriendPage from './pages/AddFriendPage.js';
@@ -22,28 +24,12 @@ const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function App() {
-  const [hasError, setHasError] = useState(false);
-  const [activities, setActivities] = useState(
-    (!hasError && loadFromLocal('activities')) || []
-  );
+  const activities = useStore(state => state.activities);
+  const searchInput = useStore(state => state.searchInput);
+  const setActivities = useStore(state => state.setActivities);
+  const setPhoto = useStore(state => state.setPhoto);
 
-  const [photo, setPhoto] = useState('');
-  const [searchInput, setSearchInput] = useState('');
-  const [currentFilter, setCurrentFilter] = useState('all');
-  const [showBin, setShowBin] = useState(true);
-  const [addedFriend, setAddedFriend] = useState(
-    (!hasError && loadFromLocal('addedFriend')) || []
-  );
-  const [addedGroup, setAddedGroup] = useState(
-    (!hasError && loadFromLocal('addedGroup')) || []
-  );
   const navigate = useNavigate();
-
-  useEffect(() => {
-    saveToLocal('activities', activities);
-    saveToLocal('addedFriend', addedFriend);
-    saveToLocal('addedGroup', addedGroup);
-  }, [activities, addedFriend, addedGroup]);
 
   const activitiesNotArchived = activities.filter(
     activity => activity.isArchived === false
@@ -81,53 +67,25 @@ export default function App() {
         <Routes>
           <Route
             path="/"
-            element={
-              <MyFriendsPage
-                activities={activitiesNotArchived}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-              />
-            }
+            element={<MyFriendsPage activities={activitiesNotArchived} />}
           />
           <Route
             path="/mygroups"
-            element={
-              <MyGroupsPage
-                activities={activitiesNotArchived}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-              />
-            }
+            element={<MyGroupsPage activities={activitiesNotArchived} />}
           />
           <Route
             path="/:friendsName"
             element={
               <FriendsActivitiesPage
-                hasError={hasError}
-                activities={activities}
                 activitiesNotArchived={activitiesNotArchived}
-                setActivities={setActivities}
-                currentFilter={currentFilter}
-                onFilter={onFilter}
                 filteredSearchActivities={filteredSearchActivities}
-                setSearchInput={setSearchInput}
-                showBin={showBin}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-                resetPage={resetPage}
               />
             }
           />
           <Route
             path="/:friendsName/:activityName"
             element={
-              <ActivityOverviewPage
-                activities={activities}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-                onSetPastActivity={onSetPastActivity}
-                setActivities={setActivities}
-              />
+              <ActivityOverviewPage onSetPastActivity={onSetPastActivity} />
             }
           />
           <Route
@@ -135,14 +93,7 @@ export default function App() {
             element={
               <EditActivityPage
                 activities={activitiesNotArchived}
-                onEditActivity={onEditActivity}
                 uploadImage={uploadImage}
-                photo={photo}
-                setPhoto={setPhoto}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-                addedFriend={addedFriend}
-                addedGroup={addedGroup}
               />
             }
           />
@@ -152,12 +103,6 @@ export default function App() {
               <NewActivityPage
                 onAddActivity={onAddActivity}
                 uploadImage={uploadImage}
-                photo={photo}
-                setPhoto={setPhoto}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-                addedFriend={addedFriend}
-                addedGroup={addedGroup}
               />
             }
           />
@@ -166,15 +111,7 @@ export default function App() {
             element={
               <AllActivitiesPage
                 activities={activitiesNotArchived}
-                currentFilter={currentFilter}
-                onFilter={onFilter}
-                setCurrentFilter={setCurrentFilter}
                 filteredSearchActivities={filteredSearchActivities}
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}
-                setShowBin={setShowBin}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
             }
           />
@@ -183,42 +120,14 @@ export default function App() {
             element={
               <GetInspiredPage
                 activitiesArchived={activitiesArchived}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-                onFilter={onFilter}
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}
-                setCurrentFilter={setCurrentFilter}
-                currentFilter={currentFilter}
                 filteredSearchActivitiesArchived={
                   filteredSearchActivitiesArchived
                 }
-                resetPage={resetPage}
               />
             }
           />
-          <Route
-            path="/addfriend"
-            element={
-              <AddFriendPage
-                addedFriend={addedFriend}
-                setAddedFriend={setAddedFriend}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-              />
-            }
-          />
-          <Route
-            path="/addgroup"
-            element={
-              <AddGroupPage
-                addedGroup={addedGroup}
-                setAddedGroup={setAddedGroup}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-              />
-            }
-          />
+          <Route path="/addfriend" element={<AddFriendPage />} />
+          <Route path="/addgroup" element={<AddGroupPage />} />
         </Routes>
       </WrapperApp>
     </ErrorBoundary>
@@ -235,7 +144,6 @@ export default function App() {
     location,
     photo,
   }) {
-    setHasError(false);
     setActivities([
       ...activities,
       {
@@ -252,37 +160,6 @@ export default function App() {
       },
     ]);
     navigate('/');
-  }
-
-  function onEditActivity({
-    id,
-    activity,
-    category,
-    group,
-    friend,
-    notes,
-    date,
-    location,
-    photo,
-  }) {
-    setActivities(
-      activities.map(act =>
-        act.id === id
-          ? {
-              ...act,
-              id,
-              activity,
-              category,
-              group,
-              friend,
-              notes,
-              date,
-              location,
-              photo,
-            }
-          : act
-      )
-    );
   }
 
   function onSetPastActivity(thisActivityId, isLiked) {
@@ -310,28 +187,6 @@ export default function App() {
     navigate('/');
   }
 
-  function onFilter(category) {
-    setCurrentFilter(category);
-  }
-
-  function handleResetPage() {
-    setCurrentFilter('all');
-    setSearchInput('');
-    setShowBin(true);
-  }
-
-  function handleResetPageAndShowArrow() {
-    setCurrentFilter('all');
-    setSearchInput('');
-    setShowBin(false);
-  }
-
-  function resetPage(event) {
-    event.preventDefault();
-    setCurrentFilter('all');
-    setSearchInput('');
-  }
-
   function uploadImage(e) {
     const data = new FormData();
     const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/image/upload`;
@@ -349,20 +204,13 @@ export default function App() {
       })
       .catch(error => console.log(error));
   }
-
-  function loadFromLocal(key) {
-    try {
-      return JSON.parse(localStorage.getItem(key));
-    } catch (error) {
-      setHasError(true);
-    }
-  }
-
-  function saveToLocal(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
-  }
 }
 
 const WrapperApp = styled.div`
+  max-width: 500px;
   height: 100vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-items: center;
 `;

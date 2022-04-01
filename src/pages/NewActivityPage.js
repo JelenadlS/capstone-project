@@ -5,29 +5,18 @@ import Form from '../components/Form';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
+
+import useStore from '../hooks/useStore.js';
 
 import goBackIcon from '../images/goBackIcon.svg';
 
-export default function NewActivityPage({
-  onAddActivity,
-  uploadImage,
-  photo,
-  setPhoto,
-  handleResetPage,
-  handleResetPageAndShowArrow,
-  addedFriend,
-  addedGroup,
-}) {
+export default function NewActivityPage({ onAddActivity, uploadImage }) {
   const navigate = useNavigate();
 
-  function resetForm() {
-    navigate(-1);
-    setPhoto('');
-  }
+  const setPhoto = useStore(state => state.setPhoto);
 
   return (
-    <Picture>
+    <>
       <Header hiddenGroup="hidden">
         new activity
         <ArrowBackButton onClick={resetForm}>
@@ -39,18 +28,14 @@ export default function NewActivityPage({
           preloadedValues={null}
           handleActivity={onAddActivity}
           uploadImage={uploadImage}
-          photo={photo}
-          setPhoto={setPhoto}
-          handleResetPage={handleResetPage}
-          addedFriend={addedFriend}
-          addedGroup={addedGroup}
         />
       </Main>
-      <Navigation
-        hidden="hidden"
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      ></Navigation>
-    </Picture>
+      <Navigation hidden="hidden"></Navigation>
+    </>
   );
+
+  function resetForm() {
+    navigate(-1);
+    setPhoto('');
+  }
 }

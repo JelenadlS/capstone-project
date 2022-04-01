@@ -6,7 +6,6 @@ import FriendCard from '../components/FriendCard';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
 
 import addAGroupIcon from '../images/addAGroupIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
@@ -15,11 +14,7 @@ import groupIcon from '../images/groupIcon.svg';
 import inspireIcon from '../images/inspireIcon.svg';
 import newIcon from '../images/newIcon.svg';
 
-export default function MyGroupsPage({
-  activities,
-  handleResetPage,
-  handleResetPageAndShowArrow,
-}) {
+export default function MyGroupsPage({ activities }) {
   const activitiesWithGroup = activities.filter(
     activity => activity.group !== ''
   );
@@ -38,10 +33,8 @@ export default function MyGroupsPage({
   });
 
   return (
-    <Picture>
-      <Header hiddenFriend="hidden" handleResetPage={handleResetPage}>
-        my groups
-      </Header>
+    <>
+      <Header hiddenFriend="hidden">my groups</Header>
       <Main>
         {activitiesWithGroup.length > 0 ? (
           <StyledList role="list" title="list of groups">
@@ -133,16 +126,12 @@ export default function MyGroupsPage({
           </StyledEmptyMessage>
         )}
       </Main>
-
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>
       </Navigation>
-    </Picture>
+    </>
   );
 }
 

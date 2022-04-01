@@ -1,18 +1,17 @@
 import styled from 'styled-components';
 
 import ActivityCard from './ActivityCard';
+import useStore from '../hooks/useStore.js';
 
 export default function List({
   selectedFriendsActivity,
-  errorMessage,
   onDeleteActivity,
-  currentFilter,
   activities,
-  searchInput,
   filteredSearchActivities,
-  showBin,
-  handleResetPage,
 }) {
+  const searchInput = useStore(state => state.searchInput);
+  const currentFilter = useStore(state => state.currentFilter);
+
   return (
     <StyledList
       role="list"
@@ -38,11 +37,7 @@ export default function List({
             }
             nameOfSelectedActivity={activity.activity}
             nameOfSelectedCategory={activity.category}
-            errorMessage={errorMessage}
             photo={activity.photo}
-            showBin={showBin}
-            handleResetPage={handleResetPage}
-            id={activity.id}
           />
         </li>
       ))}

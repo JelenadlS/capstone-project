@@ -6,7 +6,6 @@ import FriendCard from '../components/FriendCard';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
-import Picture from '../components/Picture';
 
 import addAFriendIcon from '../images/addAFriendIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
@@ -16,11 +15,7 @@ import inspireIcon from '../images/inspireIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import nextIcon from '../images/nextIcon.svg';
 
-export default function MyFriendsPage({
-  activities,
-  handleResetPage,
-  handleResetPageAndShowArrow,
-}) {
+export default function MyFriendsPage({ activities }) {
   const activitiesWithFriendsName = activities.filter(
     activity => activity.friend !== 'I still need to plan...'
   );
@@ -44,7 +39,7 @@ export default function MyFriendsPage({
   });
 
   return (
-    <Picture>
+    <>
       <Header hiddenGroup="hidden">my friends</Header>
       <Main>
         {activitiesWithoutFriend.length > 0 ||
@@ -153,15 +148,12 @@ export default function MyFriendsPage({
           </StyledEmptyMessage>
         )}
       </Main>
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>
       </Navigation>
-    </Picture>
+    </>
   );
 }
 

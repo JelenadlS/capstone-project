@@ -13,7 +13,8 @@ import Main from '../components/Main';
 import MappedPlaceholderPictures from '../components/MappedPlaceholderPictures.js';
 import Navigation from '../components/Navigation';
 import PastActivityModal from '../components/PastActivityModal';
-import Picture from '../components/Picture';
+
+import useStore from '../hooks/useStore.js';
 
 import deleteIcon from '../images/binIcon.svg';
 import cultureIcon from '../images/cultureIcon.svg';
@@ -30,15 +31,22 @@ import otherIcon from '../images/otherIcon.svg';
 import outdoorIcon from '../images/outdoorIcon.svg';
 import sportIcon from '../images/sportIcon.svg';
 
-export default function ActivityOverviewPage({
-  activities,
-  onSetPastActivity,
-  handleResetPage,
-  handleResetPageAndShowArrow,
-  setActivities,
-}) {
+export default function ActivityOverviewPage({ onSetPastActivity }) {
   const navigate = useNavigate();
+
   const { activityName } = useParams();
+
+  const [showPastModal, setShowPastModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [check, setCheck] = useState(false);
+
+  const activities = useStore(state => state.activities);
+  const setActivities = useStore(state => state.setActivities);
+  const handleResetPageAndShowArrow = useStore(
+    state => state.handleResetPageAndShowArrow
+  );
+  const resetPage = useStore(state => state.resetPage);
+
   const selectedActivity = activities.find(
     activity => activity.activity === activityName
   );
@@ -50,25 +58,26 @@ export default function ActivityOverviewPage({
     sport: sportIcon,
     other: otherIcon,
   };
-  const [showPastModal, setShowPastModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [check, setCheck] = useState(false);
 
   return (
-    <Picture>
+    <>
       <Header hiddenGroup="hidden">
         {selectedActivity.activity}
         {selectedActivity.isArchived === false ? (
           <ArrowBackButton
-            onClick={() => {
-              navigate(
-                `/${
-                  selectedActivity?.group
-                    ? selectedActivity.group
-                    : selectedActivity.friend
-                }`
-              );
-            }}
+            type="button"
+            onClick={event =>
+              resetPage(
+                event,
+                navigate(
+                  `/${
+                    selectedActivity?.group
+                      ? selectedActivity.group
+                      : selectedActivity.friend
+                  }`
+                )
+              )
+            }
           >
             <img src={goBackIcon} alt="go back" />
           </ArrowBackButton>
@@ -168,7 +177,13 @@ export default function ActivityOverviewPage({
               <EditButton
                 onClick={() =>
                   navigate(
-                    `/${selectedActivity.friend}/${selectedActivity.activity}/${selectedActivity.id}/editactivity`
+                    `/${
+                      selectedActivity?.group
+                        ? selectedActivity.group
+                        : selectedActivity.friend
+                    }/${selectedActivity.activity}/${
+                      selectedActivity.id
+                    }/editactivity`
                   )
                 }
               >
@@ -215,15 +230,12 @@ export default function ActivityOverviewPage({
           id={selectedActivity.id}
         />
       </Main>
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>
       </Navigation>
-    </Picture>
+    </>
   );
 
   function handleQuit() {
@@ -244,6 +256,7 @@ const MainGrid = styled.div`
   grid-template-rows: repeat(6, auto) 40px;
   margin: 30px;
   align-items: center;
+  position: relative;
 `;
 
 const StyledTitle = styled.h2`

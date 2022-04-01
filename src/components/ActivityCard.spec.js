@@ -6,7 +6,6 @@ import ActivityCard from './ActivityCard.js';
 
 describe('ActivityCard', () => {
   const photo = 'sport';
-  const errorMessage = 'error';
   const nameOfSelectedFriend = 'Clara';
   const nameOfSelectedActivity = 'Tanzen';
   const nameOfSelectedCategory = 'sport';
@@ -17,7 +16,6 @@ describe('ActivityCard', () => {
         <ActivityCard
           showBin={true}
           photo={photo}
-          errorMessage={errorMessage}
           nameOfSelectedActivity={nameOfSelectedActivity}
           nameOfSelectedCategory={nameOfSelectedCategory}
           nameOfSelectedFriend={nameOfSelectedFriend}
@@ -34,32 +32,12 @@ describe('ActivityCard', () => {
     expect(button).toBeInTheDocument();
   });
 
-  it('renders card with next image', () => {
-    render(
-      <MemoryRouter>
-        <ActivityCard
-          showBin={undefined}
-          photo={photo}
-          errorMessage={errorMessage}
-          nameOfSelectedActivity={nameOfSelectedActivity}
-          nameOfSelectedCategory={nameOfSelectedCategory}
-          nameOfSelectedFriend={nameOfSelectedFriend}
-        />
-      </MemoryRouter>
-    );
-
-    const picture = screen.getByRole('img', { name: 'next page' });
-
-    expect(picture).toBeInTheDocument();
-  });
-
   it('renders placeholder picture when no picture was uploaded', () => {
     render(
       <MemoryRouter>
         <ActivityCard
           showBin={false}
           photo=""
-          errorMessage={errorMessage}
           nameOfSelectedActivity={nameOfSelectedActivity}
           nameOfSelectedCategory={nameOfSelectedCategory}
           nameOfSelectedFriend={nameOfSelectedFriend}
@@ -82,7 +60,6 @@ describe('ActivityCard', () => {
           onClick={showCallback}
           showBin={true}
           photo={photo}
-          errorMessage={errorMessage}
           nameOfSelectedActivity={nameOfSelectedActivity}
           nameOfSelectedCategory={nameOfSelectedCategory}
           nameOfSelectedFriend={nameOfSelectedFriend}
@@ -104,7 +81,6 @@ describe('ActivityCard', () => {
           onDeleteActivity={deleteCallback}
           showBin={true}
           photo={photo}
-          errorMessage={errorMessage}
           nameOfSelectedActivity={nameOfSelectedActivity}
           nameOfSelectedCategory={nameOfSelectedCategory}
           nameOfSelectedFriend={nameOfSelectedFriend}
@@ -129,7 +105,6 @@ describe('ActivityCard', () => {
         <ActivityCard
           showBin={true}
           photo={photo}
-          errorMessage={errorMessage}
           nameOfSelectedActivity={nameOfSelectedActivity}
           nameOfSelectedCategory={nameOfSelectedCategory}
           nameOfSelectedFriend={nameOfSelectedFriend}

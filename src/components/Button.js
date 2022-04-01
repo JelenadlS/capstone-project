@@ -63,7 +63,7 @@ export { ModalButton };
 
 const ArrowBackButton = styled(Button)`
   background: transparent;
-  position: fixed;
+  position: absolute;
   top: 5px;
   left: 2px;
 `;
@@ -71,9 +71,9 @@ export { ArrowBackButton };
 
 const EditButton = styled(Button)`
   background: transparent;
-  position: fixed;
-  right: 20px;
-  top: 80px;
+  position: absolute;
+  right: 0;
+  top: 10px;
 `;
 export { EditButton };
 
@@ -102,9 +102,9 @@ export { DeleteButton };
 
 const PastDeleteButton = styled(Button)`
   background: transparent;
-  position: fixed;
-  right: 20px;
-  top: 80px;
+  position: absolute;
+  right: 0;
+  top: 10px;
 `;
 export { PastDeleteButton };
 
