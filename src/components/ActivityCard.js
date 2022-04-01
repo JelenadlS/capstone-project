@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { DeleteButton } from './Button.js';
 import DeleteModal from './DeleteModal.js';
+import { StyledArrow } from '../components/GeneralStyling';
 import MappedPlaceholderPictures from './MappedPlaceholderPictures.js';
 
 import useStore from '../hooks/useStore.js';
@@ -100,8 +101,4 @@ const LinkStyling = styled(Link)`
 
 const StyledImage = styled.img`
   border-radius: 50px;
-`;
-const StyledArrow = styled.span`
-  margin-left: 5px;
-  align-self: center;
 `;

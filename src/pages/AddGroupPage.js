@@ -163,8 +163,6 @@ const StyledInput = styled.input`
 `;
 
 const StyledList = styled.ul`
-  color: rgba(71, 39, 35, 0.72);
-
   li {
     margin-left: 40px;
     padding: 2px;

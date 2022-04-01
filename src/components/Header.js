@@ -39,7 +39,7 @@ const StyledHeader = styled.header`
   position: sticky;
   top: 0px;
   z-index: 1;
-  height: 48px;
+  height: 55px;
   overflow: hidden;
   text-align: center;
 `;

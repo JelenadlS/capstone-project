@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
 import { MainNavButtonSmall } from '../components/Button';
 import FriendCard from '../components/FriendCard';
+import {
+  StyledList,
+  StyledAdd,
+  StyledIntro,
+  StyledEmptyMessageFGPage,
+} from '../components/GeneralStyling';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
@@ -53,7 +58,7 @@ export default function MyGroupsPage({ activities }) {
             })}
           </StyledList>
         ) : (
-          <StyledEmptyMessage data-testid="emptylist">
+          <StyledEmptyMessageFGPage data-testid="emptylist">
             <StyledIntro>
               Hi there! 👋 <br />
               There are no group activities entered yet.
@@ -123,7 +128,7 @@ export default function MyGroupsPage({ activities }) {
               liked in the overview. Whenever you are looking for an amazing
               activity you can be inspired by your old ones you liked.
             </p>
-          </StyledEmptyMessage>
+          </StyledEmptyMessageFGPage>
         )}
       </Main>
       <Navigation>
@@ -134,33 +139,3 @@ export default function MyGroupsPage({ activities }) {
     </>
   );
 }
-
-const StyledList = styled.ul`
-  list-style-type: none;
-  color: rgba(71, 39, 35, 0.72);
-
-  li {
-    padding: 5px;
-  }
-`;
-
-const StyledEmptyMessage = styled.section`
-  display: grid;
-  grid-template-rows: repeat(7, auto);
-  grid-template-columns: repeat(2, auto);
-  padding: 10px;
-  gap: 10px;
-  font-size: 14px;
-  align-items: center;
-`;
-
-const StyledIntro = styled.p`
-  grid-column: 1 / span 2;
-  text-align: center;
-  font-size: 16px;
-`;
-
-const StyledAdd = styled.div`
-  display: flex;
-  flex-direction: column;
-`;

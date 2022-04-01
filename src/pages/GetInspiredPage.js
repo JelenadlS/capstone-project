@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import ActivityCard from '../components/ActivityCard';
 import FilterTags from '../components/FilterTags';
+import { StyledList, StyledEmptyMessage } from '../components/GeneralStyling';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navigation from '../components/Navigation';
@@ -164,17 +165,4 @@ const CategoryButton = styled.button`
   padding: 3px 10px;
   font-size: 16px;
   white-space: nowrap;
-`;
-
-const StyledList = styled.ul`
-  list-style-type: none;
-
-  li {
-    padding: 5px;
-  }
-`;
-
-const StyledEmptyMessage = styled.p`
-  padding: 10px;
-  text-align: center;
 `;

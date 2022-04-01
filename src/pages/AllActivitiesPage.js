@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
 import FilterTags from '../components/FilterTags';
+import { StyledEmptyMessage } from '../components/GeneralStyling';
 import Header from '../components/Header';
 import List from '../components/List';
 import Main from '../components/Main';
@@ -39,9 +39,3 @@ export default function AllActivitiesPage({
     </>
   );
 }
-
-const StyledEmptyMessage = styled.p`
-  color: rgba(71, 39, 35, 0.72);
-  padding: 10px;
-  text-align: center;
-`;

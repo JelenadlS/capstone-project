@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { StyledArrow } from '../components/GeneralStyling';
+
 import nextIcon from '../images/nextIcon.svg';
 
 export default function FriendCard({
@@ -66,8 +68,4 @@ const NameStyling = styled.p`
 `;
 const NumStyling = styled.p`
   justify-self: end;
-`;
-
-const StyledArrow = styled.span`
-  margin-left: 5px;
 `;

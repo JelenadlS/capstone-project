@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { ModalButton, QuitButton } from './Button.js';
-
 import deletePictureIcon from '../images/deletePictureIcon.svg';
 
 export default function PastActivityModal({

@@ -1,6 +1,7 @@
-import styled from 'styled-components';
-
 import ActivityCard from './ActivityCard';
+
+import { StyledList } from '../components/GeneralStyling';
+
 import useStore from '../hooks/useStore.js';
 
 export default function List({
@@ -44,11 +45,3 @@ export default function List({
     </StyledList>
   );
 }
-
-const StyledList = styled.ul`
-  list-style-type: none;
-
-  li {
-    padding: 5px;
-  }
-`;

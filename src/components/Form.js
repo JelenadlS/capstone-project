@@ -2,11 +2,27 @@ import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
 import { DeletePictureButton, AddSaveButton } from '../components/Button';
-
+import {
+  WrapperForm,
+  StyledSelection,
+  StyledImage,
+  StyledPreviewText,
+  PositionedSection,
+  StyledDate,
+  StyledLabels,
+  StyledInputs,
+  StyledFriendLink,
+  StyledGroupSelection,
+  StyledButtonChoice,
+  StyledButtonArea,
+  StyledFriendSelection,
+  StyledSelectionFG,
+  StyledSelectionFriend,
+  StyledPictureUpload,
+  ErrorMessage,
+} from '../components/FormStyling';
 import useStore from '../hooks/useStore.js';
 
 import addAFriendIcon from '../images/addAFriendIcon.svg';
@@ -403,151 +419,3 @@ export default function Form({
     setPreloadedPicture('');
   }
 }
-
-const WrapperForm = styled.form`
-  height: 85vh;
-  display: grid;
-  grid-template-rows: repeat(7, auto);
-  margin-top: 20px;
-  margin-bottom: 60px;
-
-  textarea {
-    background: transparent;
-    border: 1px solid rgba(71, 39, 35, 0.42);
-    border-radius: 5px;
-    padding: 5px;
-    height: 90px;
-    width: 100%;
-    color: rgba(71, 39, 35, 0.72);
-    font-size: 16px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    outline: none;
-    margin: 5px 0 8px;
-  }
-
-  i {
-    font-size: 12px;
-  }
-`;
-
-const StyledSelection = styled.section`
-  margin: 0 30px 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-
-  select {
-    color: rgba(71, 39, 35, 0.72);
-    font-size: 14px;
-    padding: 3px;
-    background: transparent;
-    border: 1px solid rgba(71, 39, 35, 0.42);
-    border-radius: 5px;
-    width: 50%;
-    margin-left: 15px;
-  }
-`;
-
-const StyledSelectionFriend = styled.section`
-  margin: 5px 30px 20px;
-  display: grid;
-  grid-template-rows: repeat(2, auto) 25px;
-  gap: 5px;
-`;
-
-const StyledButtonArea = styled.span`
-  grid-row-start: 2;
-  margin-left: 8px;
-`;
-
-const StyledButtonChoice = styled.button`
-  margin: 3px;
-  width: fit-content;
-  background: ${props => (props.active ? '#92dec5' : 'transparent')};
-  color: ${props => (props.active ? 'rgba(71, 39, 35, 0.72)' : '#92dec5')};
-  border: 1px solid #92dec5;
-  border-radius: 20px;
-  padding: 3px 10px;
-  font-size: 14px;
-  white-space: nowrap;
-`;
-const StyledFriendSelection = styled.section`
-  grid-row-start: 3;
-`;
-
-const StyledGroupSelection = styled.span`
-  grid-row-start: 3;
-  grid-template-columns: repeat(2, auto);
-`;
-
-const StyledSelectionFG = styled.select`
-  color: rgba(71, 39, 35, 0.72);
-  font-size: 14px;
-  padding: 3px;
-  width: 50%;
-  margin-left: 15px;
-  background: transparent;
-  border: 1px solid rgba(71, 39, 35, 0.42);
-  border-radius: 5px;
-`;
-
-const StyledLabels = styled.label`
-  padding: 0 30px;
-`;
-
-const StyledInputs = styled.input`
-  background: transparent;
-  border: 1px solid rgba(71, 39, 35, 0.42);
-  border-radius: 5px;
-  padding: 5px;
-  margin: 5px 0 8px;
-  width: 100%;
-  color: rgba(71, 39, 35, 0.72);
-  outline: none;
-`;
-
-const StyledFriendLink = styled(Link)`
-  img {
-    margin-left: 20px;
-  }
-`;
-
-const StyledDate = styled(StyledInputs)`
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  height: 30px;
-`;
-
-const ErrorMessage = styled.p`
-  font-size: 12px;
-  color: rgba(210, 129, 53, 1);
-`;
-
-const StyledPictureUpload = styled.section`
-  margin: 0 30px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-items: center;
-  align-items: center;
-`;
-
-const PositionedSection = styled.section`
-  position: relative;
-`;
-
-const StyledPreviewText = styled.section`
-  height: 60px;
-  width: 60px;
-  padding-top: 18px;
-  padding-left: 4px;
-  border: none;
-  box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
-  border-radius: 50px;
-  font-size: 14px;
-`;
-
-const StyledImage = styled.img`
-  box-shadow: 0px 0px 20px rgba(0, 0, 20, 0.15);
-  border-radius: 50px;
-`;
