@@ -26,7 +26,7 @@ export default function ActivityCard({
   return (
     <>
       <WrapperCard>
-        {photo === '' ? (
+        {!photo ? (
           <StyledImage
             width="30"
             height="30"
