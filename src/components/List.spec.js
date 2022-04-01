@@ -10,7 +10,7 @@ describe('List', () => {
     { id: '1', activity: 'Frau Möller', category: 'sport', friend: 'Clara' },
     { id: '2', activity: 'Stadtpark', category: 'other', friend: 'Jana' },
   ];
-  it('renders a list of activities which are having two placeholder picture and link', () => {
+  it('renders a list of activities which are having two placeholder pictures and link', () => {
     render(
       <MemoryRouter>
         <List selectedFriendsActivity={selectedFriendsActivity} />
