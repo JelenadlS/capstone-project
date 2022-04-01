@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import backgroundPicture from '../images/backgroundPicture.svg';
 
 const Main = styled.main`
-  //height: 90vh;
   overflow-y: auto;
 
   background-image: url(${backgroundPicture});
