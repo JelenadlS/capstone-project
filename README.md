@@ -1,35 +1,27 @@
 # Capstone Project
 
+This is my capstone project of the web development bootcamp at [neueFische](https://www.neuefische.de/weiterbildung/web-development)
+
 ## About the App
 
 Don't you hate these times: friends ask you out for dinner and you keep forgetting the name of this one restaurant you always wanted to go to?
 Or just imagine, you see a poster of an upcoming amazing event somewhere and you directly know; I wanna go there with my best friend but how should I remember?
 .... Forget these struggles by using Togather!
+<img style="float: right" src="./src/images/capstone-project.png" alt="screen shot of app" width="250px" />
 
 You can add an activity to your list either linked with a friends name or just for yourself. Later on, when being home and you have time to share it or someone asks, you can check the app and it tells you what you saved for your future activities. Also you can check what you did and linked - get inspired!
 
-## Functionality
+## Tech Stack
 
-- Overview
-  - Start screen shows a list of friends with a #no. When clicking on this friend a list with activities is displayed (#no of activities = #no in start screen)
-  - At the very top "Things I still need to plan with someone:" will be displayed for all activities which did not get a friends information
-  - It is possible to click on each friend to receive all saved activities. With a click on them further information which were entered will be displayed.
-- Add/ delete a friend or a group in order to prevent typos, when friend /group is once entered.
-- Add/ edit an activity with the following information:
-  - Activity (required)
-  - Category (optional, other by default)
-  - Friend or group (optional, list of previous entered friends/groups will be displayed)
-  - Notes (optional)
-  - Picture (optional - if not uploaded placeholder picture is available)
-  - Date (optional)
-  - Location (optional)
-- Delete items from the list
-- Filter your activities which you have with a specific friend
-- Pages
-  - All activities page where you can search and filter through all activities not dependent on which friend is part of it
-  - Inspiration page where you can toggle between liked and not liked activities (check on the overview page of the activity to set the activity past), also individually search and filter them
-  - Groups overview page
-- Storage: localStorage
+- [React](https://reactjs.org/)
+- [React Router](https://reactrouter.com/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) / [Jest](https://jestjs.io/)
+- [React Hook Form](https://react-hook-form.com/)
+- [Storybook](https://storybook.js.org/)
+- [styled components](https://styled-components.com/)
+- [axios](https://axios-http.com/)
+- [Cloudinary](https://cloudinary.com/home-3722)
+- [Zustand](https://www.npmjs.com/package/zustand)
 
 ## How to use it?
 
