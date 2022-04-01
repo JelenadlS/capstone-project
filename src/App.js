@@ -24,7 +24,6 @@ const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function App() {
-  //const setHasError = useStore(state => state.setHasError);
   const searchInput = useStore(state => state.searchInput);
   const setSearchInput = useStore(state => state.setSearchInput);
   const setCurrentFilter = useStore(state => state.setCurrentFilter);
@@ -32,25 +31,8 @@ export default function App() {
   const activities = useStore(state => state.activities);
   const setActivities = useStore(state => state.setActivities);
 
-  // const [activities, setActivities] = useState(
-  //   (!hasError && loadFromLocal('activities')) || []
-  // );
-
-  // const [addedFriend, setAddedFriend] = useState(
-  //   (!hasError && loadFromLocal('addedFriend')) || []
-  // );
-  // const [addedGroup, setAddedGroup] = useState(
-  //   (!hasError && loadFromLocal('addedGroup')) || []
-  // );
-
   const [showBin, setShowBin] = useState(true);
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   saveToLocal('activities', activities);
-  //   saveToLocal('addedFriend', addedFriend);
-  //   saveToLocal('addedGroup', addedGroup);
-  // }, [activities, addedFriend, addedGroup]);
 
   const activitiesNotArchived = activities.filter(
     activity => activity.isArchived === false
@@ -212,7 +194,6 @@ export default function App() {
     location,
     photo,
   }) {
-    // setHasError(false);
     setActivities([
       ...activities,
       {
@@ -320,18 +301,6 @@ export default function App() {
       })
       .catch(error => console.log(error));
   }
-
-  //   function loadFromLocal(key) {
-  //     try {
-  //       return JSON.parse(localStorage.getItem(key));
-  //     } catch (error) {
-  //       setHasError(true);
-  //     }
-  //   }
-
-  //   function saveToLocal(key, data) {
-  //     localStorage.setItem(key, JSON.stringify(data));
-  //   }
 }
 
 const WrapperApp = styled.div`

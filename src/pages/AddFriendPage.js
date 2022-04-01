@@ -47,7 +47,8 @@ export default function AddFriendPage({
     });
     console.log(arrayWithIds);
 
-    separatedFriends.length > 0 && setAddedFriend([...arrayWithIds]);
+    separatedFriends.length > 0 &&
+      setAddedFriend([...addedFriend, ...arrayWithIds]);
     console.log(addedFriend);
     setEnteredName('');
     setTooShort(true);

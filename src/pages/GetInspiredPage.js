@@ -23,9 +23,11 @@ export default function GetInspiredPage({
 }) {
   const searchInput = useStore(state => state.searchInput);
   const currentFilter = useStore(state => state.currentFilter);
-  const [currentLikeFilter, setCurrentLikeFilter] = useState(true);
+  // const currentLikeFilter = useStore(state => state.currentLikeFilter);
+  // const setCurrentLikeFilter = useStore(state => state.setCurrentLikeFilter);
   const resetPage = useStore(state => state.resetPage);
 
+  const [currentLikeFilter, setCurrentLikeFilter] = useState(true);
   const likedActivities = activitiesArchived.filter(
     activity => activity.isLiked === true
   );
@@ -42,7 +44,7 @@ export default function GetInspiredPage({
     filteredSearchActivitiesArchived.filter(
       activity => activity.isLiked === false
     );
-
+  console.log(currentLikeFilter);
   return (
     <Picture>
       <Header hiddenGroup="hidden">Get Inspired</Header>

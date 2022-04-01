@@ -7,13 +7,10 @@ const useStore = create(
       searchInput: '',
       currentFilter: 'all',
       photo: '',
-      //hasError: false,
-      // activities: (!get().hasError && 'activities') || [],
-      // addedFriend: (!get().hasError && 'addedFriend') || [],
-      // addedGroup: (!get().hasError && 'addedGroup') || [],
       activities: [],
       addedFriend: [],
       addedGroup: [],
+      //currentLikeFilter: true,
 
       setSearchInput: searchInput => {
         set({ searchInput: searchInput });
@@ -24,9 +21,6 @@ const useStore = create(
       setPhoto: photo => {
         set({ photo: photo });
       },
-      // setHasError: hasError => {
-      //   set({ hasError: hasError });
-      // },
       setActivities: act => {
         set({ activities: act });
       },
@@ -36,6 +30,9 @@ const useStore = create(
       setAddedGroup: gr => {
         set({ addedGroup: gr });
       },
+      // setCurrentLikeFilter: curLiFi => {
+      //   set({ currentLikeFilter: curLiFi });
+      // },
 
       resetPage: event => {
         event.preventDefault();
