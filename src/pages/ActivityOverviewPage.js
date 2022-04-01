@@ -33,6 +33,14 @@ import outdoorIcon from '../images/outdoorIcon.svg';
 import sportIcon from '../images/sportIcon.svg';
 
 export default function ActivityOverviewPage({ onSetPastActivity }) {
+  const navigate = useNavigate();
+
+  const { activityName } = useParams();
+
+  const [showPastModal, setShowPastModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [check, setCheck] = useState(false);
+
   const activities = useStore(state => state.activities);
   const setActivities = useStore(state => state.setActivities);
   const handleResetPageAndShowArrow = useStore(
@@ -40,9 +48,6 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
   );
   const resetPage = useStore(state => state.resetPage);
 
-  const navigate = useNavigate();
-
-  const { activityName } = useParams();
   const selectedActivity = activities.find(
     activity => activity.activity === activityName
   );
@@ -54,11 +59,7 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
     sport: sportIcon,
     other: otherIcon,
   };
-  const [showPastModal, setShowPastModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [check, setCheck] = useState(false);
 
-  console.log(selectedActivity);
   return (
     <Picture>
       <Header hiddenGroup="hidden">

@@ -18,35 +18,13 @@ import saveIcon from '../images/saveIcon.svg';
 
 export default function AddFriendPage() {
   const navigate = useNavigate();
+
   const [enteredName, setEnteredName] = useState('');
   const [tooLong, setTooLong] = useState(false);
   const [tooShort, setTooShort] = useState(true);
+
   const addedFriend = useStore(state => state.addedFriend);
   const setAddedFriend = useStore(state => state.setAddedFriend);
-
-  function onAddFriend(event) {
-    event.preventDefault();
-
-    const separatedFriends = enteredName
-      .split(',')
-      .map(function (name) {
-        return name.trim();
-      })
-      .filter(name => {
-        return name !== '';
-      });
-
-    const arrayWithIds = separatedFriends.map(friend => {
-      const id = nanoid();
-      return { id: id.toString(), newFriend: friend };
-    });
-
-    separatedFriends.length > 0 &&
-      setAddedFriend([...addedFriend, ...arrayWithIds]);
-    setEnteredName('');
-    setTooShort(true);
-    setTooLong(false);
-  }
 
   const disabledButton = tooShort === true || tooLong === true;
 
@@ -135,6 +113,30 @@ export default function AddFriendPage() {
     event.target.value.length <= 1 ? setTooShort(true) : setTooShort(false);
     event.target.value.length >= 50 ? setTooLong(true) : setTooLong(false);
     setEnteredName(event.target.value);
+  }
+
+  function onAddFriend(event) {
+    event.preventDefault();
+
+    const separatedFriends = enteredName
+      .split(',')
+      .map(function (name) {
+        return name.trim();
+      })
+      .filter(name => {
+        return name !== '';
+      });
+
+    const arrayWithIds = separatedFriends.map(friend => {
+      const id = nanoid();
+      return { id: id.toString(), newFriend: friend };
+    });
+
+    separatedFriends.length > 0 &&
+      setAddedFriend([...addedFriend, ...arrayWithIds]);
+    setEnteredName('');
+    setTooShort(true);
+    setTooLong(false);
   }
 
   function onDeleteFriend(thisNameId) {

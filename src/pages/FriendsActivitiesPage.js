@@ -18,6 +18,8 @@ export default function FriendsActivitiesPage({
   activitiesNotArchived,
   filteredSearchActivities,
 }) {
+  const navigate = useNavigate();
+
   const { friendsName } = useParams();
 
   const activities = useStore(state => state.activities);
@@ -28,7 +30,6 @@ export default function FriendsActivitiesPage({
     activity =>
       (activity?.group ? activity.group : activity.friend) === friendsName
   );
-  const navigate = useNavigate();
 
   return (
     <Picture>

@@ -21,20 +21,21 @@ export default function Form({
   title,
   uploadImage,
 }) {
+  const navigate = useNavigate();
+
   const [preloadedPicture, setPreloadedPicture] = useState(
     preloadedValues?.photo
   );
   const [friendSelection, setFriendSelection] = useState(false);
   const [groupSelection, setGroupSelection] = useState(false);
 
-  const photo = useStore(state => state.photo);
-  const setPhoto = useStore(state => state.setPhoto);
   const addedFriend = useStore(state => state.addedFriend);
   const addedGroup = useStore(state => state.addedGroup);
+  const photo = useStore(state => state.photo);
+  const setPhoto = useStore(state => state.setPhoto);
   const handleResetPage = useStore(state => state.handleResetPage);
-  console.log(photo);
 
-  const navigate = useNavigate();
+  const dateToday = new Date().toISOString().substring(0, 10);
   const {
     register,
     handleSubmit,
@@ -92,8 +93,6 @@ export default function Form({
   useEffect(() => {
     setFocus('activity');
   }, [setFocus]);
-
-  const dateToday = new Date().toISOString().substring(0, 10);
 
   return (
     <WrapperForm

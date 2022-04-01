@@ -13,7 +13,6 @@ import newIcon from '../images/newIcon.svg';
 
 export default function AllActivitiesPage({
   activities,
-
   filteredSearchActivities,
 }) {
   return (

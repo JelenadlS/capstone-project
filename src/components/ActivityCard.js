@@ -19,10 +19,10 @@ export default function ActivityCard({
   photo,
 }) {
   const [show, setShow] = useState(false);
+
   const showBin = useStore(state => state.showBin);
   const handleResetPage = useStore(state => state.handleResetPage);
 
-  console.log(photo);
   return (
     <>
       <WrapperCard>

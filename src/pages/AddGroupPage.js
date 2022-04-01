@@ -26,15 +26,6 @@ export default function AddGroupPage() {
   const addedGroup = useStore(state => state.addedGroup);
   const setAddedGroup = useStore(state => state.setAddedGroup);
 
-  function onAddGroup(event) {
-    event.preventDefault();
-    const id = nanoid();
-    setAddedGroup([...addedGroup, { id, enteredGroup }]);
-    setEnteredGroup('');
-    setTooShortGroup(true);
-    setTooLongGroup(false);
-  }
-
   const disabledButtonGroup = tooShortGroup === true || tooLongGroup === true;
 
   return (
@@ -127,6 +118,15 @@ export default function AddGroupPage() {
       ? setTooLongGroup(true)
       : setTooLongGroup(false);
     setEnteredGroup(event.target.value);
+  }
+
+  function onAddGroup(event) {
+    event.preventDefault();
+    const id = nanoid();
+    setAddedGroup([...addedGroup, { id, enteredGroup }]);
+    setEnteredGroup('');
+    setTooShortGroup(true);
+    setTooLongGroup(false);
   }
 
   function onDeleteGroup(thisGroupId) {

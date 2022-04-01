@@ -13,12 +13,8 @@ import goBackIcon from '../images/goBackIcon.svg';
 
 export default function NewActivityPage({ onAddActivity, uploadImage }) {
   const navigate = useNavigate();
-  const setPhoto = useStore(state => state.setPhoto);
 
-  function resetForm() {
-    navigate(-1);
-    setPhoto('');
-  }
+  const setPhoto = useStore(state => state.setPhoto);
 
   return (
     <Picture>
@@ -38,4 +34,9 @@ export default function NewActivityPage({ onAddActivity, uploadImage }) {
       <Navigation hidden="hidden"></Navigation>
     </Picture>
   );
+
+  function resetForm() {
+    navigate(-1);
+    setPhoto('');
+  }
 }

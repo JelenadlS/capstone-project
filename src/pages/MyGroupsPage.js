@@ -15,11 +15,7 @@ import groupIcon from '../images/groupIcon.svg';
 import inspireIcon from '../images/inspireIcon.svg';
 import newIcon from '../images/newIcon.svg';
 
-export default function MyGroupsPage({
-  activities,
-  // handleResetPage,
-  // handleResetPageAndShowArrow,
-}) {
+export default function MyGroupsPage({ activities }) {
   const activitiesWithGroup = activities.filter(
     activity => activity.group !== ''
   );
@@ -132,10 +128,7 @@ export default function MyGroupsPage({
         )}
       </Main>
 
-      <Navigation
-      // handleResetPage={handleResetPage}
-      // handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>

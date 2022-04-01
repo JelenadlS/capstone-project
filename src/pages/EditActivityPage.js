@@ -12,10 +12,13 @@ import useStore from '../hooks/useStore.js';
 import goBackIcon from '../images/goBackIcon.svg';
 
 export default function EditActivityPage({ activities, uploadImage }) {
+  const navigate = useNavigate();
+
+  const { id } = useParams();
+
   const setPhoto = useStore(state => state.setPhoto);
   const onEditActivity = useStore(state => state.onEditActivity);
-  const navigate = useNavigate();
-  const { id } = useParams();
+
   const activityToEdit = activities.find(activity => activity.id === id);
 
   return (

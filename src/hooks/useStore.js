@@ -10,7 +10,6 @@ const useStore = create(
       activities: [],
       addedFriend: [],
       addedGroup: [],
-      //currentLikeFilter: true,
       showBin: true,
 
       setSearchInput: searchInput => {
@@ -31,10 +30,6 @@ const useStore = create(
       setAddedGroup: gr => {
         set({ addedGroup: gr });
       },
-      // setCurrentLikeFilter: curLiFi => {
-      //   set({ currentLikeFilter: curLiFi });
-      // },
-
       setShowBin: bin => {
         set({ showBin: bin });
       },
