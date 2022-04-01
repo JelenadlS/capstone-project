@@ -136,6 +136,7 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
                 alt="friend"
               />
             )}
+
             {selectedActivity.group === '' &&
               selectedActivity.friend === 'I still need to plan...' && (
                 <StyledText>make plans with a friend!</StyledText>
@@ -172,6 +173,7 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
               <StyledText>where do you have to go?</StyledText>
             )}
           </StyledOtherInfo>
+
           {selectedActivity.isArchived === false ? (
             <>
               <EditButton
@@ -295,9 +297,11 @@ const StyledOtherInfo = styled.span`
   margin-top: 20px;
   display: grid;
 `;
+
 const StyledIconGroup = styled.img`
   justify-self: center;
 `;
+
 const StyledIcon = styled(StyledIconGroup)`
   justify-self: center;
   padding: 5px;

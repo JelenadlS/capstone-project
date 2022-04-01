@@ -3,13 +3,10 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 
-import { DeletePictureButton, AddSaveButton } from '../components/Button';
+import { AddSaveButton } from '../components/Button';
 import {
   WrapperForm,
   StyledSelection,
-  StyledImage,
-  StyledPreviewText,
-  PositionedSection,
   StyledDate,
   StyledLabels,
   StyledInputs,
@@ -23,12 +20,13 @@ import {
   StyledPictureUpload,
   ErrorMessage,
 } from '../components/FormStyling';
+import PictureUpload from '../components/PictureUpload';
+
 import useStore from '../hooks/useStore.js';
 
 import addAFriendIcon from '../images/addAFriendIcon.svg';
 import addAGroupIcon from '../images/addAGroupIcon.svg';
 import addPictureIcon from '../images/addPictureIcon.svg';
-import deletePictureIcon from '../images/deletePictureIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
 export default function Form({
@@ -39,9 +37,6 @@ export default function Form({
 }) {
   const navigate = useNavigate();
 
-  const [preloadedPicture, setPreloadedPicture] = useState(
-    preloadedValues?.photo
-  );
   const [friendSelection, setFriendSelection] = useState(false);
   const [groupSelection, setGroupSelection] = useState(false);
 
@@ -249,111 +244,20 @@ export default function Form({
         )}
       </StyledLabels>
 
-      {preloadedValues ? (
-        <StyledPictureUpload>
-          <label htmlFor="selectPhoto">
-            <img
-              width="50"
-              height="50"
-              alt="selectPhoto"
-              src={addPictureIcon}
-            />
-            <input
-              id="selectPhoto"
-              name="selectPhoto"
-              type="file"
-              onChange={uploadImage}
-              hidden
-              accept="image/gif,image/jpeg,image/png"
-            />
-          </label>
-
-          {preloadedPicture ? (
-            <PositionedSection>
-              <StyledImage
-                width="60"
-                height="60"
-                alt={`preview ${preloadedPicture}`}
-                src={preloadedPicture}
-              />
-              <DeletePictureButton onClick={e => onDeletePreloadedPicture(e)}>
-                <img
-                  src={deletePictureIcon}
-                  alt="delete"
-                  width="20"
-                  height="20"
-                />
-              </DeletePictureButton>
-            </PositionedSection>
-          ) : (
-            <div>
-              {photo ? (
-                <PositionedSection>
-                  <StyledImage
-                    width="60"
-                    height="60"
-                    alt={`preview ${photo}`}
-                    src={photo}
-                  />
-                  {photo && (
-                    <DeletePictureButton onClick={e => onDeletePicture(e)}>
-                      <img
-                        src={deletePictureIcon}
-                        alt="delete"
-                        width="20"
-                        height="20"
-                      />
-                    </DeletePictureButton>
-                  )}
-                </PositionedSection>
-              ) : (
-                <StyledPreviewText>preview</StyledPreviewText>
-              )}
-            </div>
-          )}
-        </StyledPictureUpload>
-      ) : (
-        <StyledPictureUpload>
-          <label htmlFor="selectPhoto">
-            <img
-              width="50"
-              height="50"
-              alt="selectPhoto"
-              src={addPictureIcon}
-            />
-            <input
-              id="selectPhoto"
-              name="selectPhoto"
-              type="file"
-              onChange={uploadImage}
-              hidden
-              accept="image/gif,image/jpeg,image/png"
-            />
-          </label>
-          {photo ? (
-            <PositionedSection>
-              <StyledImage
-                width="60"
-                height="60"
-                alt={`preview ${photo}`}
-                src={photo}
-              />
-              {photo && (
-                <DeletePictureButton onClick={e => onDeletePicture(e)}>
-                  <img
-                    src={deletePictureIcon}
-                    alt="delete"
-                    width="20"
-                    height="20"
-                  />
-                </DeletePictureButton>
-              )}
-            </PositionedSection>
-          ) : (
-            <StyledPreviewText>preview</StyledPreviewText>
-          )}
-        </StyledPictureUpload>
-      )}
+      <StyledPictureUpload>
+        <label htmlFor="selectPhoto">
+          <img width="50" height="50" alt="selectPhoto" src={addPictureIcon} />
+          <input
+            id="selectPhoto"
+            name="selectPhoto"
+            type="file"
+            onChange={uploadImage}
+            hidden
+            accept="image/gif,image/jpeg,image/png"
+          />
+        </label>
+        <PictureUpload preloadedValues={preloadedValues} />
+      </StyledPictureUpload>
 
       <StyledLabels htmlFor="date">
         Do you already have a date in mind?
@@ -407,15 +311,5 @@ export default function Form({
   function handleOnClickGroup() {
     setGroupSelection(true);
     setFriendSelection(false);
-  }
-
-  function onDeletePicture(event) {
-    event.preventDefault();
-    setPhoto('');
-  }
-
-  function onDeletePreloadedPicture(event) {
-    event.preventDefault();
-    setPreloadedPicture('');
   }
 }
