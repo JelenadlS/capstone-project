@@ -10,12 +10,7 @@ import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 import friendIcon from '../images/friendIcon.svg';
 import inspireIcon from '../images/inspireIcon.svg';
 
-export default function Navigation({
-  children,
-  // handleResetPage,
-  // handleResetPageAndShowArrow,
-  hidden,
-}) {
+export default function Navigation({ children, hidden }) {
   const handleResetPage = useStore(state => state.handleResetPage);
   const handleResetPageAndShowArrow = useStore(
     state => state.handleResetPageAndShowArrow

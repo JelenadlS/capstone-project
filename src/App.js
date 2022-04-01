@@ -30,9 +30,7 @@ export default function App() {
   const setPhoto = useStore(state => state.setPhoto);
   const activities = useStore(state => state.activities);
   const setActivities = useStore(state => state.setActivities);
-  // const showBin = useStore(state => state.showBin);
-  //const setShowBin = useStore(state => state.setShowBin);
-  //const [showBin, setShowBin] = useState(true);
+
   const navigate = useNavigate();
 
   const activitiesNotArchived = activities.filter(

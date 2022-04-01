@@ -40,7 +40,7 @@ export default function ActivityCard({
             src={photo}
           />
         )}
-        {showBin !== undefined ? (
+        {showBin === true ? (
           <CardSubGrid>
             <LinkStyling
               to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}

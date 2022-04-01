@@ -36,6 +36,7 @@ const useStore = create(
       // },
       setShowBin: bin => {
         set({ showBin: bin });
+        console.log(bin);
       },
 
       resetPage: event => {
