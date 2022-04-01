@@ -34,9 +34,9 @@ const useStore = create(
       // setCurrentLikeFilter: curLiFi => {
       //   set({ currentLikeFilter: curLiFi });
       // },
+
       setShowBin: bin => {
         set({ showBin: bin });
-        console.log(bin);
       },
 
       resetPage: event => {
@@ -68,6 +68,39 @@ const useStore = create(
       onFilter: category => {
         const setCurrentFilter = get().setCurrentFilter;
         setCurrentFilter(category);
+      },
+
+      onEditActivity({
+        id,
+        activity,
+        category,
+        group,
+        friend,
+        notes,
+        date,
+        location,
+        photo,
+      }) {
+        const setActivities = get().setActivities;
+        const activities = get().activities;
+        setActivities(
+          activities.map(act =>
+            act.id === id
+              ? {
+                  ...act,
+                  id,
+                  activity,
+                  category,
+                  group,
+                  friend,
+                  notes,
+                  date,
+                  location,
+                  photo,
+                }
+              : act
+          )
+        );
       },
     }),
     { name: 'togather' }

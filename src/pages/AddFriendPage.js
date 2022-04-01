@@ -24,8 +24,6 @@ export default function AddFriendPage() {
   const addedFriend = useStore(state => state.addedFriend);
   const setAddedFriend = useStore(state => state.setAddedFriend);
 
-  console.log(addedFriend);
-
   function onAddFriend(event) {
     event.preventDefault();
 
@@ -37,21 +35,19 @@ export default function AddFriendPage() {
       .filter(name => {
         return name !== '';
       });
-    console.log(separatedFriends);
+
     const arrayWithIds = separatedFriends.map(friend => {
       const id = nanoid();
       return { id: id.toString(), newFriend: friend };
     });
-    console.log(arrayWithIds);
 
     separatedFriends.length > 0 &&
       setAddedFriend([...addedFriend, ...arrayWithIds]);
-    console.log(addedFriend);
     setEnteredName('');
     setTooShort(true);
     setTooLong(false);
   }
-  console.log(addedFriend);
+
   const disabledButton = tooShort === true || tooLong === true;
 
   return (

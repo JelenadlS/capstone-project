@@ -27,7 +27,6 @@ export default function App() {
   const activities = useStore(state => state.activities);
   const searchInput = useStore(state => state.searchInput);
   const setActivities = useStore(state => state.setActivities);
-  const setCurrentFilter = useStore(state => state.setCurrentFilter);
   const setPhoto = useStore(state => state.setPhoto);
 
   const navigate = useNavigate();
@@ -94,7 +93,6 @@ export default function App() {
             element={
               <EditActivityPage
                 activities={activitiesNotArchived}
-                onEditActivity={onEditActivity}
                 uploadImage={uploadImage}
               />
             }
@@ -164,37 +162,6 @@ export default function App() {
     navigate('/');
   }
 
-  function onEditActivity({
-    id,
-    activity,
-    category,
-    group,
-    friend,
-    notes,
-    date,
-    location,
-    photo,
-  }) {
-    setActivities(
-      activities.map(act =>
-        act.id === id
-          ? {
-              ...act,
-              id,
-              activity,
-              category,
-              group,
-              friend,
-              notes,
-              date,
-              location,
-              photo,
-            }
-          : act
-      )
-    );
-  }
-
   function onSetPastActivity(thisActivityId, isLiked) {
     if (isLiked === 'true') {
       setActivities(
@@ -241,4 +208,7 @@ export default function App() {
 
 const WrapperApp = styled.div`
   height: 100vh;
+  /* display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-items: center; */
 `;

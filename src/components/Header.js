@@ -33,6 +33,7 @@ export default function Header({ children, hiddenFriend, hiddenGroup }) {
 }
 
 const StyledHeader = styled.header`
+  //max-width: 500px;
   background: #f0e7da;
   padding: 10px;
   position: sticky;

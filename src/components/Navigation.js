@@ -67,6 +67,7 @@ export default function Navigation({ children, hidden }) {
 }
 
 const StyledNavigation = styled.nav`
+  // max-width: 500px;
   background: #f0e7da;
   width: 100%;
   position: fixed;

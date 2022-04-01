@@ -32,11 +32,7 @@ import otherIcon from '../images/otherIcon.svg';
 import outdoorIcon from '../images/outdoorIcon.svg';
 import sportIcon from '../images/sportIcon.svg';
 
-export default function ActivityOverviewPage({
-  onSetPastActivity,
-  // handleResetPage,
-  // handleResetPageAndShowArrow,
-}) {
+export default function ActivityOverviewPage({ onSetPastActivity }) {
   const activities = useStore(state => state.activities);
   const setActivities = useStore(state => state.setActivities);
   const handleResetPageAndShowArrow = useStore(

@@ -5,6 +5,7 @@ import backgroundPicture from '../images/backgroundPicture.svg';
 const Picture = styled.div`
   background-image: url(${backgroundPicture});
   background-size: cover;
+  //max-width: 500px;
 
   background-position: 30% 100%;
   @media (max-width: 425px) {

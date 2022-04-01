@@ -16,16 +16,17 @@ export default function ActivityCard({
   nameOfSelectedFriend,
   nameOfSelectedActivity,
   nameOfSelectedCategory,
+  photo,
 }) {
   const [show, setShow] = useState(false);
   const showBin = useStore(state => state.showBin);
-  const photo = useStore(state => state.photo);
   const handleResetPage = useStore(state => state.handleResetPage);
-  console.log(showBin);
+
+  console.log(photo);
   return (
     <>
       <WrapperCard>
-        {!photo > 0 ? (
+        {photo === '' ? (
           <StyledImage
             width="30"
             height="30"

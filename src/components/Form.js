@@ -32,6 +32,8 @@ export default function Form({
   const addedFriend = useStore(state => state.addedFriend);
   const addedGroup = useStore(state => state.addedGroup);
   const handleResetPage = useStore(state => state.handleResetPage);
+  console.log(photo);
+
   const navigate = useNavigate();
   const {
     register,
