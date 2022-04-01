@@ -21,14 +21,14 @@ const useStore = create(
       setPhoto: photo => {
         set({ photo: photo });
       },
-      setActivities: act => {
-        set({ activities: act });
+      setActivities: activities => {
+        set({ activities: activities });
       },
-      setAddedFriend: fr => {
-        set({ addedFriend: fr });
+      setAddedFriend: friend => {
+        set({ addedFriend: friend });
       },
-      setAddedGroup: gr => {
-        set({ addedGroup: gr });
+      setAddedGroup: group => {
+        set({ addedGroup: group });
       },
       setShowBin: bin => {
         set({ showBin: bin });
@@ -79,10 +79,10 @@ const useStore = create(
         const setActivities = get().setActivities;
         const activities = get().activities;
         setActivities(
-          activities.map(act =>
-            act.id === id
+          activities.map(activitiy =>
+            activitiy.id === id
               ? {
-                  ...act,
+                  ...activitiy,
                   id,
                   activity,
                   category,
@@ -93,7 +93,7 @@ const useStore = create(
                   location,
                   photo,
                 }
-              : act
+              : activitiy
           )
         );
       },
