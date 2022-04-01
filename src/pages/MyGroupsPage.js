@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import { MainNavButtonSmall } from '../components/Button';
 import FriendCard from '../components/FriendCard';
 import {
@@ -10,7 +8,6 @@ import {
 } from '../components/GeneralStyling';
 import Header from '../components/Header';
 import Main from '../components/Main';
-import Navigation from '../components/Navigation';
 
 import addAGroupIcon from '../images/addAGroupIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
@@ -131,11 +128,6 @@ export default function MyGroupsPage({ activities }) {
           </StyledEmptyMessageFGPage>
         )}
       </Main>
-      <Navigation>
-        <Link to="/newactivity">
-          <img src={newIcon} alt="new" />
-        </Link>
-      </Navigation>
     </>
   );
 }

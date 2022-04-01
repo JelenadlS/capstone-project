@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { MainNavButton } from './Button';
@@ -9,8 +9,9 @@ import groupIcon from '../images/groupIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 import friendIcon from '../images/friendIcon.svg';
 import inspireIcon from '../images/inspireIcon.svg';
+import newIcon from '../images/newIcon.svg';
 
-export default function Navigation({ children, hidden }) {
+export default function Navigation({ hidden }) {
   const handleResetPage = useStore(state => state.handleResetPage);
   const handleResetPageAndShowArrow = useStore(
     state => state.handleResetPageAndShowArrow
@@ -49,11 +50,14 @@ export default function Navigation({ children, hidden }) {
         </figure>
       </StyledNavLink>
       <MainNavButton
+        type="button"
         aria-label="create a new activity"
         hidden={hidden}
         onClick={handleResetPage}
       >
-        {children}
+        <Link to="/newactivity">
+          <img src={newIcon} alt="new" />
+        </Link>
       </MainNavButton>
       {hidden && <div />}
       <StyledNavLink

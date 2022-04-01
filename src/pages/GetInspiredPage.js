@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import ActivityCard from '../components/ActivityCard';
@@ -7,12 +6,9 @@ import FilterTags from '../components/FilterTags';
 import { StyledList, StyledEmptyMessage } from '../components/GeneralStyling';
 import Header from '../components/Header';
 import Main from '../components/Main';
-import Navigation from '../components/Navigation';
 import Searchbar from '../components/Searchbar';
 
 import useStore from '../hooks/useStore.js';
-
-import newIcon from '../images/newIcon.svg';
 
 export default function GetInspiredPage({
   activitiesArchived,
@@ -142,11 +138,6 @@ export default function GetInspiredPage({
             </StyledEmptyMessage>
           ))}
       </Main>
-      <Navigation>
-        <Link to="/newactivity">
-          <img src={newIcon} alt="new" />
-        </Link>
-      </Navigation>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
@@ -11,7 +11,6 @@ import DeleteModal from '../components/DeleteModal.js';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import MappedPlaceholderPictures from '../components/MappedPlaceholderPictures.js';
-import Navigation from '../components/Navigation';
 import PastActivityModal from '../components/PastActivityModal';
 
 import useStore from '../hooks/useStore.js';
@@ -25,7 +24,6 @@ import friendIcon from '../images/friendIcon.svg';
 import goBackIcon from '../images/goBackIcon.svg';
 import groupIcon from '../images/groupIcon.svg';
 import locationIcon from '../images/locationIcon.svg';
-import newIcon from '../images/newIcon.svg';
 import notesIcon from '../images/notesIcon.svg';
 import otherIcon from '../images/otherIcon.svg';
 import outdoorIcon from '../images/outdoorIcon.svg';
@@ -232,11 +230,6 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
           id={selectedActivity.id}
         />
       </Main>
-      <Navigation>
-        <Link to="/newactivity">
-          <img src={newIcon} alt="new" />
-        </Link>
-      </Navigation>
     </>
   );
 

@@ -44,6 +44,7 @@ export default function Form({
   const addedGroup = useStore(state => state.addedGroup);
   const photo = useStore(state => state.photo);
   const setPhoto = useStore(state => state.setPhoto);
+  const setShowSave = useStore(state => state.setShowSave);
   const handleResetPage = useStore(state => state.handleResetPage);
 
   const dateToday = new Date().toISOString().substring(0, 10);
@@ -103,7 +104,8 @@ export default function Form({
 
   useEffect(() => {
     setFocus('activity');
-  }, [setFocus]);
+    setShowSave(true);
+  }, [setFocus, setShowSave]);
 
   return (
     <WrapperForm

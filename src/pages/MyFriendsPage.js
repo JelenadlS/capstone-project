@@ -12,7 +12,6 @@ import {
 } from '../components/GeneralStyling';
 import Header from '../components/Header';
 import Main from '../components/Main';
-import Navigation from '../components/Navigation';
 
 import addAFriendIcon from '../images/addAFriendIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
@@ -155,11 +154,6 @@ export default function MyFriendsPage({ activities }) {
           </StyledEmptyMessageFGPage>
         )}
       </Main>
-      <Navigation>
-        <Link to="/newactivity">
-          <img src={newIcon} alt="new" />
-        </Link>
-      </Navigation>
     </>
   );
 }

@@ -11,6 +11,7 @@ const useStore = create(
       addedFriend: [],
       addedGroup: [],
       showBin: true,
+      showSave: false,
 
       setSearchInput: searchInput => {
         set({ searchInput: searchInput });
@@ -33,6 +34,9 @@ const useStore = create(
       setShowBin: bin => {
         set({ showBin: bin });
       },
+      setShowSave: save => {
+        set({ showSave: save });
+      },
 
       resetPage: event => {
         event.preventDefault();
@@ -46,18 +50,22 @@ const useStore = create(
         const setCurrentFilter = get().setCurrentFilter;
         const setSearchInput = get().setSearchInput;
         const setShowBin = get().setShowBin;
+        const setShowSave = get().setShowSave;
         setCurrentFilter('all');
         setSearchInput('');
         setShowBin(true);
+        setShowSave(false);
       },
 
       handleResetPageAndShowArrow: () => {
         const setCurrentFilter = get().setCurrentFilter;
         const setSearchInput = get().setSearchInput;
         const setShowBin = get().setShowBin;
+        const setShowSave = get().setShowSave;
         setCurrentFilter('all');
         setSearchInput('');
         setShowBin(false);
+        setShowSave(false);
       },
 
       onFilter: category => {

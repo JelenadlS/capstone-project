@@ -1,4 +1,4 @@
-import { NavLink, useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { ArrowBackButton } from '../components/Button';
 import FilterTags from '../components/FilterTags';
@@ -6,12 +6,10 @@ import FilterTags from '../components/FilterTags';
 import Header from '../components/Header';
 import List from '../components/List';
 import Main from '../components/Main';
-import Navigation from '../components/Navigation';
 
 import useStore from '../hooks/useStore.js';
 
 import goBackIcon from '../images/goBackIcon.svg';
-import newIcon from '../images/newIcon.svg';
 
 export default function FriendsActivitiesPage({
   activitiesNotArchived,
@@ -48,11 +46,6 @@ export default function FriendsActivitiesPage({
           filteredSearchActivities={filteredSearchActivities}
         />
       </Main>
-      <Navigation>
-        <NavLink to="/newactivity">
-          <img src={newIcon} alt="new" />
-        </NavLink>
-      </Navigation>
     </>
   );
 

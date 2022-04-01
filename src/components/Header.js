@@ -1,14 +1,22 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
+import useStore from '../hooks/useStore.js';
+
 import addAFriendIcon from '../images/addAFriendIcon.svg';
 import addAGroupIcon from '../images/addAGroupIcon.svg';
 
 export default function Header({ children, hiddenFriend, hiddenGroup }) {
+  const handleResetPage = useStore(state => state.handleResetPage);
+
   return (
     <StyledHeader aria-label="header">
       <StyledTitle>{children}</StyledTitle>
-      <StyledNavLinkAddFriend aria-label="add a friend" to="/addfriend">
+      <StyledNavLinkAddFriend
+        aria-label="add a friend"
+        to="/addfriend"
+        onClick={handleResetPage}
+      >
         <img
           width="40"
           height="20"

@@ -4,7 +4,6 @@ import { ArrowBackButton } from '../components/Button';
 import Form from '../components/Form';
 import Header from '../components/Header';
 import Main from '../components/Main';
-import Navigation from '../components/Navigation';
 
 import useStore from '../hooks/useStore.js';
 
@@ -14,12 +13,13 @@ export default function NewActivityPage({ onAddActivity, uploadImage }) {
   const navigate = useNavigate();
 
   const setPhoto = useStore(state => state.setPhoto);
+  const setShowSave = useStore(state => state.setShowSave);
 
   return (
     <>
       <Header hiddenGroup="hidden">
         new activity
-        <ArrowBackButton onClick={resetForm}>
+        <ArrowBackButton type="button" aria-label="go back" onClick={resetForm}>
           <img src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
@@ -30,12 +30,12 @@ export default function NewActivityPage({ onAddActivity, uploadImage }) {
           uploadImage={uploadImage}
         />
       </Main>
-      <Navigation hidden="hidden"></Navigation>
     </>
   );
 
   function resetForm() {
     navigate(-1);
     setPhoto('');
+    setShowSave(false);
   }
 }

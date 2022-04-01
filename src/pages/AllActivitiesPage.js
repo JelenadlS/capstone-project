@@ -1,14 +1,9 @@
-import { Link } from 'react-router-dom';
-
 import FilterTags from '../components/FilterTags';
 import { StyledEmptyMessage } from '../components/GeneralStyling';
 import Header from '../components/Header';
 import List from '../components/List';
 import Main from '../components/Main';
-import Navigation from '../components/Navigation';
 import Searchbar from '../components/Searchbar';
-
-import newIcon from '../images/newIcon.svg';
 
 export default function AllActivitiesPage({
   activities,
@@ -31,11 +26,6 @@ export default function AllActivitiesPage({
           </StyledEmptyMessage>
         )}
       </Main>
-      <Navigation>
-        <Link to="/newactivity">
-          <img src={newIcon} alt="new" />
-        </Link>
-      </Navigation>
     </>
   );
 }
