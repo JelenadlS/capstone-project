@@ -16,10 +16,7 @@ import goBackIcon from '../images/goBackIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
-export default function AddGroupPage({
-  handleResetPage,
-  handleResetPageAndShowArrow,
-}) {
+export default function AddGroupPage() {
   const navigate = useNavigate();
 
   const [enteredGroup, setEnteredGroup] = useState('');
@@ -113,10 +110,7 @@ export default function AddGroupPage({
           )}
         </Grid>
       </Main>
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>

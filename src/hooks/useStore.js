@@ -11,6 +11,7 @@ const useStore = create(
       addedFriend: [],
       addedGroup: [],
       //currentLikeFilter: true,
+      showBin: true,
 
       setSearchInput: searchInput => {
         set({ searchInput: searchInput });
@@ -33,13 +34,34 @@ const useStore = create(
       // setCurrentLikeFilter: curLiFi => {
       //   set({ currentLikeFilter: curLiFi });
       // },
+      setShowBin: bin => {
+        set({ showBin: bin });
+      },
 
       resetPage: event => {
         event.preventDefault();
-        const setCurrentFilter = get().currentFilter;
-        const setSearchInput = get().searchInput;
+        const setCurrentFilter = get().setCurrentFilter;
+        const setSearchInput = get().setSearchInput;
         setCurrentFilter('all');
         setSearchInput('');
+      },
+
+      handleResetPage: () => {
+        const setCurrentFilter = get().setCurrentFilter;
+        const setSearchInput = get().setSearchInput;
+        const setShowBin = get().setShowBin;
+        setCurrentFilter('all');
+        setSearchInput('');
+        setShowBin(true);
+      },
+
+      handleResetPageAndShowArrow: () => {
+        const setCurrentFilter = get().setCurrentFilter;
+        const setSearchInput = get().setSearchInput;
+        const setShowBin = get().setShowBin;
+        setCurrentFilter('all');
+        setSearchInput('');
+        setShowBin(false);
       },
     }),
     { name: 'togather' }

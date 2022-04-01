@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -25,13 +25,14 @@ const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function App() {
   const searchInput = useStore(state => state.searchInput);
-  const setSearchInput = useStore(state => state.setSearchInput);
+
   const setCurrentFilter = useStore(state => state.setCurrentFilter);
   const setPhoto = useStore(state => state.setPhoto);
   const activities = useStore(state => state.activities);
   const setActivities = useStore(state => state.setActivities);
-
-  const [showBin, setShowBin] = useState(true);
+  // const showBin = useStore(state => state.showBin);
+  //const setShowBin = useStore(state => state.setShowBin);
+  //const [showBin, setShowBin] = useState(true);
   const navigate = useNavigate();
 
   const activitiesNotArchived = activities.filter(
@@ -70,23 +71,11 @@ export default function App() {
         <Routes>
           <Route
             path="/"
-            element={
-              <MyFriendsPage
-                activities={activitiesNotArchived}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-              />
-            }
+            element={<MyFriendsPage activities={activitiesNotArchived} />}
           />
           <Route
             path="/mygroups"
-            element={
-              <MyGroupsPage
-                activities={activitiesNotArchived}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-              />
-            }
+            element={<MyGroupsPage activities={activitiesNotArchived} />}
           />
           <Route
             path="/:friendsName"
@@ -95,20 +84,13 @@ export default function App() {
                 activitiesNotArchived={activitiesNotArchived}
                 onFilter={onFilter}
                 filteredSearchActivities={filteredSearchActivities}
-                showBin={showBin}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
             }
           />
           <Route
             path="/:friendsName/:activityName"
             element={
-              <ActivityOverviewPage
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-                onSetPastActivity={onSetPastActivity}
-              />
+              <ActivityOverviewPage onSetPastActivity={onSetPastActivity} />
             }
           />
           <Route
@@ -118,8 +100,6 @@ export default function App() {
                 activities={activitiesNotArchived}
                 onEditActivity={onEditActivity}
                 uploadImage={uploadImage}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
             }
           />
@@ -129,8 +109,6 @@ export default function App() {
               <NewActivityPage
                 onAddActivity={onAddActivity}
                 uploadImage={uploadImage}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
             }
           />
@@ -141,8 +119,6 @@ export default function App() {
                 activities={activitiesNotArchived}
                 onFilter={onFilter}
                 filteredSearchActivities={filteredSearchActivities}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
               />
             }
           />
@@ -151,8 +127,6 @@ export default function App() {
             element={
               <GetInspiredPage
                 activitiesArchived={activitiesArchived}
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
                 onFilter={onFilter}
                 filteredSearchActivitiesArchived={
                   filteredSearchActivitiesArchived
@@ -160,24 +134,8 @@ export default function App() {
               />
             }
           />
-          <Route
-            path="/addfriend"
-            element={
-              <AddFriendPage
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-              />
-            }
-          />
-          <Route
-            path="/addgroup"
-            element={
-              <AddGroupPage
-                handleResetPage={handleResetPage}
-                handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-              />
-            }
-          />
+          <Route path="/addfriend" element={<AddFriendPage />} />
+          <Route path="/addgroup" element={<AddGroupPage />} />
         </Routes>
       </WrapperApp>
     </ErrorBoundary>
@@ -270,18 +228,6 @@ export default function App() {
 
   function onFilter(category) {
     setCurrentFilter(category);
-  }
-
-  function handleResetPage() {
-    setCurrentFilter('all');
-    setSearchInput('');
-    setShowBin(true);
-  }
-
-  function handleResetPageAndShowArrow() {
-    setCurrentFilter('all');
-    setSearchInput('');
-    setShowBin(false);
   }
 
   function uploadImage(e) {

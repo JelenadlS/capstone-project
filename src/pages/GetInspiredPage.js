@@ -16,8 +16,7 @@ import newIcon from '../images/newIcon.svg';
 
 export default function GetInspiredPage({
   activitiesArchived,
-  handleResetPage,
-  handleResetPageAndShowArrow,
+
   onFilter,
   filteredSearchActivitiesArchived,
 }) {
@@ -89,7 +88,6 @@ export default function GetInspiredPage({
                         nameOfSelectedFriend={activity.friend}
                         nameOfSelectedActivity={activity.activity}
                         photo={activity.photo}
-                        handleResetPage={handleResetPage}
                       />
                     </li>
                   ))}
@@ -131,7 +129,6 @@ export default function GetInspiredPage({
                         nameOfSelectedFriend={activity.friend}
                         nameOfSelectedActivity={activity.activity}
                         photo={activity.photo}
-                        handleResetPage={handleResetPage}
                       />
                     </li>
                   ))}
@@ -148,10 +145,7 @@ export default function GetInspiredPage({
             </StyledEmptyMessage>
           ))}
       </Main>
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>

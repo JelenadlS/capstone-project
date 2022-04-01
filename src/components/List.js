@@ -5,14 +5,9 @@ import useStore from '../hooks/useStore.js';
 
 export default function List({
   selectedFriendsActivity,
-
   onDeleteActivity,
-
   activities,
-
   filteredSearchActivities,
-  showBin,
-  handleResetPage,
 }) {
   const searchInput = useStore(state => state.searchInput);
   const currentFilter = useStore(state => state.currentFilter);
@@ -43,9 +38,6 @@ export default function List({
             nameOfSelectedActivity={activity.activity}
             nameOfSelectedCategory={activity.category}
             photo={activity.photo}
-            showBin={showBin}
-            handleResetPage={handleResetPage}
-            id={activity.id}
           />
         </li>
       ))}

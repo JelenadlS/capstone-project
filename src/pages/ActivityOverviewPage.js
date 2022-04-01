@@ -34,11 +34,16 @@ import sportIcon from '../images/sportIcon.svg';
 
 export default function ActivityOverviewPage({
   onSetPastActivity,
-  handleResetPage,
-  handleResetPageAndShowArrow,
+  // handleResetPage,
+  // handleResetPageAndShowArrow,
 }) {
   const activities = useStore(state => state.activities);
   const setActivities = useStore(state => state.setActivities);
+  const handleResetPageAndShowArrow = useStore(
+    state => state.handleResetPageAndShowArrow
+  );
+  const resetPage = useStore(state => state.resetPage);
+
   const navigate = useNavigate();
   const { activityName } = useParams();
   const selectedActivity = activities.find(
@@ -62,15 +67,18 @@ export default function ActivityOverviewPage({
         {selectedActivity.activity}
         {selectedActivity.isArchived === false ? (
           <ArrowBackButton
-            onClick={() => {
-              navigate(
-                `/${
-                  selectedActivity?.group
-                    ? selectedActivity.group
-                    : selectedActivity.friend
-                }`
-              );
-            }}
+            onClick={event =>
+              resetPage(
+                event,
+                navigate(
+                  `/${
+                    selectedActivity?.group
+                      ? selectedActivity.group
+                      : selectedActivity.friend
+                  }`
+                )
+              )
+            }
           >
             <img src={goBackIcon} alt="go back" />
           </ArrowBackButton>
@@ -217,10 +225,7 @@ export default function ActivityOverviewPage({
           id={selectedActivity.id}
         />
       </Main>
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>

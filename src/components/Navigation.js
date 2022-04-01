@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import { MainNavButton } from './Button';
 
+import useStore from '../hooks/useStore.js';
+
 import groupIcon from '../images/groupIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 import friendIcon from '../images/friendIcon.svg';
@@ -10,10 +12,15 @@ import inspireIcon from '../images/inspireIcon.svg';
 
 export default function Navigation({
   children,
-  handleResetPage,
-  handleResetPageAndShowArrow,
+  // handleResetPage,
+  // handleResetPageAndShowArrow,
   hidden,
 }) {
+  const handleResetPage = useStore(state => state.handleResetPage);
+  const handleResetPageAndShowArrow = useStore(
+    state => state.handleResetPageAndShowArrow
+  );
+
   return (
     <StyledNavigation aria-label="navigation">
       <StyledNavLinkFriends

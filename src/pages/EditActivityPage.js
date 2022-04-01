@@ -15,8 +15,6 @@ export default function EditActivityPage({
   activities,
   onEditActivity,
   uploadImage,
-  handleResetPage,
-  handleResetPageAndShowArrow,
 }) {
   const setPhoto = useStore(state => state.setPhoto);
   const navigate = useNavigate();
@@ -36,14 +34,9 @@ export default function EditActivityPage({
           preloadedValues={activityToEdit}
           handleActivity={onEditActivity}
           uploadImage={uploadImage}
-          handleResetPage={handleResetPage}
         />
       </Main>
-      <Navigation
-        hidden="hidden"
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      ></Navigation>
+      <Navigation hidden="hidden"></Navigation>
     </Picture>
   );
 

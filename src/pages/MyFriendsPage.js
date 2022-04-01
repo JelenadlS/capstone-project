@@ -16,11 +16,7 @@ import inspireIcon from '../images/inspireIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import nextIcon from '../images/nextIcon.svg';
 
-export default function MyFriendsPage({
-  activities,
-  handleResetPage,
-  handleResetPageAndShowArrow,
-}) {
+export default function MyFriendsPage({ activities }) {
   const activitiesWithFriendsName = activities.filter(
     activity => activity.friend !== 'I still need to plan...'
   );
@@ -153,10 +149,7 @@ export default function MyFriendsPage({
           </StyledEmptyMessage>
         )}
       </Main>
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>

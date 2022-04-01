@@ -11,12 +11,7 @@ import useStore from '../hooks/useStore.js';
 
 import goBackIcon from '../images/goBackIcon.svg';
 
-export default function NewActivityPage({
-  onAddActivity,
-  uploadImage,
-  handleResetPage,
-  handleResetPageAndShowArrow,
-}) {
+export default function NewActivityPage({ onAddActivity, uploadImage }) {
   const navigate = useNavigate();
   const setPhoto = useStore(state => state.setPhoto);
 
@@ -38,14 +33,9 @@ export default function NewActivityPage({
           preloadedValues={null}
           handleActivity={onAddActivity}
           uploadImage={uploadImage}
-          handleResetPage={handleResetPage}
         />
       </Main>
-      <Navigation
-        hidden="hidden"
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      ></Navigation>
+      <Navigation hidden="hidden"></Navigation>
     </Picture>
   );
 }

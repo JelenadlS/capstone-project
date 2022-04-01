@@ -15,8 +15,6 @@ export default function AllActivitiesPage({
   activities,
   onFilter,
   filteredSearchActivities,
-  handleResetPage,
-  handleResetPageAndShowArrow,
 }) {
   return (
     <Picture>
@@ -28,7 +26,6 @@ export default function AllActivitiesPage({
           <List
             activities={activities}
             filteredSearchActivities={filteredSearchActivities}
-            handleResetPage={handleResetPage}
           />
         ) : (
           <StyledEmptyMessage data-testid="StyledEmptyMessage">
@@ -36,10 +33,7 @@ export default function AllActivitiesPage({
           </StyledEmptyMessage>
         )}
       </Main>
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>

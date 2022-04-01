@@ -17,8 +17,8 @@ import newIcon from '../images/newIcon.svg';
 
 export default function MyGroupsPage({
   activities,
-  handleResetPage,
-  handleResetPageAndShowArrow,
+  // handleResetPage,
+  // handleResetPageAndShowArrow,
 }) {
   const activitiesWithGroup = activities.filter(
     activity => activity.group !== ''
@@ -39,9 +39,7 @@ export default function MyGroupsPage({
 
   return (
     <Picture>
-      <Header hiddenFriend="hidden" handleResetPage={handleResetPage}>
-        my groups
-      </Header>
+      <Header hiddenFriend="hidden">my groups</Header>
       <Main>
         {activitiesWithGroup.length > 0 ? (
           <StyledList role="list" title="list of groups">
@@ -135,8 +133,8 @@ export default function MyGroupsPage({
       </Main>
 
       <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
+      // handleResetPage={handleResetPage}
+      // handleResetPageAndShowArrow={handleResetPageAndShowArrow}
       >
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />

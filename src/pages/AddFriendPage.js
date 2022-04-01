@@ -16,10 +16,7 @@ import goBackIcon from '../images/goBackIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
-export default function AddFriendPage({
-  handleResetPage,
-  handleResetPageAndShowArrow,
-}) {
+export default function AddFriendPage() {
   const navigate = useNavigate();
   const [enteredName, setEnteredName] = useState('');
   const [tooLong, setTooLong] = useState(false);
@@ -129,10 +126,7 @@ export default function AddFriendPage({
           )}
         </Grid>
       </Main>
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <Link to="/newactivity">
           <img src={newIcon} alt="new" />
         </Link>

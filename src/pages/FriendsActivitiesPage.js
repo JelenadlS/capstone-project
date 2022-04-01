@@ -16,12 +16,8 @@ import newIcon from '../images/newIcon.svg';
 
 export default function FriendsActivitiesPage({
   activitiesNotArchived,
-
   onFilter,
   filteredSearchActivities,
-  showBin,
-  handleResetPage,
-  handleResetPageAndShowArrow,
 }) {
   const { friendsName } = useParams();
   const resetPage = useStore(state => state.resetPage);
@@ -52,13 +48,9 @@ export default function FriendsActivitiesPage({
           onDeleteActivity={onDeleteActivity}
           selectedFriendsActivity={selectedFriendsActivities}
           filteredSearchActivities={filteredSearchActivities}
-          showBin={showBin}
         />
       </Main>
-      <Navigation
-        handleResetPage={handleResetPage}
-        handleResetPageAndShowArrow={handleResetPageAndShowArrow}
-      >
+      <Navigation>
         <NavLink to="/newactivity">
           <img src={newIcon} alt="new" />
         </NavLink>
