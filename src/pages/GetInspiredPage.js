@@ -16,8 +16,6 @@ import newIcon from '../images/newIcon.svg';
 
 export default function GetInspiredPage({
   activitiesArchived,
-
-  onFilter,
   filteredSearchActivitiesArchived,
 }) {
   const searchInput = useStore(state => state.searchInput);
@@ -67,7 +65,7 @@ export default function GetInspiredPage({
           (likedActivities.length > 0 ? (
             <>
               <Searchbar />
-              <FilterTags activities={likedActivities} onFilter={onFilter} />
+              <FilterTags activities={likedActivities} />
               {filteredLikedSearchActivitiesArchived.length > 0 ? (
                 <StyledList
                   role="list"
@@ -108,7 +106,7 @@ export default function GetInspiredPage({
           (notLikedActivities.length > 0 ? (
             <>
               <Searchbar searchInput={searchInput} />
-              <FilterTags activities={notLikedActivities} onFilter={onFilter} />
+              <FilterTags activities={notLikedActivities} />
               {filteredNotLikedSearchActivitiesArchived.length > 0 ? (
                 <StyledList
                   role="list"

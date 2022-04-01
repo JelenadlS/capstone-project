@@ -13,7 +13,7 @@ import newIcon from '../images/newIcon.svg';
 
 export default function AllActivitiesPage({
   activities,
-  onFilter,
+
   filteredSearchActivities,
 }) {
   return (
@@ -21,7 +21,7 @@ export default function AllActivitiesPage({
       <Header hiddenGroup="hidden">all activities</Header>
       <Main>
         <Searchbar />
-        <FilterTags activities={activities} onFilter={onFilter} />
+        <FilterTags activities={activities} />
         {filteredSearchActivities.length > 0 ? (
           <List
             activities={activities}

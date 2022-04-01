@@ -64,6 +64,11 @@ const useStore = create(
         setSearchInput('');
         setShowBin(false);
       },
+
+      onFilter: category => {
+        const setCurrentFilter = get().setCurrentFilter;
+        setCurrentFilter(category);
+      },
     }),
     { name: 'togather' }
   )

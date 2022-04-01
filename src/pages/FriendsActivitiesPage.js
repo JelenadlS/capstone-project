@@ -16,13 +16,14 @@ import newIcon from '../images/newIcon.svg';
 
 export default function FriendsActivitiesPage({
   activitiesNotArchived,
-  onFilter,
   filteredSearchActivities,
 }) {
   const { friendsName } = useParams();
-  const resetPage = useStore(state => state.resetPage);
+
   const activities = useStore(state => state.activities);
   const setActivities = useStore(state => state.setActivities);
+  const resetPage = useStore(state => state.resetPage);
+
   const selectedFriendsActivities = activitiesNotArchived.filter(
     activity =>
       (activity?.group ? activity.group : activity.friend) === friendsName
@@ -40,10 +41,7 @@ export default function FriendsActivitiesPage({
         </ArrowBackButton>
       </Header>
       <Main>
-        <FilterTags
-          activities={selectedFriendsActivities}
-          onFilter={onFilter}
-        />
+        <FilterTags activities={selectedFriendsActivities} />
         <List
           onDeleteActivity={onDeleteActivity}
           selectedFriendsActivity={selectedFriendsActivities}

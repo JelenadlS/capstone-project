@@ -24,12 +24,11 @@ const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function App() {
+  const activities = useStore(state => state.activities);
   const searchInput = useStore(state => state.searchInput);
-
+  const setActivities = useStore(state => state.setActivities);
   const setCurrentFilter = useStore(state => state.setCurrentFilter);
   const setPhoto = useStore(state => state.setPhoto);
-  const activities = useStore(state => state.activities);
-  const setActivities = useStore(state => state.setActivities);
 
   const navigate = useNavigate();
 
@@ -80,7 +79,6 @@ export default function App() {
             element={
               <FriendsActivitiesPage
                 activitiesNotArchived={activitiesNotArchived}
-                onFilter={onFilter}
                 filteredSearchActivities={filteredSearchActivities}
               />
             }
@@ -115,7 +113,6 @@ export default function App() {
             element={
               <AllActivitiesPage
                 activities={activitiesNotArchived}
-                onFilter={onFilter}
                 filteredSearchActivities={filteredSearchActivities}
               />
             }
@@ -125,7 +122,6 @@ export default function App() {
             element={
               <GetInspiredPage
                 activitiesArchived={activitiesArchived}
-                onFilter={onFilter}
                 filteredSearchActivitiesArchived={
                   filteredSearchActivitiesArchived
                 }
@@ -222,10 +218,6 @@ export default function App() {
       );
     }
     navigate('/');
-  }
-
-  function onFilter(category) {
-    setCurrentFilter(category);
   }
 
   function uploadImage(e) {
