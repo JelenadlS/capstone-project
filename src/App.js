@@ -69,7 +69,9 @@ export default function App() {
         <Routes>
           <Route
             path="/"
-            element={<MyFriendsPage activities={activitiesNotArchived} />}
+            element={
+              <MyFriendsPage activitiesNotArchived={activitiesNotArchived} />
+            }
           />
           <Route
             path="/mygroups"

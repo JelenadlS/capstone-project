@@ -21,12 +21,12 @@ import inspireIcon from '../images/inspireIcon.svg';
 import newIcon from '../images/newIcon.svg';
 import nextIcon from '../images/nextIcon.svg';
 
-export default function MyFriendsPage({ activities }) {
-  const activitiesWithFriendsName = activities.filter(
+export default function MyFriendsPage({ activitiesNotArchived }) {
+  const activitiesWithFriendsName = activitiesNotArchived.filter(
     activity => activity.friend !== 'I still need to plan...'
   );
 
-  const activitiesWithoutFriend = activities.filter(
+  const activitiesWithoutFriend = activitiesNotArchived.filter(
     activity =>
       activity.friend === 'I still need to plan...' && activity.group === ''
   );
@@ -66,14 +66,14 @@ export default function MyFriendsPage({ activities }) {
             )}
             <StyledList role="list" title="list of friends">
               {sortedFriendsList.map((friend, index) => {
-                const sumOfActivitiesEachFriend = activities.filter(
+                const sumOfActivitiesEachFriend = activitiesNotArchived.filter(
                   activity => activity.friend === friend
                 ).length;
                 return (
                   <li key={index}>
                     <FriendCard
-                      friend={friend}
-                      sumOfActivitiesEachFriend={sumOfActivitiesEachFriend}
+                      name={friend}
+                      sumOfActivitiesEach={sumOfActivitiesEachFriend}
                     />
                   </li>
                 );

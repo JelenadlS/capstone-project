@@ -5,44 +5,20 @@ import { StyledArrow } from '../components/GeneralStyling';
 
 import nextIcon from '../images/nextIcon.svg';
 
-export default function FriendCard({
-  friend,
-  sumOfActivitiesEachFriend,
-  group,
-  sumOfActivitiesEachGroup,
-}) {
+export default function FriendCard({ name, sumOfActivitiesEach }) {
   return (
     <WrapperCard>
-      {friend !== undefined && (
-        <LinkStyling to={`/${friend}`}>
-          <NameStyling aria-label={`${friend}`}>
-            <strong>{friend}</strong>
-          </NameStyling>
-          <NumStyling
-            aria-label={`number of activities: ${sumOfActivitiesEachFriend}`}
-          >
-            #{sumOfActivitiesEachFriend}
-            <StyledArrow>
-              <img src={nextIcon} alt="next page" />
-            </StyledArrow>
-          </NumStyling>
-        </LinkStyling>
-      )}
-      {group !== undefined && (
-        <LinkStyling to={`/${group}`}>
-          <NameStyling aria-label={`${group}`}>
-            <strong>{group}</strong>
-          </NameStyling>
-          <NumStyling
-            aria-label={`number of activities: ${sumOfActivitiesEachGroup}`}
-          >
-            #{sumOfActivitiesEachGroup}
-            <StyledArrow>
-              <img src={nextIcon} alt="next page" />
-            </StyledArrow>
-          </NumStyling>
-        </LinkStyling>
-      )}
+      <LinkStyling to={`/${name}`}>
+        <NameStyling aria-label={`${name}`}>
+          <strong>{name}</strong>
+        </NameStyling>
+        <NumStyling aria-label={`number of activities: ${sumOfActivitiesEach}`}>
+          #{sumOfActivitiesEach}
+          <StyledArrow>
+            <img src={nextIcon} alt="next page" />
+          </StyledArrow>
+        </NumStyling>
+      </LinkStyling>
     </WrapperCard>
   );
 }

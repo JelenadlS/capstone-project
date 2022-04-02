@@ -47,8 +47,8 @@ export default function MyGroupsPage({ activities }) {
               return (
                 <li key={index}>
                   <FriendCard
-                    group={group}
-                    sumOfActivitiesEachGroup={sumOfActivitiesEachGroup}
+                    name={group}
+                    sumOfActivitiesEach={sumOfActivitiesEachGroup}
                   />
                 </li>
               );
