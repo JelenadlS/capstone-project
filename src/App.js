@@ -114,7 +114,7 @@ export default function App() {
             path="/allactivities"
             element={
               <AllActivitiesPage
-                activities={activitiesNotArchived}
+                activitiesNotArchived={activitiesNotArchived}
                 filteredSearchActivities={filteredSearchActivities}
               />
             }

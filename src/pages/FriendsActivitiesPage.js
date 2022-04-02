@@ -42,7 +42,7 @@ export default function FriendsActivitiesPage({
         <FilterTags activities={selectedFriendsActivities} />
         <List
           onDeleteActivity={onDeleteActivity}
-          selectedFriendsActivity={selectedFriendsActivities}
+          activities={selectedFriendsActivities}
           filteredSearchActivities={filteredSearchActivities}
         />
       </Main>
