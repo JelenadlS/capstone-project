@@ -28,7 +28,7 @@ export default function Navigation({ hidden }) {
           <StyledIcon
             width="40"
             height="20"
-            alt="friendsHomeIcon"
+            alt="overview of friends"
             src={friendIcon}
           />
           <figcaption>friends</figcaption>

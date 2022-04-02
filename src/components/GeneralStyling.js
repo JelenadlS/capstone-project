@@ -21,30 +21,6 @@ const StyledArrow = styled.span`
 `;
 export { StyledArrow };
 
-const StyledEmptyMessageFGPage = styled.section`
-  display: grid;
-  grid-template-rows: repeat(7, auto);
-  grid-template-columns: repeat(2, auto);
-  padding: 10px;
-  gap: 10px;
-  font-size: 14px;
-  align-items: center;
-`;
-export { StyledEmptyMessageFGPage };
-
-const StyledIntro = styled.p`
-  grid-column: 1 / span 2;
-  text-align: center;
-  font-size: 16px;
-`;
-export { StyledIntro };
-
-const StyledAdd = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-export { StyledAdd };
-
 const LinkStyling = styled(Link)`
   color: rgba(71, 39, 35, 0.72);
   text-decoration: none;
