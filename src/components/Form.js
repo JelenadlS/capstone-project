@@ -119,6 +119,7 @@ export default function Form({
           id="activity"
           type="text"
           name="activity"
+          aria-required="true"
           placeholder="Brunch, favorite Restaurant,..."
           {...register('activity', {
             required: 'So, you plan to do nothing?? 😉',
