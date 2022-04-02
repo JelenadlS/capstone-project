@@ -76,12 +76,7 @@ export default function GetInspiredPage({
                       )
                   ).map(activity => (
                     <li key={activity.id}>
-                      <ActivityCard
-                        nameOfSelectedCategory={activity.category}
-                        nameOfSelectedFriend={activity.friend}
-                        nameOfSelectedActivity={activity.activity}
-                        photo={activity.photo}
-                      />
+                      <ActivityCard activityDetails={activity} />
                     </li>
                   ))}
                 </StyledList>

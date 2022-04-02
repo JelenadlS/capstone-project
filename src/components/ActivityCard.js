@@ -11,13 +11,7 @@ import useStore from '../hooks/useStore.js';
 import deleteIcon from '../images/binIcon.svg';
 import nextIcon from '../images/nextIcon.svg';
 
-export default function ActivityCard({
-  onDeleteActivity,
-  nameOfSelectedFriend,
-  nameOfSelectedActivity,
-  nameOfSelectedCategory,
-  photo,
-}) {
+export default function ActivityCard({ onDeleteActivity, activityDetails }) {
   const [show, setShow] = useState(false);
 
   const showBin = useStore(state => state.showBin);
@@ -28,16 +22,28 @@ export default function ActivityCard({
       <StyledImage
         width="30"
         height="30"
-        alt={`placeholder picture ${!photo ? nameOfSelectedCategory : photo}`}
-        src={!photo ? MappedPlaceholderPictures[nameOfSelectedCategory] : photo}
+        alt={`placeholder picture ${
+          !activityDetails.photo
+            ? activityDetails.category
+            : activityDetails.photo
+        }`}
+        src={
+          !activityDetails.photo
+            ? MappedPlaceholderPictures[activityDetails.category]
+            : activityDetails.photo
+        }
       />
 
       <CardSubGrid>
         <StyledLink
-          to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}
+          to={`/${
+            activityDetails?.group
+              ? activityDetails.group
+              : activityDetails.friend
+          }/${activityDetails.activity}`}
           onClick={handleResetPage}
         >
-          <strong>{nameOfSelectedActivity}</strong>
+          <strong>{activityDetails.activity}</strong>
         </StyledLink>
 
         {showBin ? (
