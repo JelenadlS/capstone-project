@@ -35,8 +35,7 @@ export default function GetInspiredPage({
     filteredSearchActivitiesArchived.filter(
       activity => activity.isLiked === false
     );
-  console.log(likedActivities);
-  console.log(notLikedActivities);
+
   return (
     <>
       <Header hiddenGroup="hidden">Get Inspired</Header>

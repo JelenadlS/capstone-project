@@ -61,7 +61,15 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
     <>
       <Header hiddenGroup="hidden">
         {selectedActivity.activity}
-        {selectedActivity.isArchived === false ? (
+        {selectedActivity.isArchived ? (
+          <ArrowBackButton
+            onClick={() =>
+              handleResetPageAndShowArrow(navigate('/getinspired'))
+            }
+          >
+            <img src={goBackIcon} alt="go back" />
+          </ArrowBackButton>
+        ) : (
           <ArrowBackButton
             type="button"
             onClick={event =>
@@ -79,14 +87,6 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
           >
             <img src={goBackIcon} alt="go back" />
           </ArrowBackButton>
-        ) : (
-          <ArrowBackButton
-            onClick={() =>
-              handleResetPageAndShowArrow(navigate('/getinspired'))
-            }
-          >
-            <img src={goBackIcon} alt="go back" />
-          </ArrowBackButton>
         )}
       </Header>
       <Main>
@@ -95,45 +95,29 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
 
           <StyledActivity>{selectedActivity.activity}</StyledActivity>
 
-          {!selectedActivity.photo > 0 ? (
-            <StyledImage
-              width="80"
-              height="80"
-              alt="upload"
-              src={MappedPlaceholderPictures[selectedActivity.category]}
-            />
-          ) : (
-            <StyledImage
-              width="80"
-              height="80"
-              alt="upload"
-              src={selectedActivity.photo}
-            />
-          )}
+          <StyledImage
+            width="80"
+            height="80"
+            alt="upload"
+            src={
+              selectedActivity.photo ||
+              MappedPlaceholderPictures[selectedActivity.category]
+            }
+          />
 
           <StyledCategoryIcon
             src={mappedCategories[selectedActivity.category]}
             alt={mappedCategories[selectedActivity.category]}
           />
-          <StyledCategoryText>{selectedActivity.category}</StyledCategoryText>
+          <p>{selectedActivity.category}</p>
 
           <StyledOtherInfo>
-            {selectedActivity.group === '' && (
-              <StyledIcon
-                width="35"
-                height="35"
-                src={friendIcon}
-                alt="friend"
-              />
-            )}
-            {selectedActivity.group !== '' && (
-              <StyledIconGroup
-                width="55"
-                height="55"
-                src={groupIcon}
-                alt="friend"
-              />
-            )}
+            <StyledIcon
+              width={selectedActivity.group ? '55' : '35'}
+              height={selectedActivity.group ? '55' : '35'}
+              src={selectedActivity.group ? groupIcon : friendIcon}
+              alt="friend"
+            />
 
             {selectedActivity.group === '' &&
               selectedActivity.friend === 'I still need to plan...' && (
@@ -158,12 +142,14 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
                 <StyledNoNotes data-testid="noNotes" />
               </>
             )}
+
             <StyledIcon src={dateIcon} alt="date" />
             {selectedActivity.date ? (
               <StyledText>{selectedActivity.date}</StyledText>
             ) : (
               <StyledText>plan your activity soon!</StyledText>
             )}
+
             <StyledIcon src={locationIcon} alt="location" />
             {selectedActivity.location ? (
               <StyledText>{selectedActivity.location}</StyledText>
@@ -172,7 +158,21 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
             )}
           </StyledOtherInfo>
 
-          {selectedActivity.isArchived === false ? (
+          {selectedActivity.isArchived ? (
+            <>
+              <PastDeleteButton
+                role="button"
+                onClick={() => setShowDeleteModal(true)}
+              >
+                <img width="30" height="30" src={deleteIcon} alt="delete" />
+              </PastDeleteButton>
+              <DeleteModal
+                onDelete={() => onDeleteActivity(selectedActivity.id)}
+                onClose={() => setShowDeleteModal(false)}
+                show={showDeleteModal}
+              />
+            </>
+          ) : (
             <>
               <EditButton
                 onClick={() =>
@@ -206,20 +206,6 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
                 </label>
               </StyledCheckbox>
             </>
-          ) : (
-            <>
-              <PastDeleteButton
-                role="button"
-                onClick={() => setShowDeleteModal(true)}
-              >
-                <img width="30" height="30" src={deleteIcon} alt="delete" />
-              </PastDeleteButton>
-              <DeleteModal
-                onDelete={() => onDeleteActivity(selectedActivity.id)}
-                onClose={() => setShowDeleteModal(false)}
-                show={showDeleteModal}
-              />
-            </>
           )}
         </MainGrid>
         <PastActivityModal
@@ -248,7 +234,7 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
 const MainGrid = styled.div`
   display: grid;
   grid-template-columns: 90px 30px 20px 30px auto;
-  grid-template-rows: repeat(6, auto) 40px;
+  grid-template-rows: repeat(5, auto) 40px;
   margin: 30px;
   align-items: center;
   position: relative;
@@ -263,17 +249,12 @@ const StyledTitle = styled.h2`
 const StyledActivity = styled.h3`
   grid-column-start: 4;
   grid-column-end: 6;
-  padding: 5px;
 `;
 
 const StyledCategoryIcon = styled.img`
   grid-column-start: 4;
   grid-column-end: 4;
   padding-left: 5px;
-  align-self: center;
-`;
-const StyledCategoryText = styled.span`
-  align-self: center;
 `;
 
 const StyledImage = styled.img`
@@ -291,11 +272,7 @@ const StyledOtherInfo = styled.span`
   display: grid;
 `;
 
-const StyledIconGroup = styled.img`
-  justify-self: center;
-`;
-
-const StyledIcon = styled(StyledIconGroup)`
+const StyledIcon = styled.img`
   justify-self: center;
   padding: 5px;
 `;
@@ -304,7 +281,6 @@ const StyledText = styled.span`
   grid-column-start: 2;
   grid-column-end: 6;
   word-break: break-word;
-  margin: 3px;
   align-self: center;
 `;
 const StyledNoNotes = styled.span`

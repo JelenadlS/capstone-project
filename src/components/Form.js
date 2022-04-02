@@ -15,7 +15,7 @@ import {
   StyledButtonChoice,
   StyledButtonArea,
   StyledFriendSelection,
-  StyledSelectionFG,
+  StyledSelectionBox,
   StyledSelectionFriend,
   StyledPictureUpload,
   ErrorMessage,
@@ -146,13 +146,17 @@ export default function Form({
       <StyledSelection>
         <label htmlFor="category">Category:</label>
 
-        <select id="category" name="select category" {...register('category')}>
+        <StyledSelectionBox
+          id="category"
+          name="select category"
+          {...register('category')}
+        >
           <option value="culture">culture</option>
           <option value="food and beverages">food and beverages</option>
           <option value="outdoor">outdoor</option>
           <option value="sport">sport</option>
           <option value="other">other</option>
-        </select>
+        </StyledSelectionBox>
       </StyledSelection>
 
       <StyledSelectionFriend>
@@ -182,7 +186,7 @@ export default function Form({
         </StyledButtonArea>
         <StyledFriendSelection hidden={friendSelection === false}>
           <label htmlFor="friend" />
-          <StyledSelectionFG id="friend" name="friend" {...register('friend')}>
+          <StyledSelectionBox id="friend" name="friend" {...register('friend')}>
             <option value="">friend</option>
             {addedFriend.map(friend => {
               return (
@@ -191,7 +195,7 @@ export default function Form({
                 </option>
               );
             })}
-          </StyledSelectionFG>
+          </StyledSelectionBox>
           <StyledFriendLink to="/addfriend" onClick={handleResetPage}>
             <img
               width="40"
@@ -203,7 +207,7 @@ export default function Form({
         </StyledFriendSelection>
         <StyledGroupSelection hidden={groupSelection === false}>
           <label htmlFor="group" />
-          <StyledSelectionFG id="group" name="group" {...register('group')}>
+          <StyledSelectionBox id="group" name="group" {...register('group')}>
             <option value="">group</option>
             {addedGroup.map(group => {
               return (
@@ -212,7 +216,7 @@ export default function Form({
                 </option>
               );
             })}
-          </StyledSelectionFG>
+          </StyledSelectionBox>
           <StyledFriendLink to="/addgroup" onClick={handleResetPage}>
             <img
               width="40"

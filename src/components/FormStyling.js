@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const WrapperForm = styled.form`
-  height: 85vh;
   display: grid;
   grid-template-rows: repeat(7, auto);
   margin-top: 20px;
-  margin-bottom: 60px;
 
   textarea {
     background: transparent;
@@ -23,10 +21,6 @@ const WrapperForm = styled.form`
     outline: none;
     margin: 5px 0 8px;
   }
-
-  i {
-    font-size: 12px;
-  }
 `;
 
 export { WrapperForm };
@@ -36,20 +30,21 @@ const StyledSelection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 5px;
-
-  select {
-    color: rgba(71, 39, 35, 0.72);
-    font-size: 14px;
-    padding: 3px;
-    background: transparent;
-    border: 1px solid rgba(71, 39, 35, 0.42);
-    border-radius: 5px;
-    width: 50%;
-    margin-left: 15px;
-  }
 `;
 
 export { StyledSelection };
+
+const StyledSelectionBox = styled.select`
+  color: rgba(71, 39, 35, 0.72);
+  font-size: 14px;
+  padding: 3px;
+  width: 50%;
+  margin-left: 15px;
+  background: transparent;
+  border: 1px solid rgba(71, 39, 35, 0.42);
+  border-radius: 5px;
+`;
+export { StyledSelectionBox };
 
 const StyledSelectionFriend = styled.section`
   margin: 5px 30px 20px;
@@ -88,18 +83,6 @@ const StyledGroupSelection = styled.span`
   grid-template-columns: repeat(2, auto);
 `;
 export { StyledGroupSelection };
-
-const StyledSelectionFG = styled.select`
-  color: rgba(71, 39, 35, 0.72);
-  font-size: 14px;
-  padding: 3px;
-  width: 50%;
-  margin-left: 15px;
-  background: transparent;
-  border: 1px solid rgba(71, 39, 35, 0.42);
-  border-radius: 5px;
-`;
-export { StyledSelectionFG };
 
 const StyledLabels = styled.label`
   padding: 0 30px;

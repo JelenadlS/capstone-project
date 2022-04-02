@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { AddButton, ArrowBackButton, DeleteButton } from '../components/Button';
+import { StyledLabels, StyledInputs } from '../components/FormStyling';
 import Header from '../components/Header';
 import Main from '../components/Main';
 
@@ -42,7 +43,7 @@ export default function AddFriendPage() {
           >
             <StyledLabels htmlFor="addFriend">
               Who is your friend?
-              <StyledInput
+              <StyledInputs
                 id="addFriend"
                 type="text"
                 name="addFriend"
@@ -74,10 +75,10 @@ export default function AddFriendPage() {
           {addedFriend?.length > 0 && (
             <section>
               <p>Find below your already added friends:</p>
-              <StyledList role="list" title="list of added friends">
+              <ul title="list of added friends">
                 {addedFriend?.map(friend => {
                   return (
-                    <li key={friend.id}>
+                    <StyledList key={friend.id}>
                       <div>
                         {friend.newFriend}
                         <DeleteButton onClick={() => onDeleteFriend(friend.id)}>
@@ -89,10 +90,10 @@ export default function AddFriendPage() {
                           />
                         </DeleteButton>
                       </div>
-                    </li>
+                    </StyledList>
                   );
                 })}
-              </StyledList>
+              </ul>
             </section>
           )}
         </Grid>
@@ -138,7 +139,6 @@ export default function AddFriendPage() {
 
 const Grid = styled.span`
   height: 85vh;
-  margin-top: 20px;
   display: grid;
   grid-template-rows: repeat(2, 1fr 1fr);
   justify-items: center;
@@ -148,28 +148,12 @@ const WrapperForm = styled.form`
   grid-template-rows: repeat(2, 60px);
   justify-items: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 40px;
 `;
 
-const StyledLabels = styled.label`
-  padding: 0 30px;
-`;
-
-const StyledInput = styled.input`
-  background: transparent;
-  border: 1px solid rgba(71, 39, 35, 0.42);
-  border-radius: 5px;
-  padding: 5px;
-  width: 100%;
-  color: rgba(71, 39, 35, 0.72);
-  outline: none;
-`;
-
-const StyledList = styled.ul`
-  li {
-    margin-left: 40px;
-    padding: 2px;
-  }
+const StyledList = styled.li`
+  margin-left: 40px;
+  padding: 2px;
 `;
 
 const StyledImage = styled.img`

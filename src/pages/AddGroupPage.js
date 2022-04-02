@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { AddButton, ArrowBackButton, DeleteButton } from '../components/Button';
+import { StyledLabels, StyledInputs } from '../components/FormStyling';
 import Header from '../components/Header';
 import Main from '../components/Main';
 
@@ -42,7 +43,7 @@ export default function AddGroupPage() {
           >
             <StyledLabels htmlFor="addGroup">
               What is the name of your group?
-              <StyledInput
+              <StyledInputs
                 id="addGroup"
                 type="text"
                 name="addGroup"
@@ -75,10 +76,10 @@ export default function AddGroupPage() {
           {addedGroup.length > 0 && (
             <section>
               <p>Find below your already added groups:</p>
-              <StyledList role="list" title="list of added groups">
+              <ul title="list of added groups">
                 {addedGroup?.map(group => {
                   return (
-                    <li key={group.id}>
+                    <StyledList key={group.id}>
                       <div>
                         {group.enteredGroup}
                         <DeleteButton onClick={() => onDeleteGroup(group.id)}>
@@ -90,10 +91,10 @@ export default function AddGroupPage() {
                           />
                         </DeleteButton>
                       </div>
-                    </li>
+                    </StyledList>
                   );
                 })}
-              </StyledList>
+              </ul>
             </section>
           )}
         </Grid>
@@ -128,7 +129,6 @@ export default function AddGroupPage() {
 
 const Grid = styled.section`
   height: 85vh;
-  margin-top: 20px;
   display: grid;
   grid-template-rows: repeat(2, 1fr 1fr);
   justify-items: center;
@@ -138,28 +138,12 @@ const WrapperForm = styled.form`
   grid-template-rows: repeat(2, 60px);
   justify-items: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 40px;
 `;
 
-const StyledLabels = styled.label`
-  padding: 0 30px;
-`;
-
-const StyledInput = styled.input`
-  background: transparent;
-  border: 1px solid rgba(71, 39, 35, 0.42);
-  border-radius: 5px;
-  padding: 5px;
-  width: 100%;
-  color: rgba(71, 39, 35, 0.72);
-  outline: none;
-`;
-
-const StyledList = styled.ul`
-  li {
-    margin-left: 40px;
-    padding: 2px;
-  }
+const StyledList = styled.li`
+  margin-left: 40px;
+  padding: 2px;
 `;
 
 const StyledImage = styled.img`
