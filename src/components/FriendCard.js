@@ -9,7 +9,11 @@ export default function FriendCard({ name, sumOfActivitiesEach }) {
     <WrapperCard>
       <StyledLink to={`/${name}`}>
         <NameStyling aria-label={`${name}`}>
-          <strong>{name}</strong>
+          <strong>
+            {name === 'I still need to plan...'
+              ? 'Activities I still need to plan with someone:'
+              : name}
+          </strong>
         </NameStyling>
         <NumStyling aria-label={`number of activities: ${sumOfActivitiesEach}`}>
           #{sumOfActivitiesEach}

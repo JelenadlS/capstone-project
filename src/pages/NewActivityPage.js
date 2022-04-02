@@ -24,11 +24,7 @@ export default function NewActivityPage({ onAddActivity, uploadImage }) {
         </ArrowBackButton>
       </Header>
       <Main>
-        <Form
-          preloadedValues={null}
-          handleActivity={onAddActivity}
-          uploadImage={uploadImage}
-        />
+        <Form handleActivity={onAddActivity} uploadImage={uploadImage} />
       </Main>
     </>
   );
