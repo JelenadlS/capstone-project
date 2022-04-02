@@ -25,30 +25,24 @@ export default function ActivityCard({
   const handleResetPage = useStore(state => state.handleResetPage);
 
   return (
-    <>
-      <WrapperCard>
-        {!photo ? (
-          <StyledImage
-            width="30"
-            height="30"
-            alt={`placeholder picture ${nameOfSelectedCategory}`}
-            src={MappedPlaceholderPictures[nameOfSelectedCategory]}
-          />
-        ) : (
-          <StyledImage
-            width="30"
-            height="30"
-            alt={`uploaded picture ${photo}`}
-            src={photo}
-          />
-        )}
+    <WrapperCard>
+      <StyledImage
+        width="30"
+        height="30"
+        alt={`placeholder picture ${!photo ? nameOfSelectedCategory : photo}`}
+        src={!photo ? MappedPlaceholderPictures[nameOfSelectedCategory] : photo}
+      />
+
+      <CardSubGrid>
+        <LinkStyling
+          to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}
+          onClick={handleResetPage}
+        >
+          <strong>{nameOfSelectedActivity}</strong>
+        </LinkStyling>
+
         {showBin ? (
-          <CardSubGrid>
-            <LinkStyling
-              to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}
-            >
-              <strong>{nameOfSelectedActivity}</strong>
-            </LinkStyling>
+          <>
             <DeleteButton onClick={() => setShow(true)}>
               <img width="20" height="20" src={deleteIcon} alt="delete" />
             </DeleteButton>
@@ -57,22 +51,14 @@ export default function ActivityCard({
               onClose={() => setShow(false)}
               show={show}
             />
-          </CardSubGrid>
+          </>
         ) : (
-          <CardSubGrid>
-            <LinkStyling
-              to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}
-              onClick={handleResetPage}
-            >
-              <strong>{nameOfSelectedActivity}</strong>
-            </LinkStyling>
-            <StyledArrow>
-              <img src={nextIcon} alt="next page" />
-            </StyledArrow>
-          </CardSubGrid>
+          <StyledArrow>
+            <img src={nextIcon} alt="next page" />
+          </StyledArrow>
         )}
-      </WrapperCard>
-    </>
+      </CardSubGrid>
+    </WrapperCard>
   );
 }
 
