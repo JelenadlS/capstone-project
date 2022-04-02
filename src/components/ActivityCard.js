@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { DeleteButton } from './Button.js';
 import DeleteModal from './DeleteModal.js';
-import { StyledArrow } from '../components/GeneralStyling';
+import { StyledArrow, LinkStyling } from '../components/GeneralStyling';
 import MappedPlaceholderPictures from './MappedPlaceholderPictures.js';
 
 import useStore from '../hooks/useStore.js';
@@ -34,12 +33,12 @@ export default function ActivityCard({
       />
 
       <CardSubGrid>
-        <LinkStyling
+        <StyledLink
           to={`/${nameOfSelectedFriend}/${nameOfSelectedActivity}`}
           onClick={handleResetPage}
         >
           <strong>{nameOfSelectedActivity}</strong>
-        </LinkStyling>
+        </StyledLink>
 
         {showBin ? (
           <>
@@ -75,14 +74,9 @@ const CardSubGrid = styled.span`
   grid-template-columns: 1fr auto;
 `;
 
-const LinkStyling = styled(Link)`
+const StyledLink = styled(LinkStyling)`
   padding: 8px 8px 5px;
-  color: rgba(71, 39, 35, 0.72);
   background-color: transparent;
-  text-decoration: none;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
 const StyledImage = styled.img`

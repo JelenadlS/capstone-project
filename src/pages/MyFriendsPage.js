@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { MainNavButtonSmall } from '../components/Button';
@@ -9,6 +8,7 @@ import {
   StyledAdd,
   StyledIntro,
   StyledEmptyMessageFGPage,
+  LinkStyling,
 } from '../components/GeneralStyling';
 import Header from '../components/Header';
 import Main from '../components/Main';
@@ -158,9 +158,7 @@ export default function MyFriendsPage({ activitiesNotArchived }) {
   );
 }
 
-const StyledLink = styled(Link)`
-  color: rgba(71, 39, 35, 0.72);
-  text-decoration: none;
+const StyledLink = styled(LinkStyling)`
   padding: 20px 18px 10px 10px;
   display: grid;
   grid-template-columns: auto auto;

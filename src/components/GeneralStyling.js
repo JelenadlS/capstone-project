@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledList = styled.ul`
@@ -43,3 +44,12 @@ const StyledAdd = styled.div`
   flex-direction: column;
 `;
 export { StyledAdd };
+
+const LinkStyling = styled(Link)`
+  color: rgba(71, 39, 35, 0.72);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+export { LinkStyling };

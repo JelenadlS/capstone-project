@@ -1,14 +1,13 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { StyledArrow } from '../components/GeneralStyling';
+import { StyledArrow, LinkStyling } from '../components/GeneralStyling';
 
 import nextIcon from '../images/nextIcon.svg';
 
 export default function FriendCard({ name, sumOfActivitiesEach }) {
   return (
     <WrapperCard>
-      <LinkStyling to={`/${name}`}>
+      <StyledLink to={`/${name}`}>
         <NameStyling aria-label={`${name}`}>
           <strong>{name}</strong>
         </NameStyling>
@@ -18,7 +17,7 @@ export default function FriendCard({ name, sumOfActivitiesEach }) {
             <img src={nextIcon} alt="next page" />
           </StyledArrow>
         </NumStyling>
-      </LinkStyling>
+      </StyledLink>
     </WrapperCard>
   );
 }
@@ -28,11 +27,8 @@ const WrapperCard = styled.section`
   padding: 5px;
 `;
 
-const LinkStyling = styled(Link)`
+const StyledLink = styled(LinkStyling)`
   padding: 8px 8px 0;
-  color: rgba(71, 39, 35, 0.72);
-  text-decoration: none;
-  overflow: hidden;
   display: grid;
   grid-template-columns: auto auto;
 `;

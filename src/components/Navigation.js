@@ -1,4 +1,4 @@
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { MainNavButton } from './Button';
@@ -55,9 +55,9 @@ export default function Navigation({ hidden }) {
         hidden={hidden}
         onClick={handleResetPage}
       >
-        <Link to="/newactivity">
+        <NavLink to="/newactivity">
           <img src={newIcon} alt="new" />
-        </Link>
+        </NavLink>
       </MainNavButton>
       {hidden && <div />}
       <StyledNavLink
