@@ -31,7 +31,7 @@ export default function PastActivityModal({
         <QuitButton onClick={handleQuit}>
           <img
             src={deletePictureIcon}
-            alt="delete"
+            alt="quit/ keep and return back"
             width="20"
             height="20"
             type="submit"

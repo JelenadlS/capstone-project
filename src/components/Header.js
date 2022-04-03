@@ -22,7 +22,7 @@ export default function Header({ children, hiddenFriend, hiddenGroup }) {
             <img
               width="40"
               height="20"
-              alt={`${hiddenFriend ? 'addAGroupIcon' : 'addAFriendIcon'} `}
+              alt={`${hiddenFriend ? 'add a group' : 'add a friend'} `}
               src={hiddenFriend ? addAGroupIcon : addAFriendIcon}
             />
             <figcaption>add</figcaption>

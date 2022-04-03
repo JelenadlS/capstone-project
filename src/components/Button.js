@@ -73,7 +73,7 @@ const EditButton = styled(Button)`
   background: transparent;
   position: absolute;
   right: 0;
-  top: 10px;
+  top: 0;
 `;
 export { EditButton };
 

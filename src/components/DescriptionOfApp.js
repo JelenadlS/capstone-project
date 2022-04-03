@@ -36,7 +36,7 @@ export default function DescriptionOfApp({ group }) {
         <img
           width="40"
           height="20"
-          alt="friendsHomeIcon"
+          alt={group ? 'add a group' : 'add a friend'}
           src={group ? addAGroupIcon : addAFriendIcon}
         />
       </StyledAdd>
@@ -57,7 +57,7 @@ export default function DescriptionOfApp({ group }) {
       <img
         width="40"
         height="30"
-        alt="friendsHomeIcon"
+        alt="all activities"
         src={allActivitiesIcon}
       />
       <p>

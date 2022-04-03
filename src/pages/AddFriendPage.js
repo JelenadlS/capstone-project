@@ -31,7 +31,7 @@ export default function AddFriendPage() {
       <Header hiddenFriend="hidden">
         Add a friend
         <ArrowBackButton onClick={() => navigate(-1)}>
-          <img src={goBackIcon} alt="go back" />
+          <img width="50" height="40" src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
       <Main>

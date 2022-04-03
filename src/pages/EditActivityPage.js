@@ -25,7 +25,7 @@ export default function EditActivityPage({ activities, uploadImage }) {
       <Header hiddenGroup="hidden">
         Edit activity
         <ArrowBackButton onClick={resetForm}>
-          <img src={goBackIcon} alt="go back" />
+          <img width="50" height="40" src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
       <Main>

@@ -43,7 +43,7 @@ export default function Navigation({ hidden }) {
           <StyledIcon
             width="40"
             height="20"
-            alt="addAFriendIcon"
+            alt="overview of friends"
             src={groupIcon}
           />
           <figcaption>groups</figcaption>
@@ -56,7 +56,7 @@ export default function Navigation({ hidden }) {
         onClick={handleResetPage}
       >
         <NavLink to="/newactivity">
-          <img src={newIcon} alt="new" />
+          <img width="45" height="45" src={newIcon} alt="add an activity" />
         </NavLink>
       </MainNavButton>
       {hidden && <div />}
@@ -69,7 +69,7 @@ export default function Navigation({ hidden }) {
           <img
             width="40"
             height="30"
-            alt="allActivitiesIcon"
+            alt="all activities"
             src={allActivitiesIcon}
           />
           <figcaption>activities</figcaption>
@@ -81,7 +81,12 @@ export default function Navigation({ hidden }) {
         onClick={handleResetPageAndShowArrow}
       >
         <figure>
-          <img width="40" height="30" alt="inspireIcon" src={inspireIcon} />
+          <img
+            width="40"
+            height="30"
+            alt="all past activities"
+            src={inspireIcon}
+          />
           <figcaption>inspiration</figcaption>
         </figure>
       </StyledNavLink>

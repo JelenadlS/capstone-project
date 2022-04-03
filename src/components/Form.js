@@ -200,7 +200,7 @@ export default function Form({
             <img
               width="40"
               height="20"
-              alt="addAFriendIcon"
+              alt="add a friend"
               src={addAFriendIcon}
             />
           </StyledFriendLink>
@@ -218,12 +218,7 @@ export default function Form({
             })}
           </StyledSelectionBox>
           <StyledFriendLink to="/addgroup" onClick={handleResetPage}>
-            <img
-              width="40"
-              height="20"
-              alt="addAGroupIcon"
-              src={addAGroupIcon}
-            />
+            <img width="40" height="20" alt="add a group" src={addAGroupIcon} />
           </StyledFriendLink>
         </StyledGroupSelection>
       </StyledSelectionFriend>
@@ -252,11 +247,11 @@ export default function Form({
       </StyledLabels>
 
       <StyledPictureUpload>
-        <label htmlFor="selectPhoto">
-          <img width="50" height="50" alt="selectPhoto" src={addPictureIcon} />
+        <label htmlFor="uploadPicture">
+          <img width="50" height="50" alt="upload " src={addPictureIcon} />
           <input
-            id="selectPhoto"
-            name="selectPhoto"
+            id="uploadPicture"
+            name="uploadPicture"
             type="file"
             onChange={uploadImage}
             hidden

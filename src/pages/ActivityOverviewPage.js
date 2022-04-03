@@ -60,14 +60,13 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
   return (
     <>
       <Header hiddenGroup="hidden">
-        {selectedActivity.activity}
         {selectedActivity.isArchived ? (
           <ArrowBackButton
             onClick={() =>
               handleResetPageAndShowArrow(navigate('/getinspired'))
             }
           >
-            <img src={goBackIcon} alt="go back" />
+            <img width="50" height="40" src={goBackIcon} alt="go back" />
           </ArrowBackButton>
         ) : (
           <ArrowBackButton
@@ -85,9 +84,10 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
               )
             }
           >
-            <img src={goBackIcon} alt="go back" />
+            <img width="50" height="40" src={goBackIcon} alt="go back" />
           </ArrowBackButton>
         )}
+        {selectedActivity.activity}
       </Header>
       <Main>
         <MainGrid>
@@ -98,7 +98,13 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
           <StyledImage
             width="80"
             height="80"
-            alt="upload"
+            alt={`
+              ${
+                selectedActivity.photo
+                  ? 'uploaded picture'
+                  : 'placeholder picture per category'
+              }
+              `}
             src={
               selectedActivity.photo ||
               MappedPlaceholderPictures[selectedActivity.category]
@@ -106,6 +112,8 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
           />
 
           <StyledCategoryIcon
+            width="25"
+            height="25"
             src={mappedCategories[selectedActivity.category]}
             alt={mappedCategories[selectedActivity.category]}
           />
@@ -116,7 +124,7 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
               width={selectedActivity.group ? '55' : '35'}
               height={selectedActivity.group ? '55' : '35'}
               src={selectedActivity.group ? groupIcon : friendIcon}
-              alt="friend"
+              alt={selectedActivity.group ? 'group name' : 'friend name'}
             />
 
             {selectedActivity.group === '' &&
@@ -134,7 +142,12 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
 
             {selectedActivity.notes ? (
               <>
-                <StyledIcon src={notesIcon} alt="notes" />
+                <StyledIcon
+                  width="35"
+                  height="35"
+                  src={notesIcon}
+                  alt="notes"
+                />
                 <StyledText>{selectedActivity.notes}</StyledText>
               </>
             ) : (
@@ -143,14 +156,19 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
               </>
             )}
 
-            <StyledIcon src={dateIcon} alt="date" />
+            <StyledIcon width="35" height="35" src={dateIcon} alt="date" />
             {selectedActivity.date ? (
               <StyledText>{selectedActivity.date}</StyledText>
             ) : (
               <StyledText>plan your activity soon!</StyledText>
             )}
 
-            <StyledIcon src={locationIcon} alt="location" />
+            <StyledIcon
+              width="38"
+              height="38"
+              src={locationIcon}
+              alt="location"
+            />
             {selectedActivity.location ? (
               <StyledText>{selectedActivity.location}</StyledText>
             ) : (
@@ -187,7 +205,7 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
                   )
                 }
               >
-                <img src={editIcon} alt="edit" />
+                <img width="55" height="55" src={editIcon} alt="edit" />
               </EditButton>
               <StyledCheckbox>
                 <p>Did you do this activity already?</p>

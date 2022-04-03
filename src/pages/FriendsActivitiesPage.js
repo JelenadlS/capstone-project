@@ -35,7 +35,7 @@ export default function FriendsActivitiesPage({
           ? selectedFriendsActivities[0]?.group
           : selectedFriendsActivities[0]?.friend}
         <ArrowBackButton onClick={event => resetPage(event, navigate('/'))}>
-          <img src={goBackIcon} alt="go back" />
+          <img width="50" height="40" src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
       <Main>

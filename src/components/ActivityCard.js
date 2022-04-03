@@ -59,7 +59,7 @@ export default function ActivityCard({ onDeleteActivity, activityDetails }) {
           </>
         ) : (
           <StyledArrow>
-            <img src={nextIcon} alt="next page" />
+            <img width="8" height="15" src={nextIcon} alt="next page" />
           </StyledArrow>
         )}
       </CardSubGrid>

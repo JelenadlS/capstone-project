@@ -20,7 +20,7 @@ export default function NewActivityPage({ onAddActivity, uploadImage }) {
       <Header hiddenGroup="hidden">
         new activity
         <ArrowBackButton type="button" aria-label="go back" onClick={resetForm}>
-          <img src={goBackIcon} alt="go back" />
+          <img width="50" height="40" src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
       <Main>

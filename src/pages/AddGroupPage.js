@@ -31,7 +31,7 @@ export default function AddGroupPage() {
       <Header hiddenGroup="hidden">
         Add a group
         <ArrowBackButton onClick={() => navigate(-1)}>
-          <img src={goBackIcon} alt="go back" />
+          <img width="50" height="40" src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
       <Main>
