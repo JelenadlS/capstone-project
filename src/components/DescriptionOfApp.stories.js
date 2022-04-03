@@ -1,29 +1,13 @@
+import DescriptionOfApp from './DescriptionOfApp.js';
 
-    import DescriptionOfApp from './DescriptionOfApp.js';
-    import GlobalStyles from '../GlobalStyles.js';
-    
-    export default {
-      title: 'Component/DescriptionOfApp',
-      component: DescriptionOfApp,
-      decorators: [
-        Story => (
-          <>
-            <GlobalStyles />
-            <Story />
-          </>
-        ),
-      ],
-    };
+export default {
+  title: 'Component/DescriptionOfApp',
+  component: DescriptionOfApp,
+};
 
-    const Template = args => <DescriptionOfApp {...args} />;
-    
-    export const DescriptionOfAppAB = Template.bind({});
-    DescriptionOfAppAB.args = {
-      
-    };
+const Template = args => <DescriptionOfApp {...args} />;
 
-    export const DescriptionOfAppXY = Template.bind({});
-    DescriptionOfAppXY.args = {
-      
-    };
-  
+export const Default = Template.bind({});
+Default.args = {
+  group: true,
+};

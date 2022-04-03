@@ -7,5 +7,5 @@ export default {
 
 const Template = args => <PictureUpload {...args} />;
 
-export const PictureUploadAB = Template.bind({});
-PictureUploadAB.args = {};
+export const Default = Template.bind({});
+Default.args = {};

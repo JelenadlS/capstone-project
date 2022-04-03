@@ -43,7 +43,7 @@ export default function Navigation({ hidden }) {
           <StyledIcon
             width="40"
             height="20"
-            alt="overview of friends"
+            alt="overview of groups"
             src={groupIcon}
           />
           <figcaption>groups</figcaption>

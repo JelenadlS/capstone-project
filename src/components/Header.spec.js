@@ -12,7 +12,9 @@ describe('Header', () => {
     );
 
     const heading = screen.getByRole('heading');
+    const add = screen.getByRole('link', { name: 'add a friend' });
 
     expect(heading).toBeInTheDocument();
+    expect(add).toBeInTheDocument();
   });
 });

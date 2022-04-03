@@ -29,12 +29,7 @@ import addAGroupIcon from '../images/addAGroupIcon.svg';
 import addPictureIcon from '../images/addPictureIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
-export default function Form({
-  handleActivity,
-  preloadedValues,
-  title,
-  uploadImage,
-}) {
+export default function Form({ handleActivity, preloadedValues, uploadImage }) {
   const navigate = useNavigate();
 
   const [friendSelection, setFriendSelection] = useState(false);
@@ -188,7 +183,7 @@ export default function Form({
           </StyledButtonChoice>
         </StyledButtonArea>
         <StyledFriendSelection hidden={friendSelection === false}>
-          <label htmlFor="friend" />
+          <label htmlFor="friend" data-testid="friend" />
           <StyledSelectionBox id="friend" name="friend" {...register('friend')}>
             <option value="">friend</option>
             {addedFriend.map(friend => {
@@ -209,7 +204,7 @@ export default function Form({
           </StyledFriendLink>
         </StyledFriendSelection>
         <StyledGroupSelection hidden={groupSelection === false}>
-          <label htmlFor="group" />
+          <label htmlFor="group" data-testid="group" />
           <StyledSelectionBox id="group" name="group" {...register('group')}>
             <option value="">group</option>
             {addedGroup.map(group => {

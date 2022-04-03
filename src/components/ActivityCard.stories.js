@@ -9,10 +9,18 @@ const Template = args => <ActivityCard {...args} />;
 
 export const FullCard = Template.bind({});
 FullCard.args = {
-  activity: 'Frau Möller',
+  activityDetails: [
+    {
+      activity: 'Frau Möller',
+    },
+  ],
 };
 
 export const VeryLongText = Template.bind({});
 VeryLongText.args = {
-  activity: 'Heute gehen wir zusammen in den Park und pflücken Blumen',
+  activityDetails: [
+    {
+      activity: 'Heute gehen wir zusammen in den Park und pflücken Blumen',
+    },
+  ],
 };
