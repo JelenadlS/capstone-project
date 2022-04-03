@@ -80,7 +80,7 @@ export default function AddGroupPage() {
                 {addedGroup?.map(group => {
                   return (
                     <StyledList key={group.id}>
-                      <div>
+                      <>
                         {group.enteredGroup}
                         <DeleteButton onClick={() => onDeleteGroup(group.id)}>
                           <StyledImage
@@ -90,7 +90,7 @@ export default function AddGroupPage() {
                             alt="delete"
                           />
                         </DeleteButton>
-                      </div>
+                      </>
                     </StyledList>
                   );
                 })}

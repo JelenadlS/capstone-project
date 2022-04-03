@@ -49,7 +49,7 @@ export default function DescriptionOfApp({ group }) {
         need to add them.
       </p>
 
-      <MainNavButtonSmall aria-hidden="true">
+      <MainNavButtonSmall role="img">
         <img width="40" height="27" src={newIcon} alt="add an activity" />
       </MainNavButtonSmall>
       <p>

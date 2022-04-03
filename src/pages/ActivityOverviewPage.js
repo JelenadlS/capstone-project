@@ -255,10 +255,11 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
 const MainGrid = styled.div`
   display: grid;
   grid-template-columns: 90px 30px 20px 30px auto;
-  grid-template-rows: repeat(5, auto) 40px;
+  grid-template-rows: repeat(5, auto) 60px;
   margin: 30px;
   align-items: center;
   position: relative;
+  word-break: break-word;
 `;
 
 const StyledTitle = styled.h2`
@@ -298,10 +299,9 @@ const StyledIcon = styled.img`
   padding: 5px;
 `;
 
-const StyledText = styled.span`
+const StyledText = styled.article`
   grid-column-start: 2;
   grid-column-end: 6;
-  word-break: break-word;
   align-self: center;
 `;
 const StyledNoNotes = styled.span`

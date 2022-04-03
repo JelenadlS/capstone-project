@@ -8,7 +8,7 @@ export default function DeleteModal({ show, onClose, onDelete }) {
   }
 
   return (
-    <WrapperModal>
+    <WrapperModal role="alertdialog">
       <p>Are you sure you want to delete?</p>
       <span>
         <ModalButton type="submit" onClick={onClose}>

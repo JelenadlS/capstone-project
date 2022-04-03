@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const WrapperForm = styled.form`
   display: grid;
-  grid-template-rows: repeat(7, auto);
+  grid-template-rows: repeat(7, auto) 80px;
   margin-top: 20px;
 
   textarea {

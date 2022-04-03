@@ -15,7 +15,7 @@ export default function PastActivityModal({
   }
 
   return (
-    <WrapperModal>
+    <WrapperModal role="dialog">
       <p>Tell us, how was it?</p>
       <i>
         Please note, the activity will be deleted from your activity list and

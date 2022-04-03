@@ -164,6 +164,7 @@ export default function Form({
         <StyledButtonArea>
           <StyledButtonChoice
             type="button"
+            role="button"
             onClick={handleOnClickLater}
             active={groupSelection === false && friendSelection === false}
           >
@@ -171,6 +172,7 @@ export default function Form({
           </StyledButtonChoice>
           <StyledButtonChoice
             type="button"
+            role="button"
             onClick={handleOnClickFriend}
             active={friendSelection === true}
           >
@@ -178,6 +180,7 @@ export default function Form({
           </StyledButtonChoice>
           <StyledButtonChoice
             type="button"
+            role="button"
             onClick={handleOnClickGroup}
             active={groupSelection === true}
           >

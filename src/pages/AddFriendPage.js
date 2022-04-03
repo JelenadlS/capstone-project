@@ -79,7 +79,7 @@ export default function AddFriendPage() {
                 {addedFriend?.map(friend => {
                   return (
                     <StyledList key={friend.id}>
-                      <div>
+                      <>
                         {friend.newFriend}
                         <DeleteButton onClick={() => onDeleteFriend(friend.id)}>
                           <StyledImage
@@ -89,7 +89,7 @@ export default function AddFriendPage() {
                             alt="delete"
                           />
                         </DeleteButton>
-                      </div>
+                      </>
                     </StyledList>
                   );
                 })}

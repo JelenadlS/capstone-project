@@ -43,9 +43,6 @@ const StyledLink = styled(LinkStyling)`
   padding: 8px 8px 0;
   display: grid;
   grid-template-columns: auto auto;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
 const NumStyling = styled.span`

@@ -11,7 +11,7 @@ export default function List({
 }) {
   const searchInput = useStore(state => state.searchInput);
   const currentFilter = useStore(state => state.currentFilter);
-  console.log(filteredSearchActivities);
+
   return (
     <>
       {filteredSearchActivities?.length > 0 ? (
