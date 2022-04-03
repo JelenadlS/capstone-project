@@ -18,11 +18,11 @@ export default function ActivityCard({ onDeleteActivity, activityDetails }) {
   const handleResetPage = useStore(state => state.handleResetPage);
 
   return (
-    <WrapperCard>
+    <WrapperCard aria-label={activityDetails.activity}>
       <StyledImage
         width="30"
         height="30"
-        alt={`placeholder picture ${
+        alt={`picture ${
           !activityDetails.photo
             ? activityDetails.category
             : activityDetails.photo
@@ -36,6 +36,7 @@ export default function ActivityCard({ onDeleteActivity, activityDetails }) {
 
       <CardSubGrid>
         <StyledLink
+          aria-label={`to ${activityDetails.activity} full details`}
           to={`/${
             activityDetails?.group
               ? activityDetails.group
@@ -43,7 +44,7 @@ export default function ActivityCard({ onDeleteActivity, activityDetails }) {
           }/${activityDetails.activity}`}
           onClick={handleResetPage}
         >
-          <strong>{activityDetails.activity}</strong>
+          <strong aria-hidden="true">{activityDetails.activity}</strong>
         </StyledLink>
 
         {showBin ? (

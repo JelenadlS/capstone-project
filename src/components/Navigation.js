@@ -49,17 +49,20 @@ export default function Navigation({ hidden }) {
           <figcaption>groups</figcaption>
         </figure>
       </StyledNavLink>
-      <MainNavButton
-        type="button"
-        aria-label="create a new activity"
-        hidden={hidden}
-        onClick={handleResetPage}
-      >
-        <NavLink to="/newactivity">
+
+      <NavLink to="/newactivity">
+        <MainNavButton
+          type="button"
+          role="button"
+          aria-label="create a new activity"
+          hidden={hidden}
+          onClick={handleResetPage}
+        >
           <img width="45" height="45" src={newIcon} alt="add an activity" />
-        </NavLink>
-      </MainNavButton>
-      {hidden && <div />}
+        </MainNavButton>
+        {hidden && <div />}
+      </NavLink>
+
       <StyledNavLink
         aria-label="all activities"
         to="/allactivities"

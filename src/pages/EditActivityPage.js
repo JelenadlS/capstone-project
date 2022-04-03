@@ -28,7 +28,7 @@ export default function EditActivityPage({ activities, uploadImage }) {
           <img width="50" height="40" src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
-      <Main>
+      <Main aria-label={`edit ${activityToEdit.activity} page`}>
         <Form
           preloadedValues={activityToEdit}
           handleActivity={onEditActivity}

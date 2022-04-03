@@ -23,7 +23,7 @@ export default function NewActivityPage({ onAddActivity, uploadImage }) {
           <img width="50" height="40" src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
-      <Main>
+      <Main aria-label="add a new activity page">
         <Form handleActivity={onAddActivity} uploadImage={uploadImage} />
       </Main>
     </>

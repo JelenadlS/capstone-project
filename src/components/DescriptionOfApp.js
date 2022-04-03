@@ -12,7 +12,10 @@ import newIcon from '../images/newIcon.svg';
 
 export default function DescriptionOfApp({ group }) {
   return (
-    <StyledEmptyMessageFGPage data-testid="description of app">
+    <StyledEmptyMessageFGPage
+      data-testid="description of app"
+      aria-label="description of how the app works"
+    >
       <StyledIntro>
         Hi there! 👋 <br />
         There are no {group ? 'group' : ''} activities entered yet.
@@ -46,8 +49,8 @@ export default function DescriptionOfApp({ group }) {
         need to add them.
       </p>
 
-      <MainNavButtonSmall>
-        <img width="40" height="27" src={newIcon} alt="new" />
+      <MainNavButtonSmall aria-hidden="true">
+        <img width="40" height="27" src={newIcon} alt="add an activity" />
       </MainNavButtonSmall>
       <p>
         <strong>Add an activity!</strong> <br />
@@ -65,7 +68,7 @@ export default function DescriptionOfApp({ group }) {
         Here you can search and filter all activities indpendent of friends or
         groups.
       </p>
-      <img width="40" height="30" alt="friendsHomeIcon" src={inspireIcon} />
+      <img width="40" height="30" alt="all past activities" src={inspireIcon} />
       <p>
         <strong>Get inspired!</strong>
         <br />

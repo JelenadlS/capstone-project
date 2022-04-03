@@ -34,10 +34,10 @@ export default function AddGroupPage() {
           <img width="50" height="40" src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
-      <Main>
+      <Main aria-label="add a group page">
         <Grid>
           <WrapperForm
-            title="addAGroup"
+            title="add a group"
             autoComplete="off"
             onSubmit={onAddGroup}
           >

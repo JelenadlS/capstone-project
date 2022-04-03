@@ -30,7 +30,7 @@ export default function MyFriendsPage({ activities }) {
   return (
     <>
       <Header hiddenGroup="hidden">my friends</Header>
-      <Main>
+      <Main aria-label="my friends page content">
         {activitiesWithoutFriend.length > 0 ||
         friendsOnlyOnceWithoutDetails.length > 0 ? (
           <>

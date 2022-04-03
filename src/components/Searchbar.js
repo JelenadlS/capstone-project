@@ -7,17 +7,19 @@ export default function Searchbar() {
   const setCurrentFilter = useStore(state => state.setCurrentFilter);
   const setSearchInput = useStore(state => state.setSearchInput);
   return (
-    <StyledSearchbar>
-      <StyledInput
-        id="seachbar"
-        name="searchbar"
-        aria-label="searchbar"
-        type="text"
-        placeholder="Search..."
-        value={searchInput}
-        onChange={searchInputHandler}
-        onClick={handleOnClickSearch}
-      ></StyledInput>
+    <StyledSearchbar aria-label="searchbar">
+      <label htmlFor="seachbar">
+        <StyledInput
+          id="seachbar"
+          name="searchbar"
+          aria-label="searchbar"
+          type="text"
+          placeholder="Search..."
+          value={searchInput}
+          onChange={searchInputHandler}
+          onClick={handleOnClickSearch}
+        />
+      </label>
     </StyledSearchbar>
   );
 

@@ -11,7 +11,7 @@ export default function AllActivitiesPage({
   return (
     <>
       <Header hiddenGroup="hidden">all activities</Header>
-      <Main>
+      <Main aria-label="all activities page">
         <Searchbar />
         <FilterTags activities={activitiesNotArchived} />
         <List

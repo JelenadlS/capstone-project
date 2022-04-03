@@ -39,8 +39,8 @@ export default function GetInspiredPage({
   return (
     <>
       <Header hiddenGroup="hidden">Get Inspired</Header>
-      <Main>
-        <StyledCategoryButton>
+      <Main aria-label="past activities page - get inspired">
+        <StyledCategoryButton aria-label="choose to see liked or not liked activities">
           <CategoryButton
             onClick={event => resetPage(event, setCurrentLikeFilter(true))}
             active={true === currentLikeFilter}

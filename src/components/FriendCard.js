@@ -6,17 +6,25 @@ import nextIcon from '../images/nextIcon.svg';
 
 export default function FriendCard({ name, sumOfActivitiesEach }) {
   return (
-    <WrapperCard>
-      <StyledLink to={`/${name}`}>
-        <NameStyling aria-label={`${name}`}>
-          <strong>
-            {name === 'I still need to plan...'
-              ? 'Activities I still need to plan with someone:'
-              : name}
-          </strong>
-        </NameStyling>
+    <WrapperCard
+      aria-label={`details of ${
+        name === 'I still need to plan...' ? 'to plan activities' : name
+      } and the amount of activities`}
+    >
+      <StyledLink
+        to={`/${name}`}
+        aria-label={`to ${
+          name === 'I still need to plan...' ? 'to plan activities' : name
+        }`}
+      >
+        <strong>
+          {name === 'I still need to plan...'
+            ? 'Activities I still need to plan with someone:'
+            : name}
+        </strong>
+
         <NumStyling aria-label={`number of activities: ${sumOfActivitiesEach}`}>
-          #{sumOfActivitiesEach}
+          <span aria-hidden="true">#{sumOfActivitiesEach}</span>
           <StyledArrow>
             <img width="8" height="15" src={nextIcon} alt="next page" />
           </StyledArrow>
@@ -35,13 +43,11 @@ const StyledLink = styled(LinkStyling)`
   padding: 8px 8px 0;
   display: grid;
   grid-template-columns: auto auto;
-`;
-
-const NameStyling = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
-const NumStyling = styled.p`
+
+const NumStyling = styled.span`
   justify-self: end;
 `;

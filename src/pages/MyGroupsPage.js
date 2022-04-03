@@ -25,7 +25,7 @@ export default function MyGroupsPage({ activities }) {
   return (
     <>
       <Header hiddenFriend="hidden">my groups</Header>
-      <Main>
+      <Main aria-label="my groups page content">
         {activitiesWithGroup.length > 0 ? (
           <StyledList role="list" title="list of groups">
             {sortedGroupList.map((group, index) => {

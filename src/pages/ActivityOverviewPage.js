@@ -89,7 +89,9 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
         )}
         {selectedActivity.activity}
       </Header>
-      <Main>
+      <Main
+        aria-label={`activity overview of ${selectedActivity.activity} page`}
+      >
         <MainGrid>
           <StyledTitle>Activity</StyledTitle>
 
@@ -115,7 +117,7 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
             width="25"
             height="25"
             src={mappedCategories[selectedActivity.category]}
-            alt={mappedCategories[selectedActivity.category]}
+            alt={`${selectedActivity.category} icon`}
           />
           <p>{selectedActivity.category}</p>
 
@@ -124,7 +126,7 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
               width={selectedActivity.group ? '55' : '35'}
               height={selectedActivity.group ? '55' : '35'}
               src={selectedActivity.group ? groupIcon : friendIcon}
-              alt={selectedActivity.group ? 'group name' : 'friend name'}
+              alt={selectedActivity.group ? 'group icon' : 'friend icon'}
             />
 
             {selectedActivity.group === '' &&
@@ -146,17 +148,17 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
                   width="35"
                   height="35"
                   src={notesIcon}
-                  alt="notes"
+                  alt="notes icon"
                 />
                 <StyledText>{selectedActivity.notes}</StyledText>
               </>
             ) : (
               <>
-                <StyledNoNotes data-testid="noNotes" />
+                <StyledNoNotes data-testid="noNotes" aria-hidden="true" />
               </>
             )}
 
-            <StyledIcon width="35" height="35" src={dateIcon} alt="date" />
+            <StyledIcon width="35" height="35" src={dateIcon} alt="date icon" />
             {selectedActivity.date ? (
               <StyledText>{selectedActivity.date}</StyledText>
             ) : (
@@ -167,7 +169,7 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
               width="38"
               height="38"
               src={locationIcon}
-              alt="location"
+              alt="location icon"
             />
             {selectedActivity.location ? (
               <StyledText>{selectedActivity.location}</StyledText>
@@ -215,6 +217,7 @@ export default function ActivityOverviewPage({ onSetPastActivity }) {
                     id="checkIfActivityIsDone"
                     type="checkbox"
                     name="checkIfActivityIsDone"
+                    aria-label=" checkbox if activity is already done"
                     width="40px"
                     onClick={() => setShowPastModal(true)}
                     onChange={() => setCheck(true)}

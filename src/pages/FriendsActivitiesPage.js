@@ -38,7 +38,13 @@ export default function FriendsActivitiesPage({
           <img width="50" height="40" src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
-      <Main>
+      <Main
+        aria-label={`all activities from ${
+          selectedFriendsActivities[0]?.group
+            ? selectedFriendsActivities[0]?.group
+            : selectedFriendsActivities[0]?.friend
+        } page`}
+      >
         <FilterTags activities={selectedFriendsActivities} />
         <List
           onDeleteActivity={onDeleteActivity}

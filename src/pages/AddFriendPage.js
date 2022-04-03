@@ -34,10 +34,10 @@ export default function AddFriendPage() {
           <img width="50" height="40" src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
-      <Main>
+      <Main aria-label="add a friend page">
         <Grid>
           <WrapperForm
-            title="addAFriend"
+            title="add a friend"
             autoComplete="off"
             onSubmit={onAddFriend}
           >

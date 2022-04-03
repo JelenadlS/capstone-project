@@ -109,7 +109,7 @@ export default function Form({
 
   return (
     <WrapperForm
-      title={title}
+      title={preloadedValues ? 'edit form' : 'add form'}
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -143,7 +143,7 @@ export default function Form({
         )}
       </StyledLabels>
 
-      <StyledSelection>
+      <StyledSelection aria-label="choose a category">
         <label htmlFor="category">Category:</label>
 
         <StyledSelectionBox
@@ -159,7 +159,7 @@ export default function Form({
         </StyledSelectionBox>
       </StyledSelection>
 
-      <StyledSelectionFriend>
+      <StyledSelectionFriend aria-label="choose a friend or group">
         Who will join you?
         <StyledButtonArea>
           <StyledButtonChoice
@@ -246,7 +246,7 @@ export default function Form({
         )}
       </StyledLabels>
 
-      <StyledPictureUpload>
+      <StyledPictureUpload aria-label="picture upload">
         <label htmlFor="uploadPicture">
           <img width="50" height="50" alt="upload " src={addPictureIcon} />
           <input
