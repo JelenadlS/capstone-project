@@ -1,46 +1,35 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { StyledArrow, LinkStyling } from '../components/GeneralStyling';
 
 import nextIcon from '../images/nextIcon.svg';
 
-export default function FriendCard({
-  friend,
-  sumOfActivitiesEachFriend,
-  group,
-  sumOfActivitiesEachGroup,
-}) {
+export default function FriendCard({ name, sumOfActivitiesEach }) {
   return (
-    <WrapperCard>
-      {friend !== undefined && (
-        <LinkStyling to={`/${friend}`}>
-          <NameStyling aria-label={`${friend}`}>
-            <strong>{friend}</strong>
-          </NameStyling>
-          <NumStyling
-            aria-label={`number of activities: ${sumOfActivitiesEachFriend}`}
-          >
-            #{sumOfActivitiesEachFriend}
-            <StyledArrow>
-              <img src={nextIcon} alt="next page" />
-            </StyledArrow>
-          </NumStyling>
-        </LinkStyling>
-      )}
-      {group !== undefined && (
-        <LinkStyling to={`/${group}`}>
-          <NameStyling aria-label={`${group}`}>
-            <strong>{group}</strong>
-          </NameStyling>
-          <NumStyling
-            aria-label={`number of activities: ${sumOfActivitiesEachGroup}`}
-          >
-            #{sumOfActivitiesEachGroup}
-            <StyledArrow>
-              <img src={nextIcon} alt="next page" />
-            </StyledArrow>
-          </NumStyling>
-        </LinkStyling>
-      )}
+    <WrapperCard
+      aria-label={`details of ${
+        name === 'I still need to plan...' ? 'to plan activities' : name
+      } and the amount of activities`}
+    >
+      <StyledLink
+        to={`/${name}`}
+        aria-label={`to ${
+          name === 'I still need to plan...' ? 'to plan activities' : name
+        }`}
+      >
+        <strong>
+          {name === 'I still need to plan...'
+            ? 'Activities I still need to plan with someone:'
+            : name}
+        </strong>
+
+        <NumStyling aria-label={`number of activities: ${sumOfActivitiesEach}`}>
+          <span aria-hidden="true">#{sumOfActivitiesEach}</span>
+          <StyledArrow>
+            <img width="8" height="15" src={nextIcon} alt="next page" />
+          </StyledArrow>
+        </NumStyling>
+      </StyledLink>
     </WrapperCard>
   );
 }
@@ -50,24 +39,12 @@ const WrapperCard = styled.section`
   padding: 5px;
 `;
 
-const LinkStyling = styled(Link)`
+const StyledLink = styled(LinkStyling)`
   padding: 8px 8px 0;
-  color: rgba(71, 39, 35, 0.72);
-  text-decoration: none;
-  overflow: hidden;
   display: grid;
   grid-template-columns: auto auto;
 `;
 
-const NameStyling = styled.p`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-const NumStyling = styled.p`
+const NumStyling = styled.span`
   justify-self: end;
-`;
-
-const StyledArrow = styled.span`
-  margin-left: 5px;
 `;

@@ -1,10 +1,10 @@
-import styled from 'styled-components';
-
 import ActivityCard from './ActivityCard';
+
+import { StyledList, StyledEmptyMessage } from '../components/GeneralStyling';
+
 import useStore from '../hooks/useStore.js';
 
 export default function List({
-  selectedFriendsActivity,
   onDeleteActivity,
   activities,
   filteredSearchActivities,
@@ -13,42 +13,34 @@ export default function List({
   const currentFilter = useStore(state => state.currentFilter);
 
   return (
-    <StyledList
-      role="list"
-      title="list of activities"
-      searchInput={searchInput}
-    >
-      {(searchInput?.length > 0
-        ? filteredSearchActivities
-        : (selectedFriendsActivity?.length > 0
-            ? selectedFriendsActivity
-            : activities
-          )?.filter(
-            activity =>
-              activity.category.includes(currentFilter) ||
-              currentFilter === 'all'
-          )
-      )?.map(activity => (
-        <li key={activity.id}>
-          <ActivityCard
-            onDeleteActivity={() => onDeleteActivity(activity.id)}
-            nameOfSelectedFriend={
-              activity?.group ? activity.group : activity.friend
-            }
-            nameOfSelectedActivity={activity.activity}
-            nameOfSelectedCategory={activity.category}
-            photo={activity.photo}
-          />
-        </li>
-      ))}
-    </StyledList>
+    <>
+      {filteredSearchActivities?.length > 0 ? (
+        <StyledList
+          role="list"
+          title="list of activities"
+          searchInput={searchInput}
+        >
+          {(searchInput?.length > 0
+            ? filteredSearchActivities
+            : activities?.filter(
+                activity =>
+                  activity.category.includes(currentFilter) ||
+                  currentFilter === 'all'
+              )
+          )?.map(activity => (
+            <li key={activity.id}>
+              <ActivityCard
+                onDeleteActivity={() => onDeleteActivity(activity.id)}
+                activityDetails={activity}
+              />
+            </li>
+          ))}
+        </StyledList>
+      ) : (
+        <StyledEmptyMessage data-testid="StyledEmptyMessage">
+          There is no activity with this name.
+        </StyledEmptyMessage>
+      )}
+    </>
   );
 }
-
-const StyledList = styled.ul`
-  list-style-type: none;
-
-  li {
-    padding: 5px;
-  }
-`;

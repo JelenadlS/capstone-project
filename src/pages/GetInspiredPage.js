@@ -1,17 +1,14 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import ActivityCard from '../components/ActivityCard';
 import FilterTags from '../components/FilterTags';
+import { StyledEmptyMessage } from '../components/GeneralStyling';
 import Header from '../components/Header';
+import List from '../components/List';
 import Main from '../components/Main';
-import Navigation from '../components/Navigation';
 import Searchbar from '../components/Searchbar';
 
 import useStore from '../hooks/useStore.js';
-
-import newIcon from '../images/newIcon.svg';
 
 export default function GetInspiredPage({
   activitiesArchived,
@@ -20,7 +17,6 @@ export default function GetInspiredPage({
   const [currentLikeFilter, setCurrentLikeFilter] = useState(true);
 
   const searchInput = useStore(state => state.searchInput);
-  const currentFilter = useStore(state => state.currentFilter);
   const resetPage = useStore(state => state.resetPage);
 
   const likedActivities = activitiesArchived.filter(
@@ -43,8 +39,8 @@ export default function GetInspiredPage({
   return (
     <>
       <Header hiddenGroup="hidden">Get Inspired</Header>
-      <Main>
-        <StyledCategoryButton>
+      <Main aria-label="past activities page - get inspired">
+        <StyledCategoryButton aria-label="choose to see liked or not liked activities">
           <CategoryButton
             onClick={event => resetPage(event, setCurrentLikeFilter(true))}
             active={true === currentLikeFilter}
@@ -59,93 +55,35 @@ export default function GetInspiredPage({
           </CategoryButton>
         </StyledCategoryButton>
 
-        {currentLikeFilter === true &&
-          (likedActivities.length > 0 ? (
-            <>
-              <Searchbar />
-              <FilterTags activities={likedActivities} />
-              {filteredLikedSearchActivitiesArchived.length > 0 ? (
-                <StyledList
-                  role="list"
-                  title="list of past activities"
-                  searchInput={searchInput}
-                >
-                  {(searchInput?.length > 0
-                    ? filteredLikedSearchActivitiesArchived
-                    : likedActivities.filter(
-                        activity =>
-                          activity.category.includes(currentFilter) ||
-                          currentFilter === 'all'
-                      )
-                  ).map(activity => (
-                    <li key={activity.id}>
-                      <ActivityCard
-                        nameOfSelectedCategory={activity.category}
-                        nameOfSelectedFriend={activity.friend}
-                        nameOfSelectedActivity={activity.activity}
-                        photo={activity.photo}
-                      />
-                    </li>
-                  ))}
-                </StyledList>
-              ) : (
-                <StyledEmptyMessage>
-                  There is no activity with this name.
-                </StyledEmptyMessage>
-              )}
-            </>
-          ) : (
-            <StyledEmptyMessage data-testid="emptylist">
-              You did not enter any activity yet which you liked.
-            </StyledEmptyMessage>
-          ))}
-
-        {currentLikeFilter === false &&
-          (notLikedActivities.length > 0 ? (
-            <>
-              <Searchbar searchInput={searchInput} />
-              <FilterTags activities={notLikedActivities} />
-              {filteredNotLikedSearchActivitiesArchived.length > 0 ? (
-                <StyledList
-                  role="list"
-                  title="list of past activities"
-                  searchInput={searchInput}
-                >
-                  {(searchInput?.length > 0
-                    ? filteredNotLikedSearchActivitiesArchived
-                    : notLikedActivities.filter(
-                        activity =>
-                          activity.category.includes(currentFilter) ||
-                          currentFilter === 'all'
-                      )
-                  ).map(activity => (
-                    <li key={activity.id}>
-                      <ActivityCard
-                        nameOfSelectedCategory={activity.category}
-                        nameOfSelectedFriend={activity.friend}
-                        nameOfSelectedActivity={activity.activity}
-                        photo={activity.photo}
-                      />
-                    </li>
-                  ))}
-                </StyledList>
-              ) : (
-                <StyledEmptyMessage>
-                  There is no activity with this name.
-                </StyledEmptyMessage>
-              )}
-            </>
-          ) : (
-            <StyledEmptyMessage data-testid="emptylist">
-              You did not enter any activity yet which you did not like.
-            </StyledEmptyMessage>
-          ))}
+        {((currentLikeFilter && likedActivities?.length) ||
+          (!currentLikeFilter && notLikedActivities?.length)) > 0 ? (
+          <>
+            <Searchbar searchInput={searchInput} />
+            <FilterTags
+              activities={
+                currentLikeFilter ? likedActivities : notLikedActivities
+              }
+            />
+            <List
+              activities={
+                currentLikeFilter ? likedActivities : notLikedActivities
+              }
+              filteredSearchActivities={
+                currentLikeFilter
+                  ? filteredLikedSearchActivitiesArchived
+                  : filteredNotLikedSearchActivitiesArchived
+              }
+            />
+          </>
+        ) : (
+          <StyledEmptyMessage data-testid="emptylist">
+            {(currentLikeFilter && likedActivities?.length) === 0 &&
+              'You did not enter any activity yet which you liked.'}
+            {(!currentLikeFilter && notLikedActivities?.length) === 0 &&
+              'You did not enter any activity yet which you did not like.'}
+          </StyledEmptyMessage>
+        )}
       </Main>
-      <Navigation>
-        <Link to="/newactivity">
-          <img src={newIcon} alt="new" />
-        </Link>
-      </Navigation>
     </>
   );
 }
@@ -164,17 +102,4 @@ const CategoryButton = styled.button`
   padding: 3px 10px;
   font-size: 16px;
   white-space: nowrap;
-`;
-
-const StyledList = styled.ul`
-  list-style-type: none;
-
-  li {
-    padding: 5px;
-  }
-`;
-
-const StyledEmptyMessage = styled.p`
-  padding: 10px;
-  text-align: center;
 `;

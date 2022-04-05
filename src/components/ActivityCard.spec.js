@@ -5,26 +5,21 @@ import userEvent from '@testing-library/user-event';
 import ActivityCard from './ActivityCard.js';
 
 describe('ActivityCard', () => {
-  const photo = 'sport';
-  const nameOfSelectedFriend = 'Clara';
-  const nameOfSelectedActivity = 'Tanzen';
-  const nameOfSelectedCategory = 'sport';
-
-  it('renders card with activity including picture, link and delete button', () => {
+  const activityDetails = {
+    photo: 'abc.png',
+    friend: 'Clara',
+    activity: 'Tanzen',
+    category: 'sport',
+  };
+  it('renders card with activity including picture, link to the activity and delete button', () => {
     render(
       <MemoryRouter>
-        <ActivityCard
-          showBin={true}
-          photo={photo}
-          nameOfSelectedActivity={nameOfSelectedActivity}
-          nameOfSelectedCategory={nameOfSelectedCategory}
-          nameOfSelectedFriend={nameOfSelectedFriend}
-        />
+        <ActivityCard showBin={true} activityDetails={activityDetails} />
       </MemoryRouter>
     );
 
-    const picture = screen.getByRole('img', { name: 'uploaded picture sport' });
-    const link = screen.getByRole('link', { name: 'Tanzen' });
+    const picture = screen.getByRole('img', { name: 'picture abc.png' });
+    const link = screen.getByRole('link', { name: 'to Tanzen full details' });
     const button = screen.getByRole('button', { name: 'delete' });
 
     expect(picture).toBeInTheDocument();
@@ -33,20 +28,20 @@ describe('ActivityCard', () => {
   });
 
   it('renders placeholder picture when no picture was uploaded', () => {
+    const activityDetailsNoPic = {
+      photo: '',
+      friend: 'Clara',
+      activity: 'Tanzen',
+      category: 'sport',
+    };
     render(
       <MemoryRouter>
-        <ActivityCard
-          showBin={false}
-          photo=""
-          nameOfSelectedActivity={nameOfSelectedActivity}
-          nameOfSelectedCategory={nameOfSelectedCategory}
-          nameOfSelectedFriend={nameOfSelectedFriend}
-        />
+        <ActivityCard showBin={true} activityDetails={activityDetailsNoPic} />
       </MemoryRouter>
     );
 
     const placeholderImage = screen.getByRole('img', {
-      name: /placeholder picture sport/i,
+      name: /picture sport/i,
     });
 
     expect(placeholderImage).toBeInTheDocument();
@@ -59,10 +54,7 @@ describe('ActivityCard', () => {
         <ActivityCard
           onClick={showCallback}
           showBin={true}
-          photo={photo}
-          nameOfSelectedActivity={nameOfSelectedActivity}
-          nameOfSelectedCategory={nameOfSelectedCategory}
-          nameOfSelectedFriend={nameOfSelectedFriend}
+          activityDetails={activityDetails}
         />
       </MemoryRouter>
     );
@@ -80,10 +72,7 @@ describe('ActivityCard', () => {
         <ActivityCard
           onDeleteActivity={deleteCallback}
           showBin={true}
-          photo={photo}
-          nameOfSelectedActivity={nameOfSelectedActivity}
-          nameOfSelectedCategory={nameOfSelectedCategory}
-          nameOfSelectedFriend={nameOfSelectedFriend}
+          activityDetails={activityDetails}
         />
       </MemoryRouter>
     );
@@ -102,13 +91,7 @@ describe('ActivityCard', () => {
   it('when clicking the keep activity button, the delete button cannot be found as DeleteModal is closing', () => {
     render(
       <MemoryRouter>
-        <ActivityCard
-          showBin={true}
-          photo={photo}
-          nameOfSelectedActivity={nameOfSelectedActivity}
-          nameOfSelectedCategory={nameOfSelectedCategory}
-          nameOfSelectedFriend={nameOfSelectedFriend}
-        />
+        <ActivityCard showBin={true} activityDetails={activityDetails} />
       </MemoryRouter>
     );
 

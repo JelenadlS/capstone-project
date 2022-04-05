@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { ModalButton, QuitButton } from './Button.js';
-
 import deletePictureIcon from '../images/deletePictureIcon.svg';
 
 export default function PastActivityModal({
@@ -16,7 +15,7 @@ export default function PastActivityModal({
   }
 
   return (
-    <WrapperModal>
+    <WrapperModal role="dialog">
       <p>Tell us, how was it?</p>
       <i>
         Please note, the activity will be deleted from your activity list and
@@ -32,7 +31,7 @@ export default function PastActivityModal({
         <QuitButton onClick={handleQuit}>
           <img
             src={deletePictureIcon}
-            alt="delete"
+            alt="quit/ keep and return back"
             width="20"
             height="20"
             type="submit"

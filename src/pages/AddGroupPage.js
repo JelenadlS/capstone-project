@@ -1,18 +1,17 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { AddButton, ArrowBackButton, DeleteButton } from '../components/Button';
+import { StyledLabels, StyledInputs } from '../components/FormStyling';
 import Header from '../components/Header';
 import Main from '../components/Main';
-import Navigation from '../components/Navigation';
 
 import useStore from '../hooks/useStore.js';
 
 import deleteIcon from '../images/binIcon.svg';
 import goBackIcon from '../images/goBackIcon.svg';
-import newIcon from '../images/newIcon.svg';
 import saveIcon from '../images/saveIcon.svg';
 
 export default function AddGroupPage() {
@@ -32,19 +31,19 @@ export default function AddGroupPage() {
       <Header hiddenGroup="hidden">
         Add a group
         <ArrowBackButton onClick={() => navigate(-1)}>
-          <img src={goBackIcon} alt="go back" />
+          <img width="50" height="40" src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
-      <Main>
+      <Main aria-label="add a group page">
         <Grid>
           <WrapperForm
-            title="addAGroup"
+            title="add a group"
             autoComplete="off"
             onSubmit={onAddGroup}
           >
             <StyledLabels htmlFor="addGroup">
               What is the name of your group?
-              <StyledInput
+              <StyledInputs
                 id="addGroup"
                 type="text"
                 name="addGroup"
@@ -77,11 +76,11 @@ export default function AddGroupPage() {
           {addedGroup.length > 0 && (
             <section>
               <p>Find below your already added groups:</p>
-              <StyledList role="list" title="list of added groups">
+              <ul title="list of added groups">
                 {addedGroup?.map(group => {
                   return (
-                    <li key={group.id}>
-                      <div>
+                    <StyledList key={group.id}>
+                      <>
                         {group.enteredGroup}
                         <DeleteButton onClick={() => onDeleteGroup(group.id)}>
                           <StyledImage
@@ -91,20 +90,15 @@ export default function AddGroupPage() {
                             alt="delete"
                           />
                         </DeleteButton>
-                      </div>
-                    </li>
+                      </>
+                    </StyledList>
                   );
                 })}
-              </StyledList>
+              </ul>
             </section>
           )}
         </Grid>
       </Main>
-      <Navigation>
-        <Link to="/newactivity">
-          <img src={newIcon} alt="new" />
-        </Link>
-      </Navigation>
     </>
   );
 
@@ -135,7 +129,6 @@ export default function AddGroupPage() {
 
 const Grid = styled.section`
   height: 85vh;
-  margin-top: 20px;
   display: grid;
   grid-template-rows: repeat(2, 1fr 1fr);
   justify-items: center;
@@ -145,30 +138,12 @@ const WrapperForm = styled.form`
   grid-template-rows: repeat(2, 60px);
   justify-items: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 40px;
 `;
 
-const StyledLabels = styled.label`
-  padding: 0 30px;
-`;
-
-const StyledInput = styled.input`
-  background: transparent;
-  border: 1px solid rgba(71, 39, 35, 0.42);
-  border-radius: 5px;
-  padding: 5px;
-  width: 100%;
-  color: rgba(71, 39, 35, 0.72);
-  outline: none;
-`;
-
-const StyledList = styled.ul`
-  color: rgba(71, 39, 35, 0.72);
-
-  li {
-    margin-left: 40px;
-    padding: 2px;
-  }
+const StyledList = styled.li`
+  margin-left: 40px;
+  padding: 2px;
 `;
 
 const StyledImage = styled.img`

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import ErrorFallback from './components/ErrorFallBack';
+import Navigation from './components/Navigation';
 
 import useStore from './hooks/useStore.js';
 
@@ -26,6 +27,7 @@ const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 export default function App() {
   const activities = useStore(state => state.activities);
   const searchInput = useStore(state => state.searchInput);
+  const showSave = useStore(state => state.showSave);
   const setActivities = useStore(state => state.setActivities);
   const setPhoto = useStore(state => state.setPhoto);
 
@@ -110,7 +112,7 @@ export default function App() {
             path="/allactivities"
             element={
               <AllActivitiesPage
-                activities={activitiesNotArchived}
+                activitiesNotArchived={activitiesNotArchived}
                 filteredSearchActivities={filteredSearchActivities}
               />
             }
@@ -129,6 +131,7 @@ export default function App() {
           <Route path="/addfriend" element={<AddFriendPage />} />
           <Route path="/addgroup" element={<AddGroupPage />} />
         </Routes>
+        <Navigation hidden={showSave && 'hidden'} />
       </WrapperApp>
     </ErrorBoundary>
   );

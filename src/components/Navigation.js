@@ -9,8 +9,9 @@ import groupIcon from '../images/groupIcon.svg';
 import allActivitiesIcon from '../images/allActivitiesIcon.svg';
 import friendIcon from '../images/friendIcon.svg';
 import inspireIcon from '../images/inspireIcon.svg';
+import newIcon from '../images/newIcon.svg';
 
-export default function Navigation({ children, hidden }) {
+export default function Navigation({ hidden }) {
   const handleResetPage = useStore(state => state.handleResetPage);
   const handleResetPageAndShowArrow = useStore(
     state => state.handleResetPageAndShowArrow
@@ -27,7 +28,7 @@ export default function Navigation({ children, hidden }) {
           <StyledIcon
             width="40"
             height="20"
-            alt="friendsHomeIcon"
+            alt="overview of friends"
             src={friendIcon}
           />
           <figcaption>friends</figcaption>
@@ -42,20 +43,26 @@ export default function Navigation({ children, hidden }) {
           <StyledIcon
             width="40"
             height="20"
-            alt="addAFriendIcon"
+            alt="overview of groups"
             src={groupIcon}
           />
           <figcaption>groups</figcaption>
         </figure>
       </StyledNavLink>
-      <MainNavButton
-        aria-label="create a new activity"
-        hidden={hidden}
-        onClick={handleResetPage}
-      >
-        {children}
-      </MainNavButton>
-      {hidden && <div />}
+
+      <NavLink to="/newactivity">
+        <MainNavButton
+          type="button"
+          role="button"
+          aria-label="create a new activity"
+          hidden={hidden}
+          onClick={handleResetPage}
+        >
+          <img width="45" height="45" src={newIcon} alt="add an activity" />
+        </MainNavButton>
+        {hidden && <div />}
+      </NavLink>
+
       <StyledNavLink
         aria-label="all activities"
         to="/allactivities"
@@ -65,7 +72,7 @@ export default function Navigation({ children, hidden }) {
           <img
             width="40"
             height="30"
-            alt="allActivitiesIcon"
+            alt="all activities"
             src={allActivitiesIcon}
           />
           <figcaption>activities</figcaption>
@@ -77,7 +84,12 @@ export default function Navigation({ children, hidden }) {
         onClick={handleResetPageAndShowArrow}
       >
         <figure>
-          <img width="40" height="30" alt="inspireIcon" src={inspireIcon} />
+          <img
+            width="40"
+            height="30"
+            alt="all past activities"
+            src={inspireIcon}
+          />
           <figcaption>inspiration</figcaption>
         </figure>
       </StyledNavLink>

@@ -4,7 +4,6 @@ import { ArrowBackButton } from '../components/Button';
 import Form from '../components/Form';
 import Header from '../components/Header';
 import Main from '../components/Main';
-import Navigation from '../components/Navigation';
 
 import useStore from '../hooks/useStore.js';
 
@@ -16,6 +15,7 @@ export default function EditActivityPage({ activities, uploadImage }) {
   const { id } = useParams();
 
   const setPhoto = useStore(state => state.setPhoto);
+  const setShowSave = useStore(state => state.setShowSave);
   const onEditActivity = useStore(state => state.onEditActivity);
 
   const activityToEdit = activities.find(activity => activity.id === id);
@@ -25,17 +25,16 @@ export default function EditActivityPage({ activities, uploadImage }) {
       <Header hiddenGroup="hidden">
         Edit activity
         <ArrowBackButton onClick={resetForm}>
-          <img src={goBackIcon} alt="go back" />
+          <img width="50" height="40" src={goBackIcon} alt="go back" />
         </ArrowBackButton>
       </Header>
-      <Main>
+      <Main aria-label={`edit ${activityToEdit.activity} page`}>
         <Form
           preloadedValues={activityToEdit}
           handleActivity={onEditActivity}
           uploadImage={uploadImage}
         />
       </Main>
-      <Navigation hidden="hidden"></Navigation>
     </>
   );
 
@@ -46,5 +45,6 @@ export default function EditActivityPage({ activities, uploadImage }) {
       }/${activityToEdit.activity}`
     );
     setPhoto('');
+    setShowSave(false);
   }
 }
