@@ -21,6 +21,7 @@ export default function AddGroupPage() {
   const [tooLongGroup, setTooLongGroup] = useState(false);
   const [tooShortGroup, setTooShortGroup] = useState(true);
 
+  const addedFriend = useStore(state => state.addedFriend);
   const addedGroup = useStore(state => state.addedGroup);
   const setAddedGroup = useStore(state => state.setAddedGroup);
 
@@ -72,7 +73,16 @@ export default function AddGroupPage() {
               </StyledNotification>
             )}
           </WrapperForm>
-
+          <section>
+            <p>Please select members of your group:</p>
+            <ul title="list of added friends">
+              {addedFriend?.map(friend => {
+                return (
+                  <StyledList key={friend.id}>{friend.newFriend}</StyledList>
+                );
+              })}
+            </ul>
+          </section>
           {addedGroup.length > 0 && (
             <section>
               <p>Find below your already added groups:</p>
@@ -130,7 +140,7 @@ export default function AddGroupPage() {
 const Grid = styled.section`
   height: 85vh;
   display: grid;
-  grid-template-rows: repeat(2, 1fr 1fr);
+  grid-template-rows: repeat(3, 1fr);
   justify-items: center;
 `;
 const WrapperForm = styled.form`
